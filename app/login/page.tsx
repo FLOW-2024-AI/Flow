@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import Image from 'next/image'
+import Logo from '@/components/Logo'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -85,13 +85,10 @@ export default function LoginPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-3">
             <Link href="/" className="flex items-center">
-              <Image 
-                src="/images/logo/Flow-logo.jpg" 
-                alt="Flow" 
+              <Logo 
                 width={168} 
                 height={78}
                 className="h-20 w-auto object-contain"
-                style={{ height: '78px' }}
               />
             </Link>
             

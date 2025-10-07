@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
+import Logo from './Logo'
 
 export default function Navbar() {
   return (
@@ -10,13 +10,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-11">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <Image 
-              src="/images/logo/Flow-logo.jpg" 
-              alt="Flow" 
-              width={60} 
-              height={28}
-              className="h-7 w-auto object-contain"
-            />
+            <Logo width={60} height={28} className="h-7 w-auto object-contain" />
           </Link>
           
           {/* Center Navigation */}
