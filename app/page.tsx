@@ -16,6 +16,7 @@ import ExitIntent from '@/components/ExitIntent'
 import TrustBadges from '@/components/TrustBadges'
 import LiveStats from '@/components/LiveStats'
 import ChatWidget from '@/components/ChatWidget'
+import Logo from '@/components/Logo'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -48,9 +49,7 @@ export default function Home() {
           <div className="flex justify-between items-center h-11">
             {/* Logo */}
             <Link href="/" className="flex items-center">
-              <Image 
-                src="/images/logo/flow-logo.jpg" 
-                alt="Flow" 
+              <Logo 
                 width={60} 
                 height={28}
                 className="h-7 w-auto object-contain"
