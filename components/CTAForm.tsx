@@ -188,7 +188,7 @@ export default function CTAForm() {
       </motion.button>
 
       <p className="text-xs text-neutral-400 text-center">
-        Al enviar aceptas recibir comunicación sobre Finka Finance. No hacemos spam.
+        Al enviar aceptas recibir comunicación sobre Flow. No hacemos spam.
       </p>
     </motion.form>
   )

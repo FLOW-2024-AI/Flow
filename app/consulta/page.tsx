@@ -187,23 +187,16 @@ export default function ConsultaPage() {
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Navigation */}
-      <nav className="border-b border-neutral-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-3">
+      <nav className="fixed top-0 w-full bg-black/95 backdrop-blur-xl border-b border-white/10 z-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex justify-between items-center h-16">
             <Link href="/" className="flex items-center">
-              <Image 
-                src="/images/logo/finka-logo.jpg" 
-                alt="Finka Finance" 
-                width={250} 
-                height={60}
-                className="h-15 w-auto object-contain"
-                style={{ height: '60px' }}
-              />
+              <span className="text-2xl font-bold">Flow</span>
             </Link>
             
             <Link 
               href="/"
-              className="text-neutral-300 hover:text-white transition-colors"
+              className="text-neutral-300 hover:text-white transition-colors text-sm"
             >
               ← Volver al inicio
             </Link>
@@ -212,7 +205,7 @@ export default function ConsultaPage() {
       </nav>
 
       {/* Main Content */}
-      <div className="py-20 px-4 sm:px-6 lg:px-8">
+      <div className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <motion.div
             variants={containerVariants}
@@ -223,9 +216,12 @@ export default function ConsultaPage() {
             {/* Left Column - Info */}
             <motion.div variants={itemVariants} className="space-y-8">
               <div>
-                <h1 className="text-4xl font-bold mb-6">Agenda tu consulta gratuita</h1>
+                <div className="inline-block bg-green-500/10 border border-green-500/20 rounded-full px-4 py-2 text-sm font-semibold text-green-400 mb-4">
+                  ✓ 100% Gratuita • Sin compromiso
+                </div>
+                <h1 className="text-4xl md:text-5xl font-bold mb-6">Agenda tu consulta gratuita</h1>
                 <p className="text-xl text-neutral-300 leading-relaxed">
-                  Descubre cómo Finka puede automatizar tus procesos financieros y ahorrar horas cada semana a tu equipo.
+                  Descubre cómo Flow puede <span className="text-white font-semibold">reducir 80% el tiempo manual</span> y automatizar tus procesos financieros.
                 </p>
               </div>
 
@@ -432,6 +428,12 @@ export default function ConsultaPage() {
                       <option value="">Selecciona un área</option>
                       <option value="conciliacion-bancaria">Conciliación bancaria</option>
                       <option value="cuentas-por-pagar">Cuentas por pagar</option>
+                      <option value="cuentas-por-cobrar">Cuentas por cobrar / Cobranza</option>
+                      <option value="facturacion-electronica">Facturación electrónica SUNAT</option>
+                      <option value="reportes-sunat">Reportes SUNAT (PLAME, PLE, SIRE)</option>
+                      <option value="presupuesto">Presupuesto y control</option>
+                      <option value="flujo-caja">Flujo de caja proyectado</option>
+                      <option value="todo">Todo lo anterior</option>
                     </select>
                   </div>
 

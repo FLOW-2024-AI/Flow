@@ -2,23 +2,23 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Finka Finance - Automatiza finanzas con IA',
-  description: 'Finka conecta tu tesorería, contabilidad y flujos RPA en un panel único. Extrae datos de PDFs, concilia, proyecta y alerta en tiempo real.',
+  title: 'Flow - Automatiza finanzas con IA',
+  description: 'Flow conecta tu tesorería, contabilidad y flujos RPA en un panel único. Extrae datos de PDFs, concilia, proyecta y alerta en tiempo real.',
   keywords: 'fintech, IA, automatización, tesorería, contabilidad, RPA, n8n',
-  authors: [{ name: 'Finka Finance' }],
-  creator: 'Finka Finance',
-  publisher: 'Finka Finance',
+  authors: [{ name: 'Flow' }],
+  creator: 'Flow',
+  publisher: 'Flow',
   openGraph: {
-    title: 'Finka Finance - Automatiza finanzas con IA',
+    title: 'Flow - Automatiza finanzas con IA',
     description: 'Cierra el mes en horas, no días. Conecta tu tesorería, contabilidad y flujos RPA en un panel único.',
-    url: 'https://finka.finance',
-    siteName: 'Finka Finance',
+    url: 'https://flow.finance',
+    siteName: 'Flow',
     locale: 'es_ES',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Finka Finance - Automatiza finanzas con IA',
+    title: 'Flow - Automatiza finanzas con IA',
     description: 'Cierra el mes en horas, no días. Conecta tu tesorería, contabilidad y flujos RPA en un panel único.',
   },
   robots: {

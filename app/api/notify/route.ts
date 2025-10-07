@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
         company,
         role,
         created_at,
-        source: 'finka-finance-landing'
+        source: 'flow-finance-landing'
       }),
     })
 

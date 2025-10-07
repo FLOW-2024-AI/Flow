@@ -26,62 +26,77 @@ const itemVariants = {
 
 const plans = [
   {
-    name: "Starter",
-    price: "$299",
+    name: "Essentials",
+    price: "$399",
     period: "/mes",
-    description: "Perfecto para pequeñas empresas que inician su automatización financiera",
+    description: "Automatiza lo básico. Perfecto para PYMEs que empiezan.",
+    tagline: "RPA Básico",
     features: [
-      "Hasta 500 transacciones/mes",
-      "Conciliación bancaria automática",
-      "2 cuentas bancarias",
-      "Reportes básicos",
-      "Soporte por email",
-      "Integración con 1 ERP",
-      "Dashboard básico"
+      "✅ Dashboard Overview + Analytics",
+      "✅ Facturas Registradas",
+      "✅ Tesorería (Caja y Bancos)",
+      "✅ Conciliación Bancaria",
+      "✅ Reportes Financieros Básicos",
+      "✅ Alertas y Notificaciones",
+      "✅ Integraciones: 1 ERP + 2 Bancos",
+      "❌ Copiloto IA",
+      "❌ Predicciones ML",
+      "❌ Ecosistema Financiero",
+      "📧 Soporte: Email (48h)"
     ],
     popular: false,
-    color: "blue"
+    color: "blue",
+    savings: "Ahorra 15h/mes"
   },
   {
     name: "Professional",
-    price: "$599",
+    price: "$799",
     period: "/mes",
-    description: "Ideal para empresas en crecimiento que necesitan automatización completa",
+    description: "RPA + IA + CFO Digital. Lo que necesita tu empresa.",
+    tagline: "Más Popular",
     features: [
-      "Hasta 2,000 transacciones/mes",
-      "Conciliación bancaria automática",
-      "5 cuentas bancarias",
-      "Cuentas por pagar automatizadas",
-      "Reportes avanzados + BI",
-      "Soporte prioritario",
-      "Integración con 3 ERPs",
-      "Dashboard avanzado",
-      "API personalizada",
-      "Flujos de aprobación"
+      "✅ Todo de Essentials +",
+      "✅ Facturación Electrónica (SUNAT)",
+      "✅ Cobranza Automatizada",
+      "✅ Cuentas por Pagar",
+      "✅ Presupuesto y Control",
+      "✅ Flujo de Caja Proyectado",
+      "✅ Copiloto IA Conversacional",
+      "✅ Predicciones con ML",
+      "✅ Automatizaciones RPA",
+      "✅ Salud Financiera (Score)",
+      "✅ Integraciones: 3 ERPs + Bancos ilimitados",
+      "✅ SUNAT: SOL, PLAME, PLE, SIRE",
+      "💬 Soporte: Chat prioritario (4h)"
     ],
     popular: true,
-    color: "green"
+    color: "green",
+    savings: "Ahorra 40h/mes"
   },
   {
     name: "Enterprise",
-    price: "Personalizado",
+    price: "Custom",
     period: "",
-    description: "Solución completa para grandes empresas con necesidades específicas",
+    description: "Todo Flow + Ecosistema Financiero + CFO Digital completo.",
+    tagline: "Solución Completa",
     features: [
-      "Transacciones ilimitadas",
-      "Todas las funcionalidades",
-      "Cuentas bancarias ilimitadas",
-      "Automatización completa A/P y A/R",
-      "Reportes personalizados",
-      "Soporte dedicado 24/7",
-      "Integraciones ilimitadas",
-      "Dashboard personalizado",
-      "Implementación dedicada",
-      "SLA garantizado",
-      "Capacitación on-site"
+      "✅ Todo de Professional +",
+      "✅ Planificación Estratégica",
+      "✅ Gestión de Riesgos",
+      "✅ Ecosistema Financiero (Confirming, Factoring, Flash)",
+      "✅ Productos Bancarios (Líneas, Leasing)",
+      "✅ Integraciones: Ilimitadas + API Custom",
+      "✅ Dashboard Personalizado",
+      "✅ Automatizaciones Custom",
+      "✅ White-label disponible",
+      "✅ Implementación dedicada",
+      "✅ SLA garantizado 99.9%",
+      "✅ Account Manager dedicado",
+      "🚀 Soporte: 24/7 + WhatsApp directo"
     ],
     popular: false,
-    color: "purple"
+    color: "purple",
+    savings: "ROI 450%+"
   }
 ]
 
@@ -89,26 +104,30 @@ export default function PreciosPage() {
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-black/80 backdrop-blur-md border-b border-neutral-800 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-3">
+      <nav className="fixed top-0 w-full bg-black/95 backdrop-blur-xl border-b border-white/10 z-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex justify-between items-center h-11">
             <Link href="/" className="flex items-center">
               <Image 
-                src="/images/logo/finka-logo.jpg" 
-                alt="Finka Finance" 
-                width={250} 
-                height={60}
-                className="h-15 w-auto object-contain"
-                style={{ height: '60px' }}
+                src="/images/logo/flow-logo.jpg" 
+                alt="Flow" 
+                width={60} 
+                height={28}
+                className="h-7 w-auto object-contain"
               />
             </Link>
             
-            <Link 
-              href="/" 
-              className="text-neutral-300 hover:text-white transition-colors focus-ring rounded-md px-3 py-2"
-            >
-              ← Volver al inicio
-            </Link>
+            <div className="hidden md:flex items-center space-x-8">
+              <Link href="/soluciones" className="text-white/80 hover:text-white transition-colors text-xs">Soluciones</Link>
+              <Link href="/como-funciona" className="text-white/80 hover:text-white transition-colors text-xs">Cómo funciona</Link>
+              <Link href="/precios" className="text-white/80 hover:text-white transition-colors text-xs">Precios</Link>
+              <Link href="/quienes-somos" className="text-white/80 hover:text-white transition-colors text-xs">Nosotros</Link>
+            </div>
+
+            <div className="flex items-center space-x-4">
+              <Link href="/login" className="text-white/80 hover:text-white transition-colors text-xs">Iniciar sesión</Link>
+              <Link href="/consulta" className="bg-white text-black px-3 py-1.5 rounded-full text-xs font-medium hover:opacity-90 transition-opacity">Consulta</Link>
+            </div>
           </div>
         </div>
       </nav>
@@ -124,9 +143,21 @@ export default function PreciosPage() {
           >
             {/* Header */}
             <motion.div variants={itemVariants} className="text-center">
-              <h1 className="text-5xl font-bold mb-6">Planes y Precios</h1>
-              <p className="text-xl text-neutral-400 max-w-3xl mx-auto">
-                Elige el plan perfecto para automatizar las finanzas de tu empresa. Todos los planes incluyen implementación y capacitación inicial.
+              <div className="inline-block bg-purple-500/10 border border-purple-500/20 rounded-full px-6 py-2 text-sm font-semibold text-purple-400 mb-6">
+                💰 Desde $399/mes • ROI promedio 450%
+              </div>
+              <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
+                Precios transparentes.{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
+                  Sin sorpresas.
+                </span>
+              </h1>
+              <p className="text-base md:text-lg text-neutral-300 max-w-3xl mx-auto mb-4 leading-relaxed">
+                Elige el plan perfecto según las funcionalidades que necesitas.
+                <span className="text-white font-semibold"> Todos incluyen implementación y capacitación.</span>
+              </p>
+              <p className="text-sm text-neutral-500">
+                ✓ Sin contratos largos • ✓ Cancela cuando quieras • ✓ 30 días de prueba gratis
               </p>
             </motion.div>
 
@@ -143,28 +174,35 @@ export default function PreciosPage() {
                 >
                   {plan.popular && (
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                      <span className="bg-green-600 text-white px-4 py-1 rounded-full text-sm font-medium">
-                        Más Popular
+                      <span className="bg-green-600 text-white px-4 py-1.5 rounded-full text-xs font-bold shadow-xl">
+                        ⭐ {plan.tagline}
+                      </span>
+                    </div>
+                  )}
+                  {!plan.popular && plan.tagline && (
+                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                      <span className="bg-neutral-800 text-neutral-300 px-4 py-1.5 rounded-full text-xs font-semibold border border-neutral-700">
+                        {plan.tagline}
                       </span>
                     </div>
                   )}
 
                   <div className="text-center mb-8">
-                    <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
-                    <div className="mb-4">
-                      <span className="text-4xl font-bold">{plan.price}</span>
-                      <span className="text-neutral-400">{plan.period}</span>
+                    <h3 className="text-xl font-bold mb-3">{plan.name}</h3>
+                    <div className="mb-3">
+                      <span className="text-3xl font-bold">{plan.price}</span>
+                      <span className="text-neutral-400 text-lg">{plan.period}</span>
                     </div>
-                    <p className="text-neutral-400">{plan.description}</p>
+                    <p className="text-neutral-400 text-sm mb-3">{plan.description}</p>
+                    <div className="inline-block bg-blue-500/10 border border-blue-500/20 rounded-full px-3 py-1 text-xs font-semibold text-blue-400">
+                      {plan.savings}
+                    </div>
                   </div>
 
-                  <ul className="space-y-3 mb-8">
+                  <ul className="space-y-2.5 mb-8">
                     {plan.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-start">
-                        <svg className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        <span className="text-neutral-300">{feature}</span>
+                        <span className="text-neutral-300 text-sm leading-relaxed">{feature}</span>
                       </li>
                     ))}
                   </ul>
@@ -200,115 +238,79 @@ export default function PreciosPage() {
 
             {/* FAQ Section */}
             <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-8">
-              <h2 className="text-3xl font-bold mb-8 text-center">Preguntas Frecuentes</h2>
+              <h2 className="text-xl font-semibold mb-6 text-center">Preguntas Frecuentes</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
-                  <h3 className="text-xl font-bold mb-3">¿Hay período de prueba gratuito?</h3>
-                  <p className="text-neutral-400">
+                  <h3 className="text-sm font-semibold mb-2">¿Hay período de prueba gratuito?</h3>
+                  <p className="text-neutral-500 text-xs">
                     Sí, ofrecemos 30 días de prueba gratuita para todos los planes. No se requiere tarjeta de crédito.
                   </p>
                 </div>
 
                 <div>
-                  <h3 className="text-xl font-bold mb-3">¿Puedo cambiar de plan en cualquier momento?</h3>
-                  <p className="text-neutral-400">
+                  <h3 className="text-sm font-semibold mb-2">¿Puedo cambiar de plan en cualquier momento?</h3>
+                  <p className="text-neutral-500 text-xs">
                     Absolutamente. Puedes actualizar o reducir tu plan en cualquier momento. Los cambios se aplican en el siguiente ciclo de facturación.
                   </p>
                 </div>
 
                 <div>
-                  <h3 className="text-xl font-bold mb-3">¿Qué incluye la implementación?</h3>
-                  <p className="text-neutral-400">
+                  <h3 className="text-sm font-semibold mb-2">¿Qué incluye la implementación?</h3>
+                  <p className="text-neutral-500 text-xs">
                     Incluye configuración inicial, integración con tus sistemas existentes, migración de datos y capacitación del equipo.
                   </p>
                 </div>
 
                 <div>
-                  <h3 className="text-xl font-bold mb-3">¿Hay costos adicionales por integraciones?</h3>
-                  <p className="text-neutral-400">
+                  <h3 className="text-sm font-semibold mb-2">¿Hay costos adicionales por integraciones?</h3>
+                  <p className="text-neutral-500 text-xs">
                     Las integraciones estándar están incluidas. Integraciones personalizadas pueden tener costo adicional según complejidad.
                   </p>
                 </div>
 
                 <div>
-                  <h3 className="text-xl font-bold mb-3">¿Ofrecen descuentos por pago anual?</h3>
-                  <p className="text-neutral-400">
+                  <h3 className="text-sm font-semibold mb-2">¿Ofrecen descuentos por pago anual?</h3>
+                  <p className="text-neutral-500 text-xs">
                     Sí, ofrecemos 15% de descuento en todos los planes al pagar anualmente por adelantado.
                   </p>
                 </div>
 
                 <div>
-                  <h3 className="text-xl font-bold mb-3">¿Qué nivel de soporte incluye cada plan?</h3>
-                  <p className="text-neutral-400">
+                  <h3 className="text-sm font-semibold mb-2">¿Qué nivel de soporte incluye cada plan?</h3>
+                  <p className="text-neutral-500 text-xs">
                     Starter: Email (48h), Professional: Email prioritario (24h), Enterprise: Soporte dedicado 24/7.
                   </p>
                 </div>
               </div>
             </motion.div>
 
-            {/* Features Comparison */}
-            <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-8">
-              <h2 className="text-3xl font-bold mb-8 text-center">Comparación de Funcionalidades</h2>
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead>
-                    <tr className="border-b border-neutral-700">
-                      <th className="text-left py-4 px-4">Funcionalidad</th>
-                      <th className="text-center py-4 px-4">Starter</th>
-                      <th className="text-center py-4 px-4">Professional</th>
-                      <th className="text-center py-4 px-4">Enterprise</th>
-                    </tr>
-                  </thead>
-                  <tbody className="text-neutral-300">
-                    <tr className="border-b border-neutral-800">
-                      <td className="py-4 px-4">Conciliación Bancaria</td>
-                      <td className="text-center py-4 px-4">✅</td>
-                      <td className="text-center py-4 px-4">✅</td>
-                      <td className="text-center py-4 px-4">✅</td>
-                    </tr>
-                    <tr className="border-b border-neutral-800">
-                      <td className="py-4 px-4">Cuentas por Pagar</td>
-                      <td className="text-center py-4 px-4">❌</td>
-                      <td className="text-center py-4 px-4">✅</td>
-                      <td className="text-center py-4 px-4">✅</td>
-                    </tr>
-                    <tr className="border-b border-neutral-800">
-                      <td className="py-4 px-4">API Personalizada</td>
-                      <td className="text-center py-4 px-4">❌</td>
-                      <td className="text-center py-4 px-4">✅</td>
-                      <td className="text-center py-4 px-4">✅</td>
-                    </tr>
-                    <tr className="border-b border-neutral-800">
-                      <td className="py-4 px-4">Soporte 24/7</td>
-                      <td className="text-center py-4 px-4">❌</td>
-                      <td className="text-center py-4 px-4">❌</td>
-                      <td className="text-center py-4 px-4">✅</td>
-                    </tr>
-                    <tr className="border-b border-neutral-800">
-                      <td className="py-4 px-4">Implementación Dedicada</td>
-                      <td className="text-center py-4 px-4">❌</td>
-                      <td className="text-center py-4 px-4">❌</td>
-                      <td className="text-center py-4 px-4">✅</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </motion.div>
-
             {/* CTA */}
-            <motion.div variants={itemVariants} className="text-center bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-blue-800/30 rounded-2xl p-12">
-              <h2 className="text-3xl font-bold mb-4">¿No estás seguro qué plan elegir?</h2>
-              <p className="text-xl text-neutral-400 mb-8">
-                Agenda una consulta gratuita y te ayudamos a encontrar la solución perfecta para tu empresa.
+            <motion.div variants={itemVariants} className="text-center bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-pink-900/20 border border-purple-500/30 rounded-2xl p-12">
+              <div className="inline-block bg-green-500/10 border border-green-500/20 rounded-full px-6 py-2 text-sm font-semibold text-green-400 mb-6">
+                ✓ 30 días gratis • Sin tarjeta de crédito
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                ¿No estás seguro?{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+                  Pruébalo gratis.
+                </span>
+              </h2>
+              <p className="text-lg text-neutral-300 mb-8 max-w-2xl mx-auto">
+                Más de 20 empresas ya confían en Flow. 
+                <span className="text-white font-semibold"> ROI promedio: 450%.</span>
+                {' '}Agenda tu demo o empieza tu prueba gratuita hoy.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/consulta" className="bg-white text-black px-8 py-4 rounded-xl font-semibold text-lg hover:opacity-90 transition-opacity focus-ring inline-block">
-                  Agendar consulta gratis
+                <Link href="/consulta" className="bg-white text-black px-8 py-4 rounded-full font-bold text-base hover:opacity-90 transition-opacity shadow-xl inline-block">
+                  Agendar demo gratuita →
                 </Link>
-                <Link href="/login" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-colors focus-ring inline-block">
-                  Probar demo gratis
+                <Link href="/login" className="border border-neutral-700 text-white px-8 py-4 rounded-full font-medium text-base hover:border-neutral-500 hover:bg-neutral-900/50 transition-all inline-block">
+                  Empezar prueba gratis
                 </Link>
               </div>
+              <p className="text-xs text-neutral-500 mt-6">
+                Sin tarjeta de crédito • Implementación en 2 semanas • Soporte en español
+              </p>
             </motion.div>
           </motion.div>
         </div>

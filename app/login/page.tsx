@@ -59,7 +59,7 @@ export default function LoginPage() {
       await new Promise(resolve => setTimeout(resolve, 1500))
       
       // For demo purposes - you would implement real authentication here
-      if (formData.email === 'admin@finka.finance' && formData.password === 'demo123') {
+      if (formData.email === 'admin@flow.finance' && formData.password === 'demo123') {
         // Redirect to dashboard
         console.log('Login successful!')
         window.location.href = '/dashboard'
@@ -81,12 +81,12 @@ export default function LoginPage() {
           <div className="flex justify-between items-center py-3">
             <Link href="/" className="flex items-center">
               <Image 
-                src="/images/logo/finka-logo.jpg" 
-                alt="Finka Finance" 
-                width={250} 
-                height={60}
-                className="h-15 w-auto object-contain"
-                style={{ height: '60px' }}
+                src="/images/logo/Flow-logo.jpg" 
+                alt="Flow" 
+                width={168} 
+                height={78}
+                className="h-20 w-auto object-contain"
+                style={{ height: '78px' }}
               />
             </Link>
             
@@ -129,7 +129,7 @@ export default function LoginPage() {
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 bg-black border border-neutral-700 rounded-xl text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent transition-all"
-                  placeholder="tu@finka.finance"
+                  placeholder="tu@flow.finance"
                   disabled={isLoading}
                 />
               </motion.div>
@@ -229,7 +229,7 @@ export default function LoginPage() {
             <motion.div variants={itemVariants} className="mt-6 p-4 bg-neutral-800/30 rounded-xl border border-neutral-700">
               <p className="text-xs text-neutral-400 mb-2 font-medium">Demo - Credenciales de prueba:</p>
               <div className="text-xs text-neutral-300 space-y-1">
-                <p><strong>Email:</strong> admin@finka.finance</p>
+                <p><strong>Email:</strong> admin@flow.finance</p>
                 <p><strong>Contraseña:</strong> demo123</p>
               </div>
             </motion.div>

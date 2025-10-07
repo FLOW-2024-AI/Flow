@@ -1,0 +1,73 @@
+Categoría,Nombre,Valor,Hex,RGB,Uso
+COLORES BASE,Background Principal,black,#000000,"rgb(0, 0, 0)",Fondo principal del sitio
+COLORES BASE,Background Secundario,neutral-950,#0a0a0a,"rgb(10, 10, 10)",Fondo de secciones
+COLORES BASE,Text Principal,white,#FFFFFF,"rgb(255, 255, 255)",Texto principal
+COLORES BASE,Text Secundario,neutral-400,#A3A3A3,"rgb(163, 163, 163)",Texto secundario
+COLORES BASE,Text Terciario,neutral-500,#737373,"rgb(115, 115, 115)",Texto terciario
+
+AZUL,Blue 400,blue-400,#60A5FA,"rgb(96, 165, 250)",Tecnología/Confianza
+AZUL,Blue 500,blue-500,#3B82F6,"rgb(59, 130, 246)",Tecnología/Confianza
+AZUL,Blue 600,blue-600,#2563EB,"rgb(37, 99, 235)",Tecnología/Confianza
+AZUL,Blue 900/20,blue-900/20,rgba(30 58 138 / 0.2),"rgba(30, 58, 138, 0.2)",Fondos con transparencia
+
+PÚRPURA,Purple 400,purple-400,#C084FC,"rgb(192, 132, 252)",Innovación/IA
+PÚRPURA,Purple 500,purple-500,#A855F7,"rgb(168, 85, 247)",Innovación/IA
+PÚRPURA,Purple 600,purple-600,#9333EA,"rgb(147, 51, 234)",Innovación/IA
+PÚRPURA,Purple 900/20,purple-900/20,rgba(88 28 135 / 0.2),"rgba(88, 28, 135, 0.2)",Fondos con transparencia
+
+VERDE,Green 400,green-400,#4ADE80,"rgb(74, 222, 128)",Éxito/Crecimiento
+VERDE,Green 500,green-500,#22C55E,"rgb(34, 197, 94)",Éxito/Crecimiento
+VERDE,Green 600,green-600,#16A34A,"rgb(22, 163, 74)",Éxito/Crecimiento
+VERDE,Emerald 600,emerald-600,#059669,"rgb(5, 150, 105)",Éxito/Crecimiento
+
+NARANJA/ROJO,Orange 500,orange-500,#F97316,"rgb(249, 115, 22)",Financiero/Alertas
+NARANJA/ROJO,Red 600,red-600,#DC2626,"rgb(220, 38, 38)",Error/Alertas
+NARANJA/ROJO,Pink 400,pink-400,#F472B6,"rgb(244, 114, 182)",Acento
+
+NEUTRALES,Neutral 700,neutral-700,#404040,"rgb(64, 64, 64)",Bordes/UI
+NEUTRALES,Neutral 800,neutral-800,#262626,"rgb(38, 38, 38)",Bordes/UI
+NEUTRALES,Neutral 900,neutral-900,#171717,"rgb(23, 23, 23)",Fondos de cards
+NEUTRALES,Neutral 950,neutral-950,#0a0a0a,"rgb(10, 10, 10)",Fondos oscuros
+
+GRADIENTES,Hero Principal,from-blue-400 via-purple-400 to-blue-400,#60A5FA → #C084FC → #60A5FA,,Títulos principales
+GRADIENTES,Hero Secundario,from-blue-400 via-purple-400 to-pink-400,#60A5FA → #C084FC → #F472B6,,Títulos alternativos
+GRADIENTES,CTA Background,from-blue-900/20 via-purple-900/20 to-pink-900/20,rgba(30 58 138 / 0.2) → rgba(88 28 135 / 0.2) → rgba(190 24 93 / 0.2),,Fondos de CTAs
+GRADIENTES,Card Hover,from-blue-500 to-purple-600,#3B82F6 → #9333EA,,Hover effects
+
+TIPOGRAFÍA,Font Family,Myriad Pro,"Myriad Pro, Myriad, Liberation Sans, Nimbus Sans L, Helvetica Neue, Arial, sans-serif",,Fuente principal
+TIPOGRAFÍA,H1 Hero,text-4xl md:text-6xl,36px → 60px,,Títulos principales
+TIPOGRAFÍA,H2 Section,text-3xl md:text-4xl,30px → 36px,,Títulos de sección
+TIPOGRAFÍA,H3 Card,text-xl md:text-2xl,20px → 24px,,Títulos de tarjetas
+TIPOGRAFÍA,H4 Subsection,text-lg,18px,,Subtítulos
+TIPOGRAFÍA,Body Large,text-xl,20px,,Texto destacado
+TIPOGRAFÍA,Body Base,text-base,16px,,Texto normal
+TIPOGRAFÍA,Body Small,text-sm,14px,,Texto pequeño
+TIPOGRAFÍA,Body XSmall,text-xs,12px,,Texto muy pequeño
+
+FONT WEIGHTS,Bold,font-bold,700,,Títulos importantes
+FONT WEIGHTS,Semibold,font-semibold,600,,Subtítulos
+FONT WEIGHTS,Medium,font-medium,500,,Texto destacado
+FONT WEIGHTS,Regular,font-normal,400,,Texto normal
+
+LINE HEIGHTS,Tight,leading-tight,1.25,,Títulos
+LINE HEIGHTS,Normal,leading-normal,1.5,,Texto normal
+LINE HEIGHTS,Relaxed,leading-relaxed,1.625,,Párrafos largos
+
+EFECTOS,Shadow XL,shadow-xl,0 20px 25px -5px rgba(0 0 0 / 0.1),,Sombras grandes
+EFECTOS,Shadow 2XL,shadow-2xl,0 25px 50px -12px rgba(0 0 0 / 0.25),,Sombras muy grandes
+EFECTOS,Shadow Blue,shadow-blue-500/20,0 0 50px rgba(59 130 246 / 0.2),,Glow azul
+EFECTOS,Backdrop Blur,backdrop-blur-xl,blur(24px),,Desenfoque de fondo
+EFECTOS,Border Neutral,border-neutral-800,1px solid #262626,,Bordes normales
+EFECTOS,Border Blue,border-blue-500/30,1px solid rgba(59 130 246 / 0.3),,Bordes con color
+
+BUTTONS,Primary BG,bg-white,#FFFFFF,,Botones principales
+BUTTONS,Primary Text,text-black,#000000,,Texto de botones principales
+BUTTONS,Primary Hover,hover:opacity-90,opacity: 0.9,,Hover de botones principales
+BUTTONS,Secondary Border,border-neutral-700,#404040,,Borde de botones secundarios
+BUTTONS,Secondary Text,text-white,#FFFFFF,,Texto de botones secundarios
+BUTTONS,Secondary Hover,hover:bg-neutral-900/50,rgba(23 23 23 / 0.5),,Hover de botones secundarios
+
+CARDS,Card Background,bg-neutral-900/50,rgba(23 23 23 / 0.5),,Fondo de tarjetas
+CARDS,Card Border,border-neutral-800,#262626,,Borde de tarjetas
+CARDS,Card Hover Border,hover:border-neutral-700,#404040,,Borde hover de tarjetas
+CARDS,Card Rounded,rounded-2xl,16px,,Border radius de tarjetas
