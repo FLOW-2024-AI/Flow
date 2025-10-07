@@ -102,8 +102,7 @@ export default function DashboardPage() {
         setIsAuthenticated(true)
       } else {
         // Redirect to login
-        const basePath = process.env.NODE_ENV === 'production' ? '/Flow' : ''
-        window.location.href = `${basePath}/login`
+        window.location.href = '/login'
       }
     }
   }, [])

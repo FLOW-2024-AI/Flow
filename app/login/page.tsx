@@ -66,8 +66,7 @@ export default function LoginPage() {
         }
         // Redirect to dashboard
         console.log('Login successful!')
-        const basePath = process.env.NODE_ENV === 'production' ? '/Flow' : ''
-        window.location.href = `${basePath}/dashboard`
+        window.location.href = '/dashboard'
       } else {
         setError('Credenciales incorrectas. Intenta nuevamente.')
       }
