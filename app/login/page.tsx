@@ -60,9 +60,14 @@ export default function LoginPage() {
       
       // For demo purposes - you would implement real authentication here
       if (formData.email === 'admin@flow.finance' && formData.password === 'demo123') {
+        // Store demo session
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('demo_session', 'true')
+        }
         // Redirect to dashboard
         console.log('Login successful!')
-        window.location.href = '/dashboard'
+        const basePath = process.env.NODE_ENV === 'production' ? '/Flow' : ''
+        window.location.href = `${basePath}/dashboard`
       } else {
         setError('Credenciales incorrectas. Intenta nuevamente.')
       }

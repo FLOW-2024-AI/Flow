@@ -92,6 +92,33 @@ export default function DashboardPage() {
   ])
   const [healthScore] = useState(82)
   const [reportesTab, setReportesTab] = useState<'financieros' | 'impuestos'>('financieros')
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+
+  // Check authentication on mount
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const session = localStorage.getItem('demo_session')
+      if (session === 'true') {
+        setIsAuthenticated(true)
+      } else {
+        // Redirect to login
+        const basePath = process.env.NODE_ENV === 'production' ? '/Flow' : ''
+        window.location.href = `${basePath}/login`
+      }
+    }
+  }, [])
+
+  // Show loading while checking auth
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-black text-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
+          <p className="text-neutral-400">Verificando sesión...</p>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-black text-white">
