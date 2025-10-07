@@ -11,7 +11,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <Image 
-              src="/images/logo/flow-logo.jpg" 
+              src="/images/logo/Flow-logo.jpg" 
               alt="Flow" 
               width={60} 
               height={28}
