@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { useRouter } from 'next/navigation'
 import FacturasTable from '@/components/FacturasTable'
 
 // Mock data para empresa cliente de Flow
@@ -84,6 +85,7 @@ const itemVariants = {
 }
 
 export default function DashboardPage() {
+  const router = useRouter()
   const [activeTab, setActiveTab] = useState<'overview' | 'analytics' | 'facturas' | 'tesoreria' | 'reportes' | 'conciliacion' | 'alertas' | 'copiloto' | 'predicciones' | 'automatizaciones' | 'salud' | 'planificacion' | 'riesgos' | 'ecosistema' | 'bancario' | 'presupuesto' | 'cobranza' | 'cuentasPorPagar' | 'flujoProyectado' | 'facturacion' | 'integraciones'>('overview')
   const [stats] = useState(mockStats)
   const [user] = useState({ name: 'Admin', email: 'admin@flow.finance' })
@@ -93,19 +95,25 @@ export default function DashboardPage() {
   const [healthScore] = useState(82)
   const [reportesTab, setReportesTab] = useState<'financieros' | 'impuestos'>('financieros')
   const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [isChecking, setIsChecking] = useState(true)
 
   // Check authentication on mount
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const session = localStorage.getItem('demo_session')
-      if (session === 'true') {
-        setIsAuthenticated(true)
-      } else {
-        // Redirect to login
-        window.location.href = '/login'
+    const checkAuth = () => {
+      if (typeof window !== 'undefined') {
+        const session = localStorage.getItem('demo_session')
+        if (session === 'true') {
+          setIsAuthenticated(true)
+          setIsChecking(false)
+        } else {
+          // Redirect to login
+          router.push('/login')
+        }
       }
     }
-  }, [])
+    
+    checkAuth()
+  }, [router])
 
   // Show loading while checking auth
   if (!isAuthenticated) {
