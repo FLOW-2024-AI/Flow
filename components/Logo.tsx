@@ -7,14 +7,14 @@ interface LogoProps {
 export default function Logo({ width = 60, height = 28, className = '' }: LogoProps) {
   return (
     <img 
-      src="/images/logo/Flow-logo.png"
+      src="/images/logo/flow-logo.svg"
       alt="Flow" 
       width={width}
       height={height}
       className={className}
       style={{ objectFit: 'contain' }}
       onError={(e) => {
-        console.error('Error loading logo from /images/logo/Flow-logo.png')
+        console.error('Error loading logo')
         // Fallback: mostrar texto si la imagen falla
         const target = e.target as HTMLImageElement
         target.style.display = 'none'
