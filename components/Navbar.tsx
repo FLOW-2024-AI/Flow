@@ -3,12 +3,13 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import Logo from './Logo'
+import ThemeToggle from './ThemeToggle'
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <nav className="fixed top-0 w-full bg-black/80 backdrop-blur-2xl border-b border-white/[0.08] z-50">
+    <nav className="fixed top-0 w-full bg-white/80 dark:bg-secondary-900/80 backdrop-blur-2xl border-b border-gray-200 dark:border-gray-800 z-50 transition-colors duration-200">
       <div className="max-w-[980px] mx-auto px-6">
         <div className="flex justify-between items-center h-11">
           {/* Logo */}
@@ -18,36 +19,37 @@ export default function Navbar() {
           
           {/* Center Navigation - Desktop */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link href="/soluciones" className="text-white/70 hover:text-white transition-colors text-[12px] font-normal">
+            <Link href="/soluciones" className="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors text-[12px] font-normal">
               Soluciones
             </Link>
-            <Link href="/como-funciona" className="text-white/70 hover:text-white transition-colors text-[12px] font-normal">
+            <Link href="/como-funciona" className="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors text-[12px] font-normal">
               Cómo funciona
             </Link>
-            <Link href="/precios" className="text-white/70 hover:text-white transition-colors text-[12px] font-normal">
+            <Link href="/precios" className="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors text-[12px] font-normal">
               Precios
             </Link>
-            <Link href="/quienes-somos" className="text-white/70 hover:text-white transition-colors text-[12px] font-normal">
+            <Link href="/quienes-somos" className="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors text-[12px] font-normal">
               Nosotros
             </Link>
-            <Link href="/contacto" className="text-white/70 hover:text-white transition-colors text-[12px] font-normal">
+            <Link href="/contacto" className="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors text-[12px] font-normal">
               Contacto
             </Link>
           </div>
 
           {/* Right Actions */}
-          <div className="flex items-center space-x-4">
-            <Link href="/login" className="hidden sm:block text-white/70 hover:text-white transition-colors text-[12px] font-normal">
+          <div className="flex items-center space-x-2">
+            <ThemeToggle />
+            <Link href="/login" className="hidden sm:block text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors text-[12px] font-normal px-2">
               Iniciar sesión
             </Link>
-            <Link href="/consulta" className="bg-[#0071e3] hover:bg-[#0077ed] text-white px-3 py-1.5 rounded-full text-[12px] font-normal transition-colors">
+            <Link href="/consulta" className="bg-primary-600 hover:bg-primary-700 text-white px-3 py-1.5 rounded-full text-[12px] font-normal transition-colors">
               Consulta
             </Link>
             
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden text-white/70 hover:text-white transition-colors"
+              className="md:hidden text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
               aria-label="Menu"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -64,47 +66,47 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-black/95 backdrop-blur-2xl border-t border-white/[0.08]">
+        <div className="md:hidden bg-white dark:bg-secondary-900 backdrop-blur-2xl border-t border-gray-200 dark:border-gray-800 transition-colors duration-200">
           <div className="max-w-[980px] mx-auto px-6 py-4 space-y-3">
             <Link 
               href="/soluciones" 
-              className="block text-white/70 hover:text-white transition-colors text-sm py-2"
+              className="block text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors text-sm py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               Soluciones
             </Link>
             <Link 
               href="/como-funciona" 
-              className="block text-white/70 hover:text-white transition-colors text-sm py-2"
+              className="block text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors text-sm py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               Cómo funciona
             </Link>
             <Link 
               href="/precios" 
-              className="block text-white/70 hover:text-white transition-colors text-sm py-2"
+              className="block text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors text-sm py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               Precios
             </Link>
             <Link 
               href="/quienes-somos" 
-              className="block text-white/70 hover:text-white transition-colors text-sm py-2"
+              className="block text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors text-sm py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               Nosotros
             </Link>
             <Link 
               href="/contacto" 
-              className="block text-white/70 hover:text-white transition-colors text-sm py-2"
+              className="block text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors text-sm py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               Contacto
             </Link>
-            <div className="border-t border-white/[0.08] pt-3">
+            <div className="border-t border-gray-200 dark:border-gray-800 pt-3">
               <Link 
                 href="/login" 
-                className="block text-white/70 hover:text-white transition-colors text-sm py-2"
+                className="block text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors text-sm py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Iniciar sesión

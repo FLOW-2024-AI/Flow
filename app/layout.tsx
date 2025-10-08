@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import { ThemeProvider } from '@/contexts/ThemeContext'
 
 export const metadata: Metadata = {
   title: 'Flow - Automatiza finanzas con IA',
@@ -53,8 +54,10 @@ export default function RootLayout({
         <meta name="theme-color" content="#000000" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
-      <body className="bg-black text-white antialiased" style={{ fontFamily: '"Myriad Pro", "Myriad", "Liberation Sans", "Nimbus Sans L", "Helvetica Neue", Arial, sans-serif' }}>
-        {children}
+      <body className="bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 antialiased transition-colors duration-200" style={{ fontFamily: '"Myriad Pro", "Myriad", "Liberation Sans", "Nimbus Sans L", "Helvetica Neue", Arial, sans-serif' }}>
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   )

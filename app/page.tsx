@@ -42,14 +42,14 @@ export default function Home() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
 
       {/* Hero Section - Mejorado estilo Khipu */}
       <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
         {/* Background gradient orbs */}
-        <div className="absolute top-20 left-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
+        <div className="absolute top-20 left-10 w-96 h-96 bg-primary-500/10 dark:bg-primary-500/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary-600/10 dark:bg-primary-600/5 rounded-full blur-3xl" />
         
         <div className="max-w-6xl mx-auto text-center relative z-10">
           <motion.div
@@ -59,7 +59,7 @@ export default function Home() {
             className="space-y-8"
           >
             <motion.div variants={itemVariants} className="inline-block">
-              <div className="bg-blue-500/10 border border-blue-500/20 rounded-full px-6 py-2 text-sm font-semibold text-blue-400 mb-6">
+              <div className="bg-primary-50 dark:bg-primary-500/10 border border-primary-200 dark:border-primary-500/20 rounded-full px-6 py-2 text-sm font-semibold text-primary-700 dark:text-primary-400 mb-6">
                 +20 empresas ya confían en nosotros
               </div>
             </motion.div>
@@ -70,12 +70,12 @@ export default function Home() {
             >
               RPA + IA para tu Ecosistema Financiero
               <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 animate-gradient">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 via-primary-500 to-primary-600 animate-gradient">
                 No reemplazamos tu ERP. Lo potenciamos.
               </span>
             </motion.h1>
             
-            <motion.p variants={itemVariants} className="text-sm md:text-base text-neutral-400 max-w-2xl mx-auto leading-relaxed">
+            <motion.p variants={itemVariants} className="text-sm md:text-base text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
               Flow conecta tu ERP, Bancos, SUNAT y más. Automatiza con RPA, analiza con IA y accede a financiamiento. 
               Tu CFO Digital + Ecosistema Financiero en una plataforma.
             </motion.p>
@@ -85,7 +85,7 @@ export default function Home() {
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-white text-black px-6 py-3 rounded-full font-medium text-sm hover:opacity-90 transition-all duration-200 inline-block cursor-pointer"
+                  className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-full font-medium text-sm transition-all duration-200 inline-block cursor-pointer"
                 >
                   Agendar consulta gratis
                 </motion.div>
@@ -94,7 +94,7 @@ export default function Home() {
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="border border-neutral-700 text-white px-6 py-3 rounded-full font-medium text-sm hover:border-neutral-500 hover:bg-neutral-900/50 transition-all duration-200 inline-block cursor-pointer"
+                  className="border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100 px-6 py-3 rounded-full font-medium text-sm hover:border-primary-500 hover:bg-gray-50 dark:hover:bg-secondary-800 transition-all duration-200 inline-block cursor-pointer"
                 >
                   Ver casos de éxito
                 </motion.div>
