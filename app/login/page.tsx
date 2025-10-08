@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import Logo from '@/components/Logo'
 
 const containerVariants = {
@@ -31,6 +32,7 @@ interface LoginFormData {
 }
 
 export default function LoginPage() {
+  const router = useRouter()
   const [formData, setFormData] = useState<LoginFormData>({
     email: '',
     password: ''
@@ -63,11 +65,12 @@ export default function LoginPage() {
         // Store demo session
         if (typeof window !== 'undefined') {
           localStorage.setItem('demo_session', 'true')
+          localStorage.setItem('demo_user', JSON.stringify({ name: 'Admin', email: formData.email }))
         }
         // Redirect to dashboard
         console.log('Login successful!')
         const basePath = process.env.NODE_ENV === 'production' ? '/Flow' : ''
-        window.location.href = `${basePath}/dashboard`
+        router.push(`${basePath}/dashboard`)
       } else {
         setError('Credenciales incorrectas. Intenta nuevamente.')
       }
