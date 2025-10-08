@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import Logo from '@/components/Logo'
+import Navbar from '@/components/Navbar'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -82,27 +82,7 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* Navigation */}
-      <nav className="border-b border-neutral-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-3">
-            <Link href="/" className="flex items-center">
-              <Logo 
-                width={168} 
-                height={78}
-                className="h-20 w-auto object-contain"
-              />
-            </Link>
-            
-            <Link 
-              href="/" 
-              className="text-neutral-300 hover:text-white transition-colors focus-ring rounded-md px-3 py-2"
-            >
-              ← Volver al inicio
-            </Link>
-          </div>
-        </div>
-      </nav>
+      <Navbar />
 
       {/* Login Form */}
       <div className="flex items-center justify-center min-h-[calc(100vh-80px)] px-4">

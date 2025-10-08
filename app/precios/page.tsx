@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import Image from 'next/image'
+import Navbar from '@/components/Navbar'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -103,34 +103,7 @@ const plans = [
 export default function PreciosPage() {
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-black/95 backdrop-blur-xl border-b border-white/10 z-50">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex justify-between items-center h-11">
-            <Link href="/" className="flex items-center">
-              <Image 
-                src="/images/logo/flow-logo.jpg" 
-                alt="Flow" 
-                width={60} 
-                height={28}
-                className="h-7 w-auto object-contain"
-              />
-            </Link>
-            
-            <div className="hidden md:flex items-center space-x-8">
-              <Link href="/soluciones" className="text-white/80 hover:text-white transition-colors text-xs">Soluciones</Link>
-              <Link href="/como-funciona" className="text-white/80 hover:text-white transition-colors text-xs">Cómo funciona</Link>
-              <Link href="/precios" className="text-white/80 hover:text-white transition-colors text-xs">Precios</Link>
-              <Link href="/quienes-somos" className="text-white/80 hover:text-white transition-colors text-xs">Nosotros</Link>
-            </div>
-
-            <div className="flex items-center space-x-4">
-              <Link href="/login" className="text-white/80 hover:text-white transition-colors text-xs">Iniciar sesión</Link>
-              <Link href="/consulta" className="bg-white text-black px-3 py-1.5 rounded-full text-xs font-medium hover:opacity-90 transition-opacity">Consulta</Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navbar />
 
       {/* Main Content */}
       <main className="pt-24 pb-16">
