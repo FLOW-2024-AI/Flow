@@ -9,7 +9,10 @@ interface ThemeContextType {
   toggleTheme: () => void
 }
 
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
+const ThemeContext = createContext<ThemeContextType>({
+  theme: 'dark',
+  toggleTheme: () => {}
+})
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>('dark')
@@ -21,9 +24,15 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     const savedTheme = localStorage.getItem('theme') as Theme
     if (savedTheme) {
       setTheme(savedTheme)
+      if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
     } else {
       // Default to dark theme
       setTheme('dark')
+      document.documentElement.classList.add('dark')
     }
   }, [])
 
@@ -43,10 +52,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     setTheme(prev => prev === 'light' ? 'dark' : 'light')
   }
 
-  if (!mounted) {
-    return <>{children}</>
-  }
-
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
@@ -55,9 +60,5 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 }
 
 export function useTheme() {
-  const context = useContext(ThemeContext)
-  if (context === undefined) {
-    throw new Error('useTheme must be used within a ThemeProvider')
-  }
-  return context
+  return useContext(ThemeContext)
 }
