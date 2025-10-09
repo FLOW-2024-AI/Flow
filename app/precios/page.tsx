@@ -102,7 +102,7 @@ const plans = [
 
 export default function PreciosPage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
 
       {/* Main Content */}
@@ -125,11 +125,11 @@ export default function PreciosPage() {
                   Sin sorpresas.
                 </span>
               </h1>
-              <p className="text-base md:text-lg text-neutral-300 max-w-3xl mx-auto mb-4 leading-relaxed">
+              <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-4 leading-relaxed">
                 Elige el plan perfecto según las funcionalidades que necesitas.
-                <span className="text-white font-semibold"> Todos incluyen implementación y capacitación.</span>
+                <span className="text-gray-900 dark:text-gray-900 dark:text-gray-900 dark:text-white font-semibold"> Todos incluyen implementación y capacitación.</span>
               </p>
-              <p className="text-sm text-neutral-500">
+              <p className="text-sm text-gray-500 dark:text-gray-400">
                 ✓ Sin contratos largos • ✓ Cancela cuando quieras • ✓ 30 días de prueba gratis
               </p>
             </motion.div>
@@ -139,22 +139,22 @@ export default function PreciosPage() {
               {plans.map((plan, index) => (
                 <div 
                   key={plan.name}
-                  className={`relative bg-neutral-900/50 border rounded-2xl p-8 ${
+                  className={`relative bg-gray-50 dark:bg-secondary-800 border rounded-2xl p-8 transition-colors duration-200 ${
                     plan.popular 
                       ? 'border-green-500 ring-2 ring-green-500/20' 
-                      : 'border-neutral-800'
+                      : 'border-gray-200 dark:border-gray-700'
                   }`}
                 >
                   {plan.popular && (
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                      <span className="bg-green-600 text-white px-4 py-1.5 rounded-full text-xs font-bold shadow-xl">
+                      <span className="bg-green-600 text-gray-900 dark:text-gray-900 dark:text-white px-4 py-1.5 rounded-full text-xs font-bold shadow-xl">
                         ⭐ {plan.tagline}
                       </span>
                     </div>
                   )}
                   {!plan.popular && plan.tagline && (
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                      <span className="bg-neutral-800 text-neutral-300 px-4 py-1.5 rounded-full text-xs font-semibold border border-neutral-700">
+                      <span className="bg-gray-200 dark:bg-secondary-700 text-gray-700 dark:text-gray-300 px-4 py-1.5 rounded-full text-xs font-semibold border border-gray-300 dark:border-gray-600">
                         {plan.tagline}
                       </span>
                     </div>
@@ -164,9 +164,9 @@ export default function PreciosPage() {
                     <h3 className="text-xl font-bold mb-3">{plan.name}</h3>
                     <div className="mb-3">
                       <span className="text-3xl font-bold">{plan.price}</span>
-                      <span className="text-neutral-400 text-lg">{plan.period}</span>
+                      <span className="text-gray-500 dark:text-gray-400 text-lg">{plan.period}</span>
                     </div>
-                    <p className="text-neutral-400 text-sm mb-3">{plan.description}</p>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-3">{plan.description}</p>
                     <div className="inline-block bg-blue-500/10 border border-blue-500/20 rounded-full px-3 py-1 text-xs font-semibold text-blue-400">
                       {plan.savings}
                     </div>
@@ -175,7 +175,7 @@ export default function PreciosPage() {
                   <ul className="space-y-2.5 mb-8">
                     {plan.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-start">
-                        <span className="text-neutral-300 text-sm leading-relaxed">{feature}</span>
+                        <span className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">{feature}</span>
                       </li>
                     ))}
                   </ul>
@@ -187,7 +187,7 @@ export default function PreciosPage() {
                         className={`w-full block text-center py-3 px-6 rounded-xl font-semibold transition-all duration-200 ${
                           plan.popular
                             ? 'bg-green-600 hover:bg-green-700 text-white'
-                            : 'bg-white text-black hover:opacity-90'
+                            : 'bg-white dark:bg-secondary-800 dark:bg-secondary-800 text-gray-900 dark:text-gray-100 hover:opacity-90'
                         }`}
                       >
                         Contactar Ventas
@@ -198,7 +198,7 @@ export default function PreciosPage() {
                         className={`w-full block text-center py-3 px-6 rounded-xl font-semibold transition-all duration-200 ${
                           plan.popular
                             ? 'bg-green-600 hover:bg-green-700 text-white'
-                            : 'bg-white text-black hover:opacity-90'
+                            : 'bg-white dark:bg-secondary-800 dark:bg-secondary-800 text-gray-900 dark:text-gray-100 hover:opacity-90'
                         }`}
                       >
                         Comenzar Prueba
@@ -210,47 +210,47 @@ export default function PreciosPage() {
             </motion.div>
 
             {/* FAQ Section */}
-            <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-8">
+            <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-8">
               <h2 className="text-xl font-semibold mb-6 text-center">Preguntas Frecuentes</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                   <h3 className="text-sm font-semibold mb-2">¿Hay período de prueba gratuito?</h3>
-                  <p className="text-neutral-500 text-xs">
+                  <p className="text-gray-500 dark:text-gray-400 text-xs">
                     Sí, ofrecemos 30 días de prueba gratuita para todos los planes. No se requiere tarjeta de crédito.
                   </p>
                 </div>
 
                 <div>
                   <h3 className="text-sm font-semibold mb-2">¿Puedo cambiar de plan en cualquier momento?</h3>
-                  <p className="text-neutral-500 text-xs">
+                  <p className="text-gray-500 dark:text-gray-400 text-xs">
                     Absolutamente. Puedes actualizar o reducir tu plan en cualquier momento. Los cambios se aplican en el siguiente ciclo de facturación.
                   </p>
                 </div>
 
                 <div>
                   <h3 className="text-sm font-semibold mb-2">¿Qué incluye la implementación?</h3>
-                  <p className="text-neutral-500 text-xs">
+                  <p className="text-gray-500 dark:text-gray-400 text-xs">
                     Incluye configuración inicial, integración con tus sistemas existentes, migración de datos y capacitación del equipo.
                   </p>
                 </div>
 
                 <div>
                   <h3 className="text-sm font-semibold mb-2">¿Hay costos adicionales por integraciones?</h3>
-                  <p className="text-neutral-500 text-xs">
+                  <p className="text-gray-500 dark:text-gray-400 text-xs">
                     Las integraciones estándar están incluidas. Integraciones personalizadas pueden tener costo adicional según complejidad.
                   </p>
                 </div>
 
                 <div>
                   <h3 className="text-sm font-semibold mb-2">¿Ofrecen descuentos por pago anual?</h3>
-                  <p className="text-neutral-500 text-xs">
+                  <p className="text-gray-500 dark:text-gray-400 text-xs">
                     Sí, ofrecemos 15% de descuento en todos los planes al pagar anualmente por adelantado.
                   </p>
                 </div>
 
                 <div>
                   <h3 className="text-sm font-semibold mb-2">¿Qué nivel de soporte incluye cada plan?</h3>
-                  <p className="text-neutral-500 text-xs">
+                  <p className="text-gray-500 dark:text-gray-400 text-xs">
                     Starter: Email (48h), Professional: Email prioritario (24h), Enterprise: Soporte dedicado 24/7.
                   </p>
                 </div>
@@ -268,20 +268,20 @@ export default function PreciosPage() {
                   Pruébalo gratis.
                 </span>
               </h2>
-              <p className="text-lg text-neutral-300 mb-8 max-w-2xl mx-auto">
+              <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
                 Más de 20 empresas ya confían en Flow. 
-                <span className="text-white font-semibold"> ROI promedio: 450%.</span>
+                <span className="text-gray-900 dark:text-gray-900 dark:text-gray-900 dark:text-white font-semibold"> ROI promedio: 450%.</span>
                 {' '}Agenda tu demo o empieza tu prueba gratuita hoy.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/consulta" className="bg-white text-black px-8 py-4 rounded-full font-bold text-base hover:opacity-90 transition-opacity shadow-xl inline-block">
+                <Link href="/consulta" className="bg-primary-600 hover:bg-primary-700 text-gray-900 dark:text-gray-900 dark:text-white px-8 py-4 rounded-full font-bold text-base transition-colors shadow-xl inline-block">
                   Agendar demo gratuita →
                 </Link>
-                <Link href="/login" className="border border-neutral-700 text-white px-8 py-4 rounded-full font-medium text-base hover:border-neutral-500 hover:bg-neutral-900/50 transition-all inline-block">
+                <Link href="/login" className="border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-900 dark:text-gray-900 dark:text-white px-8 py-4 rounded-full font-medium text-base hover:border-primary-500 hover:bg-gray-50 dark:hover:bg-secondary-800 transition-all inline-block">
                   Empezar prueba gratis
                 </Link>
               </div>
-              <p className="text-xs text-neutral-500 mt-6">
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-6">
                 Sin tarjeta de crédito • Implementación en 2 semanas • Soporte en español
               </p>
             </motion.div>

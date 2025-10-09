@@ -60,7 +60,7 @@ const categories = ["Todos", "IA & Tecnología", "Automatización", "Guías", "C
 
 export default function BlogPage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
 
       {/* Hero */}
@@ -79,7 +79,7 @@ export default function BlogPage() {
                 Flow
               </span>
             </h1>
-            <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-400 dark:text-gray-300 max-w-3xl mx-auto">
               Insights, guías y tendencias sobre automatización financiera e inteligencia artificial
             </p>
           </motion.div>
@@ -89,7 +89,7 @@ export default function BlogPage() {
             {categories.map((category, index) => (
               <button
                 key={index}
-                className="px-6 py-2 bg-neutral-900 border border-neutral-800 rounded-full hover:border-blue-500 hover:text-blue-400 transition-all"
+                className="px-6 py-2 bg-gray-50 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-full hover:border-blue-500 hover:text-blue-400 transition-all"
               >
                 {category}
               </button>
@@ -110,7 +110,7 @@ export default function BlogPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -8 }}
-                className="bg-neutral-900/50 border border-neutral-800 rounded-2xl overflow-hidden hover:border-neutral-700 transition-all cursor-pointer"
+                className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl overflow-hidden hover:border-gray-300 dark:border-gray-600 transition-all cursor-pointer"
               >
                 <div className="relative h-48 overflow-hidden">
                   <Image
@@ -120,13 +120,13 @@ export default function BlogPage() {
                     className="object-cover"
                   />
                   <div className="absolute top-4 left-4">
-                    <span className="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">
+                    <span className="bg-blue-600 text-gray-900 dark:text-gray-900 dark:text-white text-xs font-bold px-3 py-1 rounded-full">
                       {post.category}
                     </span>
                   </div>
                 </div>
                 <div className="p-6">
-                  <div className="flex items-center text-sm text-neutral-400 mb-3">
+                  <div className="flex items-center text-sm text-gray-600 dark:text-gray-400 mb-3">
                     <span>{post.date}</span>
                     <span className="mx-2">•</span>
                     <span>{post.readTime} lectura</span>
@@ -134,7 +134,7 @@ export default function BlogPage() {
                   <h3 className="text-xl font-bold mb-3 hover:text-blue-400 transition-colors">
                     {post.title}
                   </h3>
-                  <p className="text-neutral-400 mb-4">
+                  <p className="text-gray-600 dark:text-gray-400 mb-4">
                     {post.excerpt}
                   </p>
                   <div className="text-blue-400 font-medium flex items-center">
@@ -154,16 +154,16 @@ export default function BlogPage() {
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-900/20 to-purple-900/20">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-6">Suscríbete al newsletter</h2>
-          <p className="text-xl text-neutral-300 mb-8">
+          <p className="text-xl text-gray-400 dark:text-gray-300 mb-8">
             Recibe artículos, guías y novedades directamente en tu inbox
           </p>
           <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
             <input
               type="email"
               placeholder="tu@email.com"
-              className="flex-1 px-6 py-4 bg-neutral-900 border border-neutral-800 rounded-xl text-white placeholder-neutral-500 focus:outline-none focus:border-blue-500 transition-colors"
+              className="flex-1 px-6 py-4 bg-gray-50 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-gray-900 dark:text-white placeholder-neutral-500 focus:outline-none focus:border-blue-500 transition-colors"
             />
-            <button className="bg-white text-black px-8 py-4 rounded-xl font-bold hover:opacity-90 transition-opacity">
+            <button className="bg-white dark:bg-secondary-800 dark:bg-secondary-800 text-gray-900 dark:text-gray-100 px-8 py-4 rounded-xl font-bold hover:opacity-90 transition-opacity">
               Suscribirse
             </button>
           </div>

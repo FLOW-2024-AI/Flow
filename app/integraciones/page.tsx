@@ -52,7 +52,7 @@ const integrations = [
 
 export default function IntegracionesPage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
 
       {/* Hero */}
@@ -70,7 +70,7 @@ export default function IntegracionesPage() {
                 sin límites
               </span>
             </h1>
-            <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-400 dark:text-gray-300 max-w-3xl mx-auto">
               Flow se conecta con tus herramientas favoritas. Sincronización automática y segura.
             </p>
           </motion.div>
@@ -98,10 +98,10 @@ export default function IntegracionesPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: toolIndex * 0.05 }}
                     whileHover={{ y: -5 }}
-                    className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6 hover:border-neutral-700 transition-all"
+                    className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 hover:border-gray-300 dark:border-gray-600 transition-all"
                   >
                     <div className="flex items-start space-x-4">
-                      <div className="w-16 h-16 flex-shrink-0 relative bg-white rounded-lg p-2 flex items-center justify-center">
+                      <div className="w-16 h-16 flex-shrink-0 relative bg-white dark:bg-secondary-800 dark:bg-secondary-800 rounded-lg p-2 flex items-center justify-center">
                         <img 
                           src={tool.logo} 
                           alt={tool.name}
@@ -110,7 +110,7 @@ export default function IntegracionesPage() {
                       </div>
                       <div className="flex-1">
                         <h3 className="text-xl font-bold mb-2">{tool.name}</h3>
-                        <p className="text-sm text-neutral-400">{tool.description}</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">{tool.description}</p>
                       </div>
                     </div>
                   </motion.div>
@@ -122,7 +122,7 @@ export default function IntegracionesPage() {
       </section>
 
       {/* Features */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-neutral-950/30">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-secondary-900/50">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-16">¿Por qué nuestras integraciones?</h2>
           <div className="grid md:grid-cols-3 gap-8">
@@ -153,7 +153,7 @@ export default function IntegracionesPage() {
               >
                 <div className="text-5xl mb-4">{feature.icon}</div>
                 <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
-                <p className="text-neutral-400">{feature.description}</p>
+                <p className="text-gray-600 dark:text-gray-400">{feature.description}</p>
               </motion.div>
             ))}
           </div>
@@ -165,10 +165,10 @@ export default function IntegracionesPage() {
         <div className="max-w-4xl mx-auto">
           <div className="bg-gradient-to-br from-blue-900/20 to-purple-900/20 border border-blue-800/30 rounded-3xl p-12 text-center">
             <h2 className="text-4xl font-bold mb-4">¿No ves tu herramienta?</h2>
-            <p className="text-xl text-neutral-300 mb-8">
+            <p className="text-xl text-gray-400 dark:text-gray-300 mb-8">
               Creamos integraciones personalizadas para cualquier sistema con API
             </p>
-            <Link href="/consulta" className="inline-block bg-white text-black px-10 py-4 rounded-xl font-bold text-lg hover:opacity-90 transition-opacity">
+            <Link href="/consulta" className="inline-block bg-white dark:bg-secondary-800 dark:bg-secondary-800 text-gray-900 dark:text-gray-100 px-10 py-4 rounded-xl font-bold text-lg hover:opacity-90 transition-opacity">
               Consultar integración custom
             </Link>
           </div>

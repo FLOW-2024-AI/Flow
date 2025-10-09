@@ -81,7 +81,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
 
       {/* Login Form */}
@@ -92,7 +92,7 @@ export default function LoginPage() {
           animate="visible"
           className="w-full max-w-md"
         >
-          <div className="bg-white dark:bg-secondary-800 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-2xl p-8 shadow-2xl">
+          <div className="bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-800 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-2xl p-8 shadow-2xl">
             <motion.div variants={itemVariants} className="text-center mb-8">
               <h1 className="text-3xl font-bold mb-2">Iniciar Sesión</h1>
               <p className="text-gray-600 dark:text-gray-400">
@@ -130,14 +130,14 @@ export default function LoginPage() {
                     value={formData.password}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-black border border-neutral-700 rounded-xl text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent transition-all pr-12"
+                    className="w-full px-4 py-3 bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-gray-900 dark:text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent transition-all pr-12"
                     placeholder="••••••••"
                     disabled={isLoading}
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-neutral-400 hover:text-white transition-colors focus:outline-none"
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors focus:outline-none"
                     disabled={isLoading}
                   >
                     {showPassword ? (
@@ -168,15 +168,15 @@ export default function LoginPage() {
                 <label className="flex items-center">
                   <input
                     type="checkbox"
-                    className="w-4 h-4 text-white bg-black border-neutral-700 rounded focus:ring-white focus:ring-2"
+                    className="w-4 h-4 text-gray-900 dark:text-gray-900 dark:text-white bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 border-gray-300 dark:border-gray-600 rounded focus:ring-white focus:ring-2"
                     disabled={isLoading}
                   />
-                  <span className="ml-2 text-sm text-neutral-400">Recordarme</span>
+                  <span className="ml-2 text-sm text-gray-600 dark:text-gray-400">Recordarme</span>
                 </label>
                 
                 <Link 
                   href="/forgot-password" 
-                  className="text-sm text-neutral-400 hover:text-white transition-colors focus-ring rounded px-1"
+                  className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors focus-ring rounded px-1"
                 >
                   ¿Olvidaste tu contraseña?
                 </Link>
@@ -186,7 +186,7 @@ export default function LoginPage() {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full bg-white text-black py-3 px-4 rounded-xl font-semibold hover:opacity-90 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
+                  className="w-full bg-white dark:bg-secondary-800 dark:bg-secondary-800 text-gray-900 dark:text-gray-100 py-3 px-4 rounded-xl font-semibold hover:opacity-90 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
                 >
                   {isLoading ? (
                     <div className="flex items-center justify-center">
@@ -200,19 +200,19 @@ export default function LoginPage() {
               </motion.div>
             </form>
 
-            <motion.div variants={itemVariants} className="mt-8 pt-6 border-t border-neutral-800 text-center">
-              <p className="text-sm text-neutral-400">
+            <motion.div variants={itemVariants} className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-center">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
                 ¿Necesitas acceso?{' '}
-                <Link href="/consulta" className="text-white hover:underline focus-ring rounded px-1">
+                <Link href="/consulta" className="text-gray-900 dark:text-gray-900 dark:text-white hover:underline focus-ring rounded px-1">
                   Contacta con soporte
                 </Link>
               </p>
             </motion.div>
 
             {/* Demo credentials info */}
-            <motion.div variants={itemVariants} className="mt-6 p-4 bg-neutral-800/30 rounded-xl border border-neutral-700">
-              <p className="text-xs text-neutral-400 mb-2 font-medium">Demo - Credenciales de prueba:</p>
-              <div className="text-xs text-neutral-300 space-y-1">
+            <motion.div variants={itemVariants} className="mt-6 p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-xl border border-gray-300 dark:border-gray-600">
+              <p className="text-xs text-gray-600 dark:text-gray-400 mb-2 font-medium">Demo - Credenciales de prueba:</p>
+              <div className="text-xs text-gray-400 dark:text-gray-300 space-y-1">
                 <p><strong>Email:</strong> admin@flow.finance</p>
                 <p><strong>Contraseña:</strong> demo123</p>
               </div>

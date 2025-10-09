@@ -46,7 +46,7 @@ const certifications = [
 
 export default function SeguridadPage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
 
       {/* Hero */}
@@ -64,7 +64,7 @@ export default function SeguridadPage() {
                 de nivel empresarial
               </span>
             </h1>
-            <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-400 dark:text-gray-300 max-w-3xl mx-auto">
               Tus datos financieros protegidos con los más altos estándares de seguridad
             </p>
           </motion.div>
@@ -83,11 +83,11 @@ export default function SeguridadPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
-                className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-8 hover:border-neutral-700 transition-all"
+                className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-8 hover:border-gray-300 dark:border-gray-600 transition-all"
               >
                 <div className="text-5xl mb-4">{feature.icon}</div>
                 <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
-                <p className="text-neutral-400">{feature.description}</p>
+                <p className="text-gray-600 dark:text-gray-400">{feature.description}</p>
               </motion.div>
             ))}
           </div>
@@ -95,7 +95,7 @@ export default function SeguridadPage() {
       </section>
 
       {/* Certifications */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-neutral-950/30">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-secondary-900/50">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-16">Certificaciones y cumplimiento</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -106,7 +106,7 @@ export default function SeguridadPage() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6 text-center"
+                className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 text-center"
               >
                 <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
                   <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -114,7 +114,7 @@ export default function SeguridadPage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-bold mb-2">{cert.name}</h3>
-                <p className="text-sm text-neutral-400">{cert.description}</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">{cert.description}</p>
               </motion.div>
             ))}
           </div>
@@ -139,7 +139,7 @@ export default function SeguridadPage() {
                     <svg className="w-6 h-6 text-green-400 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    <span className="text-neutral-300">{item}</span>
+                    <span className="text-gray-400 dark:text-gray-300">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -157,7 +157,7 @@ export default function SeguridadPage() {
                     <svg className="w-6 h-6 text-green-400 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    <span className="text-neutral-300">{item}</span>
+                    <span className="text-gray-400 dark:text-gray-300">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -170,10 +170,10 @@ export default function SeguridadPage() {
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-900/20 to-purple-900/20">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-6">¿Preguntas sobre seguridad?</h2>
-          <p className="text-xl text-neutral-300 mb-8">
+          <p className="text-xl text-gray-400 dark:text-gray-300 mb-8">
             Nuestro equipo de seguridad está disponible para resolver todas tus dudas
           </p>
-          <Link href="/consulta" className="inline-block bg-white text-black px-10 py-4 rounded-xl font-bold text-lg hover:opacity-90 transition-opacity">
+          <Link href="/consulta" className="inline-block bg-white dark:bg-secondary-800 dark:bg-secondary-800 text-gray-900 dark:text-gray-100 px-10 py-4 rounded-xl font-bold text-lg hover:opacity-90 transition-opacity">
             Contactar equipo de seguridad
           </Link>
         </div>

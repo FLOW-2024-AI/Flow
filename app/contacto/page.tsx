@@ -6,7 +6,7 @@ import Navbar from '@/components/Navbar'
 
 export default function ContactoPage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
       
       <div className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
@@ -17,7 +17,7 @@ export default function ContactoPage() {
             className="text-center mb-16"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Contáctanos</h1>
-            <p className="text-xl text-neutral-300">
+            <p className="text-xl text-gray-400 dark:text-gray-300">
               Estamos aquí para ayudarte
             </p>
           </motion.div>
@@ -25,7 +25,7 @@ export default function ContactoPage() {
           <div className="grid md:grid-cols-2 gap-12">
             {/* Contact Info */}
             <div className="space-y-8">
-              <div className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-8">
+              <div className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-8">
                 <div className="flex items-start space-x-4 mb-6">
                   <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
                     <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -34,13 +34,13 @@ export default function ContactoPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold mb-2">Email</h3>
-                    <p className="text-neutral-300">hola@flow.finance</p>
-                    <p className="text-neutral-400 text-sm mt-1">Respuesta en 24 horas</p>
+                    <p className="text-gray-400 dark:text-gray-300">hola@flow.finance</p>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">Respuesta en 24 horas</p>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-8">
+              <div className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-8">
                 <div className="flex items-start space-x-4 mb-6">
                   <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
                     <svg className="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -49,13 +49,13 @@ export default function ContactoPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold mb-2">WhatsApp</h3>
-                    <p className="text-neutral-300">+51 999 999 999</p>
-                    <p className="text-neutral-400 text-sm mt-1">Lun - Vie: 9am - 6pm</p>
+                    <p className="text-gray-400 dark:text-gray-300">+51 999 999 999</p>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">Lun - Vie: 9am - 6pm</p>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-8">
+              <div className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-8">
                 <div className="flex items-start space-x-4 mb-6">
                   <div className="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
                     <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -65,8 +65,8 @@ export default function ContactoPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold mb-2">Oficina</h3>
-                    <p className="text-neutral-300">Lima, Perú</p>
-                    <p className="text-neutral-400 text-sm mt-1">Visitas con cita previa</p>
+                    <p className="text-gray-400 dark:text-gray-300">Lima, Perú</p>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">Visitas con cita previa</p>
                   </div>
                 </div>
               </div>
@@ -79,38 +79,38 @@ export default function ContactoPage() {
                 <div className="space-y-4">
                   <Link
                     href="/consulta"
-                    className="block p-4 bg-neutral-900/50 border border-neutral-800 rounded-xl hover:border-blue-500/50 transition-colors"
+                    className="block p-4 bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500/50 transition-colors"
                   >
                     <h4 className="font-semibold mb-1">Agendar Demo</h4>
-                    <p className="text-sm text-neutral-400">Consulta gratuita de 30 minutos</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">Consulta gratuita de 30 minutos</p>
                   </Link>
                   <Link
                     href="/faq"
-                    className="block p-4 bg-neutral-900/50 border border-neutral-800 rounded-xl hover:border-blue-500/50 transition-colors"
+                    className="block p-4 bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500/50 transition-colors"
                   >
                     <h4 className="font-semibold mb-1">Preguntas Frecuentes</h4>
-                    <p className="text-sm text-neutral-400">Respuestas a dudas comunes</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">Respuestas a dudas comunes</p>
                   </Link>
                   <Link
                     href="/dashboard"
-                    className="block p-4 bg-neutral-900/50 border border-neutral-800 rounded-xl hover:border-blue-500/50 transition-colors"
+                    className="block p-4 bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500/50 transition-colors"
                   >
                     <h4 className="font-semibold mb-1">Soporte Técnico</h4>
-                    <p className="text-sm text-neutral-400">Para clientes actuales</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">Para clientes actuales</p>
                   </Link>
                 </div>
               </div>
 
-              <div className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-8">
+              <div className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-8">
                 <h3 className="text-xl font-bold mb-4">Síguenos</h3>
                 <div className="flex space-x-4">
-                  <a href="#" className="w-10 h-10 bg-neutral-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
+                  <a href="#" className="w-10 h-10 bg-gray-100 dark:bg-secondary-700 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
                     <span className="text-sm">𝕏</span>
                   </a>
-                  <a href="#" className="w-10 h-10 bg-neutral-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
+                  <a href="#" className="w-10 h-10 bg-gray-100 dark:bg-secondary-700 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
                     <span className="text-sm">in</span>
                   </a>
-                  <a href="#" className="w-10 h-10 bg-neutral-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
+                  <a href="#" className="w-10 h-10 bg-gray-100 dark:bg-secondary-700 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
                     <span className="text-sm">f</span>
                   </a>
                 </div>
