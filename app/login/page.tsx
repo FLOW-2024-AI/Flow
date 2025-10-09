@@ -67,9 +67,9 @@ export default function LoginPage() {
           localStorage.setItem('demo_session', 'true')
           localStorage.setItem('demo_user', JSON.stringify({ name: 'Admin', email: formData.email }))
         }
-        // Redirect to dashboard
+        // Redirect to dashboard - use window.location for static export
         console.log('Login successful!')
-        router.push('/dashboard')
+        window.location.href = '/dashboard'
       } else {
         setError('Credenciales incorrectas. Intenta nuevamente.')
       }
@@ -81,7 +81,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
 
       {/* Login Form */}

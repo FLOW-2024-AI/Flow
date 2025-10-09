@@ -101,9 +101,8 @@ export default function DashboardPage() {
       if (session === 'true') {
         setIsAuthenticated(true)
       } else {
-        // Redirect to login
-        const basePath = process.env.NODE_ENV === 'production' ? '/Flow' : ''
-        window.location.href = `${basePath}/login`
+        // Redirect to login - use window.location for static export
+        window.location.href = '/login'
       }
     }
   }, [])
@@ -111,7 +110,7 @@ export default function DashboardPage() {
   // Show loading while checking auth
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 text-gray-900 dark:text-gray-100 flex items-center justify-center transition-colors duration-200">
+      <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 flex items-center justify-center transition-colors duration-200">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
           <p className="text-gray-600 dark:text-gray-400">Verificando sesión...</p>
@@ -121,7 +120,7 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <div className="flex">
         {/* Sidebar */}
         <div className="w-64 bg-gray-50 dark:bg-secondary-800 border-r border-gray-200 dark:border-gray-700 min-h-screen transition-colors duration-200">
