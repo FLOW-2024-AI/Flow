@@ -111,7 +111,7 @@ export default function DashboardPage() {
   // Show loading while checking auth
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 flex items-center justify-center transition-colors duration-200">
+      <div className="min-h-screen bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 text-gray-900 dark:text-gray-100 flex items-center justify-center transition-colors duration-200">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
           <p className="text-gray-600 dark:text-gray-400">Verificando sesión...</p>
@@ -121,14 +121,14 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <div className="flex">
         {/* Sidebar */}
         <div className="w-64 bg-gray-50 dark:bg-secondary-800 border-r border-gray-200 dark:border-gray-700 min-h-screen transition-colors duration-200">
           <div className="p-6">
             <div className="flex items-center space-x-3 mb-8">
               <div className="w-6 h-6 bg-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xs">F</span>
+                <span className="text-gray-900 dark:text-gray-900 dark:text-white font-bold text-xs">F</span>
               </div>
               <span className="text-xl font-bold">Flow</span>
             </div>
@@ -141,7 +141,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'overview' 
                     ? 'bg-blue-600 text-white' 
-                    : 'text-neutral-300 hover:text-white hover:bg-neutral-800'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -155,7 +155,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'analytics' 
                     ? 'bg-blue-600 text-white' 
-                    : 'text-neutral-300 hover:text-white hover:bg-neutral-800'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -165,15 +165,15 @@ export default function DashboardPage() {
               </button>
 
               {/* Divider */}
-              <div className="border-t border-neutral-800 my-3"></div>
-              <p className="text-xs text-neutral-500 font-semibold mb-2 px-3">OPERACIONES</p>
+              <div className="border-t border-gray-200 dark:border-gray-700 my-3"></div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 font-semibold mb-2 px-3">OPERACIONES</p>
 
               <button
                 onClick={() => setActiveTab('facturacion')}
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'facturacion' 
                     ? 'bg-blue-600 text-white' 
-                    : 'text-neutral-300 hover:text-white hover:bg-neutral-800'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -187,7 +187,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'cobranza' 
                     ? 'bg-blue-600 text-white' 
-                    : 'text-neutral-300 hover:text-white hover:bg-neutral-800'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -201,7 +201,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'cuentasPorPagar' 
                     ? 'bg-blue-600 text-white' 
-                    : 'text-neutral-300 hover:text-white hover:bg-neutral-800'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -215,7 +215,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'facturas' 
                     ? 'bg-blue-600 text-white' 
-                    : 'text-neutral-300 hover:text-white hover:bg-neutral-800'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -225,15 +225,15 @@ export default function DashboardPage() {
               </button>
 
               {/* Divider */}
-              <div className="border-t border-neutral-800 my-3"></div>
-              <p className="text-xs text-neutral-500 font-semibold mb-2 px-3">TESORERÍA</p>
+              <div className="border-t border-gray-200 dark:border-gray-700 my-3"></div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 font-semibold mb-2 px-3">TESORERÍA</p>
 
               <button
                 onClick={() => setActiveTab('tesoreria')}
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'tesoreria' 
                     ? 'bg-blue-600 text-white' 
-                    : 'text-neutral-300 hover:text-white hover:bg-neutral-800'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -247,7 +247,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'flujoProyectado' 
                     ? 'bg-blue-600 text-white' 
-                    : 'text-neutral-300 hover:text-white hover:bg-neutral-800'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -261,7 +261,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'conciliacion' 
                     ? 'bg-blue-600 text-white' 
-                    : 'text-neutral-300 hover:text-white hover:bg-neutral-800'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -271,15 +271,15 @@ export default function DashboardPage() {
               </button>
 
               {/* Divider */}
-              <div className="border-t border-neutral-800 my-3"></div>
-              <p className="text-xs text-neutral-500 font-semibold mb-2 px-3">PLANIFICACIÓN</p>
+              <div className="border-t border-gray-200 dark:border-gray-700 my-3"></div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 font-semibold mb-2 px-3">PLANIFICACIÓN</p>
 
               <button
                 onClick={() => setActiveTab('presupuesto')}
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'presupuesto' 
                     ? 'bg-blue-600 text-white' 
-                    : 'text-neutral-300 hover:text-white hover:bg-neutral-800'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -293,7 +293,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'reportes' 
                     ? 'bg-blue-600 text-white' 
-                    : 'text-neutral-300 hover:text-white hover:bg-neutral-800'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -303,15 +303,15 @@ export default function DashboardPage() {
               </button>
 
               {/* Divider */}
-              <div className="border-t border-neutral-800 my-3"></div>
-              <p className="text-xs text-neutral-500 font-semibold mb-2 px-3">COPILOTO IA</p>
+              <div className="border-t border-gray-200 dark:border-gray-700 my-3"></div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 font-semibold mb-2 px-3">COPILOTO IA</p>
 
               <button
                 onClick={() => setActiveTab('copiloto')}
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'copiloto' 
                     ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white' 
-                    : 'text-neutral-300 hover:text-white hover:bg-neutral-800'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -325,7 +325,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'predicciones' 
                     ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white' 
-                    : 'text-neutral-300 hover:text-white hover:bg-neutral-800'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -339,7 +339,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'automatizaciones' 
                     ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white' 
-                    : 'text-neutral-300 hover:text-white hover:bg-neutral-800'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -349,15 +349,15 @@ export default function DashboardPage() {
               </button>
 
               {/* Divider */}
-              <div className="border-t border-neutral-800 my-4"></div>
-              <p className="text-xs text-neutral-500 font-semibold mb-2 px-3">CFO DIGITAL</p>
+              <div className="border-t border-gray-200 dark:border-gray-700 my-4"></div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 font-semibold mb-2 px-3">CFO DIGITAL</p>
 
               <button
                 onClick={() => setActiveTab('salud')}
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'salud' 
                     ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white' 
-                    : 'text-neutral-300 hover:text-white hover:bg-neutral-800'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -371,7 +371,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'planificacion' 
                     ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white' 
-                    : 'text-neutral-300 hover:text-white hover:bg-neutral-800'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -385,7 +385,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'riesgos' 
                     ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white' 
-                    : 'text-neutral-300 hover:text-white hover:bg-neutral-800'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -395,15 +395,15 @@ export default function DashboardPage() {
               </button>
 
               {/* Divider */}
-              <div className="border-t border-neutral-800 my-4"></div>
-              <p className="text-xs text-neutral-500 font-semibold mb-2 px-3">FINANCIAMIENTO</p>
+              <div className="border-t border-gray-200 dark:border-gray-700 my-4"></div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 font-semibold mb-2 px-3">FINANCIAMIENTO</p>
 
               <button
                 onClick={() => setActiveTab('ecosistema')}
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'ecosistema' 
                     ? 'bg-gradient-to-r from-orange-600 to-amber-600 text-white' 
-                    : 'text-neutral-300 hover:text-white hover:bg-neutral-800'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -417,7 +417,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'bancario' 
                     ? 'bg-gradient-to-r from-orange-600 to-amber-600 text-white' 
-                    : 'text-neutral-300 hover:text-white hover:bg-neutral-800'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -427,14 +427,14 @@ export default function DashboardPage() {
               </button>
 
               {/* Divider */}
-              <div className="border-t border-neutral-800 my-3"></div>
+              <div className="border-t border-gray-200 dark:border-gray-700 my-3"></div>
 
               <button
                 onClick={() => setActiveTab('alertas')}
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'alertas' 
                     ? 'bg-blue-600 text-white' 
-                    : 'text-neutral-300 hover:text-white hover:bg-neutral-800'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -444,15 +444,15 @@ export default function DashboardPage() {
               </button>
 
               {/* Divider */}
-              <div className="border-t border-neutral-800 my-3"></div>
-              <p className="text-xs text-neutral-500 font-semibold mb-2 px-3">INTEGRACIONES</p>
+              <div className="border-t border-gray-200 dark:border-gray-700 my-3"></div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 font-semibold mb-2 px-3">INTEGRACIONES</p>
 
               <button
                 onClick={() => setActiveTab('integraciones')}
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'integraciones' 
                     ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white' 
-                    : 'text-neutral-300 hover:text-white hover:bg-neutral-800'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -498,7 +498,7 @@ export default function DashboardPage() {
                    activeTab === 'integraciones' ? '🔌 Integraciones' :
                    '🏦 Productos Bancarios'}
                 </h1>
-                <p className="text-neutral-400 mt-1 text-sm">
+                <p className="text-gray-600 dark:text-gray-400 mt-1 text-sm">
                   {activeTab === 'overview' ? 'Resumen general de tu plataforma' : 
                    activeTab === 'analytics' ? 'Análisis detallado de métricas' :
                    activeTab === 'facturas' ? 'Gestión y visualización de facturas' :
@@ -523,7 +523,7 @@ export default function DashboardPage() {
                 </p>
               </div>
               <div className="text-right">
-                <p className="text-xs text-neutral-400">Última actualización</p>
+                <p className="text-xs text-gray-600 dark:text-gray-400">Última actualización</p>
                 <p className="text-sm font-medium">{new Date().toLocaleDateString('es-ES')}</p>
               </div>
             </motion.div>
@@ -535,10 +535,10 @@ export default function DashboardPage() {
                 <motion.div variants={itemVariants} className="bg-gradient-to-br from-green-900/20 to-emerald-900/10 border border-green-500/30 rounded-2xl p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-neutral-400 text-xs mb-2">Score de Salud Financiera</p>
+                      <p className="text-gray-600 dark:text-gray-400 text-xs mb-2">Score de Salud Financiera</p>
                       <div className="flex items-baseline gap-3">
                         <p className="text-4xl font-bold text-green-400">{healthScore}</p>
-                        <span className="text-sm text-neutral-500">/100</span>
+                        <span className="text-sm text-gray-500 dark:text-gray-400">/100</span>
                       </div>
                       <p className="text-xs text-green-400 mt-2">Excelente • +5 pts vs mes anterior</p>
                     </div>
@@ -567,22 +567,22 @@ export default function DashboardPage() {
                 {/* KPIs Financieros Clave */}
                 <motion.div variants={itemVariants} className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   <div className="bg-gradient-to-br from-blue-900/20 to-blue-900/5 border border-blue-500/20 rounded-xl p-4">
-                    <p className="text-neutral-400 text-xs mb-1">Liquidez</p>
+                    <p className="text-gray-600 dark:text-gray-400 text-xs mb-1">Liquidez</p>
                     <p className="text-2xl font-bold">${(stats.saldoCaja / 1000000).toFixed(2)}M</p>
                     <p className="text-xs text-green-400 mt-1">+15% MoM</p>
                   </div>
                   <div className="bg-gradient-to-br from-green-900/20 to-green-900/5 border border-green-500/20 rounded-xl p-4">
-                    <p className="text-neutral-400 text-xs mb-1">Por Cobrar</p>
+                    <p className="text-gray-600 dark:text-gray-400 text-xs mb-1">Por Cobrar</p>
                     <p className="text-2xl font-bold">${(stats.cuentasPorCobrar / 1000).toFixed(0)}K</p>
-                    <p className="text-xs text-neutral-400 mt-1">23 facturas</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">23 facturas</p>
                   </div>
                   <div className="bg-gradient-to-br from-red-900/20 to-red-900/5 border border-red-500/20 rounded-xl p-4">
-                    <p className="text-neutral-400 text-xs mb-1">Por Pagar</p>
+                    <p className="text-gray-600 dark:text-gray-400 text-xs mb-1">Por Pagar</p>
                     <p className="text-2xl font-bold">${(stats.cuentasPorPagar / 1000).toFixed(0)}K</p>
                     <p className="text-xs text-red-400 mt-1">Vence 7 días</p>
                   </div>
                   <div className="bg-gradient-to-br from-purple-900/20 to-purple-900/5 border border-purple-500/20 rounded-xl p-4">
-                    <p className="text-neutral-400 text-xs mb-1">Flujo Neto</p>
+                    <p className="text-gray-600 dark:text-gray-400 text-xs mb-1">Flujo Neto</p>
                     <p className="text-2xl font-bold">${(stats.flujoNeto / 1000).toFixed(0)}K</p>
                     <p className="text-xs text-green-400 mt-1">+22% MoM</p>
                   </div>
@@ -591,7 +591,7 @@ export default function DashboardPage() {
                 {/* Ratios Financieros + Predicciones */}
                 <div className="grid lg:grid-cols-2 gap-6">
                   {/* Ratios Clave */}
-                  <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                  <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                     <h3 className="text-lg font-bold mb-4">Ratios Financieros</h3>
                     <div className="space-y-4">
                       {[
@@ -603,7 +603,7 @@ export default function DashboardPage() {
                         <div key={idx} className="flex items-center justify-between">
                           <div className="flex-1">
                             <div className="flex items-center justify-between mb-1">
-                              <span className="text-sm text-neutral-300">{ratio.name}</span>
+                              <span className="text-sm text-gray-400 dark:text-gray-300">{ratio.name}</span>
                               <span className={`text-xs px-2 py-0.5 rounded-full ${
                                 ratio.status === 'good' ? 'bg-green-900/20 text-green-400' : 'bg-red-900/20 text-red-400'
                               }`}>
@@ -612,7 +612,7 @@ export default function DashboardPage() {
                             </div>
                             <div className="flex items-baseline gap-2">
                               <span className="text-lg font-bold">{ratio.value}</span>
-                              <span className="text-xs text-neutral-500">vs {ratio.target}</span>
+                              <span className="text-xs text-gray-500 dark:text-gray-400">vs {ratio.target}</span>
                             </div>
                           </div>
                         </div>
@@ -621,21 +621,21 @@ export default function DashboardPage() {
                   </motion.div>
 
                   {/* Predicciones IA */}
-                  <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                  <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                     <h3 className="text-lg font-bold mb-4">Predicciones IA - Próximo Mes</h3>
                     <div className="space-y-4">
                       <div className="p-4 bg-gradient-to-r from-blue-900/20 to-blue-900/5 border border-blue-500/20 rounded-xl">
-                        <p className="text-xs text-neutral-400 mb-1">Ingresos Proyectados</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Ingresos Proyectados</p>
                         <p className="text-2xl font-bold mb-1">$2.1M</p>
                         <p className="text-xs text-green-400">+14% vs mes actual • Confianza: 87%</p>
                       </div>
                       <div className="p-4 bg-gradient-to-r from-purple-900/20 to-purple-900/5 border border-purple-500/20 rounded-xl">
-                        <p className="text-xs text-neutral-400 mb-1">Gastos Estimados</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Gastos Estimados</p>
                         <p className="text-2xl font-bold mb-1">$1.3M</p>
                         <p className="text-xs text-yellow-400">+8% vs mes actual • Confianza: 92%</p>
                       </div>
                       <div className="p-4 bg-gradient-to-r from-green-900/20 to-green-900/5 border border-green-500/20 rounded-xl">
-                        <p className="text-xs text-neutral-400 mb-1">Flujo Neto Proyectado</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Flujo Neto Proyectado</p>
                         <p className="text-2xl font-bold mb-1">$800K</p>
                         <p className="text-xs text-green-400">+22% vs mes actual • Confianza: 85%</p>
                       </div>
@@ -646,19 +646,19 @@ export default function DashboardPage() {
                 {/* Operaciones + Tesorería */}
                 <div className="grid lg:grid-cols-3 gap-6">
                   {/* Facturación */}
-                  <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                  <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                     <div className="flex items-center justify-between mb-4">
                       <h3 className="text-sm font-bold">Facturación</h3>
                       <span className="text-xs px-2 py-1 bg-green-900/20 text-green-400 rounded-full">Hoy</span>
                     </div>
                     <div className="space-y-3">
                       <div>
-                        <p className="text-xs text-neutral-400">Emitidas</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400">Emitidas</p>
                         <p className="text-xl font-bold">12</p>
                         <p className="text-xs text-blue-400">$45K facturado</p>
                       </div>
-                      <div className="pt-3 border-t border-neutral-800">
-                        <p className="text-xs text-neutral-400">Este Mes</p>
+                      <div className="pt-3 border-t border-gray-200 dark:border-gray-700">
+                        <p className="text-xs text-gray-600 dark:text-gray-400">Este Mes</p>
                         <p className="text-xl font-bold">156</p>
                         <p className="text-xs text-green-400">$850K total</p>
                       </div>
@@ -666,19 +666,19 @@ export default function DashboardPage() {
                   </motion.div>
 
                   {/* Cobranza */}
-                  <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                  <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                     <div className="flex items-center justify-between mb-4">
                       <h3 className="text-sm font-bold">Cobranza</h3>
                       <span className="text-xs px-2 py-1 bg-yellow-900/20 text-yellow-400 rounded-full">Atención</span>
                     </div>
                     <div className="space-y-3">
                       <div>
-                        <p className="text-xs text-neutral-400">Por Vencer (7 días)</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400">Por Vencer (7 días)</p>
                         <p className="text-xl font-bold">$320K</p>
                         <p className="text-xs text-yellow-400">8 facturas</p>
                       </div>
-                      <div className="pt-3 border-t border-neutral-800">
-                        <p className="text-xs text-neutral-400">Vencidas</p>
+                      <div className="pt-3 border-t border-gray-200 dark:border-gray-700">
+                        <p className="text-xs text-gray-600 dark:text-gray-400">Vencidas</p>
                         <p className="text-xl font-bold text-red-400">$180K</p>
                         <p className="text-xs text-red-400">5 facturas • Acción requerida</p>
                       </div>
@@ -686,21 +686,21 @@ export default function DashboardPage() {
                   </motion.div>
 
                   {/* Tesorería */}
-                  <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                  <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                     <div className="flex items-center justify-between mb-4">
                       <h3 className="text-sm font-bold">Tesorería</h3>
                       <span className="text-xs px-2 py-1 bg-blue-900/20 text-blue-400 rounded-full">3 Cuentas</span>
                     </div>
                     <div className="space-y-3">
                       <div>
-                        <p className="text-xs text-neutral-400">Saldo Total</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400">Saldo Total</p>
                         <p className="text-xl font-bold">$1.25M</p>
                         <p className="text-xs text-green-400">BCP: $850K • BBVA: $280K</p>
                       </div>
-                      <div className="pt-3 border-t border-neutral-800">
-                        <p className="text-xs text-neutral-400">Movimientos Hoy</p>
+                      <div className="pt-3 border-t border-gray-200 dark:border-gray-700">
+                        <p className="text-xs text-gray-600 dark:text-gray-400">Movimientos Hoy</p>
                         <p className="text-xl font-bold">{stats.transaccionesHoy}</p>
-                        <p className="text-xs text-neutral-400">+$125K / -$85K</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400">+$125K / -$85K</p>
                       </div>
                     </div>
                   </motion.div>
@@ -709,20 +709,20 @@ export default function DashboardPage() {
                 {/* Presupuesto + Alertas */}
                 <div className="grid lg:grid-cols-2 gap-6">
                   {/* Presupuesto */}
-                  <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                  <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                     <h3 className="text-lg font-bold mb-4">Presupuesto 2025</h3>
                     <div className="grid grid-cols-3 gap-4 mb-4">
                       <div className="text-center p-3 bg-blue-900/10 rounded-lg">
-                        <p className="text-xs text-neutral-400 mb-1">Anual</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Anual</p>
                         <p className="text-lg font-bold">$12M</p>
                       </div>
                       <div className="text-center p-3 bg-green-900/10 rounded-lg">
-                        <p className="text-xs text-neutral-400 mb-1">Ejecutado</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Ejecutado</p>
                         <p className="text-lg font-bold">$9.2M</p>
                         <p className="text-xs text-green-400">77%</p>
                       </div>
                       <div className="text-center p-3 bg-purple-900/10 rounded-lg">
-                        <p className="text-xs text-neutral-400 mb-1">Disponible</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Disponible</p>
                         <p className="text-lg font-bold">$2.8M</p>
                         <p className="text-xs text-purple-400">23%</p>
                       </div>
@@ -735,10 +735,10 @@ export default function DashboardPage() {
                       ].map((item, idx) => (
                         <div key={idx}>
                           <div className="flex items-center justify-between text-xs mb-1">
-                            <span className="text-neutral-400">{item.cat}</span>
+                            <span className="text-gray-600 dark:text-gray-400">{item.cat}</span>
                             <span className={item.exec > 100 ? 'text-red-400' : 'text-green-400'}>{item.exec}%</span>
                           </div>
-                          <div className="w-full bg-neutral-800 rounded-full h-1.5">
+                          <div className="w-full bg-gray-100 dark:bg-secondary-700 rounded-full h-1.5">
                             <div className={`${item.color} h-full rounded-full`} style={{ width: `${Math.min(item.exec, 100)}%` }}></div>
                           </div>
                         </div>
@@ -747,7 +747,7 @@ export default function DashboardPage() {
                   </motion.div>
 
                   {/* Alertas Críticas */}
-                  <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                  <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                     <h3 className="text-lg font-bold mb-4">Alertas Críticas</h3>
                     <div className="space-y-3">
                       {[
@@ -764,10 +764,10 @@ export default function DashboardPage() {
                               <span>{alert.icon}</span>
                               <div>
                                 <p className="text-sm font-semibold">{alert.type}</p>
-                                <p className="text-xs text-neutral-400">{alert.count} items • {alert.amount}</p>
+                                <p className="text-xs text-gray-600 dark:text-gray-400">{alert.count} items • {alert.amount}</p>
                               </div>
                             </div>
-                            <button className="text-xs px-2 py-1 bg-neutral-800 hover:bg-neutral-700 rounded transition-colors">
+                            <button className="text-xs px-2 py-1 bg-gray-100 dark:bg-secondary-700 hover:bg-neutral-700 rounded transition-colors">
                               Ver
                             </button>
                           </div>
@@ -780,31 +780,31 @@ export default function DashboardPage() {
                 {/* Flujo Proyectado + Financiamiento */}
                 <div className="grid lg:grid-cols-2 gap-6">
                   {/* Flujo Proyectado */}
-                  <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                  <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                     <h3 className="text-lg font-bold mb-4">Flujo de Caja Proyectado (12 semanas)</h3>
                     <div className="grid grid-cols-3 gap-3 mb-4">
                       <div className="text-center p-3 bg-blue-900/10 rounded-lg">
-                        <p className="text-xs text-neutral-400 mb-1">Saldo Inicial</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Saldo Inicial</p>
                         <p className="text-lg font-bold">$1.25M</p>
                       </div>
                       <div className="text-center p-3 bg-green-900/10 rounded-lg">
-                        <p className="text-xs text-neutral-400 mb-1">Ingresos</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Ingresos</p>
                         <p className="text-lg font-bold text-green-400">+$2.8M</p>
                       </div>
                       <div className="text-center p-3 bg-red-900/10 rounded-lg">
-                        <p className="text-xs text-neutral-400 mb-1">Egresos</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Egresos</p>
                         <p className="text-lg font-bold text-red-400">-$2.4M</p>
                       </div>
                     </div>
                     <div className="p-4 bg-gradient-to-r from-purple-900/20 to-purple-900/5 border border-purple-500/20 rounded-xl">
-                      <p className="text-xs text-neutral-400 mb-1">Saldo Final Proyectado</p>
+                      <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Saldo Final Proyectado</p>
                       <p className="text-3xl font-bold mb-1">$1.65M</p>
                       <p className="text-xs text-green-400">+32% vs saldo inicial • Estado: Óptimo ✓</p>
                     </div>
                   </motion.div>
 
                   {/* Financiamiento Disponible */}
-                  <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                  <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                     <h3 className="text-lg font-bold mb-4">Financiamiento Disponible</h3>
                     <div className="space-y-3">
                       <div className="p-3 bg-gradient-to-r from-orange-900/20 to-orange-900/5 border border-orange-500/20 rounded-lg">
@@ -813,7 +813,7 @@ export default function DashboardPage() {
                           <span className="text-xs px-2 py-1 bg-orange-900/20 text-orange-400 rounded-full">12 activas</span>
                         </div>
                         <p className="text-2xl font-bold mb-1">$850K</p>
-                        <p className="text-xs text-neutral-400">Confirming • Factoring • Líneas Flash</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400">Confirming • Factoring • Líneas Flash</p>
                       </div>
                       <div className="p-3 bg-gradient-to-r from-blue-900/20 to-blue-900/5 border border-blue-500/20 rounded-lg">
                         <div className="flex items-center justify-between mb-2">
@@ -821,7 +821,7 @@ export default function DashboardPage() {
                           <span className="text-xs px-2 py-1 bg-blue-900/20 text-blue-400 rounded-full">3 líneas</span>
                         </div>
                         <p className="text-2xl font-bold mb-1">$680K</p>
-                        <p className="text-xs text-neutral-400">BCP • BBVA • Interbank • 57% disponible</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400">BCP • BBVA • Interbank • 57% disponible</p>
                       </div>
                     </div>
                   </motion.div>
@@ -830,16 +830,16 @@ export default function DashboardPage() {
                 {/* SUNAT + Automatizaciones */}
                 <div className="grid lg:grid-cols-2 gap-6">
                   {/* SUNAT */}
-                  <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                  <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                     <h3 className="text-lg font-bold mb-4">Cumplimiento SUNAT</h3>
                     <div className="grid grid-cols-2 gap-3 mb-4">
                       <div className="p-3 bg-red-900/10 rounded-lg">
-                        <p className="text-xs text-neutral-400 mb-1">IGV por Pagar</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">IGV por Pagar</p>
                         <p className="text-lg font-bold">$45K</p>
                         <p className="text-xs text-red-400">Vence: 15/11</p>
                       </div>
                       <div className="p-3 bg-orange-900/10 rounded-lg">
-                        <p className="text-xs text-neutral-400 mb-1">Renta Mensual</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Renta Mensual</p>
                         <p className="text-lg font-bold">$12K</p>
                         <p className="text-xs text-orange-400">Vence: 20/11</p>
                       </div>
@@ -850,8 +850,8 @@ export default function DashboardPage() {
                         { item: 'Libros Electrónicos', status: '6/6 Al día', color: 'green' },
                         { item: 'SIRE', status: '156 facturas', color: 'blue' }
                       ].map((item, idx) => (
-                        <div key={idx} className="flex items-center justify-between p-2 bg-neutral-800/30 rounded">
-                          <span className="text-sm text-neutral-300">{item.item}</span>
+                        <div key={idx} className="flex items-center justify-between p-2 bg-gray-100 dark:bg-secondary-700/30 rounded">
+                          <span className="text-sm text-gray-400 dark:text-gray-300">{item.item}</span>
                           <span className={`text-xs px-2 py-1 bg-${item.color}-900/20 text-${item.color}-400 rounded-full`}>
                             {item.status}
                           </span>
@@ -861,20 +861,20 @@ export default function DashboardPage() {
                   </motion.div>
 
                   {/* Automatizaciones */}
-                  <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                  <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                     <h3 className="text-lg font-bold mb-4">Automatizaciones</h3>
                     <div className="grid grid-cols-3 gap-3 mb-4">
                       <div className="text-center p-3 bg-blue-900/10 rounded-lg">
                         <p className="text-2xl font-bold">12</p>
-                        <p className="text-xs text-neutral-400">Activas</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400">Activas</p>
                       </div>
                       <div className="text-center p-3 bg-green-900/10 rounded-lg">
                         <p className="text-2xl font-bold">48h</p>
-                        <p className="text-xs text-neutral-400">Ahorradas/mes</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400">Ahorradas/mes</p>
                       </div>
                       <div className="text-center p-3 bg-purple-900/10 rounded-lg">
                         <p className="text-2xl font-bold">89</p>
-                        <p className="text-xs text-neutral-400">Errores evitados</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400">Errores evitados</p>
                       </div>
                     </div>
                     <div className="space-y-2">
@@ -883,13 +883,13 @@ export default function DashboardPage() {
                         'Recordatorio Facturas Vencidas',
                         'Clasificación Automática Gastos'
                       ].map((auto, idx) => (
-                        <div key={idx} className="flex items-center gap-2 p-2 bg-neutral-800/30 rounded">
+                        <div key={idx} className="flex items-center gap-2 p-2 bg-gray-100 dark:bg-secondary-700/30 rounded">
                           <div className="w-6 h-6 bg-blue-900/20 rounded flex items-center justify-center">
                             <svg className="w-3 h-3 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                             </svg>
                           </div>
-                          <span className="text-xs text-neutral-300">{auto}</span>
+                          <span className="text-xs text-gray-400 dark:text-gray-300">{auto}</span>
                         </div>
                       ))}
                     </div>
@@ -909,7 +909,7 @@ export default function DashboardPage() {
                       <button
                         key={idx}
                         onClick={() => setActiveTab(action.tab as any)}
-                        className="p-4 bg-neutral-900/50 hover:bg-neutral-800/50 border border-neutral-800 hover:border-blue-500/50 rounded-xl transition-all text-left"
+                        className="p-4 bg-gray-100 dark:bg-secondary-800 hover:bg-gray-100 dark:bg-secondary-700/50 border border-gray-200 dark:border-gray-700 hover:border-blue-500/50 rounded-xl transition-all text-left"
                       >
                         <div className="text-2xl mb-2">{action.icon}</div>
                         <p className="text-sm font-semibold">{action.name}</p>
@@ -921,47 +921,47 @@ export default function DashboardPage() {
             )}
 
             {activeTab === 'analytics' && (
-              <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-8">
+              <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-8">
                 <h2 className="text-2xl font-bold mb-6">Analytics Dashboard</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="bg-neutral-800/50 rounded-xl p-6">
+                  <div className="bg-gray-100 dark:bg-secondary-700/50 rounded-xl p-6">
                     <h3 className="text-lg font-semibold mb-4">Métricas de Rendimiento</h3>
                     <div className="space-y-4">
                       <div className="flex justify-between items-center">
-                        <span className="text-neutral-300">Ingresos del Mes</span>
+                        <span className="text-gray-400 dark:text-gray-300">Ingresos del Mes</span>
                         <span className="text-green-400 font-bold">$2.1M</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-neutral-300">Gastos del Mes</span>
+                        <span className="text-gray-400 dark:text-gray-300">Gastos del Mes</span>
                         <span className="text-red-400 font-bold">$1.3M</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-neutral-300">Margen Neto</span>
+                        <span className="text-gray-400 dark:text-gray-300">Margen Neto</span>
                         <span className="text-blue-400 font-bold">18%</span>
                       </div>
                     </div>
                   </div>
-                  <div className="bg-neutral-800/50 rounded-xl p-6">
+                  <div className="bg-gray-100 dark:bg-secondary-700/50 rounded-xl p-6">
                     <h3 className="text-lg font-semibold mb-4">Crecimiento</h3>
                     <div className="space-y-4">
                       <div className="flex justify-between items-center">
-                        <span className="text-neutral-300">vs Mes Anterior</span>
+                        <span className="text-gray-400 dark:text-gray-300">vs Mes Anterior</span>
                         <span className="text-green-400 font-bold">+14%</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-neutral-300">vs Año Anterior</span>
+                        <span className="text-gray-400 dark:text-gray-300">vs Año Anterior</span>
                         <span className="text-green-400 font-bold">+28%</span>
                       </div>
                     </div>
                   </div>
                 </div>
-                <p className="text-neutral-400 text-center mt-8">Gráficos y análisis detallados próximamente...</p>
+                <p className="text-gray-600 dark:text-gray-400 text-center mt-8">Gráficos y análisis detallados próximamente...</p>
               </motion.div>
             )}
 
             {activeTab === 'facturas' && (
               <motion.div variants={itemVariants} className="space-y-6">
-                <div className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                <div className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <FacturasTable />
                 </div>
               </motion.div>
@@ -975,7 +975,7 @@ export default function DashboardPage() {
                   <div className="bg-gradient-to-br from-blue-900/20 to-blue-900/5 border border-blue-500/20 rounded-2xl p-6">
                     <div className="flex items-center justify-between mb-4">
                       <div>
-                        <p className="text-xs text-neutral-400 mb-1">BCP - Corriente</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">BCP - Corriente</p>
                         <p className="text-2xl font-bold">$680K</p>
                       </div>
                       <div className="w-12 h-12 bg-blue-900/30 rounded-xl flex items-center justify-center">
@@ -990,7 +990,7 @@ export default function DashboardPage() {
                   <div className="bg-gradient-to-br from-purple-900/20 to-purple-900/5 border border-purple-500/20 rounded-2xl p-6">
                     <div className="flex items-center justify-between mb-4">
                       <div>
-                        <p className="text-xs text-neutral-400 mb-1">BBVA - Corriente</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">BBVA - Corriente</p>
                         <p className="text-2xl font-bold">$420K</p>
                       </div>
                       <div className="w-12 h-12 bg-purple-900/30 rounded-xl flex items-center justify-center">
@@ -1005,7 +1005,7 @@ export default function DashboardPage() {
                   <div className="bg-gradient-to-br from-green-900/20 to-green-900/5 border border-green-500/20 rounded-2xl p-6">
                     <div className="flex items-center justify-between mb-4">
                       <div>
-                        <p className="text-xs text-neutral-400 mb-1">Interbank - Nómina</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Interbank - Nómina</p>
                         <p className="text-2xl font-bold">$150K</p>
                       </div>
                       <div className="w-12 h-12 bg-green-900/30 rounded-xl flex items-center justify-center">
@@ -1014,23 +1014,23 @@ export default function DashboardPage() {
                         </svg>
                       </div>
                     </div>
-                    <p className="text-xs text-neutral-500">Sin movimientos</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">Sin movimientos</p>
                   </div>
                 </motion.div>
 
                 {/* Movimientos del Día */}
-                <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Movimientos de Hoy</h3>
                   <div className="space-y-4">
                     {recentTransactions.slice(0, 8).map((tx, idx) => (
-                      <div key={idx} className="flex items-center justify-between p-4 bg-neutral-800/30 rounded-lg">
+                      <div key={idx} className="flex items-center justify-between p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-lg">
                         <div className="flex items-center gap-4">
                           <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${tx.type === 'ingreso' ? 'bg-green-900/20' : 'bg-red-900/20'}`}>
                             {tx.type === 'ingreso' ? '↑' : '↓'}
                           </div>
                           <div>
                             <p className="text-sm font-medium">{tx.concepto}</p>
-                            <p className="text-xs text-neutral-400">{tx.cuenta}</p>
+                            <p className="text-xs text-gray-600 dark:text-gray-400">{tx.cuenta}</p>
                           </div>
                         </div>
                         <p className={`text-sm font-bold ${tx.type === 'ingreso' ? 'text-green-400' : 'text-red-400'}`}>
@@ -1047,13 +1047,13 @@ export default function DashboardPage() {
             {activeTab === 'reportes' && (
               <div className="space-y-6">
                 {/* Tabs */}
-                <motion.div variants={itemVariants} className="flex gap-2 border-b border-neutral-800">
+                <motion.div variants={itemVariants} className="flex gap-2 border-b border-gray-200 dark:border-gray-700">
                   <button
                     onClick={() => setReportesTab('financieros')}
                     className={`px-4 py-2 text-sm font-medium transition-colors ${
                       reportesTab === 'financieros'
                         ? 'text-blue-400 border-b-2 border-blue-400'
-                        : 'text-neutral-400 hover:text-white'
+                        : 'text-gray-600 dark:text-gray-400 hover:text-white'
                     }`}
                   >
                     Reportes Financieros
@@ -1063,7 +1063,7 @@ export default function DashboardPage() {
                     className={`px-4 py-2 text-sm font-medium transition-colors ${
                       reportesTab === 'impuestos'
                         ? 'text-blue-400 border-b-2 border-blue-400'
-                        : 'text-neutral-400 hover:text-white'
+                        : 'text-gray-600 dark:text-gray-400 hover:text-white'
                     }`}
                   >
                     Impuestos y SUNAT
@@ -1083,16 +1083,16 @@ export default function DashboardPage() {
                         <motion.button
                           key={idx}
                           whileHover={{ y: -4 }}
-                          className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6 text-left hover:border-neutral-700 transition-all"
+                          className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 text-left hover:border-gray-300 dark:border-gray-600 transition-all"
                         >
                           <div className="text-4xl mb-4">{report.icon}</div>
                           <h3 className="text-sm font-semibold mb-2">{report.name}</h3>
-                          <p className="text-xs text-neutral-400">Generar reporte</p>
+                          <p className="text-xs text-gray-600 dark:text-gray-400">Generar reporte</p>
                         </motion.button>
                       ))}
                     </motion.div>
 
-                    <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-8">
+                    <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-8">
                       <h3 className="text-lg font-bold mb-6">Reportes Recientes</h3>
                       <div className="space-y-4">
                         {[
@@ -1100,7 +1100,7 @@ export default function DashboardPage() {
                           { name: 'Balance General - Q2 2025', date: '30/06/2025', size: '1.8 MB' },
                           { name: 'Flujo de Caja - Mayo 2025', date: '31/05/2025', size: '1.2 MB' }
                         ].map((report, idx) => (
-                          <div key={idx} className="flex items-center justify-between p-4 bg-neutral-800/30 rounded-lg">
+                          <div key={idx} className="flex items-center justify-between p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-lg">
                             <div className="flex items-center gap-4">
                               <div className="w-10 h-10 bg-blue-900/20 rounded-lg flex items-center justify-center">
                                 <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1109,7 +1109,7 @@ export default function DashboardPage() {
                               </div>
                               <div>
                                 <p className="text-sm font-medium">{report.name}</p>
-                                <p className="text-xs text-neutral-400">{report.date} • {report.size}</p>
+                                <p className="text-xs text-gray-600 dark:text-gray-400">{report.date} • {report.size}</p>
                               </div>
                             </div>
                             <button className="text-xs px-3 py-1.5 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors">
@@ -1128,22 +1128,22 @@ export default function DashboardPage() {
                     {/* Stats Overview */}
                     <motion.div variants={itemVariants} className="grid md:grid-cols-4 gap-4">
                       <div className="bg-gradient-to-br from-red-900/20 to-red-900/5 border border-red-500/20 rounded-xl p-4">
-                        <p className="text-xs text-neutral-400 mb-1">IGV por Pagar</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">IGV por Pagar</p>
                         <p className="text-2xl font-bold">$45K</p>
                         <p className="text-xs text-red-400">Vence: 15/11/2025</p>
                       </div>
                       <div className="bg-gradient-to-br from-orange-900/20 to-orange-900/5 border border-orange-500/20 rounded-xl p-4">
-                        <p className="text-xs text-neutral-400 mb-1">Renta Mensual</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Renta Mensual</p>
                         <p className="text-2xl font-bold">$12K</p>
                         <p className="text-xs text-orange-400">Vence: 20/11/2025</p>
                       </div>
                       <div className="bg-gradient-to-br from-blue-900/20 to-blue-900/5 border border-blue-500/20 rounded-xl p-4">
-                        <p className="text-xs text-neutral-400 mb-1">PLAME Enviado</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">PLAME Enviado</p>
                         <p className="text-2xl font-bold">✓</p>
                         <p className="text-xs text-green-400">Octubre 2025</p>
                       </div>
                       <div className="bg-gradient-to-br from-purple-900/20 to-purple-900/5 border border-purple-500/20 rounded-xl p-4">
-                        <p className="text-xs text-neutral-400 mb-1">Libros Electrónicos</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Libros Electrónicos</p>
                         <p className="text-2xl font-bold">6/6</p>
                         <p className="text-xs text-purple-400">Al día</p>
                       </div>
@@ -1152,7 +1152,7 @@ export default function DashboardPage() {
                     {/* Declaraciones y Libros SUNAT */}
                     <motion.div variants={itemVariants} className="grid md:grid-cols-2 gap-6">
                       {/* Declaraciones Mensuales */}
-                      <div className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                      <div className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                         <h3 className="text-lg font-bold mb-6">Declaraciones Mensuales</h3>
                         <div className="space-y-4">
                           {[
@@ -1160,7 +1160,7 @@ export default function DashboardPage() {
                             { name: 'PLAME', periodo: 'Octubre 2025', vence: '17/11/2025', status: 'Enviado' },
                             { name: 'PDT 617 - Otras Retenciones', periodo: 'Octubre 2025', vence: '20/11/2025', status: 'Pendiente' }
                           ].map((dec, idx) => (
-                            <div key={idx} className="p-4 bg-neutral-800/30 rounded-lg">
+                            <div key={idx} className="p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-lg">
                               <div className="flex items-center justify-between mb-2">
                                 <h4 className="text-sm font-semibold">{dec.name}</h4>
                                 <span className={`text-xs px-2 py-1 rounded-full ${
@@ -1169,7 +1169,7 @@ export default function DashboardPage() {
                                   {dec.status}
                                 </span>
                               </div>
-                              <div className="flex items-center justify-between text-xs text-neutral-400">
+                              <div className="flex items-center justify-between text-xs text-gray-600 dark:text-gray-400">
                                 <span>{dec.periodo}</span>
                                 <span>Vence: {dec.vence}</span>
                               </div>
@@ -1184,7 +1184,7 @@ export default function DashboardPage() {
                       </div>
 
                       {/* Libros Electrónicos */}
-                      <div className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                      <div className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                         <h3 className="text-lg font-bold mb-6">Libros Electrónicos (PLE)</h3>
                         <div className="space-y-4">
                           {[
@@ -1195,16 +1195,16 @@ export default function DashboardPage() {
                             { name: 'Libro de Inventarios', periodo: 'Octubre 2025', status: 'Enviado' },
                             { name: 'Libro Caja y Bancos', periodo: 'Octubre 2025', status: 'Enviado' }
                           ].map((libro, idx) => (
-                            <div key={idx} className="flex items-center justify-between p-3 bg-neutral-800/30 rounded-lg">
+                            <div key={idx} className="flex items-center justify-between p-3 bg-gray-100 dark:bg-secondary-700/30 rounded-lg">
                               <div>
                                 <p className="text-sm font-semibold">{libro.name}</p>
-                                <p className="text-xs text-neutral-400">{libro.periodo}</p>
+                                <p className="text-xs text-gray-600 dark:text-gray-400">{libro.periodo}</p>
                               </div>
                               <div className="flex items-center gap-2">
                                 <span className="text-xs px-2 py-1 bg-green-900/20 text-green-400 rounded-full">
                                   {libro.status}
                                 </span>
-                                <button className="text-xs px-2 py-1 bg-neutral-800 hover:bg-neutral-700 rounded transition-colors">
+                                <button className="text-xs px-2 py-1 bg-gray-100 dark:bg-secondary-700 hover:bg-neutral-700 rounded transition-colors">
                                   Ver
                                 </button>
                               </div>
@@ -1215,21 +1215,21 @@ export default function DashboardPage() {
                     </motion.div>
 
                     {/* SIRE y Comprobantes */}
-                    <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                    <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                       <h3 className="text-lg font-bold mb-6">SIRE - Sistema Integrado de Registros Electrónicos</h3>
                       <div className="grid md:grid-cols-3 gap-6 mb-6">
-                        <div className="text-center p-4 bg-neutral-800/30 rounded-xl">
-                          <p className="text-xs text-neutral-400 mb-2">Facturas Emitidas</p>
+                        <div className="text-center p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-xl">
+                          <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">Facturas Emitidas</p>
                           <p className="text-3xl font-bold mb-1">156</p>
                           <p className="text-xs text-green-400">Octubre 2025</p>
                         </div>
-                        <div className="text-center p-4 bg-neutral-800/30 rounded-xl">
-                          <p className="text-xs text-neutral-400 mb-2">Notas de Crédito</p>
+                        <div className="text-center p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-xl">
+                          <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">Notas de Crédito</p>
                           <p className="text-3xl font-bold mb-1">8</p>
                           <p className="text-xs text-yellow-400">Octubre 2025</p>
                         </div>
-                        <div className="text-center p-4 bg-neutral-800/30 rounded-xl">
-                          <p className="text-xs text-neutral-400 mb-2">Comprobantes Recibidos</p>
+                        <div className="text-center p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-xl">
+                          <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">Comprobantes Recibidos</p>
                           <p className="text-3xl font-bold mb-1">234</p>
                           <p className="text-xs text-blue-400">Octubre 2025</p>
                         </div>
@@ -1238,14 +1238,14 @@ export default function DashboardPage() {
                         <button className="flex-1 text-sm px-4 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors">
                           Enviar a SIRE
                         </button>
-                        <button className="flex-1 text-sm px-4 py-3 bg-neutral-800 hover:bg-neutral-700 rounded-lg transition-colors">
+                        <button className="flex-1 text-sm px-4 py-3 bg-gray-100 dark:bg-secondary-700 hover:bg-neutral-700 rounded-lg transition-colors">
                           Descargar Reporte
                         </button>
                       </div>
                     </motion.div>
 
                     {/* Calendario Tributario */}
-                    <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                    <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                       <h3 className="text-lg font-bold mb-6">Calendario Tributario - Noviembre 2025</h3>
                       <div className="space-y-3">
                         {[
@@ -1256,7 +1256,7 @@ export default function DashboardPage() {
                           { fecha: '17 Nov', obligacion: 'PLAME - Planilla Electrónica', monto: '$180K' },
                           { fecha: '20 Nov', obligacion: 'PDT 617 - Otras Retenciones', monto: '$12K' }
                         ].map((item, idx) => (
-                          <div key={idx} className="flex items-center justify-between p-4 bg-neutral-800/30 rounded-lg hover:bg-neutral-800/50 transition-colors">
+                          <div key={idx} className="flex items-center justify-between p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-lg hover:bg-gray-100 dark:bg-secondary-700/50 transition-colors">
                             <div className="flex items-center gap-4">
                               <div className="w-16 text-center">
                                 <p className="text-xs font-bold text-blue-400">{item.fecha}</p>
@@ -1282,23 +1282,23 @@ export default function DashboardPage() {
               <div className="space-y-6">
                 <motion.div variants={itemVariants} className="grid md:grid-cols-3 gap-6">
                   <div className="bg-gradient-to-br from-green-900/20 to-green-900/5 border border-green-500/20 rounded-2xl p-6">
-                    <p className="text-xs text-neutral-400 mb-2">Conciliadas</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">Conciliadas</p>
                     <p className="text-3xl font-bold mb-1">35</p>
                     <p className="text-xs text-green-400">Este mes</p>
                   </div>
                   <div className="bg-gradient-to-br from-yellow-900/20 to-yellow-900/5 border border-yellow-500/20 rounded-2xl p-6">
-                    <p className="text-xs text-neutral-400 mb-2">Pendientes</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">Pendientes</p>
                     <p className="text-3xl font-bold mb-1">12</p>
                     <p className="text-xs text-yellow-400">Requieren atención</p>
                   </div>
                   <div className="bg-gradient-to-br from-red-900/20 to-red-900/5 border border-red-500/20 rounded-2xl p-6">
-                    <p className="text-xs text-neutral-400 mb-2">Discrepancias</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">Discrepancias</p>
                     <p className="text-3xl font-bold mb-1">3</p>
                     <p className="text-xs text-red-400">Revisar urgente</p>
                   </div>
                 </motion.div>
 
-                <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Transacciones Pendientes de Conciliar</h3>
                   <div className="space-y-3">
                     {[
@@ -1306,14 +1306,14 @@ export default function DashboardPage() {
                       { banco: 'BBVA', monto: -32000, fecha: '03/10/2025', concepto: 'Pago Proveedor ABC' },
                       { banco: 'BCP', monto: 28000, fecha: '02/10/2025', concepto: 'Cobro Factura #1245' }
                     ].map((tx, idx) => (
-                      <div key={idx} className="flex items-center justify-between p-4 bg-neutral-800/30 rounded-lg">
+                      <div key={idx} className="flex items-center justify-between p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-lg">
                         <div className="flex items-center gap-4">
                           <div className="w-10 h-10 bg-blue-900/20 rounded-lg flex items-center justify-center">
                             <span className="text-xs font-bold text-blue-400">{tx.banco}</span>
                           </div>
                           <div>
                             <p className="text-sm font-medium">{tx.concepto}</p>
-                            <p className="text-xs text-neutral-400">{tx.fecha}</p>
+                            <p className="text-xs text-gray-600 dark:text-gray-400">{tx.fecha}</p>
                           </div>
                         </div>
                         <div className="flex items-center gap-4">
@@ -1336,24 +1336,24 @@ export default function DashboardPage() {
               <div className="space-y-6">
                 <motion.div variants={itemVariants} className="grid md:grid-cols-4 gap-4">
                   <div className="bg-red-900/20 border border-red-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Críticas</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Críticas</p>
                     <p className="text-2xl font-bold text-red-400">5</p>
                   </div>
                   <div className="bg-yellow-900/20 border border-yellow-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Advertencias</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Advertencias</p>
                     <p className="text-2xl font-bold text-yellow-400">12</p>
                   </div>
                   <div className="bg-blue-900/20 border border-blue-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Informativas</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Informativas</p>
                     <p className="text-2xl font-bold text-blue-400">8</p>
                   </div>
                   <div className="bg-green-900/20 border border-green-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Resueltas</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Resueltas</p>
                     <p className="text-2xl font-bold text-green-400">23</p>
                   </div>
                 </motion.div>
 
-                <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Alertas Activas</h3>
                   <div className="space-y-4">
                     {[
@@ -1371,11 +1371,11 @@ export default function DashboardPage() {
                         <div className="flex-1">
                           <div className="flex items-center justify-between mb-1">
                             <span className={`text-xs font-semibold text-${alert.color}-400`}>{alert.tipo}</span>
-                            <span className="text-xs text-neutral-500">{alert.tiempo}</span>
+                            <span className="text-xs text-gray-500 dark:text-gray-400">{alert.tiempo}</span>
                           </div>
-                          <p className="text-sm text-neutral-300">{alert.mensaje}</p>
+                          <p className="text-sm text-gray-400 dark:text-gray-300">{alert.mensaje}</p>
                         </div>
-                        <button className="text-xs px-3 py-1.5 bg-neutral-800 hover:bg-neutral-700 rounded-lg transition-colors">
+                        <button className="text-xs px-3 py-1.5 bg-gray-100 dark:bg-secondary-700 hover:bg-neutral-700 rounded-lg transition-colors">
                           Resolver
                         </button>
                       </div>
@@ -1397,7 +1397,7 @@ export default function DashboardPage() {
                       </div>
                       <p className="text-xs font-semibold text-blue-400">Insight del Día</p>
                     </div>
-                    <p className="text-sm text-neutral-300">Tus gastos en Marketing aumentaron 25% este mes</p>
+                    <p className="text-sm text-gray-400 dark:text-gray-300">Tus gastos en Marketing aumentaron 25% este mes</p>
                   </div>
                   <div className="bg-gradient-to-br from-green-900/20 to-green-900/5 border border-green-500/20 rounded-xl p-4">
                     <div className="flex items-center gap-3 mb-2">
@@ -1406,7 +1406,7 @@ export default function DashboardPage() {
                       </div>
                       <p className="text-xs font-semibold text-green-400">Oportunidad</p>
                     </div>
-                    <p className="text-sm text-neutral-300">Puedes ahorrar $8K renegociando con proveedores</p>
+                    <p className="text-sm text-gray-400 dark:text-gray-300">Puedes ahorrar $8K renegociando con proveedores</p>
                   </div>
                   <div className="bg-gradient-to-br from-yellow-900/20 to-yellow-900/5 border border-yellow-500/20 rounded-xl p-4">
                     <div className="flex items-center gap-3 mb-2">
@@ -1415,20 +1415,20 @@ export default function DashboardPage() {
                       </div>
                       <p className="text-xs font-semibold text-yellow-400">Recomendación</p>
                     </div>
-                    <p className="text-sm text-neutral-300">Considera aumentar tu reserva de caja en 10%</p>
+                    <p className="text-sm text-gray-400 dark:text-gray-300">Considera aumentar tu reserva de caja en 10%</p>
                   </div>
                 </motion.div>
 
                 {/* Chat Interface */}
-                <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl overflow-hidden">
-                  <div className="bg-gradient-to-r from-blue-900/30 to-purple-900/30 p-4 border-b border-neutral-800">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl overflow-hidden">
+                  <div className="bg-gradient-to-r from-blue-900/30 to-purple-900/30 p-4 border-b border-gray-200 dark:border-gray-700">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
                         <span className="text-xl">🤖</span>
                       </div>
                       <div>
                         <h3 className="text-sm font-semibold">Copiloto Financiero</h3>
-                        <p className="text-xs text-neutral-400">Siempre listo para ayudarte</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400">Siempre listo para ayudarte</p>
                       </div>
                     </div>
                   </div>
@@ -1439,7 +1439,7 @@ export default function DashboardPage() {
                         <div className={`max-w-[80%] rounded-2xl px-4 py-3 ${
                           msg.role === 'user' 
                             ? 'bg-blue-600 text-white' 
-                            : 'bg-neutral-800 text-neutral-200'
+                            : 'bg-gray-100 dark:bg-secondary-700 text-neutral-200'
                         }`}>
                           <p className="text-sm">{msg.content}</p>
                         </div>
@@ -1447,12 +1447,12 @@ export default function DashboardPage() {
                     ))}
                   </div>
 
-                  <div className="p-4 border-t border-neutral-800">
+                  <div className="p-4 border-t border-gray-200 dark:border-gray-700">
                     <div className="flex gap-3">
                       <input
                         type="text"
                         placeholder="Pregúntame sobre tus finanzas..."
-                        className="flex-1 bg-neutral-800 border border-neutral-700 rounded-xl px-4 py-3 text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-blue-500"
+                        className="flex-1 bg-gray-100 dark:bg-secondary-700 border border-gray-300 dark:border-gray-600 rounded-xl px-4 py-3 text-sm text-gray-900 dark:text-gray-900 dark:text-white placeholder-neutral-500 focus:outline-none focus:border-blue-500"
                       />
                       <button className="bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-3 rounded-xl text-sm font-medium hover:opacity-90 transition-opacity">
                         Enviar
@@ -1460,7 +1460,7 @@ export default function DashboardPage() {
                     </div>
                     <div className="flex gap-2 mt-3">
                       {['¿Cómo va mi flujo de caja?', '¿Cuándo debo pagar facturas?', 'Analiza mis gastos'].map((q, idx) => (
-                        <button key={idx} className="text-xs px-3 py-1.5 bg-neutral-800 hover:bg-neutral-700 rounded-lg transition-colors">
+                        <button key={idx} className="text-xs px-3 py-1.5 bg-gray-100 dark:bg-secondary-700 hover:bg-neutral-700 rounded-lg transition-colors">
                           {q}
                         </button>
                       ))}
@@ -1476,27 +1476,27 @@ export default function DashboardPage() {
                 {/* Forecast Cards */}
                 <motion.div variants={itemVariants} className="grid md:grid-cols-3 gap-6">
                   <div className="bg-gradient-to-br from-blue-900/20 to-blue-900/5 border border-blue-500/20 rounded-2xl p-6">
-                    <p className="text-xs text-neutral-400 mb-2">Ingresos Proyectados - Julio</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">Ingresos Proyectados - Julio</p>
                     <p className="text-3xl font-bold mb-2">$2.1M</p>
                     <p className="text-xs text-green-400">+14% vs mes anterior</p>
-                    <div className="mt-4 text-xs text-neutral-500">Confianza: 87%</div>
+                    <div className="mt-4 text-xs text-gray-500 dark:text-gray-400">Confianza: 87%</div>
                   </div>
                   <div className="bg-gradient-to-br from-purple-900/20 to-purple-900/5 border border-purple-500/20 rounded-2xl p-6">
-                    <p className="text-xs text-neutral-400 mb-2">Gastos Estimados - Julio</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">Gastos Estimados - Julio</p>
                     <p className="text-3xl font-bold mb-2">$1.3M</p>
                     <p className="text-xs text-yellow-400">+8% vs mes anterior</p>
-                    <div className="mt-4 text-xs text-neutral-500">Confianza: 92%</div>
+                    <div className="mt-4 text-xs text-gray-500 dark:text-gray-400">Confianza: 92%</div>
                   </div>
                   <div className="bg-gradient-to-br from-green-900/20 to-green-900/5 border border-green-500/20 rounded-2xl p-6">
-                    <p className="text-xs text-neutral-400 mb-2">Flujo Neto Proyectado</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">Flujo Neto Proyectado</p>
                     <p className="text-3xl font-bold mb-2">$800K</p>
                     <p className="text-xs text-green-400">+22% vs mes anterior</p>
-                    <div className="mt-4 text-xs text-neutral-500">Confianza: 85%</div>
+                    <div className="mt-4 text-xs text-gray-500 dark:text-gray-400">Confianza: 85%</div>
                   </div>
                 </motion.div>
 
                 {/* Predicción de Flujo de Caja */}
-                <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-8">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-8">
                   <h3 className="text-lg font-bold mb-6">Predicción de Flujo de Caja - Próximos 3 Meses</h3>
                   <div className="h-64 flex items-end justify-between gap-4 px-4">
                     {[
@@ -1514,13 +1514,13 @@ export default function DashboardPage() {
                               transition={{ duration: 1, delay: idx * 0.2 }}
                               className="w-full bg-gradient-to-t from-purple-600 to-purple-400 rounded-t-lg relative group cursor-pointer"
                             >
-                              <div className="absolute -top-12 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-neutral-800 px-3 py-2 rounded-lg text-xs whitespace-nowrap">
+                              <div className="absolute -top-12 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-gray-100 dark:bg-secondary-700 px-3 py-2 rounded-lg text-xs whitespace-nowrap">
                                 <p className="font-bold">${(data.amount / 1000).toFixed(1)}M</p>
-                                <p className="text-neutral-400">Confianza: {data.confidence}%</p>
+                                <p className="text-gray-600 dark:text-gray-400">Confianza: {data.confidence}%</p>
                               </div>
                             </motion.div>
                           </div>
-                          <span className="text-xs text-neutral-400">{data.month}</span>
+                          <span className="text-xs text-gray-600 dark:text-gray-400">{data.month}</span>
                           <span className="text-xs font-semibold text-purple-400">${(data.amount / 1000).toFixed(1)}M</span>
                         </div>
                       )
@@ -1529,7 +1529,7 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* Recomendaciones IA */}
-                <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Recomendaciones Basadas en IA</h3>
                   <div className="space-y-4">
                     {[
@@ -1537,7 +1537,7 @@ export default function DashboardPage() {
                       { icon: '📊', title: 'Diversifica ingresos', desc: 'El 60% de tus ingresos depende de 3 clientes. Recomendamos diversificar', impact: 'Medio' },
                       { icon: '⚡', title: 'Automatiza pagos recurrentes', desc: 'Puedes ahorrar 12 horas/mes automatizando pagos a proveedores fijos', impact: 'Alto' }
                     ].map((rec, idx) => (
-                      <div key={idx} className="flex items-start gap-4 p-4 bg-neutral-800/30 rounded-lg">
+                      <div key={idx} className="flex items-start gap-4 p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-lg">
                         <div className="text-3xl">{rec.icon}</div>
                         <div className="flex-1">
                           <div className="flex items-center justify-between mb-2">
@@ -1548,7 +1548,7 @@ export default function DashboardPage() {
                               Impacto {rec.impact}
                             </span>
                           </div>
-                          <p className="text-xs text-neutral-400">{rec.desc}</p>
+                          <p className="text-xs text-gray-600 dark:text-gray-400">{rec.desc}</p>
                         </div>
                         <button className="text-xs px-3 py-1.5 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors">
                           Ver más
@@ -1566,25 +1566,25 @@ export default function DashboardPage() {
                 {/* Stats */}
                 <motion.div variants={itemVariants} className="grid md:grid-cols-4 gap-4">
                   <div className="bg-gradient-to-br from-blue-900/20 to-blue-900/5 border border-blue-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Automatizaciones Activas</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Automatizaciones Activas</p>
                     <p className="text-2xl font-bold">12</p>
                   </div>
                   <div className="bg-gradient-to-br from-green-900/20 to-green-900/5 border border-green-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Tiempo Ahorrado</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Tiempo Ahorrado</p>
                     <p className="text-2xl font-bold">48h/mes</p>
                   </div>
                   <div className="bg-gradient-to-br from-purple-900/20 to-purple-900/5 border border-purple-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Tareas Ejecutadas</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Tareas Ejecutadas</p>
                     <p className="text-2xl font-bold">1,247</p>
                   </div>
                   <div className="bg-gradient-to-br from-yellow-900/20 to-yellow-900/5 border border-yellow-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Errores Evitados</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Errores Evitados</p>
                     <p className="text-2xl font-bold">89</p>
                   </div>
                 </motion.div>
 
                 {/* Automatizaciones Activas */}
-                <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <div className="flex items-center justify-between mb-6">
                     <h3 className="text-lg font-bold">Automatizaciones Activas</h3>
                     <button className="text-xs px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg hover:opacity-90 transition-opacity">
@@ -1598,7 +1598,7 @@ export default function DashboardPage() {
                       { name: 'Clasificación Automática de Gastos', trigger: 'Al recibir factura', status: 'Activa', executions: 156 },
                       { name: 'Reporte Semanal de Flujo de Caja', trigger: 'Lunes 9:00 AM', status: 'Activa', executions: 12 }
                     ].map((auto, idx) => (
-                      <div key={idx} className="flex items-center justify-between p-4 bg-neutral-800/30 rounded-lg">
+                      <div key={idx} className="flex items-center justify-between p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-lg">
                         <div className="flex items-center gap-4">
                           <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
                             <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1607,14 +1607,14 @@ export default function DashboardPage() {
                           </div>
                           <div>
                             <p className="text-sm font-semibold">{auto.name}</p>
-                            <p className="text-xs text-neutral-400">{auto.trigger} • {auto.executions} ejecuciones</p>
+                            <p className="text-xs text-gray-600 dark:text-gray-400">{auto.trigger} • {auto.executions} ejecuciones</p>
                           </div>
                         </div>
                         <div className="flex items-center gap-3">
                           <span className="text-xs px-2 py-1 bg-green-900/20 text-green-400 rounded-full">
                             {auto.status}
                           </span>
-                          <button className="text-xs px-3 py-1.5 bg-neutral-800 hover:bg-neutral-700 rounded-lg transition-colors">
+                          <button className="text-xs px-3 py-1.5 bg-gray-100 dark:bg-secondary-700 hover:bg-neutral-700 rounded-lg transition-colors">
                             Editar
                           </button>
                         </div>
@@ -1624,7 +1624,7 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* Templates de Automatización */}
-                <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Templates Populares</h3>
                   <div className="grid md:grid-cols-3 gap-4">
                     {[
@@ -1632,10 +1632,10 @@ export default function DashboardPage() {
                       { name: 'Alertas de Saldo Bajo', icon: '⚠️', desc: 'Notifica cuando el saldo esté por debajo del mínimo' },
                       { name: 'Categorización IA', icon: '🏷️', desc: 'Clasifica gastos automáticamente con IA' }
                     ].map((template, idx) => (
-                      <button key={idx} className="text-left p-4 bg-neutral-800/30 hover:bg-neutral-800/50 rounded-xl transition-colors">
+                      <button key={idx} className="text-left p-4 bg-gray-100 dark:bg-secondary-700/30 hover:bg-gray-100 dark:bg-secondary-700/50 rounded-xl transition-colors">
                         <div className="text-3xl mb-3">{template.icon}</div>
                         <h4 className="text-sm font-semibold mb-2">{template.name}</h4>
-                        <p className="text-xs text-neutral-400 mb-3">{template.desc}</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400 mb-3">{template.desc}</p>
                         <span className="text-xs text-blue-400">Usar template →</span>
                       </button>
                     ))}
@@ -1652,7 +1652,7 @@ export default function DashboardPage() {
                   <div className="flex items-center justify-between mb-8">
                     <div>
                       <h3 className="text-lg font-bold mb-2">Score de Salud Financiera</h3>
-                      <p className="text-sm text-neutral-400">Basado en 12 indicadores clave</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">Basado en 12 indicadores clave</p>
                     </div>
                     <div className="text-center">
                       <div className="relative w-32 h-32">
@@ -1673,30 +1673,30 @@ export default function DashboardPage() {
                         <div className="absolute inset-0 flex items-center justify-center">
                           <div className="text-center">
                             <p className="text-3xl font-bold text-green-400">{healthScore}</p>
-                            <p className="text-xs text-neutral-500">Excelente</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">Excelente</p>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div className="grid md:grid-cols-3 gap-4">
-                    <div className="text-center p-4 bg-neutral-900/50 rounded-xl">
-                      <p className="text-xs text-neutral-400 mb-1">Liquidez</p>
+                    <div className="text-center p-4 bg-gray-100 dark:bg-secondary-800 rounded-xl">
+                      <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Liquidez</p>
                       <p className="text-2xl font-bold text-green-400">92</p>
                     </div>
-                    <div className="text-center p-4 bg-neutral-900/50 rounded-xl">
-                      <p className="text-xs text-neutral-400 mb-1">Solvencia</p>
+                    <div className="text-center p-4 bg-gray-100 dark:bg-secondary-800 rounded-xl">
+                      <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Solvencia</p>
                       <p className="text-2xl font-bold text-green-400">85</p>
                     </div>
-                    <div className="text-center p-4 bg-neutral-900/50 rounded-xl">
-                      <p className="text-xs text-neutral-400 mb-1">Rentabilidad</p>
+                    <div className="text-center p-4 bg-gray-100 dark:bg-secondary-800 rounded-xl">
+                      <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Rentabilidad</p>
                       <p className="text-2xl font-bold text-yellow-400">68</p>
                     </div>
                   </div>
                 </motion.div>
 
                 {/* Ratios Financieros */}
-                <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Ratios Financieros Clave</h3>
                   <div className="grid md:grid-cols-2 gap-6">
                     {[
@@ -1707,7 +1707,7 @@ export default function DashboardPage() {
                       { name: 'Días de Cobro', value: '42', benchmark: '45', status: 'good', desc: 'Tiempo promedio de cobro' },
                       { name: 'Rotación de Inventario', value: '6.2', benchmark: '5.0', status: 'good', desc: 'Veces que rota el inventario al año' }
                     ].map((ratio, idx) => (
-                      <div key={idx} className="p-4 bg-neutral-800/30 rounded-lg">
+                      <div key={idx} className="p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-lg">
                         <div className="flex items-center justify-between mb-2">
                           <h4 className="text-sm font-semibold">{ratio.name}</h4>
                           <span className={`text-xs px-2 py-1 rounded-full ${
@@ -1718,16 +1718,16 @@ export default function DashboardPage() {
                         </div>
                         <div className="flex items-baseline gap-3 mb-2">
                           <span className="text-2xl font-bold">{ratio.value}</span>
-                          <span className="text-xs text-neutral-500">vs {ratio.benchmark} industria</span>
+                          <span className="text-xs text-gray-500 dark:text-gray-400">vs {ratio.benchmark} industria</span>
                         </div>
-                        <p className="text-xs text-neutral-400">{ratio.desc}</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400">{ratio.desc}</p>
                       </div>
                     ))}
                   </div>
                 </motion.div>
 
                 {/* Comparación con Industria */}
-                <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Comparación con tu Industria (Retail)</h3>
                   <div className="space-y-4">
                     {[
@@ -1737,17 +1737,17 @@ export default function DashboardPage() {
                     ].map((comp, idx) => (
                       <div key={idx} className="space-y-2">
                         <div className="flex items-center justify-between text-sm">
-                          <span className="text-neutral-300">{comp.metric}</span>
+                          <span className="text-gray-400 dark:text-gray-300">{comp.metric}</span>
                           <div className="flex gap-4">
                             <span className="text-green-400 font-semibold">Tú: {comp.tuEmpresa}{comp.unit}</span>
-                            <span className="text-neutral-500">Industria: {comp.industria}{comp.unit}</span>
+                            <span className="text-gray-500 dark:text-gray-400">Industria: {comp.industria}{comp.unit}</span>
                           </div>
                         </div>
                         <div className="flex gap-2">
-                          <div className="flex-1 bg-neutral-800 rounded-full h-2 overflow-hidden">
+                          <div className="flex-1 bg-gray-100 dark:bg-secondary-700 rounded-full h-2 overflow-hidden">
                             <div className="bg-green-500 h-full" style={{ width: `${(comp.tuEmpresa / 50) * 100}%` }}></div>
                           </div>
-                          <div className="flex-1 bg-neutral-800 rounded-full h-2 overflow-hidden">
+                          <div className="flex-1 bg-gray-100 dark:bg-secondary-700 rounded-full h-2 overflow-hidden">
                             <div className="bg-neutral-600 h-full" style={{ width: `${(comp.industria / 50) * 100}%` }}></div>
                           </div>
                         </div>
@@ -1762,18 +1762,18 @@ export default function DashboardPage() {
             {activeTab === 'planificacion' && (
               <div className="space-y-6">
                 {/* Escenarios What-If */}
-                <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Simulador de Escenarios "What-If"</h3>
                   <div className="grid md:grid-cols-3 gap-6 mb-6">
                     <div className="bg-gradient-to-br from-green-900/20 to-green-900/5 border border-green-500/20 rounded-xl p-6">
                       <h4 className="text-sm font-semibold mb-4 text-green-400">Escenario Optimista</h4>
                       <div className="space-y-3">
                         <div>
-                          <p className="text-xs text-neutral-400">Crecimiento ventas: +25%</p>
+                          <p className="text-xs text-gray-600 dark:text-gray-400">Crecimiento ventas: +25%</p>
                           <p className="text-2xl font-bold">$3.2M</p>
                         </div>
                         <div>
-                          <p className="text-xs text-neutral-400">Utilidad neta</p>
+                          <p className="text-xs text-gray-600 dark:text-gray-400">Utilidad neta</p>
                           <p className="text-xl font-bold text-green-400">$640K</p>
                         </div>
                       </div>
@@ -1783,11 +1783,11 @@ export default function DashboardPage() {
                       <h4 className="text-sm font-semibold mb-4 text-blue-400">Escenario Base</h4>
                       <div className="space-y-3">
                         <div>
-                          <p className="text-xs text-neutral-400">Crecimiento ventas: +15%</p>
+                          <p className="text-xs text-gray-600 dark:text-gray-400">Crecimiento ventas: +15%</p>
                           <p className="text-2xl font-bold">$2.9M</p>
                         </div>
                         <div>
-                          <p className="text-xs text-neutral-400">Utilidad neta</p>
+                          <p className="text-xs text-gray-600 dark:text-gray-400">Utilidad neta</p>
                           <p className="text-xl font-bold text-blue-400">$520K</p>
                         </div>
                       </div>
@@ -1797,31 +1797,31 @@ export default function DashboardPage() {
                       <h4 className="text-sm font-semibold mb-4 text-red-400">Escenario Pesimista</h4>
                       <div className="space-y-3">
                         <div>
-                          <p className="text-xs text-neutral-400">Crecimiento ventas: +5%</p>
+                          <p className="text-xs text-gray-600 dark:text-gray-400">Crecimiento ventas: +5%</p>
                           <p className="text-2xl font-bold">$2.4M</p>
                         </div>
                         <div>
-                          <p className="text-xs text-neutral-400">Utilidad neta</p>
+                          <p className="text-xs text-gray-600 dark:text-gray-400">Utilidad neta</p>
                           <p className="text-xl font-bold text-red-400">$360K</p>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  <div className="bg-neutral-800/30 rounded-xl p-6">
+                  <div className="bg-gray-100 dark:bg-secondary-700/30 rounded-xl p-6">
                     <h4 className="text-sm font-semibold mb-4">Simula tu Escenario</h4>
                     <div className="grid md:grid-cols-3 gap-4">
                       <div>
-                        <label className="text-xs text-neutral-400 mb-2 block">Crecimiento Ventas (%)</label>
-                        <input type="number" defaultValue="15" className="w-full bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-2 text-sm" />
+                        <label className="text-xs text-gray-600 dark:text-gray-400 mb-2 block">Crecimiento Ventas (%)</label>
+                        <input type="number" defaultValue="15" className="w-full bg-gray-50 dark:bg-secondary-800 border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm" />
                       </div>
                       <div>
-                        <label className="text-xs text-neutral-400 mb-2 block">Aumento Costos (%)</label>
-                        <input type="number" defaultValue="8" className="w-full bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-2 text-sm" />
+                        <label className="text-xs text-gray-600 dark:text-gray-400 mb-2 block">Aumento Costos (%)</label>
+                        <input type="number" defaultValue="8" className="w-full bg-gray-50 dark:bg-secondary-800 border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm" />
                       </div>
                       <div>
-                        <label className="text-xs text-neutral-400 mb-2 block">Nueva Inversión ($)</label>
-                        <input type="number" defaultValue="50000" className="w-full bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-2 text-sm" />
+                        <label className="text-xs text-gray-600 dark:text-gray-400 mb-2 block">Nueva Inversión ($)</label>
+                        <input type="number" defaultValue="50000" className="w-full bg-gray-50 dark:bg-secondary-800 border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm" />
                       </div>
                     </div>
                     <button className="mt-4 bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-2 rounded-lg text-sm font-medium hover:opacity-90 transition-opacity">
@@ -1831,7 +1831,7 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* Objetivos y Metas */}
-                <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <div className="flex items-center justify-between mb-6">
                     <h3 className="text-lg font-bold">Objetivos 2025</h3>
                     <button className="text-xs px-4 py-2 bg-blue-600 rounded-lg hover:opacity-90 transition-opacity">
@@ -1846,17 +1846,17 @@ export default function DashboardPage() {
                     ].map((goal, idx) => {
                       const progress = (goal.current / goal.target) * 100
                       return (
-                        <div key={idx} className="p-4 bg-neutral-800/30 rounded-lg">
+                        <div key={idx} className="p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-lg">
                           <div className="flex items-center justify-between mb-3">
                             <h4 className="text-sm font-semibold">{goal.name}</h4>
-                            <span className="text-xs text-neutral-400">{progress.toFixed(0)}% completado</span>
+                            <span className="text-xs text-gray-600 dark:text-gray-400">{progress.toFixed(0)}% completado</span>
                           </div>
-                          <div className="w-full bg-neutral-800 rounded-full h-3 overflow-hidden mb-2">
+                          <div className="w-full bg-gray-100 dark:bg-secondary-700 rounded-full h-3 overflow-hidden mb-2">
                             <div className="bg-gradient-to-r from-blue-600 to-purple-600 h-full" style={{ width: `${progress}%` }}></div>
                           </div>
                           <div className="flex items-center justify-between text-xs">
-                            <span className="text-neutral-400">Actual: {goal.unit}{goal.current.toLocaleString()}</span>
-                            <span className="text-neutral-400">Meta: {goal.unit}{goal.target.toLocaleString()}</span>
+                            <span className="text-gray-600 dark:text-gray-400">Actual: {goal.unit}{goal.current.toLocaleString()}</span>
+                            <span className="text-gray-600 dark:text-gray-400">Meta: {goal.unit}{goal.target.toLocaleString()}</span>
                           </div>
                         </div>
                       )
@@ -1870,7 +1870,7 @@ export default function DashboardPage() {
             {activeTab === 'riesgos' && (
               <div className="space-y-6">
                 {/* Matriz de Riesgos */}
-                <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Matriz de Riesgos Identificados</h3>
                   <div className="grid md:grid-cols-2 gap-4">
                     {[
@@ -1892,17 +1892,17 @@ export default function DashboardPage() {
                         </div>
                         <div className="space-y-2 mb-3">
                           <div className="flex items-center justify-between text-xs">
-                            <span className="text-neutral-400">Impacto:</span>
+                            <span className="text-gray-600 dark:text-gray-400">Impacto:</span>
                             <span className="font-semibold">{risk.impact}</span>
                           </div>
                           <div className="flex items-center justify-between text-xs">
-                            <span className="text-neutral-400">Probabilidad:</span>
+                            <span className="text-gray-600 dark:text-gray-400">Probabilidad:</span>
                             <span className="font-semibold">{risk.probability}</span>
                           </div>
                         </div>
-                        <div className="pt-3 border-t border-neutral-700">
-                          <p className="text-xs text-neutral-400 mb-2">Mitigación:</p>
-                          <p className="text-xs text-neutral-300">{risk.mitigation}</p>
+                        <div className="pt-3 border-t border-gray-300 dark:border-gray-600">
+                          <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">Mitigación:</p>
+                          <p className="text-xs text-gray-400 dark:text-gray-300">{risk.mitigation}</p>
                         </div>
                       </div>
                     ))}
@@ -1910,7 +1910,7 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* Alertas Tempranas */}
-                <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Sistema de Alertas Tempranas</h3>
                   <div className="space-y-3">
                     {[
@@ -1919,7 +1919,7 @@ export default function DashboardPage() {
                       { indicator: 'Nivel de Endeudamiento', current: 45, threshold: 50, status: 'warning', trend: 'up' },
                       { indicator: 'Margen de Utilidad', current: 18, threshold: 15, status: 'safe', trend: 'stable' }
                     ].map((alert, idx) => (
-                      <div key={idx} className="flex items-center justify-between p-4 bg-neutral-800/30 rounded-lg">
+                      <div key={idx} className="flex items-center justify-between p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-lg">
                         <div className="flex items-center gap-4">
                           <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
                             alert.status === 'safe' ? 'bg-green-900/20' : 'bg-yellow-900/20'
@@ -1928,12 +1928,12 @@ export default function DashboardPage() {
                           </div>
                           <div>
                             <p className="text-sm font-semibold">{alert.indicator}</p>
-                            <p className="text-xs text-neutral-400">Umbral: {alert.threshold}</p>
+                            <p className="text-xs text-gray-600 dark:text-gray-400">Umbral: {alert.threshold}</p>
                           </div>
                         </div>
                         <div className="text-right">
                           <p className="text-sm font-bold">{alert.current}</p>
-                          <p className="text-xs text-neutral-500">
+                          <p className="text-xs text-gray-500 dark:text-gray-400">
                             {alert.trend === 'up' ? '↑' : alert.trend === 'down' ? '↓' : '→'} {alert.trend === 'up' ? 'Subiendo' : alert.trend === 'down' ? 'Bajando' : 'Estable'}
                           </p>
                         </div>
@@ -1943,7 +1943,7 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* Recomendaciones de Seguros */}
-                <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Coberturas Recomendadas</h3>
                   <div className="grid md:grid-cols-3 gap-4">
                     {[
@@ -1951,19 +1951,19 @@ export default function DashboardPage() {
                       { name: 'Seguro de Responsabilidad', coverage: 'Hasta $1M', premium: '$1,800/mes', priority: 'Media' },
                       { name: 'Seguro de Interrupción', coverage: 'Hasta $300K', premium: '$1,200/mes', priority: 'Media' }
                     ].map((insurance, idx) => (
-                      <div key={idx} className="p-4 bg-neutral-800/30 rounded-xl">
+                      <div key={idx} className="p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-xl">
                         <h4 className="text-sm font-semibold mb-3">{insurance.name}</h4>
                         <div className="space-y-2 mb-4">
                           <div className="flex items-center justify-between text-xs">
-                            <span className="text-neutral-400">Cobertura:</span>
+                            <span className="text-gray-600 dark:text-gray-400">Cobertura:</span>
                             <span className="font-semibold">{insurance.coverage}</span>
                           </div>
                           <div className="flex items-center justify-between text-xs">
-                            <span className="text-neutral-400">Prima:</span>
+                            <span className="text-gray-600 dark:text-gray-400">Prima:</span>
                             <span className="font-semibold">{insurance.premium}</span>
                           </div>
                           <div className="flex items-center justify-between text-xs">
-                            <span className="text-neutral-400">Prioridad:</span>
+                            <span className="text-gray-600 dark:text-gray-400">Prioridad:</span>
                             <span className={`font-semibold ${insurance.priority === 'Alta' ? 'text-red-400' : 'text-yellow-400'}`}>
                               {insurance.priority}
                             </span>
@@ -1985,22 +1985,22 @@ export default function DashboardPage() {
                 {/* Stats Overview */}
                 <motion.div variants={itemVariants} className="grid md:grid-cols-4 gap-4">
                   <div className="bg-gradient-to-br from-orange-900/20 to-orange-900/5 border border-orange-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Disponible</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Disponible</p>
                     <p className="text-2xl font-bold">$850K</p>
                     <p className="text-xs text-orange-400">Línea total</p>
                   </div>
                   <div className="bg-gradient-to-br from-blue-900/20 to-blue-900/5 border border-blue-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">En Uso</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">En Uso</p>
                     <p className="text-2xl font-bold">$420K</p>
                     <p className="text-xs text-blue-400">49% utilizado</p>
                   </div>
                   <div className="bg-gradient-to-br from-green-900/20 to-green-900/5 border border-green-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Aprobadas</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Aprobadas</p>
                     <p className="text-2xl font-bold">12</p>
                     <p className="text-xs text-green-400">Operaciones activas</p>
                   </div>
                   <div className="bg-gradient-to-br from-purple-900/20 to-purple-900/5 border border-purple-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Ahorro</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Ahorro</p>
                     <p className="text-2xl font-bold">$45K</p>
                     <p className="text-xs text-purple-400">Este mes</p>
                   </div>
@@ -2009,120 +2009,120 @@ export default function DashboardPage() {
                 {/* Productos Disponibles */}
                 <motion.div variants={itemVariants} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                   {/* Confirming */}
-                  <div className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6 hover:border-orange-500/50 transition-all cursor-pointer">
+                  <div className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 hover:border-orange-500/50 transition-all cursor-pointer">
                     <div className="w-12 h-12 bg-orange-900/20 rounded-xl flex items-center justify-center mb-4">
                       <svg className="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                       </svg>
                     </div>
                     <h3 className="text-lg font-bold mb-2">Confirming</h3>
-                    <p className="text-xs text-neutral-400 mb-4">Paga a tus proveedores de inmediato y extiende tu plazo de pago</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-4">Paga a tus proveedores de inmediato y extiende tu plazo de pago</p>
                     <div className="space-y-2 mb-4">
                       <div className="flex items-center justify-between text-xs">
-                        <span className="text-neutral-500">Tasa desde:</span>
+                        <span className="text-gray-500 dark:text-gray-400">Tasa desde:</span>
                         <span className="font-bold text-orange-400">1.2%/mes</span>
                       </div>
                       <div className="flex items-center justify-between text-xs">
-                        <span className="text-neutral-500">Plazo:</span>
+                        <span className="text-gray-500 dark:text-gray-400">Plazo:</span>
                         <span className="font-semibold">30-90 días</span>
                       </div>
                       <div className="flex items-center justify-between text-xs">
-                        <span className="text-neutral-500">Monto:</span>
+                        <span className="text-gray-500 dark:text-gray-400">Monto:</span>
                         <span className="font-semibold">Hasta $500K</span>
                       </div>
                     </div>
-                    <button className="w-full bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                    <button className="w-full bg-orange-600 hover:bg-orange-700 text-gray-900 dark:text-gray-900 dark:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
                       Solicitar
                     </button>
                   </div>
 
                   {/* Factoring */}
-                  <div className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6 hover:border-blue-500/50 transition-all cursor-pointer">
+                  <div className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 hover:border-blue-500/50 transition-all cursor-pointer">
                     <div className="w-12 h-12 bg-blue-900/20 rounded-xl flex items-center justify-center mb-4">
                       <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 8h6m-5 0a3 3 0 110 6H9l3 3m-3-6h6m6 1a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </div>
                     <h3 className="text-lg font-bold mb-2">Factoring</h3>
-                    <p className="text-xs text-neutral-400 mb-4">Adelanta el cobro de tus facturas y mejora tu flujo de caja</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-4">Adelanta el cobro de tus facturas y mejora tu flujo de caja</p>
                     <div className="space-y-2 mb-4">
                       <div className="flex items-center justify-between text-xs">
-                        <span className="text-neutral-500">Tasa desde:</span>
+                        <span className="text-gray-500 dark:text-gray-400">Tasa desde:</span>
                         <span className="font-bold text-blue-400">1.5%/mes</span>
                       </div>
                       <div className="flex items-center justify-between text-xs">
-                        <span className="text-neutral-500">Adelanto:</span>
+                        <span className="text-gray-500 dark:text-gray-400">Adelanto:</span>
                         <span className="font-semibold">Hasta 90%</span>
                       </div>
                       <div className="flex items-center justify-between text-xs">
-                        <span className="text-neutral-500">Monto:</span>
+                        <span className="text-gray-500 dark:text-gray-400">Monto:</span>
                         <span className="font-semibold">Hasta $300K</span>
                       </div>
                     </div>
-                    <button className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                    <button className="w-full bg-blue-600 hover:bg-blue-700 text-gray-900 dark:text-gray-900 dark:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
                       Solicitar
                     </button>
                   </div>
 
                   {/* Línea Spot */}
-                  <div className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6 hover:border-purple-500/50 transition-all cursor-pointer">
+                  <div className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 hover:border-purple-500/50 transition-all cursor-pointer">
                     <div className="w-12 h-12 bg-purple-900/20 rounded-xl flex items-center justify-center mb-4">
                       <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                       </svg>
                     </div>
                     <h3 className="text-lg font-bold mb-2">Línea Spot</h3>
-                    <p className="text-xs text-neutral-400 mb-4">Crédito instantáneo para oportunidades de negocio urgentes</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-4">Crédito instantáneo para oportunidades de negocio urgentes</p>
                     <div className="space-y-2 mb-4">
                       <div className="flex items-center justify-between text-xs">
-                        <span className="text-neutral-500">Tasa desde:</span>
+                        <span className="text-gray-500 dark:text-gray-400">Tasa desde:</span>
                         <span className="font-bold text-purple-400">2.0%/mes</span>
                       </div>
                       <div className="flex items-center justify-between text-xs">
-                        <span className="text-neutral-500">Aprobación:</span>
+                        <span className="text-gray-500 dark:text-gray-400">Aprobación:</span>
                         <span className="font-semibold">24 horas</span>
                       </div>
                       <div className="flex items-center justify-between text-xs">
-                        <span className="text-neutral-500">Monto:</span>
+                        <span className="text-gray-500 dark:text-gray-400">Monto:</span>
                         <span className="font-semibold">Hasta $150K</span>
                       </div>
                     </div>
-                    <button className="w-full bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                    <button className="w-full bg-purple-600 hover:bg-purple-700 text-gray-900 dark:text-gray-900 dark:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
                       Solicitar
                     </button>
                   </div>
 
                   {/* Línea Flash */}
-                  <div className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6 hover:border-green-500/50 transition-all cursor-pointer">
+                  <div className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 hover:border-green-500/50 transition-all cursor-pointer">
                     <div className="w-12 h-12 bg-green-900/20 rounded-xl flex items-center justify-center mb-4">
                       <svg className="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </div>
                     <h3 className="text-lg font-bold mb-2">Línea Flash</h3>
-                    <p className="text-xs text-neutral-400 mb-4">Crédito express para cubrir necesidades inmediatas de capital</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-4">Crédito express para cubrir necesidades inmediatas de capital</p>
                     <div className="space-y-2 mb-4">
                       <div className="flex items-center justify-between text-xs">
-                        <span className="text-neutral-500">Tasa desde:</span>
+                        <span className="text-gray-500 dark:text-gray-400">Tasa desde:</span>
                         <span className="font-bold text-green-400">1.8%/mes</span>
                       </div>
                       <div className="flex items-center justify-between text-xs">
-                        <span className="text-neutral-500">Aprobación:</span>
+                        <span className="text-gray-500 dark:text-gray-400">Aprobación:</span>
                         <span className="font-semibold">2 horas</span>
                       </div>
                       <div className="flex items-center justify-between text-xs">
-                        <span className="text-neutral-500">Monto:</span>
+                        <span className="text-gray-500 dark:text-gray-400">Monto:</span>
                         <span className="font-semibold">Hasta $100K</span>
                       </div>
                     </div>
-                    <button className="w-full bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                    <button className="w-full bg-green-600 hover:bg-green-700 text-gray-900 dark:text-gray-900 dark:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
                       Solicitar
                     </button>
                   </div>
                 </motion.div>
 
                 {/* Operaciones Activas */}
-                <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Operaciones Activas</h3>
                   <div className="space-y-4">
                     {[
@@ -2130,19 +2130,19 @@ export default function DashboardPage() {
                       { type: 'Factoring', cliente: 'Cliente XYZ Corp', monto: 85000, vencimiento: '30/10/2025', tasa: 1.5, status: 'Activa' },
                       { type: 'Línea Flash', concepto: 'Capital de trabajo', monto: 50000, vencimiento: '20/10/2025', tasa: 1.8, status: 'Activa' }
                     ].map((op, idx) => (
-                      <div key={idx} className="flex items-center justify-between p-4 bg-neutral-800/30 rounded-lg">
+                      <div key={idx} className="flex items-center justify-between p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-lg">
                         <div className="flex items-center gap-4">
                           <div className="w-10 h-10 bg-orange-900/20 rounded-lg flex items-center justify-center">
                             <span className="text-xs font-bold text-orange-400">{op.type.charAt(0)}</span>
                           </div>
                           <div>
                             <p className="text-sm font-semibold">{op.type}</p>
-                            <p className="text-xs text-neutral-400">{op.proveedor || op.cliente || op.concepto}</p>
+                            <p className="text-xs text-gray-600 dark:text-gray-400">{op.proveedor || op.cliente || op.concepto}</p>
                           </div>
                         </div>
                         <div className="text-right">
                           <p className="text-sm font-bold">${(op.monto / 1000).toFixed(0)}K</p>
-                          <p className="text-xs text-neutral-400">{op.tasa}% • Vence {op.vencimiento}</p>
+                          <p className="text-xs text-gray-600 dark:text-gray-400">{op.tasa}% • Vence {op.vencimiento}</p>
                         </div>
                         <span className="text-xs px-2 py-1 bg-green-900/20 text-green-400 rounded-full">
                           {op.status}
@@ -2160,22 +2160,22 @@ export default function DashboardPage() {
                 {/* Stats Overview */}
                 <motion.div variants={itemVariants} className="grid md:grid-cols-4 gap-4">
                   <div className="bg-gradient-to-br from-blue-900/20 to-blue-900/5 border border-blue-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Líneas Activas</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Líneas Activas</p>
                     <p className="text-2xl font-bold">3</p>
                     <p className="text-xs text-blue-400">$1.2M total</p>
                   </div>
                   <div className="bg-gradient-to-br from-green-900/20 to-green-900/5 border border-green-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Disponible</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Disponible</p>
                     <p className="text-2xl font-bold">$680K</p>
                     <p className="text-xs text-green-400">57% libre</p>
                   </div>
                   <div className="bg-gradient-to-br from-purple-900/20 to-purple-900/5 border border-purple-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Leasing Activos</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Leasing Activos</p>
                     <p className="text-2xl font-bold">2</p>
                     <p className="text-xs text-purple-400">$350K</p>
                   </div>
                   <div className="bg-gradient-to-br from-orange-900/20 to-orange-900/5 border border-orange-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Solicitudes</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Solicitudes</p>
                     <p className="text-2xl font-bold">1</p>
                     <p className="text-xs text-orange-400">En evaluación</p>
                   </div>
@@ -2184,92 +2184,92 @@ export default function DashboardPage() {
                 {/* Productos Bancarios */}
                 <motion.div variants={itemVariants} className="grid md:grid-cols-3 gap-6">
                   {/* Línea de Crédito */}
-                  <div className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6 hover:border-blue-500/50 transition-all">
+                  <div className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 hover:border-blue-500/50 transition-all">
                     <div className="w-12 h-12 bg-blue-900/20 rounded-xl flex items-center justify-center mb-4">
                       <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
                       </svg>
                     </div>
                     <h3 className="text-lg font-bold mb-2">Línea de Crédito</h3>
-                    <p className="text-xs text-neutral-400 mb-4">Crédito revolvente para capital de trabajo con tasa preferencial</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-4">Crédito revolvente para capital de trabajo con tasa preferencial</p>
                     <div className="space-y-2 mb-4">
                       <div className="flex items-center justify-between text-xs">
-                        <span className="text-neutral-500">Tasa anual:</span>
+                        <span className="text-gray-500 dark:text-gray-400">Tasa anual:</span>
                         <span className="font-bold text-blue-400">12-18%</span>
                       </div>
                       <div className="flex items-center justify-between text-xs">
-                        <span className="text-neutral-500">Plazo:</span>
+                        <span className="text-gray-500 dark:text-gray-400">Plazo:</span>
                         <span className="font-semibold">12-36 meses</span>
                       </div>
                       <div className="flex items-center justify-between text-xs">
-                        <span className="text-neutral-500">Monto:</span>
+                        <span className="text-gray-500 dark:text-gray-400">Monto:</span>
                         <span className="font-semibold">Hasta $1M</span>
                       </div>
                     </div>
-                    <button className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                    <button className="w-full bg-blue-600 hover:bg-blue-700 text-gray-900 dark:text-gray-900 dark:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
                       Solicitar
                     </button>
                   </div>
 
                   {/* Leasing */}
-                  <div className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6 hover:border-purple-500/50 transition-all">
+                  <div className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 hover:border-purple-500/50 transition-all">
                     <div className="w-12 h-12 bg-purple-900/20 rounded-xl flex items-center justify-center mb-4">
                       <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                       </svg>
                     </div>
                     <h3 className="text-lg font-bold mb-2">Leasing</h3>
-                    <p className="text-xs text-neutral-400 mb-4">Financiamiento de activos fijos con opción de compra</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-4">Financiamiento de activos fijos con opción de compra</p>
                     <div className="space-y-2 mb-4">
                       <div className="flex items-center justify-between text-xs">
-                        <span className="text-neutral-500">Tasa anual:</span>
+                        <span className="text-gray-500 dark:text-gray-400">Tasa anual:</span>
                         <span className="font-bold text-purple-400">10-15%</span>
                       </div>
                       <div className="flex items-center justify-between text-xs">
-                        <span className="text-neutral-500">Plazo:</span>
+                        <span className="text-gray-500 dark:text-gray-400">Plazo:</span>
                         <span className="font-semibold">24-60 meses</span>
                       </div>
                       <div className="flex items-center justify-between text-xs">
-                        <span className="text-neutral-500">Financiamiento:</span>
+                        <span className="text-gray-500 dark:text-gray-400">Financiamiento:</span>
                         <span className="font-semibold">Hasta 100%</span>
                       </div>
                     </div>
-                    <button className="w-full bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                    <button className="w-full bg-purple-600 hover:bg-purple-700 text-gray-900 dark:text-gray-900 dark:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
                       Solicitar
                     </button>
                   </div>
 
                   {/* Mediano Plazo */}
-                  <div className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6 hover:border-green-500/50 transition-all">
+                  <div className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 hover:border-green-500/50 transition-all">
                     <div className="w-12 h-12 bg-green-900/20 rounded-xl flex items-center justify-center mb-4">
                       <svg className="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                       </svg>
                     </div>
                     <h3 className="text-lg font-bold mb-2">Mediano Plazo</h3>
-                    <p className="text-xs text-neutral-400 mb-4">Crédito estructurado para proyectos de expansión e inversión</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-4">Crédito estructurado para proyectos de expansión e inversión</p>
                     <div className="space-y-2 mb-4">
                       <div className="flex items-center justify-between text-xs">
-                        <span className="text-neutral-500">Tasa anual:</span>
+                        <span className="text-gray-500 dark:text-gray-400">Tasa anual:</span>
                         <span className="font-bold text-green-400">8-14%</span>
                       </div>
                       <div className="flex items-center justify-between text-xs">
-                        <span className="text-neutral-500">Plazo:</span>
+                        <span className="text-gray-500 dark:text-gray-400">Plazo:</span>
                         <span className="font-semibold">36-84 meses</span>
                       </div>
                       <div className="flex items-center justify-between text-xs">
-                        <span className="text-neutral-500">Monto:</span>
+                        <span className="text-gray-500 dark:text-gray-400">Monto:</span>
                         <span className="font-semibold">Desde $500K</span>
                       </div>
                     </div>
-                    <button className="w-full bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                    <button className="w-full bg-green-600 hover:bg-green-700 text-gray-900 dark:text-gray-900 dark:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
                       Solicitar
                     </button>
                   </div>
                 </motion.div>
 
                 {/* Líneas Activas */}
-                <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Líneas de Crédito Activas</h3>
                   <div className="space-y-4">
                     {[
@@ -2279,7 +2279,7 @@ export default function DashboardPage() {
                     ].map((linea, idx) => {
                       const porcentajeUsado = (linea.usado / linea.monto) * 100
                       return (
-                        <div key={idx} className="p-4 bg-neutral-800/30 rounded-lg">
+                        <div key={idx} className="p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-lg">
                           <div className="flex items-center justify-between mb-3">
                             <div className="flex items-center gap-3">
                               <div className="w-10 h-10 bg-blue-900/20 rounded-lg flex items-center justify-center">
@@ -2287,18 +2287,18 @@ export default function DashboardPage() {
                               </div>
                               <div>
                                 <p className="text-sm font-semibold">{linea.banco} - {linea.tipo}</p>
-                                <p className="text-xs text-neutral-400">Tasa: {linea.tasa}% • Vence: {linea.vencimiento}</p>
+                                <p className="text-xs text-gray-600 dark:text-gray-400">Tasa: {linea.tasa}% • Vence: {linea.vencimiento}</p>
                               </div>
                             </div>
                             <div className="text-right">
                               <p className="text-sm font-bold">${(linea.monto / 1000).toFixed(0)}K</p>
-                              <p className="text-xs text-neutral-400">Disponible: ${((linea.monto - linea.usado) / 1000).toFixed(0)}K</p>
+                              <p className="text-xs text-gray-600 dark:text-gray-400">Disponible: ${((linea.monto - linea.usado) / 1000).toFixed(0)}K</p>
                             </div>
                           </div>
-                          <div className="w-full bg-neutral-800 rounded-full h-2 overflow-hidden">
+                          <div className="w-full bg-gray-100 dark:bg-secondary-700 rounded-full h-2 overflow-hidden">
                             <div className="bg-blue-600 h-full" style={{ width: `${porcentajeUsado}%` }}></div>
                           </div>
-                          <p className="text-xs text-neutral-500 mt-2">{porcentajeUsado.toFixed(0)}% utilizado</p>
+                          <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">{porcentajeUsado.toFixed(0)}% utilizado</p>
                         </div>
                       )
                     })}
@@ -2306,10 +2306,10 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* Solicitudes en Proceso */}
-                <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Solicitudes en Proceso</h3>
                   <div className="space-y-4">
-                    <div className="p-4 bg-neutral-800/30 rounded-lg">
+                    <div className="p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-lg">
                       <div className="flex items-center justify-between mb-3">
                         <div className="flex items-center gap-3">
                           <div className="w-10 h-10 bg-orange-900/20 rounded-lg flex items-center justify-center">
@@ -2319,7 +2319,7 @@ export default function DashboardPage() {
                           </div>
                           <div>
                             <p className="text-sm font-semibold">Scotiabank - Leasing Maquinaria</p>
-                            <p className="text-xs text-neutral-400">Solicitado: 03/10/2025</p>
+                            <p className="text-xs text-gray-600 dark:text-gray-400">Solicitado: 03/10/2025</p>
                           </div>
                         </div>
                         <div className="text-right">
@@ -2333,7 +2333,7 @@ export default function DashboardPage() {
                         <button className="flex-1 text-xs px-3 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors">
                           Ver Detalles
                         </button>
-                        <button className="flex-1 text-xs px-3 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-lg transition-colors">
+                        <button className="flex-1 text-xs px-3 py-2 bg-gray-100 dark:bg-secondary-700 hover:bg-neutral-700 rounded-lg transition-colors">
                           Seguimiento
                         </button>
                       </div>
@@ -2349,22 +2349,22 @@ export default function DashboardPage() {
                 {/* Stats Overview */}
                 <motion.div variants={itemVariants} className="grid md:grid-cols-4 gap-4">
                   <div className="bg-gradient-to-br from-blue-900/20 to-blue-900/5 border border-blue-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Emitidas Hoy</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Emitidas Hoy</p>
                     <p className="text-2xl font-bold">12</p>
                     <p className="text-xs text-blue-400">$45K facturado</p>
                   </div>
                   <div className="bg-gradient-to-br from-green-900/20 to-green-900/5 border border-green-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Este Mes</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Este Mes</p>
                     <p className="text-2xl font-bold">156</p>
                     <p className="text-xs text-green-400">$850K total</p>
                   </div>
                   <div className="bg-gradient-to-br from-purple-900/20 to-purple-900/5 border border-purple-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Pendientes</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Pendientes</p>
                     <p className="text-2xl font-bold">3</p>
                     <p className="text-xs text-yellow-400">Por enviar</p>
                   </div>
                   <div className="bg-gradient-to-br from-orange-900/20 to-orange-900/5 border border-orange-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Rechazadas</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Rechazadas</p>
                     <p className="text-2xl font-bold">0</p>
                     <p className="text-xs text-green-400">100% aceptación</p>
                   </div>
@@ -2387,26 +2387,26 @@ export default function DashboardPage() {
                     </div>
                   </div>
                   <div className="grid md:grid-cols-3 gap-4">
-                    <div className="text-center p-4 bg-neutral-800/30 rounded-xl">
+                    <div className="text-center p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-xl">
                       <p className="text-3xl mb-2">📄</p>
                       <p className="text-sm font-semibold mb-1">Factura Electrónica</p>
-                      <p className="text-xs text-neutral-400">Para empresas con RUC</p>
+                      <p className="text-xs text-gray-600 dark:text-gray-400">Para empresas con RUC</p>
                     </div>
-                    <div className="text-center p-4 bg-neutral-800/30 rounded-xl">
+                    <div className="text-center p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-xl">
                       <p className="text-3xl mb-2">🧾</p>
                       <p className="text-sm font-semibold mb-1">Boleta de Venta</p>
-                      <p className="text-xs text-neutral-400">Para consumidores finales</p>
+                      <p className="text-xs text-gray-600 dark:text-gray-400">Para consumidores finales</p>
                     </div>
-                    <div className="text-center p-4 bg-neutral-800/30 rounded-xl">
+                    <div className="text-center p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-xl">
                       <p className="text-3xl mb-2">↩️</p>
                       <p className="text-sm font-semibold mb-1">Nota de Crédito</p>
-                      <p className="text-xs text-neutral-400">Anulaciones y devoluciones</p>
+                      <p className="text-xs text-gray-600 dark:text-gray-400">Anulaciones y devoluciones</p>
                     </div>
                   </div>
                 </motion.div>
 
                 {/* Comprobantes Recientes */}
-                <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Comprobantes Recientes</h3>
                   <div className="space-y-3">
                     {[
@@ -2415,7 +2415,7 @@ export default function DashboardPage() {
                       { tipo: 'Boleta', numero: 'B001-00234', cliente: 'Juan Pérez', monto: 450, fecha: '04/10/2025', estado: 'Aceptado' },
                       { tipo: 'Factura', numero: 'F001-00154', cliente: 'Distribuidora LMN', monto: 15600, fecha: '03/10/2025', estado: 'Aceptado' }
                     ].map((comp, idx) => (
-                      <div key={idx} className="flex items-center justify-between p-4 bg-neutral-800/30 rounded-lg hover:bg-neutral-800/50 transition-colors">
+                      <div key={idx} className="flex items-center justify-between p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-lg hover:bg-gray-100 dark:bg-secondary-700/50 transition-colors">
                         <div className="flex items-center gap-4">
                           <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
                             comp.tipo === 'Factura' ? 'bg-blue-900/20' : 'bg-purple-900/20'
@@ -2424,7 +2424,7 @@ export default function DashboardPage() {
                           </div>
                           <div>
                             <p className="text-sm font-semibold">{comp.numero}</p>
-                            <p className="text-xs text-neutral-400">{comp.cliente} • {comp.fecha}</p>
+                            <p className="text-xs text-gray-600 dark:text-gray-400">{comp.cliente} • {comp.fecha}</p>
                           </div>
                         </div>
                         <div className="flex items-center gap-4">
@@ -2435,13 +2435,13 @@ export default function DashboardPage() {
                             </span>
                           </div>
                           <div className="flex gap-2">
-                            <button className="text-xs px-2 py-1 bg-neutral-800 hover:bg-neutral-700 rounded transition-colors">
+                            <button className="text-xs px-2 py-1 bg-gray-100 dark:bg-secondary-700 hover:bg-neutral-700 rounded transition-colors">
                               Ver
                             </button>
-                            <button className="text-xs px-2 py-1 bg-neutral-800 hover:bg-neutral-700 rounded transition-colors">
+                            <button className="text-xs px-2 py-1 bg-gray-100 dark:bg-secondary-700 hover:bg-neutral-700 rounded transition-colors">
                               PDF
                             </button>
-                            <button className="text-xs px-2 py-1 bg-neutral-800 hover:bg-neutral-700 rounded transition-colors">
+                            <button className="text-xs px-2 py-1 bg-gray-100 dark:bg-secondary-700 hover:bg-neutral-700 rounded transition-colors">
                               XML
                             </button>
                           </div>
@@ -2459,29 +2459,29 @@ export default function DashboardPage() {
                 {/* Stats Overview */}
                 <motion.div variants={itemVariants} className="grid md:grid-cols-4 gap-4">
                   <div className="bg-gradient-to-br from-green-900/20 to-green-900/5 border border-green-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Por Cobrar</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Por Cobrar</p>
                     <p className="text-2xl font-bold">$850K</p>
                     <p className="text-xs text-green-400">23 facturas</p>
                   </div>
                   <div className="bg-gradient-to-br from-yellow-900/20 to-yellow-900/5 border border-yellow-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Por Vencer (7 días)</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Por Vencer (7 días)</p>
                     <p className="text-2xl font-bold">$320K</p>
                     <p className="text-xs text-yellow-400">8 facturas</p>
                   </div>
                   <div className="bg-gradient-to-br from-red-900/20 to-red-900/5 border border-red-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Vencidas</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Vencidas</p>
                     <p className="text-2xl font-bold">$180K</p>
                     <p className="text-xs text-red-400">5 facturas</p>
                   </div>
                   <div className="bg-gradient-to-br from-blue-900/20 to-blue-900/5 border border-blue-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Cobrado Este Mes</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Cobrado Este Mes</p>
                     <p className="text-2xl font-bold">$1.2M</p>
                     <p className="text-xs text-blue-400">45 facturas</p>
                   </div>
                 </motion.div>
 
                 {/* Aging de Cuentas por Cobrar */}
-                <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Aging de Cuentas por Cobrar</h3>
                   <div className="grid md:grid-cols-5 gap-4">
                     {[
@@ -2492,16 +2492,16 @@ export default function DashboardPage() {
                       { rango: '+120 días', monto: 20000, facturas: 1, color: 'red' }
                     ].map((aging, idx) => (
                       <div key={idx} className={`p-4 bg-${aging.color}-900/10 border border-${aging.color}-500/20 rounded-xl`}>
-                        <p className="text-xs text-neutral-400 mb-2">{aging.rango}</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">{aging.rango}</p>
                         <p className="text-xl font-bold mb-1">${(aging.monto / 1000).toFixed(0)}K</p>
-                        <p className="text-xs text-neutral-500">{aging.facturas} facturas</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">{aging.facturas} facturas</p>
                       </div>
                     ))}
                   </div>
                 </motion.div>
 
                 {/* Facturas por Cobrar */}
-                <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <div className="flex items-center justify-between mb-6">
                     <h3 className="text-lg font-bold">Facturas por Cobrar</h3>
                     <button className="text-xs px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors">
@@ -2515,7 +2515,7 @@ export default function DashboardPage() {
                       { cliente: 'Distribuidora LMN', factura: 'F001-00138', monto: 156000, vence: '01/10/2025', dias: -3, status: 'Vencida' },
                       { cliente: 'Comercial PQR', factura: 'F001-00135', monto: 45000, vence: '28/09/2025', dias: -6, status: 'Vencida' }
                     ].map((fact, idx) => (
-                      <div key={idx} className="flex items-center justify-between p-4 bg-neutral-800/30 rounded-lg">
+                      <div key={idx} className="flex items-center justify-between p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-lg">
                         <div className="flex items-center gap-4">
                           <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
                             fact.status === 'Vencida' ? 'bg-red-900/20' : 'bg-yellow-900/20'
@@ -2524,7 +2524,7 @@ export default function DashboardPage() {
                           </div>
                           <div>
                             <p className="text-sm font-semibold">{fact.cliente}</p>
-                            <p className="text-xs text-neutral-400">{fact.factura} • Vence: {fact.vence}</p>
+                            <p className="text-xs text-gray-600 dark:text-gray-400">{fact.factura} • Vence: {fact.vence}</p>
                           </div>
                         </div>
                         <div className="flex items-center gap-4">
@@ -2553,29 +2553,29 @@ export default function DashboardPage() {
                 {/* Stats Overview */}
                 <motion.div variants={itemVariants} className="grid md:grid-cols-4 gap-4">
                   <div className="bg-gradient-to-br from-red-900/20 to-red-900/5 border border-red-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Por Pagar</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Por Pagar</p>
                     <p className="text-2xl font-bold">$420K</p>
                     <p className="text-xs text-red-400">18 facturas</p>
                   </div>
                   <div className="bg-gradient-to-br from-yellow-900/20 to-yellow-900/5 border border-yellow-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Esta Semana</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Esta Semana</p>
                     <p className="text-2xl font-bold">$180K</p>
                     <p className="text-xs text-yellow-400">7 pagos</p>
                   </div>
                   <div className="bg-gradient-to-br from-orange-900/20 to-orange-900/5 border border-orange-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Vencidas</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Vencidas</p>
                     <p className="text-2xl font-bold">$45K</p>
                     <p className="text-xs text-orange-400">2 facturas</p>
                   </div>
                   <div className="bg-gradient-to-br from-green-900/20 to-green-900/5 border border-green-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Pagado Este Mes</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Pagado Este Mes</p>
                     <p className="text-2xl font-bold">$680K</p>
                     <p className="text-xs text-green-400">32 facturas</p>
                   </div>
                 </motion.div>
 
                 {/* Calendario de Pagos */}
-                <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Calendario de Pagos - Próximos 7 Días</h3>
                   <div className="space-y-3">
                     {[
@@ -2584,14 +2584,14 @@ export default function DashboardPage() {
                       { proveedor: 'Comercial LMN', factura: 'F-2025-9012', monto: 32000, fecha: '08/10/2025', dias: 4, descuento: 1.5 },
                       { proveedor: 'Importadora PQR', factura: 'F-2025-3456', monto: 125000, fecha: '10/10/2025', dias: 6, descuento: 3 }
                     ].map((pago, idx) => (
-                      <div key={idx} className="flex items-center justify-between p-4 bg-neutral-800/30 rounded-lg">
+                      <div key={idx} className="flex items-center justify-between p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-lg">
                         <div className="flex items-center gap-4">
                           <div className="w-10 h-10 bg-red-900/20 rounded-lg flex items-center justify-center">
                             <span className="text-xs font-bold text-red-400">{pago.proveedor.charAt(0)}</span>
                           </div>
                           <div>
                             <p className="text-sm font-semibold">{pago.proveedor}</p>
-                            <p className="text-xs text-neutral-400">{pago.factura} • Vence: {pago.fecha}</p>
+                            <p className="text-xs text-gray-600 dark:text-gray-400">{pago.factura} • Vence: {pago.fecha}</p>
                             {pago.descuento > 0 && (
                               <p className="text-xs text-green-400">Descuento {pago.descuento}% por pronto pago</p>
                             )}
@@ -2600,7 +2600,7 @@ export default function DashboardPage() {
                         <div className="flex items-center gap-4">
                           <div className="text-right">
                             <p className="text-sm font-bold">${(pago.monto / 1000).toFixed(0)}K</p>
-                            <p className="text-xs text-neutral-500">En {pago.dias} días</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">En {pago.dias} días</p>
                           </div>
                           <button className="text-xs px-3 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors">
                             Pagar Ahora
@@ -2612,7 +2612,7 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* Top Proveedores */}
-                <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Top Proveedores por Monto</h3>
                   <div className="space-y-3">
                     {[
@@ -2620,14 +2620,14 @@ export default function DashboardPage() {
                       { nombre: 'Distribuidora XYZ', monto: 320000, facturas: 8, promedioDias: 42 },
                       { nombre: 'Importadora PQR', monto: 280000, facturas: 6, promedioDias: 30 }
                     ].map((prov, idx) => (
-                      <div key={idx} className="flex items-center justify-between p-4 bg-neutral-800/30 rounded-lg">
+                      <div key={idx} className="flex items-center justify-between p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-lg">
                         <div className="flex items-center gap-4">
                           <div className="w-10 h-10 bg-blue-900/20 rounded-lg flex items-center justify-center">
                             <span className="text-lg font-bold text-blue-400">#{idx + 1}</span>
                           </div>
                           <div>
                             <p className="text-sm font-semibold">{prov.nombre}</p>
-                            <p className="text-xs text-neutral-400">{prov.facturas} facturas • Promedio: {prov.promedioDias} días</p>
+                            <p className="text-xs text-gray-600 dark:text-gray-400">{prov.facturas} facturas • Promedio: {prov.promedioDias} días</p>
                           </div>
                         </div>
                         <p className="text-sm font-bold">${(prov.monto / 1000).toFixed(0)}K</p>
@@ -2644,29 +2644,29 @@ export default function DashboardPage() {
                 {/* Stats Overview */}
                 <motion.div variants={itemVariants} className="grid md:grid-cols-4 gap-4">
                   <div className="bg-gradient-to-br from-blue-900/20 to-blue-900/5 border border-blue-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Presupuesto Anual</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Presupuesto Anual</p>
                     <p className="text-2xl font-bold">$12M</p>
                     <p className="text-xs text-blue-400">2025</p>
                   </div>
                   <div className="bg-gradient-to-br from-green-900/20 to-green-900/5 border border-green-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Ejecutado</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Ejecutado</p>
                     <p className="text-2xl font-bold">$9.2M</p>
                     <p className="text-xs text-green-400">77% del año</p>
                   </div>
                   <div className="bg-gradient-to-br from-purple-900/20 to-purple-900/5 border border-purple-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Disponible</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Disponible</p>
                     <p className="text-2xl font-bold">$2.8M</p>
                     <p className="text-xs text-purple-400">23% restante</p>
                   </div>
                   <div className="bg-gradient-to-br from-yellow-900/20 to-yellow-900/5 border border-yellow-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Variación</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Variación</p>
                     <p className="text-2xl font-bold">+3%</p>
                     <p className="text-xs text-yellow-400">vs presupuesto</p>
                   </div>
                 </motion.div>
 
                 {/* Presupuesto por Categoría */}
-                <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Presupuesto por Categoría - Octubre 2025</h3>
                   <div className="space-y-4">
                     {[
@@ -2678,7 +2678,7 @@ export default function DashboardPage() {
                     ].map((cat, idx) => {
                       const porcentaje = (cat.real / cat.presupuesto) * 100
                       return (
-                        <div key={idx} className="p-4 bg-neutral-800/30 rounded-lg">
+                        <div key={idx} className="p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-lg">
                           <div className="flex items-center justify-between mb-3">
                             <h4 className="text-sm font-semibold">{cat.categoria}</h4>
                             <span className={`text-xs px-2 py-1 rounded-full ${
@@ -2689,11 +2689,11 @@ export default function DashboardPage() {
                               {cat.variacion > 0 ? '+' : ''}{cat.variacion.toFixed(1)}%
                             </span>
                           </div>
-                          <div className="flex items-center justify-between text-xs text-neutral-400 mb-2">
+                          <div className="flex items-center justify-between text-xs text-gray-600 dark:text-gray-400 mb-2">
                             <span>Presupuesto: ${(cat.presupuesto / 1000).toFixed(0)}K</span>
                             <span>Real: ${(cat.real / 1000).toFixed(0)}K</span>
                           </div>
-                          <div className="w-full bg-neutral-800 rounded-full h-2 overflow-hidden">
+                          <div className="w-full bg-gray-100 dark:bg-secondary-700 rounded-full h-2 overflow-hidden">
                             <div 
                               className={`h-full ${porcentaje > 100 ? 'bg-red-500' : 'bg-blue-600'}`}
                               style={{ width: `${Math.min(porcentaje, 100)}%` }}
@@ -2706,7 +2706,7 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* Alertas de Presupuesto */}
-                <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Alertas de Presupuesto</h3>
                   <div className="space-y-3">
                     {[
@@ -2725,7 +2725,7 @@ export default function DashboardPage() {
                           </div>
                           <div className="flex-1">
                             <p className="text-sm font-semibold mb-1">{alert.categoria}</p>
-                            <p className="text-xs text-neutral-400">{alert.mensaje}</p>
+                            <p className="text-xs text-gray-600 dark:text-gray-400">{alert.mensaje}</p>
                           </div>
                         </div>
                       </div>
@@ -2741,40 +2741,40 @@ export default function DashboardPage() {
                 {/* Stats Overview */}
                 <motion.div variants={itemVariants} className="grid md:grid-cols-4 gap-4">
                   <div className="bg-gradient-to-br from-blue-900/20 to-blue-900/5 border border-blue-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Saldo Inicial</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Saldo Inicial</p>
                     <p className="text-2xl font-bold">$1.25M</p>
                     <p className="text-xs text-blue-400">Hoy</p>
                   </div>
                   <div className="bg-gradient-to-br from-green-900/20 to-green-900/5 border border-green-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Ingresos Proyectados</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Ingresos Proyectados</p>
                     <p className="text-2xl font-bold">$2.8M</p>
                     <p className="text-xs text-green-400">Próximas 12 semanas</p>
                   </div>
                   <div className="bg-gradient-to-br from-red-900/20 to-red-900/5 border border-red-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Egresos Proyectados</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Egresos Proyectados</p>
                     <p className="text-2xl font-bold">$2.4M</p>
                     <p className="text-xs text-red-400">Próximas 12 semanas</p>
                   </div>
                   <div className="bg-gradient-to-br from-purple-900/20 to-purple-900/5 border border-purple-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Saldo Final Proyectado</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Saldo Final Proyectado</p>
                     <p className="text-2xl font-bold">$1.65M</p>
                     <p className="text-xs text-purple-400">En 12 semanas</p>
                   </div>
                 </motion.div>
 
                 {/* Proyección Semanal */}
-                <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Proyección de Flujo de Caja - 12 Semanas</h3>
                   <div className="overflow-x-auto">
                     <table className="w-full text-sm">
                       <thead>
-                        <tr className="border-b border-neutral-800">
-                          <th className="text-left py-3 px-2 text-xs text-neutral-400">Semana</th>
-                          <th className="text-right py-3 px-2 text-xs text-neutral-400">Saldo Inicial</th>
-                          <th className="text-right py-3 px-2 text-xs text-neutral-400">Ingresos</th>
-                          <th className="text-right py-3 px-2 text-xs text-neutral-400">Egresos</th>
-                          <th className="text-right py-3 px-2 text-xs text-neutral-400">Saldo Final</th>
-                          <th className="text-center py-3 px-2 text-xs text-neutral-400">Estado</th>
+                        <tr className="border-b border-gray-200 dark:border-gray-700">
+                          <th className="text-left py-3 px-2 text-xs text-gray-600 dark:text-gray-400">Semana</th>
+                          <th className="text-right py-3 px-2 text-xs text-gray-600 dark:text-gray-400">Saldo Inicial</th>
+                          <th className="text-right py-3 px-2 text-xs text-gray-600 dark:text-gray-400">Ingresos</th>
+                          <th className="text-right py-3 px-2 text-xs text-gray-600 dark:text-gray-400">Egresos</th>
+                          <th className="text-right py-3 px-2 text-xs text-gray-600 dark:text-gray-400">Saldo Final</th>
+                          <th className="text-center py-3 px-2 text-xs text-gray-600 dark:text-gray-400">Estado</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -2786,7 +2786,7 @@ export default function DashboardPage() {
                           { semana: 'S5 (Nov 4-10)', inicial: 1375, ingresos: 290, egresos: 210, final: 1455 },
                           { semana: 'S6 (Nov 11-17)', inicial: 1455, ingresos: 240, egresos: 195, final: 1500 }
                         ].map((sem, idx) => (
-                          <tr key={idx} className="border-b border-neutral-800/50 hover:bg-neutral-800/30">
+                          <tr key={idx} className="border-b border-gray-200 dark:border-gray-700/50 hover:bg-gray-100 dark:bg-secondary-700/30">
                             <td className="py-3 px-2 font-medium">{sem.semana}</td>
                             <td className="py-3 px-2 text-right">${(sem.inicial / 1000).toFixed(1)}M</td>
                             <td className="py-3 px-2 text-right text-green-400">+${sem.ingresos}K</td>
@@ -2814,15 +2814,15 @@ export default function DashboardPage() {
                     <h4 className="text-sm font-semibold mb-4 text-green-400">Escenario Optimista</h4>
                     <div className="space-y-2 text-xs">
                       <div className="flex justify-between">
-                        <span className="text-neutral-400">Ingresos:</span>
+                        <span className="text-gray-600 dark:text-gray-400">Ingresos:</span>
                         <span className="font-semibold">+15%</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-neutral-400">Egresos:</span>
+                        <span className="text-gray-600 dark:text-gray-400">Egresos:</span>
                         <span className="font-semibold">-5%</span>
                       </div>
                       <div className="flex justify-between pt-2 border-t border-green-500/20">
-                        <span className="text-neutral-400">Saldo Final:</span>
+                        <span className="text-gray-600 dark:text-gray-400">Saldo Final:</span>
                         <span className="font-bold text-green-400">$1.95M</span>
                       </div>
                     </div>
@@ -2832,15 +2832,15 @@ export default function DashboardPage() {
                     <h4 className="text-sm font-semibold mb-4 text-blue-400">Escenario Base</h4>
                     <div className="space-y-2 text-xs">
                       <div className="flex justify-between">
-                        <span className="text-neutral-400">Ingresos:</span>
+                        <span className="text-gray-600 dark:text-gray-400">Ingresos:</span>
                         <span className="font-semibold">Sin cambio</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-neutral-400">Egresos:</span>
+                        <span className="text-gray-600 dark:text-gray-400">Egresos:</span>
                         <span className="font-semibold">Sin cambio</span>
                       </div>
                       <div className="flex justify-between pt-2 border-t border-blue-500/20">
-                        <span className="text-neutral-400">Saldo Final:</span>
+                        <span className="text-gray-600 dark:text-gray-400">Saldo Final:</span>
                         <span className="font-bold text-blue-400">$1.65M</span>
                       </div>
                     </div>
@@ -2850,15 +2850,15 @@ export default function DashboardPage() {
                     <h4 className="text-sm font-semibold mb-4 text-red-400">Escenario Pesimista</h4>
                     <div className="space-y-2 text-xs">
                       <div className="flex justify-between">
-                        <span className="text-neutral-400">Ingresos:</span>
+                        <span className="text-gray-600 dark:text-gray-400">Ingresos:</span>
                         <span className="font-semibold">-10%</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-neutral-400">Egresos:</span>
+                        <span className="text-gray-600 dark:text-gray-400">Egresos:</span>
                         <span className="font-semibold">+5%</span>
                       </div>
                       <div className="flex justify-between pt-2 border-t border-red-500/20">
-                        <span className="text-neutral-400">Saldo Final:</span>
+                        <span className="text-gray-600 dark:text-gray-400">Saldo Final:</span>
                         <span className="font-bold text-red-400">$1.28M</span>
                       </div>
                     </div>
@@ -2875,7 +2875,7 @@ export default function DashboardPage() {
                   <div className="flex items-center justify-between">
                     <div>
                       <h2 className="text-2xl font-bold mb-2">Conecta tu Ecosistema Financiero</h2>
-                      <p className="text-neutral-400">Flow se integra con tus sistemas existentes mediante RPA + IA para automatizar y potenciar tus finanzas</p>
+                      <p className="text-gray-600 dark:text-gray-400">Flow se integra con tus sistemas existentes mediante RPA + IA para automatizar y potenciar tus finanzas</p>
                     </div>
                     <div className="text-6xl">🔌</div>
                   </div>
@@ -2884,29 +2884,29 @@ export default function DashboardPage() {
                 {/* Status Overview */}
                 <motion.div variants={itemVariants} className="grid md:grid-cols-4 gap-4">
                   <div className="bg-gradient-to-br from-green-900/20 to-green-900/5 border border-green-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Conectadas</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Conectadas</p>
                     <p className="text-3xl font-bold">8</p>
                     <p className="text-xs text-green-400 mt-1">Activas</p>
                   </div>
                   <div className="bg-gradient-to-br from-blue-900/20 to-blue-900/5 border border-blue-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Sincronizaciones</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Sincronizaciones</p>
                     <p className="text-3xl font-bold">1.2K</p>
                     <p className="text-xs text-blue-400 mt-1">Este mes</p>
                   </div>
                   <div className="bg-gradient-to-br from-purple-900/20 to-purple-900/5 border border-purple-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Última Sync</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Última Sync</p>
                     <p className="text-3xl font-bold">5m</p>
                     <p className="text-xs text-purple-400 mt-1">Hace minutos</p>
                   </div>
                   <div className="bg-gradient-to-br from-orange-900/20 to-orange-900/5 border border-orange-500/20 rounded-xl p-4">
-                    <p className="text-xs text-neutral-400 mb-1">Tiempo Ahorrado</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Tiempo Ahorrado</p>
                     <p className="text-3xl font-bold">48h</p>
                     <p className="text-xs text-orange-400 mt-1">Este mes</p>
                   </div>
                 </motion.div>
 
                 {/* ERP & Contabilidad */}
-                <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">ERP & Contabilidad</h3>
                   <div className="grid md:grid-cols-3 gap-4">
                     {[
@@ -2915,24 +2915,24 @@ export default function DashboardPage() {
                       { name: 'Concar', status: 'Disponible', icon: '💼', color: 'gray', lastSync: '-' }
                     ].map((erp, idx) => (
                       <div key={idx} className={`p-4 rounded-xl border ${
-                        erp.status === 'Conectado' ? 'bg-green-900/10 border-green-500/20' : 'bg-neutral-800/30 border-neutral-700'
+                        erp.status === 'Conectado' ? 'bg-green-900/10 border-green-500/20' : 'bg-gray-100 dark:bg-secondary-700/30 border-gray-300 dark:border-gray-600'
                       }`}>
                         <div className="flex items-center justify-between mb-3">
                           <div className="flex items-center gap-3">
                             <div className="text-3xl">{erp.icon}</div>
                             <div>
                               <p className="font-semibold">{erp.name}</p>
-                              <p className="text-xs text-neutral-400">{erp.lastSync}</p>
+                              <p className="text-xs text-gray-600 dark:text-gray-400">{erp.lastSync}</p>
                             </div>
                           </div>
                           <span className={`text-xs px-2 py-1 rounded-full ${
-                            erp.status === 'Conectado' ? 'bg-green-900/20 text-green-400' : 'bg-neutral-700 text-neutral-400'
+                            erp.status === 'Conectado' ? 'bg-green-900/20 text-green-400' : 'bg-neutral-700 text-gray-600 dark:text-gray-400'
                           }`}>
                             {erp.status}
                           </span>
                         </div>
                         {erp.status === 'Conectado' ? (
-                          <button className="w-full text-xs px-3 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-lg transition-colors">
+                          <button className="w-full text-xs px-3 py-2 bg-gray-100 dark:bg-secondary-700 hover:bg-neutral-700 rounded-lg transition-colors">
                             Configurar
                           </button>
                         ) : (
@@ -2946,7 +2946,7 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* Bancos */}
-                <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Bancos (Open Banking)</h3>
                   <div className="grid md:grid-cols-4 gap-4">
                     {[
@@ -2956,28 +2956,28 @@ export default function DashboardPage() {
                       { name: 'Scotiabank', status: 'Disponible', icon: '🏦', accounts: 0, lastSync: '-' }
                     ].map((bank, idx) => (
                       <div key={idx} className={`p-4 rounded-xl border ${
-                        bank.status === 'Conectado' ? 'bg-blue-900/10 border-blue-500/20' : 'bg-neutral-800/30 border-neutral-700'
+                        bank.status === 'Conectado' ? 'bg-blue-900/10 border-blue-500/20' : 'bg-gray-100 dark:bg-secondary-700/30 border-gray-300 dark:border-gray-600'
                       }`}>
                         <div className="text-center mb-3">
                           <div className="text-3xl mb-2">{bank.icon}</div>
                           <p className="font-semibold text-sm">{bank.name}</p>
                           {bank.status === 'Conectado' && (
-                            <p className="text-xs text-neutral-400 mt-1">{bank.accounts} cuentas</p>
+                            <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">{bank.accounts} cuentas</p>
                           )}
                         </div>
                         <span className={`block text-center text-xs px-2 py-1 rounded-full ${
-                          bank.status === 'Conectado' ? 'bg-blue-900/20 text-blue-400' : 'bg-neutral-700 text-neutral-400'
+                          bank.status === 'Conectado' ? 'bg-blue-900/20 text-blue-400' : 'bg-neutral-700 text-gray-600 dark:text-gray-400'
                         }`}>
                           {bank.status}
                         </span>
-                        <p className="text-xs text-neutral-500 text-center mt-2">{bank.lastSync}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 text-center mt-2">{bank.lastSync}</p>
                       </div>
                     ))}
                   </div>
                 </motion.div>
 
                 {/* SUNAT & Gobierno */}
-                <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">SUNAT & Gobierno</h3>
                   <div className="grid md:grid-cols-3 gap-4">
                     {[
@@ -2990,14 +2990,14 @@ export default function DashboardPage() {
                           <div className="text-3xl">{gov.icon}</div>
                           <div className="flex-1">
                             <p className="font-semibold">{gov.name}</p>
-                            <p className="text-xs text-neutral-400">{gov.data}</p>
+                            <p className="text-xs text-gray-600 dark:text-gray-400">{gov.data}</p>
                           </div>
                           <span className="text-xs px-2 py-1 bg-green-900/20 text-green-400 rounded-full">
                             ✓
                           </span>
                         </div>
                         <div className="flex gap-2">
-                          <button className="flex-1 text-xs px-3 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-lg transition-colors">
+                          <button className="flex-1 text-xs px-3 py-2 bg-gray-100 dark:bg-secondary-700 hover:bg-neutral-700 rounded-lg transition-colors">
                             Ver Logs
                           </button>
                           <button className="flex-1 text-xs px-3 py-2 bg-green-600 hover:bg-green-700 rounded-lg transition-colors">
@@ -3010,7 +3010,7 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* Pagos & Facturación */}
-                <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Pasarelas de Pago</h3>
                   <div className="grid md:grid-cols-4 gap-4">
                     {[
@@ -3020,12 +3020,12 @@ export default function DashboardPage() {
                       { name: 'PayPal', status: 'Disponible', icon: '💳', color: 'gray' }
                     ].map((payment, idx) => (
                       <div key={idx} className={`p-4 rounded-xl border text-center ${
-                        payment.status === 'Conectado' ? 'bg-blue-900/10 border-blue-500/20' : 'bg-neutral-800/30 border-neutral-700'
+                        payment.status === 'Conectado' ? 'bg-blue-900/10 border-blue-500/20' : 'bg-gray-100 dark:bg-secondary-700/30 border-gray-300 dark:border-gray-600'
                       }`}>
                         <div className="text-3xl mb-2">{payment.icon}</div>
                         <p className="font-semibold text-sm mb-2">{payment.name}</p>
                         <span className={`text-xs px-2 py-1 rounded-full ${
-                          payment.status === 'Conectado' ? 'bg-blue-900/20 text-blue-400' : 'bg-neutral-700 text-neutral-400'
+                          payment.status === 'Conectado' ? 'bg-blue-900/20 text-blue-400' : 'bg-neutral-700 text-gray-600 dark:text-gray-400'
                         }`}>
                           {payment.status}
                         </span>
@@ -3035,7 +3035,7 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* Activity Feed - RPA en Acción */}
-                <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <div className="flex items-center justify-between mb-6">
                     <h3 className="text-lg font-bold">Activity Feed - RPA en Acción</h3>
                     <span className="text-xs px-3 py-1 bg-green-900/20 text-green-400 rounded-full">
@@ -3061,7 +3061,7 @@ export default function DashboardPage() {
                         <div className="text-2xl">{activity.icon}</div>
                         <div className="flex-1">
                           <p className="text-sm font-medium">{activity.action}</p>
-                          <p className="text-xs text-neutral-400 mt-1">{activity.time}</p>
+                          <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">{activity.time}</p>
                         </div>
                       </div>
                     ))}
@@ -3073,28 +3073,28 @@ export default function DashboardPage() {
                   <h3 className="text-lg font-bold mb-6">ROI de Automatización - Este Mes</h3>
                   <div className="grid md:grid-cols-4 gap-6">
                     <div className="text-center">
-                      <p className="text-xs text-neutral-400 mb-2">Tiempo Ahorrado</p>
+                      <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">Tiempo Ahorrado</p>
                       <p className="text-4xl font-bold text-green-400">48h</p>
-                      <p className="text-xs text-neutral-500 mt-1">vs manual</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">vs manual</p>
                     </div>
                     <div className="text-center">
-                      <p className="text-xs text-neutral-400 mb-2">Errores Evitados</p>
+                      <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">Errores Evitados</p>
                       <p className="text-4xl font-bold text-blue-400">89</p>
-                      <p className="text-xs text-neutral-500 mt-1">detecciones</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">detecciones</p>
                     </div>
                     <div className="text-center">
-                      <p className="text-xs text-neutral-400 mb-2">Ahorro Estimado</p>
+                      <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">Ahorro Estimado</p>
                       <p className="text-4xl font-bold text-purple-400">$2.4K</p>
-                      <p className="text-xs text-neutral-500 mt-1">en costos</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">en costos</p>
                     </div>
                     <div className="text-center">
-                      <p className="text-xs text-neutral-400 mb-2">ROI</p>
+                      <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">ROI</p>
                       <p className="text-4xl font-bold text-orange-400">450%</p>
-                      <p className="text-xs text-neutral-500 mt-1">retorno</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">retorno</p>
                     </div>
                   </div>
                   <div className="mt-6 pt-6 border-t border-green-500/20">
-                    <p className="text-sm text-center text-neutral-300">
+                    <p className="text-sm text-center text-gray-400 dark:text-gray-300">
                       Flow ha automatizado <span className="font-bold text-green-400">1,234 tareas</span> este mes, 
                       ahorrándote el equivalente a <span className="font-bold text-green-400">1.2 empleados full-time</span>
                     </p>
@@ -3102,7 +3102,7 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* Otras Integraciones */}
-                <motion.div variants={itemVariants} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Otras Integraciones</h3>
                   <div className="grid md:grid-cols-3 gap-4">
                     {[
@@ -3114,17 +3114,17 @@ export default function DashboardPage() {
                       { name: 'API Custom', status: 'Disponible', icon: '🔧', desc: 'Tu propio sistema' }
                     ].map((other, idx) => (
                       <div key={idx} className={`p-4 rounded-xl border ${
-                        other.status === 'Conectado' ? 'bg-purple-900/10 border-purple-500/20' : 'bg-neutral-800/30 border-neutral-700'
+                        other.status === 'Conectado' ? 'bg-purple-900/10 border-purple-500/20' : 'bg-gray-100 dark:bg-secondary-700/30 border-gray-300 dark:border-gray-600'
                       }`}>
                         <div className="flex items-center gap-3 mb-2">
                           <div className="text-2xl">{other.icon}</div>
                           <div className="flex-1">
                             <p className="font-semibold text-sm">{other.name}</p>
-                            <p className="text-xs text-neutral-400">{other.desc}</p>
+                            <p className="text-xs text-gray-600 dark:text-gray-400">{other.desc}</p>
                           </div>
                         </div>
                         <span className={`block text-center text-xs px-2 py-1 rounded-full ${
-                          other.status === 'Conectado' ? 'bg-purple-900/20 text-purple-400' : 'bg-neutral-700 text-neutral-400'
+                          other.status === 'Conectado' ? 'bg-purple-900/20 text-purple-400' : 'bg-neutral-700 text-gray-600 dark:text-gray-400'
                         }`}>
                           {other.status}
                         </span>

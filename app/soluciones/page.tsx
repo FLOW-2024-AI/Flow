@@ -93,7 +93,7 @@ const solutions = [
 
 export default function SolucionesPage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
 
       {/* Hero */}
@@ -113,22 +113,22 @@ export default function SolucionesPage() {
                 Lo conectamos todo.
               </span>
             </h1>
-            <p className="text-base md:text-lg text-neutral-300 max-w-3xl mx-auto mb-8 leading-relaxed">
+            <p className="text-base md:text-lg text-gray-400 dark:text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed">
               Flow es la capa inteligente que conecta tu ERP, bancos, SUNAT y más. 
-              <span className="text-white font-semibold"> RPA automatiza, IA analiza, tú decides.</span>
+              <span className="text-gray-900 dark:text-gray-900 dark:text-white font-semibold"> RPA automatiza, IA analiza, tú decides.</span>
             </p>
             <div className="flex flex-wrap justify-center gap-6 text-sm">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                <span className="text-neutral-400">Conecta tu ecosistema</span>
+                <span className="text-gray-600 dark:text-gray-400">Conecta tu ecosistema</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                <span className="text-neutral-400">80% menos tiempo</span>
+                <span className="text-gray-600 dark:text-gray-400">80% menos tiempo</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
-                <span className="text-neutral-400">450% ROI</span>
+                <span className="text-gray-600 dark:text-gray-400">450% ROI</span>
               </div>
             </div>
           </motion.div>
@@ -147,7 +147,7 @@ export default function SolucionesPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -8, scale: 1.02 }}
-                className="group bg-neutral-900/50 border border-neutral-800 rounded-3xl p-8 hover:border-neutral-700 transition-all relative overflow-hidden"
+                className="group bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-3xl p-8 hover:border-gray-300 dark:border-gray-600 transition-all relative overflow-hidden"
               >
                 <div className={`absolute top-0 right-0 w-40 h-40 bg-gradient-to-br ${solution.color} opacity-0 group-hover:opacity-10 blur-3xl transition-all duration-500`}></div>
                 <div className="relative z-10">
@@ -161,11 +161,11 @@ export default function SolucionesPage() {
                       </div>
                     </div>
                   </div>
-                  <h3 className="text-xl font-bold mb-3 group-hover:text-white transition-colors">{solution.title}</h3>
-                  <p className="text-neutral-400 mb-6 text-sm leading-relaxed">{solution.description}</p>
+                  <h3 className="text-xl font-bold mb-3 group-hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors">{solution.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-400 mb-6 text-sm leading-relaxed">{solution.description}</p>
                   <ul className="space-y-3 mb-6">
                     {solution.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start text-sm text-neutral-300">
+                      <li key={idx} className="flex items-start text-sm text-gray-400 dark:text-gray-300">
                         <svg className="w-5 h-5 text-green-400 mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
@@ -173,7 +173,7 @@ export default function SolucionesPage() {
                       </li>
                     ))}
                   </ul>
-                  <div className={`pt-4 border-t border-neutral-800 text-xs font-semibold text-transparent bg-clip-text bg-gradient-to-r ${solution.color}`}>
+                  <div className={`pt-4 border-t border-gray-200 dark:border-gray-700 text-xs font-semibold text-transparent bg-clip-text bg-gradient-to-r ${solution.color}`}>
                     {solution.stat}
                   </div>
                 </div>
@@ -184,7 +184,7 @@ export default function SolucionesPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-pink-900/20 border-t border-neutral-800">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-pink-900/20 border-t border-gray-200 dark:border-gray-700">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -201,20 +201,20 @@ export default function SolucionesPage() {
                 Empieza hoy.
               </span>
             </h2>
-            <p className="text-lg text-neutral-300 mb-8 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-400 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
               Más de 20 empresas ya confían en Flow. 
-              <span className="text-white font-semibold"> ROI promedio: 450%.</span> 
+              <span className="text-gray-900 dark:text-gray-900 dark:text-white font-semibold"> ROI promedio: 450%.</span> 
               {' '}Agenda tu demo gratuita y descubre por qué.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Link href="/consulta" className="inline-block bg-white text-black px-8 py-4 rounded-full font-bold text-base hover:opacity-90 transition-opacity shadow-xl">
+              <Link href="/consulta" className="inline-block bg-white dark:bg-secondary-800 dark:bg-secondary-800 text-gray-900 dark:text-gray-100 px-8 py-4 rounded-full font-bold text-base hover:opacity-90 transition-opacity shadow-xl">
                 Agendar demo gratuita →
               </Link>
-              <Link href="/precios" className="inline-block border border-neutral-700 text-white px-8 py-4 rounded-full font-medium text-base hover:border-neutral-500 hover:bg-neutral-900/50 transition-all">
+              <Link href="/precios" className="inline-block border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-900 dark:text-white px-8 py-4 rounded-full font-medium text-base hover:border-neutral-500 hover:bg-gray-100 dark:bg-secondary-800 transition-all">
                 Ver precios
               </Link>
             </div>
-            <p className="text-xs text-neutral-500 mt-6">
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-6">
               Sin tarjeta de crédito • Implementación en 48h • Soporte en español
             </p>
           </motion.div>

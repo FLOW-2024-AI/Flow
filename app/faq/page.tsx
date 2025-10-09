@@ -97,7 +97,7 @@ export default function FAQPage() {
   const [openIndex, setOpenIndex] = useState<string | null>(null)
 
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
 
       <div className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
@@ -110,7 +110,7 @@ export default function FAQPage() {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Preguntas Frecuentes
             </h1>
-            <p className="text-xl text-neutral-300">
+            <p className="text-xl text-gray-400 dark:text-gray-300">
               Todo lo que necesitas saber sobre Flow
             </p>
           </motion.div>
@@ -130,11 +130,11 @@ export default function FAQPage() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: idx * 0.1 }}
-                        className="bg-neutral-900/50 border border-neutral-800 rounded-2xl overflow-hidden"
+                        className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl overflow-hidden"
                       >
                         <button
                           onClick={() => setOpenIndex(isOpen ? null : key)}
-                          className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-neutral-800/50 transition-colors"
+                          className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-100 dark:bg-secondary-700/50 transition-colors"
                         >
                           <span className="font-semibold text-lg">{faq.q}</span>
                           <svg
@@ -153,7 +153,7 @@ export default function FAQPage() {
                             exit={{ height: 0, opacity: 0 }}
                             className="px-6 pb-4"
                           >
-                            <p className="text-neutral-300 leading-relaxed">{faq.a}</p>
+                            <p className="text-gray-400 dark:text-gray-300 leading-relaxed">{faq.a}</p>
                           </motion.div>
                         )}
                       </motion.div>
@@ -166,12 +166,12 @@ export default function FAQPage() {
 
           <div className="mt-16 text-center bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-blue-800/30 rounded-2xl p-8">
             <h3 className="text-2xl font-bold mb-4">¿No encuentras tu respuesta?</h3>
-            <p className="text-neutral-300 mb-6">
+            <p className="text-gray-400 dark:text-gray-300 mb-6">
               Nuestro equipo está listo para ayudarte
             </p>
             <Link
               href="/consulta"
-              className="inline-block bg-white text-black px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity"
+              className="inline-block bg-white dark:bg-secondary-800 dark:bg-secondary-800 text-gray-900 dark:text-gray-100 px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity"
             >
               Contactar soporte
             </Link>

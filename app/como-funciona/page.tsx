@@ -66,7 +66,7 @@ const steps = [
 
 export default function ComoFuncionaPage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
 
       {/* Hero */}
@@ -86,22 +86,22 @@ export default function ComoFuncionaPage() {
                 Financia.
               </span>
             </h1>
-            <p className="text-base md:text-lg text-neutral-300 max-w-3xl mx-auto mb-8 leading-relaxed">
+            <p className="text-base md:text-lg text-gray-400 dark:text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed">
               Flow no reemplaza tu ERP. Es la capa inteligente que conecta todo tu ecosistema financiero.
-              <span className="text-white font-semibold"> 4 pasos. ROI 450%.</span>
+              <span className="text-gray-900 dark:text-gray-900 dark:text-white font-semibold"> 4 pasos. ROI 450%.</span>
             </p>
             <div className="flex flex-wrap justify-center gap-6 text-sm">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                <span className="text-neutral-400">Setup: 2 semanas</span>
+                <span className="text-gray-600 dark:text-gray-400">Setup: 2 semanas</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                <span className="text-neutral-400">Ahorro: 80% tiempo</span>
+                <span className="text-gray-600 dark:text-gray-400">Ahorro: 80% tiempo</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
-                <span className="text-neutral-400">ROI: 450%</span>
+                <span className="text-gray-600 dark:text-gray-400">ROI: 450%</span>
               </div>
             </div>
           </motion.div>
@@ -135,10 +135,10 @@ export default function ComoFuncionaPage() {
                     </span>
                   </div>
                   <h2 className="text-2xl md:text-3xl font-bold mb-4">{step.title}</h2>
-                  <p className="text-base text-neutral-300 mb-6 leading-relaxed">{step.description}</p>
+                  <p className="text-base text-gray-400 dark:text-gray-300 mb-6 leading-relaxed">{step.description}</p>
                   <ul className="space-y-3">
                     {step.details.map((detail, idx) => (
-                      <li key={idx} className="flex items-start text-sm text-neutral-300">
+                      <li key={idx} className="flex items-start text-sm text-gray-400 dark:text-gray-300">
                         <svg className="w-5 h-5 text-green-400 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
@@ -148,7 +148,7 @@ export default function ComoFuncionaPage() {
                   </ul>
                 </div>
                 <div className={index % 2 === 1 ? 'lg:order-1' : ''}>
-                  <div className="relative h-[400px] rounded-3xl overflow-hidden bg-gradient-to-br from-neutral-900 to-neutral-950 border border-neutral-800">
+                  <div className="relative h-[400px] rounded-3xl overflow-hidden bg-gradient-to-br from-neutral-900 to-neutral-950 border border-gray-200 dark:border-gray-700">
                     <Image
                       src={`https://images.unsplash.com/photo-${
                         index === 0 ? '1551288049-bebda4e38f71' : // Conexión/Tecnología
@@ -169,7 +169,7 @@ export default function ComoFuncionaPage() {
       </section>
 
       {/* Timeline */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-neutral-950/30">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-secondary-900/50">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-xl font-bold text-center mb-16">Timeline de implementación</h2>
           <div className="space-y-8">
@@ -188,9 +188,9 @@ export default function ComoFuncionaPage() {
                 className="flex items-start space-x-6"
               >
                 <div className="flex-shrink-0 w-32 text-blue-400 font-bold">{phase.week}</div>
-                <div className="flex-1 bg-neutral-900/50 border border-neutral-800 rounded-xl p-6">
+                <div className="flex-1 bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6">
                   <h3 className="text-sm font-bold mb-2">{phase.title}</h3>
-                  <p className="text-neutral-400">{phase.desc}</p>
+                  <p className="text-gray-600 dark:text-gray-400">{phase.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -199,7 +199,7 @@ export default function ComoFuncionaPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-pink-900/20 border-t border-neutral-800">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-pink-900/20 border-t border-gray-200 dark:border-gray-700">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -216,20 +216,20 @@ export default function ComoFuncionaPage() {
                 En 2 semanas.
               </span>
             </h2>
-            <p className="text-lg text-neutral-300 mb-8 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-400 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
               Más de 20 empresas ya automatizaron sus finanzas con Flow. 
-              <span className="text-white font-semibold"> Reduce 80% el tiempo manual.</span> 
+              <span className="text-gray-900 dark:text-gray-900 dark:text-white font-semibold"> Reduce 80% el tiempo manual.</span> 
               {' '}Agenda tu demo y empieza hoy.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Link href="/consulta" className="inline-block bg-white text-black px-8 py-4 rounded-full font-bold text-base hover:opacity-90 transition-opacity shadow-xl">
+              <Link href="/consulta" className="inline-block bg-white dark:bg-secondary-800 dark:bg-secondary-800 text-gray-900 dark:text-gray-100 px-8 py-4 rounded-full font-bold text-base hover:opacity-90 transition-opacity shadow-xl">
                 Agendar demo gratuita →
               </Link>
-              <Link href="/precios" className="inline-block border border-neutral-700 text-white px-8 py-4 rounded-full font-medium text-base hover:border-neutral-500 hover:bg-neutral-900/50 transition-all">
+              <Link href="/precios" className="inline-block border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-900 dark:text-white px-8 py-4 rounded-full font-medium text-base hover:border-neutral-500 hover:bg-gray-100 dark:bg-secondary-800 transition-all">
                 Ver precios
               </Link>
             </div>
-            <p className="text-xs text-neutral-500 mt-6">
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-6">
               Sin tarjeta de crédito • Setup en 48h • Soporte 24/7 en español
             </p>
           </motion.div>

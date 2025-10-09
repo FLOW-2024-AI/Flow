@@ -64,7 +64,7 @@ const caseStudies = [
 
 export default function CasosExitoPage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
 
       {/* Hero */}
@@ -75,7 +75,7 @@ export default function CasosExitoPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <p className="text-xs font-medium text-neutral-500 tracking-wider uppercase mb-4">
+            <p className="text-xs font-medium text-gray-500 dark:text-gray-400 tracking-wider uppercase mb-4">
               Casos de Éxito
             </p>
             <h1 className="text-2xl md:text-3xl font-semibold mb-4">
@@ -84,7 +84,7 @@ export default function CasosExitoPage() {
                 sus finanzas con Flow
               </span>
             </h1>
-            <p className="text-sm text-neutral-400 max-w-2xl mx-auto">
+            <p className="text-sm text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
               Descubre cómo empresas líderes están automatizando sus procesos financieros y obteniendo resultados extraordinarios
             </p>
           </motion.div>
@@ -134,28 +134,28 @@ export default function CasosExitoPage() {
                 <div className="space-y-6 mb-8">
                   <div>
                     <h3 className="text-sm font-semibold text-red-400 mb-2">El Desafío</h3>
-                    <p className="text-sm text-neutral-400">{study.challenge}</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">{study.challenge}</p>
                   </div>
 
                   <div>
                     <h3 className="text-sm font-semibold text-blue-400 mb-2">La Solución</h3>
-                    <p className="text-sm text-neutral-400">{study.solution}</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">{study.solution}</p>
                   </div>
                 </div>
 
                 {/* Results */}
                 <div className="grid grid-cols-3 gap-4 mb-8">
                   {study.results.map((result, idx) => (
-                    <div key={idx} className="bg-neutral-900/50 border border-neutral-800 rounded-xl p-4 text-center">
+                    <div key={idx} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-xl p-4 text-center">
                       <div className="text-lg font-bold text-blue-400 mb-1">{result.metric}</div>
-                      <div className="text-xs text-neutral-500">{result.label}</div>
+                      <div className="text-xs text-gray-500 dark:text-gray-400">{result.label}</div>
                     </div>
                   ))}
                 </div>
 
                 {/* Testimonial */}
-                <div className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
-                  <p className="text-sm text-neutral-300 mb-4 italic">
+                <div className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                  <p className="text-sm text-gray-400 dark:text-gray-300 mb-4 italic">
                     "{study.testimonial.quote}"
                   </p>
                   <div className="flex items-center gap-3">
@@ -166,7 +166,7 @@ export default function CasosExitoPage() {
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-white">{study.testimonial.author}</p>
-                      <p className="text-xs text-neutral-400">{study.testimonial.role}</p>
+                      <p className="text-xs text-gray-600 dark:text-gray-400">{study.testimonial.role}</p>
                     </div>
                   </div>
                 </div>
@@ -180,10 +180,10 @@ export default function CasosExitoPage() {
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-900/20 to-purple-900/20">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-xl font-semibold mb-4">¿Listo para tu historia de éxito?</h2>
-          <p className="text-sm text-neutral-400 mb-8">
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-8">
             Únete a las empresas que ya están transformando sus finanzas con Flow
           </p>
-          <Link href="/consulta" className="inline-block bg-white text-black px-6 py-3 rounded-full font-medium text-sm hover:opacity-90 transition-opacity">
+          <Link href="/consulta" className="inline-block bg-white dark:bg-secondary-800 dark:bg-secondary-800 text-gray-900 dark:text-gray-100 px-6 py-3 rounded-full font-medium text-sm hover:opacity-90 transition-opacity">
             Agendar consulta gratuita
           </Link>
         </div>

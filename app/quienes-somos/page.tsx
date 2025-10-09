@@ -44,7 +44,7 @@ const scaleVariants = {
 
 export default function QuienesSomosPage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
 
       {/* Hero Image with Parallax */}
@@ -69,7 +69,7 @@ export default function QuienesSomosPage() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="text-7xl md:text-8xl font-bold text-white text-center px-4"
+            className="text-7xl md:text-8xl font-bold text-gray-900 dark:text-gray-900 dark:text-white text-center px-4"
           >
             Quiénes Somos
           </motion.h1>
@@ -106,7 +106,7 @@ export default function QuienesSomosPage() {
               </motion.h2>
               <motion.p 
                 variants={itemVariants}
-                className="text-sm text-neutral-400 max-w-3xl mx-auto leading-relaxed"
+                className="text-sm text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed"
               >
                 Transformamos la manera en que las empresas gestionan sus procesos contables y de tesorería mediante tecnología de vanguardia.
               </motion.p>
@@ -130,24 +130,24 @@ export default function QuienesSomosPage() {
               <motion.div variants={itemVariants}>
                 <h2 className="text-xl font-bold mb-6">Nuestra Historia</h2>
                 <div className="space-y-6">
-                  <p className="text-lg text-neutral-300 leading-relaxed">
-                    Flow nació con una visión clara: <span className="text-white font-semibold">revolucionar la gestión financiera empresarial</span> mediante RPA + IA. No reemplazamos tu ERP, lo conectamos y potenciamos con automatización inteligente.
+                  <p className="text-lg text-gray-400 dark:text-gray-300 leading-relaxed">
+                    Flow nació con una visión clara: <span className="text-gray-900 dark:text-gray-900 dark:text-white font-semibold">revolucionar la gestión financiera empresarial</span> mediante RPA + IA. No reemplazamos tu ERP, lo conectamos y potenciamos con automatización inteligente.
                   </p>
-                  <p className="text-lg text-neutral-300 leading-relaxed">
+                  <p className="text-lg text-gray-400 dark:text-gray-300 leading-relaxed">
                     Identificamos que las PYMEs pierden <span className="text-blue-400 font-semibold">80% de su tiempo</span> en tareas manuales repetitivas. Nuestra plataforma conecta tu ERP, bancos y SUNAT para automatizar todo.
                   </p>
                   <div className="grid grid-cols-3 gap-6 pt-6">
                     <div>
                       <div className="text-lg font-bold text-blue-400 mb-2">20+</div>
-                      <div className="text-sm text-neutral-400">Empresas confiando</div>
+                      <div className="text-sm text-gray-600 dark:text-gray-400">Empresas confiando</div>
                     </div>
                     <div>
                       <div className="text-lg font-bold text-purple-400 mb-2">450%</div>
-                      <div className="text-sm text-neutral-400">ROI promedio</div>
+                      <div className="text-sm text-gray-600 dark:text-gray-400">ROI promedio</div>
                     </div>
                     <div>
                       <div className="text-lg font-bold text-green-400 mb-2">80%</div>
-                      <div className="text-sm text-neutral-400">Automatización activa</div>
+                      <div className="text-sm text-gray-600 dark:text-gray-400">Automatización activa</div>
                     </div>
                   </div>
                 </div>
@@ -174,7 +174,7 @@ export default function QuienesSomosPage() {
                     </svg>
                   </motion.div>
                   <h2 className="text-lg font-bold mb-4">Nuestra Misión</h2>
-                  <p className="text-lg text-neutral-300 leading-relaxed">
+                  <p className="text-lg text-gray-400 dark:text-gray-300 leading-relaxed">
                     Democratizar la automatización financiera para empresas de todos los tamaños, proporcionando herramientas inteligentes que eliminen las tareas manuales repetitivas y permitan a los equipos financieros enfocarse en la estrategia y el crecimiento empresarial.
                   </p>
                 </div>
@@ -199,7 +199,7 @@ export default function QuienesSomosPage() {
                     </svg>
                   </motion.div>
                   <h2 className="text-lg font-bold mb-4">Nuestra Visión</h2>
-                  <p className="text-lg text-neutral-300 leading-relaxed">
+                  <p className="text-lg text-gray-400 dark:text-gray-300 leading-relaxed">
                     Ser la plataforma líder en automatización financiera en América Latina para 2027, transformando más de 10,000 empresas y estableciendo el nuevo estándar de eficiencia en la gestión financiera empresarial.
                   </p>
                 </div>
@@ -236,7 +236,7 @@ export default function QuienesSomosPage() {
                       </svg>
                     </motion.div>
                     <h3 className="text-base font-bold mb-4 group-hover:text-green-400 transition-colors">Excelencia</h3>
-                    <p className="text-neutral-400 leading-relaxed">
+                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
                       Nos comprometemos a entregar soluciones de la más alta calidad, superando las expectativas de nuestros clientes.
                     </p>
                   </motion.div>
@@ -256,7 +256,7 @@ export default function QuienesSomosPage() {
                       </svg>
                     </motion.div>
                     <h3 className="text-base font-bold mb-4 group-hover:text-orange-400 transition-colors">Innovación</h3>
-                    <p className="text-neutral-400 leading-relaxed">
+                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
                       Adoptamos las últimas tecnologías para crear soluciones disruptivas que transformen la industria financiera.
                     </p>
                   </motion.div>
@@ -276,7 +276,7 @@ export default function QuienesSomosPage() {
                       </svg>
                     </motion.div>
                     <h3 className="text-base font-bold mb-4 group-hover:text-blue-400 transition-colors">Colaboración</h3>
-                    <p className="text-neutral-400 leading-relaxed">
+                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
                       Trabajamos de la mano con nuestros clientes como socios estratégicos en su transformación digital.
                     </p>
                   </motion.div>
@@ -294,7 +294,7 @@ export default function QuienesSomosPage() {
                   Liderazgo
                 </motion.p>
                 <h2 className="text-2xl md:text-3xl font-bold mb-4">Nuestro Equipo</h2>
-                <p className="text-sm text-neutral-400 max-w-2xl mx-auto">
+                <p className="text-sm text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
                   Expertos apasionados por transformar el futuro de las finanzas empresariales
                 </p>
               </div>
@@ -305,7 +305,7 @@ export default function QuienesSomosPage() {
                   whileHover={{ y: -10 }}
                   transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <div className="relative bg-gradient-to-br from-neutral-900 to-neutral-950 border border-neutral-800 rounded-3xl p-8 overflow-hidden">
+                  <div className="relative bg-gradient-to-br from-neutral-900 to-neutral-950 border border-gray-200 dark:border-gray-700 rounded-3xl p-8 overflow-hidden">
                     <div className="absolute top-0 right-0 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/20 transition-all duration-700" />
                     <div className="relative z-10 text-center">
                       <motion.div 
@@ -317,8 +317,8 @@ export default function QuienesSomosPage() {
                       </motion.div>
                       <h3 className="text-base font-bold mb-2 group-hover:text-blue-400 transition-colors">Hugo Chávez</h3>
                       <p className="text-blue-400 font-semibold mb-4 text-sm tracking-wide">CEO & FUNDADOR</p>
-                      <p className="text-sm text-neutral-400 leading-relaxed">
-                        Visionario fintech con <span className="text-white font-semibold">10+ años</span> liderando transformación financiera en corporaciones multinacionales. Arquitecto de ecosistemas de automatización que han procesado <span className="text-blue-400 font-semibold">+$500M</span> en transacciones.
+                      <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                        Visionario fintech con <span className="text-gray-900 dark:text-gray-900 dark:text-white font-semibold">10+ años</span> liderando transformación financiera en corporaciones multinacionales. Arquitecto de ecosistemas de automatización que han procesado <span className="text-blue-400 font-semibold">+$500M</span> en transacciones.
                       </p>
                     </div>
                   </div>
@@ -329,7 +329,7 @@ export default function QuienesSomosPage() {
                   whileHover={{ y: -10 }}
                   transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <div className="relative bg-gradient-to-br from-neutral-900 to-neutral-950 border border-neutral-800 rounded-3xl p-8 overflow-hidden">
+                  <div className="relative bg-gradient-to-br from-neutral-900 to-neutral-950 border border-gray-200 dark:border-gray-700 rounded-3xl p-8 overflow-hidden">
                     <div className="absolute top-0 right-0 w-40 h-40 bg-green-500/10 rounded-full blur-3xl group-hover:bg-green-500/20 transition-all duration-700" />
                     <div className="relative z-10 text-center">
                       <motion.div 
@@ -341,8 +341,8 @@ export default function QuienesSomosPage() {
                       </motion.div>
                       <h3 className="text-base font-bold mb-2 group-hover:text-green-400 transition-colors">Marcelo Olivera</h3>
                       <p className="text-green-400 font-semibold mb-4 text-sm tracking-wide">CCO & FUNDADOR</p>
-                      <p className="text-sm text-neutral-400 leading-relaxed">
-                        Growth hacker con ADN comercial. Experto en <span className="text-white font-semibold">escalar operaciones B2B</span> y construir pipelines de alto impacto. Maestro en convertir insights de mercado en estrategias de <span className="text-green-400 font-semibold">revenue exponencial</span>.
+                      <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                        Growth hacker con ADN comercial. Experto en <span className="text-gray-900 dark:text-gray-900 dark:text-white font-semibold">escalar operaciones B2B</span> y construir pipelines de alto impacto. Maestro en convertir insights de mercado en estrategias de <span className="text-green-400 font-semibold">revenue exponencial</span>.
                       </p>
                     </div>
                   </div>
@@ -353,7 +353,7 @@ export default function QuienesSomosPage() {
                   whileHover={{ y: -10 }}
                   transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <div className="relative bg-gradient-to-br from-neutral-900 to-neutral-950 border border-neutral-800 rounded-3xl p-8 overflow-hidden">
+                  <div className="relative bg-gradient-to-br from-neutral-900 to-neutral-950 border border-gray-200 dark:border-gray-700 rounded-3xl p-8 overflow-hidden">
                     <div className="absolute top-0 right-0 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl group-hover:bg-purple-500/20 transition-all duration-700" />
                     <div className="relative z-10 text-center">
                       <motion.div 
@@ -365,8 +365,8 @@ export default function QuienesSomosPage() {
                       </motion.div>
                       <h3 className="text-base font-bold mb-2 group-hover:text-purple-400 transition-colors">Nathan Villegas</h3>
                       <p className="text-purple-400 font-semibold mb-4 text-sm tracking-wide">CFO & FUNDADOR</p>
-                      <p className="text-sm text-neutral-400 leading-relaxed">
-                        Ex-ingeniero de <span className="text-white font-semibold">Yape</span>, pionero en infraestructura fintech de alto volumen. Especialista en arquitectura financiera escalable y optimización de capital para <span className="text-purple-400 font-semibold">hypergrowth startups</span>.
+                      <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                        Ex-ingeniero de <span className="text-gray-900 dark:text-gray-900 dark:text-white font-semibold">Yape</span>, pionero en infraestructura fintech de alto volumen. Especialista en arquitectura financiera escalable y optimización de capital para <span className="text-purple-400 font-semibold">hypergrowth startups</span>.
                       </p>
                     </div>
                   </div>
@@ -408,7 +408,7 @@ export default function QuienesSomosPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: 0.4 }}
-                  className="text-sm text-neutral-300 mb-10 max-w-2xl mx-auto"
+                  className="text-sm text-gray-400 dark:text-gray-300 mb-10 max-w-2xl mx-auto"
                 >
                   Únete a las empresas que ya están revolucionando sus procesos financieros con Flow.
                 </motion.p>
@@ -423,7 +423,7 @@ export default function QuienesSomosPage() {
                     <motion.div
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="bg-white text-black px-10 py-5 rounded-2xl font-bold text-lg hover:opacity-90 transition-all duration-200 shadow-2xl inline-block cursor-pointer"
+                      className="bg-white dark:bg-secondary-800 dark:bg-secondary-800 text-gray-900 dark:text-gray-100 px-10 py-5 rounded-2xl font-bold text-lg hover:opacity-90 transition-all duration-200 shadow-2xl inline-block cursor-pointer"
                     >
                       Agendar consulta gratis
                     </motion.div>
@@ -432,7 +432,7 @@ export default function QuienesSomosPage() {
                     <motion.div
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-5 rounded-2xl font-bold text-lg transition-all duration-200 shadow-2xl inline-block cursor-pointer border-2 border-blue-500"
+                      className="bg-blue-600 hover:bg-blue-700 text-gray-900 dark:text-gray-900 dark:text-white px-10 py-5 rounded-2xl font-bold text-lg transition-all duration-200 shadow-2xl inline-block cursor-pointer border-2 border-blue-500"
                     >
                       Demo gratis aquí
                     </motion.div>

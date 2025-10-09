@@ -42,7 +42,7 @@ export default function Home() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
 
       {/* Hero Section - Mejorado estilo Khipu */}
@@ -85,7 +85,7 @@ export default function Home() {
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-full font-medium text-sm transition-all duration-200 inline-block cursor-pointer"
+                  className="bg-primary-600 hover:bg-primary-700 text-gray-900 dark:text-gray-900 dark:text-white px-6 py-3 rounded-full font-medium text-sm transition-all duration-200 inline-block cursor-pointer"
                 >
                   Agendar consulta gratis
                 </motion.div>
@@ -116,14 +116,14 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.8 + idx * 0.1 }}
                   whileHover={{ y: -5 }}
-                  className="group relative bg-neutral-900/50 border border-neutral-800 rounded-3xl p-6 hover:border-neutral-700 transition-all duration-300"
+                  className="group relative bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-3xl p-6 hover:border-gray-300 dark:border-gray-600 transition-all duration-300"
                 >
                   <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-10 rounded-3xl transition-all duration-300`} />
                   <div className="relative z-10">
                     <div className={`text-2xl font-semibold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-2`}>
                       <CounterAnimation end={stat.value} suffix={stat.suffix} />
                     </div>
-                    <div className="text-neutral-500 text-xs font-medium">{stat.label}</div>
+                    <div className="text-gray-500 dark:text-gray-400 text-xs font-medium">{stat.label}</div>
                   </div>
                 </motion.div>
               ))}
@@ -141,13 +141,13 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <p className="text-xs font-medium text-neutral-500 tracking-wider uppercase mb-4">
+            <p className="text-xs font-medium text-gray-500 dark:text-gray-400 tracking-wider uppercase mb-4">
               🔌 INTEGRACIONES
             </p>
             <h2 className="text-3xl md:text-4xl font-semibold mb-4">
               Conecta todo tu ecosistema
             </h2>
-            <p className="text-sm text-neutral-400 max-w-2xl mx-auto">
+            <p className="text-sm text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
               Flow se integra con tus sistemas existentes. No reemplazamos nada, lo conectamos todo.
             </p>
           </motion.div>
@@ -174,7 +174,7 @@ export default function Home() {
                   {integration.items.map((item, i) => (
                     <div key={i} className="flex items-center gap-2">
                       <div className={`w-2 h-2 bg-${integration.color}-400 rounded-full`}></div>
-                      <span className={`text-sm ${item === 'Y más...' ? 'text-neutral-500 italic' : 'text-neutral-400'}`}>{item}</span>
+                      <span className={`text-sm ${item === 'Y más...' ? 'text-gray-500 dark:text-gray-400 italic' : 'text-gray-600 dark:text-gray-400'}`}>{item}</span>
                     </div>
                   ))}
                 </div>
@@ -189,21 +189,21 @@ export default function Home() {
             className="bg-gradient-to-r from-purple-900/20 to-pink-900/20 border border-purple-500/30 rounded-2xl p-8 text-center"
           >
             <h3 className="text-2xl font-bold mb-3">Conecta todo tu ecosistema</h3>
-            <p className="text-neutral-400 mb-6">
+            <p className="text-gray-600 dark:text-gray-400 mb-6">
               Sincroniza automáticamente con RPA. Integraciones con ERPs, bancos y SUNAT.
             </p>
             <div className="flex justify-center gap-8">
               <div>
                 <p className="text-3xl font-bold text-green-400">Auto</p>
-                <p className="text-sm text-neutral-500">Sincronización continua</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Sincronización continua</p>
               </div>
               <div>
                 <p className="text-3xl font-bold text-blue-400">80%</p>
-                <p className="text-sm text-neutral-500">Menos tiempo manual</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Menos tiempo manual</p>
               </div>
               <div>
                 <p className="text-3xl font-bold text-purple-400">450%</p>
-                <p className="text-sm text-neutral-500">ROI promedio</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">ROI promedio</p>
               </div>
             </div>
           </motion.div>
@@ -222,7 +222,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-8"
           >
-            <p className="text-xs font-medium text-neutral-500 tracking-wider uppercase">
+            <p className="text-xs font-medium text-gray-500 dark:text-gray-400 tracking-wider uppercase">
               Empresas que confían en F.L.O.W.
             </p>
           </motion.div>
@@ -242,13 +242,13 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <p className="text-xs font-medium text-neutral-500 tracking-wider uppercase mb-4">
+            <p className="text-xs font-medium text-gray-500 dark:text-gray-400 tracking-wider uppercase mb-4">
               Producto en acción
             </p>
             <h2 className="text-2xl md:text-3xl font-semibold mb-4">
               Dashboard intuitivo y poderoso
             </h2>
-            <p className="text-sm text-neutral-400 max-w-2xl mx-auto">
+            <p className="text-sm text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
               Visualiza todo tu ecosistema financiero en tiempo real desde una sola plataforma
             </p>
           </motion.div>
@@ -261,7 +261,7 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="relative max-w-6xl mx-auto mb-16"
           >
-            <div className="relative rounded-3xl overflow-hidden border border-neutral-800 shadow-2xl shadow-blue-500/20 animate-glow">
+            <div className="relative rounded-3xl overflow-hidden border border-gray-200 dark:border-gray-700 shadow-2xl shadow-blue-500/20 animate-glow">
               <Image
                 src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600&h=900&fit=crop&q=90"
                 alt="F.L.O.W. Dashboard"
@@ -278,7 +278,7 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="absolute -left-4 top-1/4 bg-neutral-900/90 backdrop-blur-xl border border-neutral-800 rounded-2xl p-6 max-w-xs shadow-2xl animate-float"
+              className="absolute -left-4 top-1/4 bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-800 backdrop-blur-xl border border-gray-200 dark:border-gray-700 rounded-2xl p-6 max-w-xs shadow-2xl animate-float"
             >
               <div className="flex items-center gap-4 mb-3">
                 <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
@@ -290,7 +290,7 @@ export default function Home() {
                   <div className="text-2xl font-bold text-white">
                     <CounterAnimation end={95} suffix="%" />
                   </div>
-                  <div className="text-sm text-neutral-400">Automatización</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">Automatización</div>
                 </div>
               </div>
             </motion.div>
@@ -300,7 +300,7 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="absolute -right-4 bottom-1/4 bg-neutral-900/90 backdrop-blur-xl border border-neutral-800 rounded-2xl p-6 max-w-xs shadow-2xl"
+              className="absolute -right-4 bottom-1/4 bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-800 backdrop-blur-xl border border-gray-200 dark:border-gray-700 rounded-2xl p-6 max-w-xs shadow-2xl"
               style={{ animationDelay: '2s' }}
             >
               <div className="flex items-center gap-4 mb-3">
@@ -313,7 +313,7 @@ export default function Home() {
                   <div className="text-2xl font-bold text-white">
                     <CounterAnimation end={24} suffix="/7" />
                   </div>
-                  <div className="text-sm text-neutral-400">Monitoreo activo</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">Monitoreo activo</div>
                 </div>
               </div>
             </motion.div>
@@ -333,11 +333,11 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 whileHover={{ y: -5 }}
-                className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6 hover:border-neutral-700 transition-all"
+                className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 hover:border-gray-300 dark:border-gray-600 transition-all"
               >
                 <div className="text-4xl mb-4">{feature.icon}</div>
                 <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p className="text-neutral-400">{feature.desc}</p>
+                <p className="text-gray-600 dark:text-gray-400">{feature.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -345,7 +345,7 @@ export default function Home() {
       </section>
 
       {/* Before/After Comparison Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-neutral-950/30">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-secondary-900/50">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -353,13 +353,13 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <p className="text-xs font-medium text-neutral-500 tracking-wider uppercase mb-4">
+            <p className="text-xs font-medium text-gray-500 dark:text-gray-400 tracking-wider uppercase mb-4">
               Transformación real
             </p>
             <h2 className="text-2xl md:text-3xl font-semibold mb-4">
               Antes vs Después
             </h2>
-            <p className="text-sm text-neutral-400 max-w-2xl mx-auto">
+            <p className="text-sm text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
               Compara cómo era tu proceso financiero y cómo será con F.L.O.W.
             </p>
           </motion.div>
@@ -369,7 +369,7 @@ export default function Home() {
       </section>
 
       {/* Problem/Solution Section - Estilo Khipu */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-neutral-950/30">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-secondary-900/50">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
@@ -378,9 +378,9 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <p className="text-xs font-medium text-neutral-500 tracking-wider uppercase mb-4">El caos financiero no debería ser normal</p>
+            <p className="text-xs font-medium text-gray-500 dark:text-gray-400 tracking-wider uppercase mb-4">El caos financiero no debería ser normal</p>
             <h2 className="text-2xl md:text-3xl font-semibold mb-4">Dirigir un negocio no debería ser así</h2>
-            <p className="text-sm text-neutral-400 max-w-2xl mx-auto">
+            <p className="text-sm text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
               Perder horas en hojas de cálculo, conciliaciones o reportes atrasados no es necesario. Flow elimina el trabajo manual.
             </p>
           </motion.div>
@@ -396,7 +396,7 @@ export default function Home() {
             >
               <div className="text-center mb-8">
                 <h3 className="text-2xl font-semibold text-red-400 mb-2">Problema</h3>
-                <p className="text-neutral-400">Proceso manual y propenso a errores</p>
+                <p className="text-gray-600 dark:text-gray-400">Proceso manual y propenso a errores</p>
               </div>
               
               <div className="space-y-4">
@@ -415,7 +415,7 @@ export default function Home() {
                     className="flex items-center space-x-3 p-4 bg-red-950/20 border border-red-800/30 rounded-xl"
                   >
                     <div className="w-2 h-2 bg-red-400 rounded-full flex-shrink-0"></div>
-                    <span className="text-neutral-300">{problem}</span>
+                    <span className="text-gray-400 dark:text-gray-300">{problem}</span>
                   </motion.div>
                 ))}
               </div>
@@ -431,7 +431,7 @@ export default function Home() {
             >
               <div className="text-center mb-8">
                 <h3 className="text-2xl font-semibold text-green-400 mb-2">Solución</h3>
-                <p className="text-neutral-400">Rápido, automatizado y fácil de usar</p>
+                <p className="text-gray-600 dark:text-gray-400">Rápido, automatizado y fácil de usar</p>
               </div>
               
               <div className="space-y-4">
@@ -450,7 +450,7 @@ export default function Home() {
                     className="flex items-center space-x-3 p-4 bg-green-950/20 border border-green-800/30 rounded-xl"
                   >
                     <div className="w-2 h-2 bg-green-400 rounded-full flex-shrink-0"></div>
-                    <span className="text-neutral-300">{solution}</span>
+                    <span className="text-gray-400 dark:text-gray-300">{solution}</span>
                   </motion.div>
                 ))}
               </div>
@@ -470,7 +470,7 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl font-bold mb-6">Hecho para los equipos que sostienen el negocio</h2>
-            <p className="text-sm text-neutral-400 max-w-2xl mx-auto">
+            <p className="text-sm text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
               Herramientas inteligentes para Finanzas, Operaciones, Administración y RRHH que buscan escalar sin fricción.
             </p>
           </motion.div>
@@ -485,13 +485,13 @@ export default function Home() {
             <motion.div
               variants={itemVariants}
               whileHover={{ y: -4 }}
-              className="bg-neutral-950 border border-neutral-800 rounded-2xl p-8 transition-transform duration-200"
+              className="bg-neutral-950 border border-gray-200 dark:border-gray-700 rounded-2xl p-8 transition-transform duration-200"
             >
               <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mb-6">
                 <div className="w-6 h-6 bg-blue-400 rounded-sm"></div>
               </div>
               <h3 className="text-2xl font-semibold mb-4">Departamentos financieros</h3>
-              <p className="text-neutral-300 leading-relaxed">
+              <p className="text-gray-400 dark:text-gray-300 leading-relaxed">
                 Automatiza cuentas por cobrar y por pagar, ingresos y compras - y enfócate en la estrategia.
               </p>
             </motion.div>
@@ -499,13 +499,13 @@ export default function Home() {
             <motion.div
               variants={itemVariants}
               whileHover={{ y: -4 }}
-              className="bg-neutral-950 border border-neutral-800 rounded-2xl p-8 transition-transform duration-200"
+              className="bg-neutral-950 border border-gray-200 dark:border-gray-700 rounded-2xl p-8 transition-transform duration-200"
             >
               <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-6">
                 <div className="w-6 h-6 bg-green-400 rounded-sm"></div>
               </div>
               <h3 className="text-2xl font-semibold mb-4">Equipos de RRHH</h3>
-              <p className="text-neutral-300 leading-relaxed">
+              <p className="text-gray-400 dark:text-gray-300 leading-relaxed">
                 Agiliza las tareas tediosas involucradas en altas, reclutamiento y nómina.
               </p>
             </motion.div>
@@ -513,13 +513,13 @@ export default function Home() {
             <motion.div
               variants={itemVariants}
               whileHover={{ y: -4 }}
-              className="bg-neutral-950 border border-neutral-800 rounded-2xl p-8 transition-transform duration-200"
+              className="bg-neutral-950 border border-gray-200 dark:border-gray-700 rounded-2xl p-8 transition-transform duration-200"
             >
               <div className="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center mb-6">
                 <div className="w-6 h-6 bg-purple-400 rounded-sm"></div>
               </div>
               <h3 className="text-2xl font-semibold mb-4">Operaciones</h3>
-              <p className="text-neutral-300 leading-relaxed">
+              <p className="text-gray-400 dark:text-gray-300 leading-relaxed">
                 Elimina el trabajo manual, sincroniza tus sistemas y evita que se pierda información.
               </p>
             </motion.div>
@@ -528,7 +528,7 @@ export default function Home() {
       </section>
 
       {/* Solutions Section - Con imágenes estilo Khipu */}
-      <section id="soluciones" className="py-20 px-4 sm:px-6 lg:px-8 bg-neutral-950/30">
+      <section id="soluciones" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-secondary-900/50">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
@@ -537,9 +537,9 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <p className="text-xs font-medium text-neutral-500 tracking-wider uppercase mb-4">Conoce Flow</p>
+            <p className="text-xs font-medium text-gray-500 dark:text-gray-400 tracking-wider uppercase mb-4">Conoce Flow</p>
             <h2 className="text-2xl md:text-3xl font-semibold mb-4">RPA + IA + CFO Digital + Ecosistema Financiero</h2>
-            <p className="text-sm text-neutral-400 max-w-2xl mx-auto">
+            <p className="text-sm text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
               No somos un ERP. Somos la capa inteligente que conecta, automatiza y potencia todo tu ecosistema financiero. 
               Integraciones + Automatización + Inteligencia + Financiamiento en una sola plataforma.
             </p>
@@ -555,7 +555,7 @@ export default function Home() {
             <motion.div
               variants={itemVariants}
               whileHover={{ y: -8, scale: 1.02 }}
-              className="group bg-black border border-neutral-800 rounded-3xl p-8 transition-all duration-300 overflow-hidden relative"
+              className="group bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 border border-gray-200 dark:border-gray-700 rounded-3xl p-8 transition-all duration-300 overflow-hidden relative"
             >
               <div className="absolute top-0 right-0 w-40 h-40 bg-blue-500/5 rounded-full blur-3xl group-hover:bg-blue-500/10 transition-all duration-500" />
               <div className="relative z-10">
@@ -569,7 +569,7 @@ export default function Home() {
                   </svg>
                 </motion.div>
                 <h3 className="text-2xl font-semibold mb-4 group-hover:text-blue-400 transition-colors">RPA + IA: Automatización Total</h3>
-                <p className="text-neutral-300 leading-relaxed mb-4">
+                <p className="text-gray-400 dark:text-gray-300 leading-relaxed mb-4">
                   Conecta tu ERP, bancos y SUNAT. Flow sincroniza, clasifica y concilia automáticamente. 
                   Ahorra 48 horas al mes eliminando trabajo manual.
                 </p>
@@ -582,7 +582,7 @@ export default function Home() {
             <motion.div
               variants={itemVariants}
               whileHover={{ y: -8, scale: 1.02 }}
-              className="group bg-black border border-neutral-800 rounded-3xl p-8 transition-all duration-300 overflow-hidden relative"
+              className="group bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 border border-gray-200 dark:border-gray-700 rounded-3xl p-8 transition-all duration-300 overflow-hidden relative"
             >
               <div className="absolute top-0 right-0 w-40 h-40 bg-green-500/5 rounded-full blur-3xl group-hover:bg-green-500/10 transition-all duration-500" />
               <div className="relative z-10">
@@ -596,7 +596,7 @@ export default function Home() {
                   </svg>
                 </motion.div>
                 <h3 className="text-2xl font-semibold mb-4 group-hover:text-green-400 transition-colors">CFO Digital: Dashboard Ejecutivo</h3>
-                <p className="text-neutral-300 leading-relaxed mb-4">
+                <p className="text-gray-400 dark:text-gray-300 leading-relaxed mb-4">
                   Score de salud financiera, ratios, predicciones con IA y alertas proactivas. 
                   Todo lo que un CFO necesita en tiempo real.
                 </p>
@@ -609,7 +609,7 @@ export default function Home() {
             <motion.div
               variants={itemVariants}
               whileHover={{ y: -8, scale: 1.02 }}
-              className="group bg-black border border-neutral-800 rounded-3xl p-8 transition-all duration-300 overflow-hidden relative"
+              className="group bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 border border-gray-200 dark:border-gray-700 rounded-3xl p-8 transition-all duration-300 overflow-hidden relative"
             >
               <div className="absolute top-0 right-0 w-40 h-40 bg-orange-500/5 rounded-full blur-3xl group-hover:bg-orange-500/10 transition-all duration-500" />
               <div className="relative z-10">
@@ -623,7 +623,7 @@ export default function Home() {
                   </svg>
                 </motion.div>
                 <h3 className="text-2xl font-semibold mb-4 group-hover:text-orange-400 transition-colors">Ecosistema Financiero</h3>
-                <p className="text-neutral-300 leading-relaxed mb-4">
+                <p className="text-gray-400 dark:text-gray-300 leading-relaxed mb-4">
                   Accede a Confirming, Factoring y líneas de crédito Flash desde la plataforma. 
                   Financiamiento inteligente cuando lo necesitas.
                 </p>
@@ -645,13 +645,13 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <p className="text-xs font-medium text-neutral-500 tracking-wider uppercase mb-4">
+            <p className="text-xs font-medium text-gray-500 dark:text-gray-400 tracking-wider uppercase mb-4">
               Tecnología de vanguardia
             </p>
             <h2 className="text-2xl md:text-3xl font-semibold mb-4">
               Construido con las mejores herramientas
             </h2>
-            <p className="text-sm text-neutral-400 max-w-2xl mx-auto">
+            <p className="text-sm text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
               Infraestructura robusta y escalable que garantiza seguridad y rendimiento
             </p>
           </motion.div>
@@ -674,7 +674,7 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: idx * 0.05 }}
                 whileHover={{ y: -5, scale: 1.05 }}
-                className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6 text-center hover:border-blue-500/50 transition-all group"
+                className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 text-center hover:border-blue-500/50 transition-all group"
               >
                 <div className="text-5xl mb-4 group-hover:scale-110 transition-transform">
                   {tech.icon}
@@ -682,7 +682,7 @@ export default function Home() {
                 <h3 className="font-semibold mb-2 group-hover:text-blue-400 transition-colors">
                   {tech.name}
                 </h3>
-                <p className="text-sm text-neutral-400">{tech.desc}</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">{tech.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -695,7 +695,7 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="mt-20 relative"
           >
-            <div className="bg-gradient-to-br from-neutral-900 to-neutral-950 border border-neutral-800 rounded-3xl p-12 overflow-hidden">
+            <div className="bg-gradient-to-br from-neutral-900 to-neutral-950 border border-gray-200 dark:border-gray-700 rounded-3xl p-12 overflow-hidden">
               <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl" />
               <div className="relative z-10">
                 <h3 className="text-2xl font-bold mb-8 text-center">Arquitectura de Flow</h3>
@@ -705,7 +705,7 @@ export default function Home() {
                       <span className="text-3xl">📥</span>
                     </div>
                     <h4 className="font-semibold mb-2">Ingesta de Datos</h4>
-                    <p className="text-sm text-neutral-400">
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
                       Captura automática desde múltiples fuentes
                     </p>
                   </div>
@@ -714,7 +714,7 @@ export default function Home() {
                       <span className="text-3xl">⚙️</span>
                     </div>
                     <h4 className="font-semibold mb-2">Procesamiento IA</h4>
-                    <p className="text-sm text-neutral-400">
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
                       Validación y clasificación inteligente
                     </p>
                   </div>
@@ -723,7 +723,7 @@ export default function Home() {
                       <span className="text-3xl">📊</span>
                     </div>
                     <h4 className="font-semibold mb-2">Visualización</h4>
-                    <p className="text-sm text-neutral-400">
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
                       Dashboards y reportes en tiempo real
                     </p>
                   </div>
@@ -735,7 +735,7 @@ export default function Home() {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-neutral-950/30">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-secondary-900/50">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
@@ -745,7 +745,7 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl font-bold mb-6">Creamos las herramientas ideales para tu equipo</h2>
-            <p className="text-sm text-neutral-400 max-w-2xl mx-auto">
+            <p className="text-sm text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
               Diseñadas para reducir el trabajo repetitivo, acelerar tus flujos de trabajo y realmente ser adoptados por tu equipo.
             </p>
           </motion.div>
@@ -762,7 +762,7 @@ export default function Home() {
                 <div className="w-8 h-8 bg-green-400 rounded-lg"></div>
               </div>
               <h3 className="text-xl font-semibold mb-3">Listas en semanas, no meses</h3>
-              <p className="text-neutral-300 text-sm">
+              <p className="text-gray-400 dark:text-gray-300 text-sm">
                 La mayoría están listas en menos de 3 semanas. Sin esperas. Sin desarrollos eternos.
               </p>
             </motion.div>
@@ -772,7 +772,7 @@ export default function Home() {
                 <div className="w-8 h-8 bg-blue-400 rounded-lg"></div>
               </div>
               <h3 className="text-xl font-semibold mb-3">Sin cambiar tus sistemas</h3>
-              <p className="text-neutral-300 text-sm">
+              <p className="text-gray-400 dark:text-gray-300 text-sm">
                 Se conectan con lo que ya usas: ERP, hojas de cálculo y bases de datos.
               </p>
             </motion.div>
@@ -782,7 +782,7 @@ export default function Home() {
                 <div className="w-8 h-8 bg-purple-400 rounded-lg"></div>
               </div>
               <h3 className="text-xl font-semibold mb-3">Sin equipo de desarrollo</h3>
-              <p className="text-neutral-300 text-sm">
+              <p className="text-gray-400 dark:text-gray-300 text-sm">
                 Nosotros lo diseñamos, lo montamos y damos soporte. No necesitas ingenieros.
               </p>
             </motion.div>
@@ -792,7 +792,7 @@ export default function Home() {
                 <div className="w-8 h-8 bg-orange-400 rounded-lg"></div>
               </div>
               <h3 className="text-xl font-semibold mb-3">ROI rápido, resultados reales</h3>
-              <p className="text-neutral-300 text-sm">
+              <p className="text-gray-400 dark:text-gray-300 text-sm">
                 Desde el primer día se ahorra tiempo y esfuerzo - sin promesas vacías.
               </p>
             </motion.div>
@@ -801,7 +801,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonios" className="py-20 px-4 sm:px-6 lg:px-8 bg-neutral-950/30">
+      <section id="testimonios" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-secondary-900/50">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
@@ -811,7 +811,7 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl font-bold mb-6">Lo dicen nuestros clientes</h2>
-            <p className="text-xl text-neutral-300">
+            <p className="text-xl text-gray-400 dark:text-gray-300">
               Empresas que ya automatizan sus finanzas con Flow
             </p>
           </motion.div>
@@ -844,30 +844,30 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ y: -4 }}
-                className="bg-black border border-neutral-800 rounded-2xl p-8 transition-transform duration-200"
+                className="bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-8 transition-transform duration-200"
               >
                 <div className="flex gap-4 mb-6">
                   {testimonial.metrics.map((metric, idx) => (
                     <div key={idx} className="text-center">
                       <div className="text-2xl font-bold text-white">{metric.value}</div>
-                      <div className="text-xs text-neutral-400">{metric.label}</div>
+                      <div className="text-xs text-gray-600 dark:text-gray-400">{metric.label}</div>
                     </div>
                   ))}
                 </div>
                 
-                <p className="text-neutral-300 mb-6 leading-relaxed">
+                <p className="text-gray-400 dark:text-gray-300 mb-6 leading-relaxed">
                   "{testimonial.quote}"
                 </p>
                 
                 <div className="flex items-center">
                   <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mr-4">
-                    <span className="text-white font-semibold text-sm">
+                    <span className="text-gray-900 dark:text-gray-900 dark:text-white font-semibold text-sm">
                       {testimonial.name.split(' ').map(n => n[0]).join('')}
                     </span>
                   </div>
                   <div>
                     <div className="font-semibold text-white">{testimonial.name}</div>
-                    <div className="text-sm text-neutral-400">{testimonial.role}</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">{testimonial.role}</div>
                   </div>
                 </div>
               </motion.div>
@@ -877,7 +877,7 @@ export default function Home() {
       </section>
 
       {/* ERP Integration Section - Estilo Khipu */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-neutral-950/30">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-secondary-900/50">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -886,9 +886,9 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <p className="text-xs font-medium text-neutral-500 tracking-wider uppercase mb-4">Integración perfecta</p>
+            <p className="text-xs font-medium text-gray-500 dark:text-gray-400 tracking-wider uppercase mb-4">Integración perfecta</p>
             <h2 className="text-2xl md:text-3xl font-semibold mb-4">Se integra con tus herramientas favoritas</h2>
-            <p className="text-sm text-neutral-400 max-w-2xl mx-auto">
+            <p className="text-sm text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
               Flow funciona con Odoo, SAP, Oracle, QuickBooks y más. Tu información se sincroniza automáticamente y de forma segura.
             </p>
           </motion.div>
@@ -900,7 +900,7 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative h-[350px] rounded-3xl overflow-hidden bg-gradient-to-br from-neutral-950 to-neutral-900 border border-neutral-800/50"
+              className="relative h-[350px] rounded-3xl overflow-hidden bg-gradient-to-br from-neutral-950 to-neutral-900 border border-gray-200 dark:border-gray-700/50"
             >
               {/* Sophisticated Minimal Animation */}
               
@@ -934,7 +934,7 @@ export default function Home() {
                 {[0, 1, 2].map((i) => (
                   <motion.div
                     key={i}
-                    className="absolute w-1 h-1 bg-white rounded-full"
+                    className="absolute w-1 h-1 bg-white dark:bg-secondary-800 dark:bg-secondary-800 rounded-full"
                     style={{
                       left: '50%',
                       top: '50%',
@@ -950,7 +950,7 @@ export default function Home() {
                     }}
                   >
                     <div 
-                      className="w-1 h-1 bg-white rounded-full"
+                      className="w-1 h-1 bg-white dark:bg-secondary-800 dark:bg-secondary-800 rounded-full"
                       style={{
                         transform: 'translate(-50%, -80px)',
                       }}
@@ -968,7 +968,7 @@ export default function Home() {
                     repeat: Infinity,
                     ease: "easeInOut"
                   }}
-                  className="relative w-28 h-28 bg-neutral-900 rounded-2xl border border-neutral-800 flex items-center justify-center p-4"
+                  className="relative w-28 h-28 bg-gray-50 dark:bg-secondary-800 rounded-2xl border border-gray-200 dark:border-gray-700 flex items-center justify-center p-4"
                 >
                   <Image 
                     src="/images/logo/flow-logo.jpg" 
@@ -1116,8 +1116,8 @@ export default function Home() {
                 >
                   <div className="text-3xl flex-shrink-0">{item.icon}</div>
                   <div>
-                    <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
-                    <p className="text-neutral-400 text-sm leading-relaxed">{item.desc}</p>
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-900 dark:text-white mb-2">{item.title}</h3>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{item.desc}</p>
                   </div>
                 </motion.div>
               ))}
@@ -1147,12 +1147,12 @@ export default function Home() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
                   whileHover={{ x: 10 }}
-                  className="flex items-start space-x-4 p-4 rounded-2xl hover:bg-neutral-900/50 transition-all duration-300"
+                  className="flex items-start space-x-4 p-4 rounded-2xl hover:bg-gray-100 dark:bg-secondary-800 transition-all duration-300"
                 >
                   <div className="text-3xl flex-shrink-0">{item.icon}</div>
                   <div>
                     <h3 className="text-lg font-semibold mb-1">{item.title}</h3>
-                    <p className="text-neutral-400 text-sm">{item.desc}</p>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm">{item.desc}</p>
                   </div>
                 </motion.div>
               ))}
@@ -1171,9 +1171,9 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <p className="text-xs font-medium text-neutral-500 tracking-wider uppercase mb-4">Proceso simple</p>
+            <p className="text-xs font-medium text-gray-500 dark:text-gray-400 tracking-wider uppercase mb-4">Proceso simple</p>
             <h2 className="text-2xl md:text-3xl font-semibold mb-4">Empezar es fácil</h2>
-            <p className="text-xl text-neutral-300">
+            <p className="text-xl text-gray-400 dark:text-gray-300">
               De la idea a la automatización activa - en solo 3 pasos.
             </p>
           </motion.div>
@@ -1194,7 +1194,7 @@ export default function Home() {
                 key={idx}
                 variants={itemVariants} 
                 whileHover={{ scale: 1.02, x: 10 }}
-                className="group relative bg-neutral-900/50 border border-neutral-800 rounded-3xl p-8 transition-all duration-300 overflow-hidden"
+                className="group relative bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-3xl p-8 transition-all duration-300 overflow-hidden"
               >
                 <div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-br ${step.color} opacity-0 group-hover:opacity-10 rounded-full blur-3xl transition-all duration-500`} />
                 <div className="relative z-10 flex items-start space-x-6">
@@ -1207,7 +1207,7 @@ export default function Home() {
                   </motion.div>
                   <div className="flex-1">
                     <h3 className="text-2xl font-semibold mb-3 group-hover:text-blue-400 transition-colors">{step.title}</h3>
-                    <p className="text-neutral-300 text-lg leading-relaxed">
+                    <p className="text-gray-400 dark:text-gray-300 text-lg leading-relaxed">
                       {step.desc}
                     </p>
                   </div>
@@ -1227,13 +1227,13 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <p className="text-xs font-medium text-neutral-500 tracking-wider uppercase mb-4">
+            <p className="text-xs font-medium text-gray-500 dark:text-gray-400 tracking-wider uppercase mb-4">
               Retorno de inversión
             </p>
             <h2 className="text-2xl md:text-3xl font-semibold mb-4">
               ¿Cuánto ahorrarás con Flow?
             </h2>
-            <p className="text-sm text-neutral-400 max-w-2xl mx-auto">
+            <p className="text-sm text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
               Calcula el impacto real que Flow tendrá en tu operación financiera
             </p>
           </motion.div>
@@ -1250,7 +1250,7 @@ export default function Home() {
       </section>
 
       {/* FAQ Section */}
-      <section id="preguntas" className="py-20 px-4 sm:px-6 lg:px-8 bg-neutral-950/30">
+      <section id="preguntas" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-secondary-900/50">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
@@ -1259,9 +1259,9 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <p className="text-xs font-medium text-neutral-500 tracking-wider uppercase mb-4">FAQ</p>
+            <p className="text-xs font-medium text-gray-500 dark:text-gray-400 tracking-wider uppercase mb-4">FAQ</p>
             <h2 className="text-4xl font-bold mb-6">Todo lo que necesitas saber</h2>
-            <p className="text-xl text-neutral-300">
+            <p className="text-xl text-gray-400 dark:text-gray-300">
               ¿Dudas? Tenemos respuestas. Aquí tienes todo lo que debes saber antes de empezar.
             </p>
           </motion.div>
@@ -1295,10 +1295,10 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="bg-black border border-neutral-800 rounded-2xl p-8"
+                className="bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-8"
               >
                 <h3 className="text-xl font-semibold mb-4 text-white">{faq.question}</h3>
-                <p className="text-neutral-300 leading-relaxed">{faq.answer}</p>
+                <p className="text-gray-400 dark:text-gray-300 leading-relaxed">{faq.answer}</p>
               </motion.div>
             ))}
           </div>
@@ -1317,7 +1317,7 @@ export default function Home() {
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
               El futuro de la gestión financiera
             </h2>
-            <p className="text-xl md:text-2xl text-neutral-300 mb-12 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-gray-400 dark:text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed">
               Flow no es solo un software: es un copiloto que piensa, aprende y te anticipa los números antes de que lo hagas tú. Únete a la nueva era de la inteligencia financiera.
             </p>
             
@@ -1325,13 +1325,13 @@ export default function Home() {
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="inline-block bg-white text-black px-12 py-6 rounded-2xl font-bold text-xl hover:bg-neutral-100 transition-all duration-200 shadow-2xl cursor-pointer"
+                className="inline-block bg-white dark:bg-secondary-800 dark:bg-secondary-800 text-gray-900 dark:text-gray-100 px-12 py-6 rounded-2xl font-bold text-xl hover:bg-neutral-100 transition-all duration-200 shadow-2xl cursor-pointer"
               >
                 Agendar consulta gratis
               </motion.div>
             </Link>
             
-            <p className="text-base text-neutral-400 mt-8">
+            <p className="text-base text-gray-600 dark:text-gray-400 mt-8">
               Sin compromiso. Evaluamos tu caso y te mostramos el potencial de automatización.
             </p>
           </motion.div>
@@ -1342,20 +1342,20 @@ export default function Home() {
       <Testimonials />
 
       {/* Footer Premium */}
-      <footer className="border-t border-neutral-800 bg-neutral-950/50">
+      <footer className="border-t border-gray-200 dark:border-gray-700 bg-neutral-950/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Newsletter Section */}
-          <div className="py-16 border-b border-neutral-800">
+          <div className="py-16 border-b border-gray-200 dark:border-gray-700">
             <div className="max-w-3xl mx-auto text-center">
               <h3 className="text-3xl font-bold mb-4">Mantente actualizado</h3>
-              <p className="text-neutral-400 mb-8">
+              <p className="text-gray-600 dark:text-gray-400 mb-8">
                 Recibe tips de automatización financiera y novedades de producto
               </p>
               <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
                 <input
                   type="email"
                   placeholder="tu@email.com"
-                  className="flex-1 px-6 py-4 bg-neutral-900 border border-neutral-800 rounded-xl text-white placeholder-neutral-500 focus:outline-none focus:border-blue-500 transition-colors"
+                  className="flex-1 px-6 py-4 bg-gray-50 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-gray-900 dark:text-white placeholder-neutral-500 focus:outline-none focus:border-blue-500 transition-colors"
                 />
                 <motion.button
                   whileHover={{ scale: 1.05 }}
@@ -1374,11 +1374,11 @@ export default function Home() {
             <div>
               <h4 className="font-semibold mb-4">Producto</h4>
               <ul className="space-y-3">
-                <li><Link href="/soluciones" className="text-neutral-400 hover:text-white transition-colors text-sm">Soluciones</Link></li>
-                <li><Link href="/como-funciona" className="text-neutral-400 hover:text-white transition-colors text-sm">Cómo funciona</Link></li>
-                <li><Link href="/precios" className="text-neutral-400 hover:text-white transition-colors text-sm">Precios</Link></li>
-                <li><Link href="/integraciones" className="text-neutral-400 hover:text-white transition-colors text-sm">Integraciones</Link></li>
-                <li><Link href="/seguridad" className="text-neutral-400 hover:text-white transition-colors text-sm">Seguridad</Link></li>
+                <li><Link href="/soluciones" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">Soluciones</Link></li>
+                <li><Link href="/como-funciona" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">Cómo funciona</Link></li>
+                <li><Link href="/precios" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">Precios</Link></li>
+                <li><Link href="/integraciones" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">Integraciones</Link></li>
+                <li><Link href="/seguridad" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">Seguridad</Link></li>
               </ul>
             </div>
 
@@ -1386,11 +1386,11 @@ export default function Home() {
             <div>
               <h4 className="font-semibold mb-4">Empresa</h4>
               <ul className="space-y-3">
-                <li><Link href="/quienes-somos" className="text-neutral-400 hover:text-white transition-colors text-sm">Quiénes somos</Link></li>
-                <li><Link href="/casos-exito" className="text-neutral-400 hover:text-white transition-colors text-sm">Casos de éxito</Link></li>
-                <li><Link href="/blog" className="text-neutral-400 hover:text-white transition-colors text-sm">Blog</Link></li>
-                <li><Link href="/consulta" className="text-neutral-400 hover:text-white transition-colors text-sm">Carreras</Link></li>
-                <li><Link href="/consulta" className="text-neutral-400 hover:text-white transition-colors text-sm">Prensa</Link></li>
+                <li><Link href="/quienes-somos" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">Quiénes somos</Link></li>
+                <li><Link href="/casos-exito" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">Casos de éxito</Link></li>
+                <li><Link href="/blog" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">Blog</Link></li>
+                <li><Link href="/consulta" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">Carreras</Link></li>
+                <li><Link href="/consulta" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">Prensa</Link></li>
               </ul>
             </div>
 
@@ -1398,11 +1398,11 @@ export default function Home() {
             <div>
               <h4 className="font-semibold mb-4">Recursos</h4>
               <ul className="space-y-3">
-                <li><Link href="/documentacion" className="text-neutral-400 hover:text-white transition-colors text-sm">Documentación</Link></li>
-                <li><Link href="/api-docs" className="text-neutral-400 hover:text-white transition-colors text-sm">API</Link></li>
-                <li><Link href="/faq" className="text-neutral-400 hover:text-white transition-colors text-sm">FAQ</Link></li>
-                <li><Link href="/contacto" className="text-neutral-400 hover:text-white transition-colors text-sm">Soporte</Link></li>
-                <li><Link href="/estado" className="text-neutral-400 hover:text-white transition-colors text-sm">Estado del sistema</Link></li>
+                <li><Link href="/documentacion" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">Documentación</Link></li>
+                <li><Link href="/api-docs" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">API</Link></li>
+                <li><Link href="/faq" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">FAQ</Link></li>
+                <li><Link href="/contacto" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">Soporte</Link></li>
+                <li><Link href="/estado" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">Estado del sistema</Link></li>
               </ul>
             </div>
 
@@ -1410,17 +1410,17 @@ export default function Home() {
             <div>
               <h4 className="font-semibold mb-4">Legal</h4>
               <ul className="space-y-3">
-                <li><Link href="/terminos" className="text-neutral-400 hover:text-white transition-colors text-sm">Términos de servicio</Link></li>
-                <li><Link href="/privacidad" className="text-neutral-400 hover:text-white transition-colors text-sm">Privacidad</Link></li>
-                <li><Link href="/privacidad" className="text-neutral-400 hover:text-white transition-colors text-sm">Cookies</Link></li>
-                <li><Link href="/terminos" className="text-neutral-400 hover:text-white transition-colors text-sm">Licencias</Link></li>
-                <li><Link href="/contacto" className="text-neutral-400 hover:text-white transition-colors text-sm">Contacto</Link></li>
+                <li><Link href="/terminos" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">Términos de servicio</Link></li>
+                <li><Link href="/privacidad" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">Privacidad</Link></li>
+                <li><Link href="/privacidad" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">Cookies</Link></li>
+                <li><Link href="/terminos" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">Licencias</Link></li>
+                <li><Link href="/contacto" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">Contacto</Link></li>
               </ul>
             </div>
           </div>
 
           {/* Bottom Footer */}
-          <div className="py-8 border-t border-neutral-800">
+          <div className="py-8 border-t border-gray-200 dark:border-gray-700">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
               <div className="flex items-center gap-2">
                 <Image 
@@ -1444,7 +1444,7 @@ export default function Home() {
                     key={social.name}
                     href="#"
                     whileHover={{ y: -2 }}
-                    className="w-10 h-10 bg-neutral-900 border border-neutral-800 rounded-xl flex items-center justify-center text-neutral-400 hover:text-white hover:border-neutral-700 transition-all"
+                    className="w-10 h-10 bg-gray-50 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-xl flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:border-gray-300 dark:border-gray-600 transition-all"
                     aria-label={social.name}
                   >
                     <span className="text-sm font-semibold">{social.icon}</span>
@@ -1452,7 +1452,7 @@ export default function Home() {
                 ))}
               </div>
 
-              <p className="text-neutral-500 text-sm">
+              <p className="text-gray-500 dark:text-gray-400 text-sm">
                 © {currentYear} Flow. Todos los derechos reservados.
               </p>
             </div>
