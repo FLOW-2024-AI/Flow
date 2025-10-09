@@ -111,20 +111,20 @@ export default function DashboardPage() {
   // Show loading while checking auth
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-black text-white flex items-center justify-center">
+      <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 flex items-center justify-center transition-colors duration-200">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
-          <p className="text-neutral-400">Verificando sesión...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
+          <p className="text-gray-600 dark:text-gray-400">Verificando sesión...</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <div className="flex">
         {/* Sidebar */}
-        <div className="w-64 bg-neutral-900 border-r border-neutral-800 min-h-screen">
+        <div className="w-64 bg-gray-50 dark:bg-secondary-800 border-r border-gray-200 dark:border-gray-700 min-h-screen transition-colors duration-200">
           <div className="p-6">
             <div className="flex items-center space-x-3 mb-8">
               <div className="w-6 h-6 bg-blue-600 rounded-lg flex items-center justify-center">

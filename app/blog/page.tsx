@@ -60,7 +60,7 @@ const categories = ["Todos", "IA & Tecnología", "Automatización", "Guías", "C
 
 export default function BlogPage() {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
 
       {/* Hero */}

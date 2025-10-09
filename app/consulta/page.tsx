@@ -130,7 +130,7 @@ export default function ConsultaPage() {
 
   if (isSuccess) {
     return (
-      <div className="min-h-screen bg-black text-white flex items-center justify-center px-4">
+      <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 flex items-center justify-center px-4 transition-colors duration-200">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -185,7 +185,7 @@ export default function ConsultaPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
 
       {/* Main Content */}
