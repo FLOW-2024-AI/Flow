@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { useRouter } from 'next/navigation'
 import FacturasTable from '@/components/FacturasTable'
 
 // Mock data para empresa cliente de Flow
@@ -85,7 +84,6 @@ const itemVariants = {
 }
 
 export default function DashboardPage() {
-  const router = useRouter()
   const [activeTab, setActiveTab] = useState<'overview' | 'analytics' | 'facturas' | 'tesoreria' | 'reportes' | 'conciliacion' | 'alertas' | 'copiloto' | 'predicciones' | 'automatizaciones' | 'salud' | 'planificacion' | 'riesgos' | 'ecosistema' | 'bancario' | 'presupuesto' | 'cobranza' | 'cuentasPorPagar' | 'flujoProyectado' | 'facturacion' | 'integraciones'>('overview')
   const [stats] = useState(mockStats)
   const [user] = useState({ name: 'Admin', email: 'admin@flow.finance' })
@@ -95,44 +93,38 @@ export default function DashboardPage() {
   const [healthScore] = useState(82)
   const [reportesTab, setReportesTab] = useState<'financieros' | 'impuestos'>('financieros')
   const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [isChecking, setIsChecking] = useState(true)
 
   // Check authentication on mount
   useEffect(() => {
-    const checkAuth = () => {
-      if (typeof window !== 'undefined') {
-        const session = localStorage.getItem('demo_session')
-        if (session === 'true') {
-          setIsAuthenticated(true)
-          setIsChecking(false)
-        } else {
-          // Redirect to login
-          const basePath = process.env.NODE_ENV === 'production' ? '/Flow' : ''
-          router.push(`${basePath}/login`)
-        }
+    if (typeof window !== 'undefined') {
+      const session = localStorage.getItem('demo_session')
+      if (session === 'true') {
+        setIsAuthenticated(true)
+      } else {
+        // Redirect to login
+        const basePath = process.env.NODE_ENV === 'production' ? '/Flow' : ''
+        window.location.href = `${basePath}/login`
       }
     }
-    
-    checkAuth()
-  }, [router])
+  }, [])
 
   // Show loading while checking auth
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-black text-white flex items-center justify-center">
+      <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 flex items-center justify-center transition-colors duration-200">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
-          <p className="text-neutral-400">Verificando sesión...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
+          <p className="text-gray-600 dark:text-gray-400">Verificando sesión...</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <div className="flex">
         {/* Sidebar */}
-        <div className="w-64 bg-neutral-900 border-r border-neutral-800 min-h-screen">
+        <div className="w-64 bg-gray-50 dark:bg-secondary-800 border-r border-gray-200 dark:border-gray-700 min-h-screen transition-colors duration-200">
           <div className="p-6">
             <div className="flex items-center space-x-3 mb-8">
               <div className="w-6 h-6 bg-blue-600 rounded-lg flex items-center justify-center">

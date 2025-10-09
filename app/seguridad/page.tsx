@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import Logo from '@/components/Logo'
+import Navbar from '@/components/Navbar'
 
 const securityFeatures = [
   {
@@ -46,28 +46,8 @@ const certifications = [
 
 export default function SeguridadPage() {
   return (
-    <div className="min-h-screen bg-black text-white">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-black/80 backdrop-blur-md border-b border-neutral-800 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-3">
-            <Link href="/" className="flex items-center">
-              <Logo 
-                width={168} 
-                height={78}
-                className="h-20 w-auto object-contain"
-              />
-            </Link>
-            
-            <Link 
-              href="/" 
-              className="text-neutral-300 hover:text-white transition-colors focus-ring rounded-md px-3 py-2"
-            >
-              ← Volver al inicio
-            </Link>
-          </div>
-        </div>
-      </nav>
+    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+      <Navbar />
 
       {/* Hero */}
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">

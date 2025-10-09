@@ -6,7 +6,7 @@ import Navbar from '@/components/Navbar'
 
 export default function ContactoPage() {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
       
       <div className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">

@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import Image from 'next/image'
+import Navbar from '@/components/Navbar'
 import { supabase } from '@/lib/supabaseClient'
 
 const containerVariants = {
@@ -130,7 +130,7 @@ export default function ConsultaPage() {
 
   if (isSuccess) {
     return (
-      <div className="min-h-screen bg-black text-white flex items-center justify-center px-4">
+      <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 flex items-center justify-center px-4 transition-colors duration-200">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -185,24 +185,8 @@ export default function ConsultaPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-black/95 backdrop-blur-xl border-b border-white/10 z-50">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex justify-between items-center h-16">
-            <Link href="/" className="flex items-center">
-              <span className="text-2xl font-bold">Flow</span>
-            </Link>
-            
-            <Link 
-              href="/"
-              className="text-neutral-300 hover:text-white transition-colors text-sm"
-            >
-              ← Volver al inicio
-            </Link>
-          </div>
-        </div>
-      </nav>
+    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+      <Navbar />
 
       {/* Main Content */}
       <div className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
