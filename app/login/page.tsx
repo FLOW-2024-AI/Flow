@@ -69,7 +69,8 @@ export default function LoginPage() {
         }
         // Redirect to dashboard - use window.location for static export
         console.log('Login successful!')
-        window.location.href = '/dashboard'
+        // Use router.push for better compatibility
+        router.push('/dashboard')
       } else {
         setError('Credenciales incorrectas. Intenta nuevamente.')
       }
@@ -92,7 +93,7 @@ export default function LoginPage() {
           animate="visible"
           className="w-full max-w-md"
         >
-          <div className="bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-800 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-2xl p-8 shadow-2xl">
+          <div className="bg-white dark:bg-secondary-800 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-2xl p-8 shadow-2xl">
             <motion.div variants={itemVariants} className="text-center mb-8">
               <h1 className="text-3xl font-bold mb-2">Iniciar Sesión</h1>
               <p className="text-gray-600 dark:text-gray-400">
@@ -130,14 +131,14 @@ export default function LoginPage() {
                     value={formData.password}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-gray-900 dark:text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent transition-all pr-12"
+                    className="w-full px-4 py-3 bg-white dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent transition-all pr-12"
                     placeholder="••••••••"
                     disabled={isLoading}
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors focus:outline-none"
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white transition-colors focus:outline-none"
                     disabled={isLoading}
                   >
                     {showPassword ? (
@@ -168,7 +169,7 @@ export default function LoginPage() {
                 <label className="flex items-center">
                   <input
                     type="checkbox"
-                    className="w-4 h-4 text-gray-900 dark:text-gray-900 dark:text-white bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 border-gray-300 dark:border-gray-600 rounded focus:ring-white focus:ring-2"
+                    className="w-4 h-4 text-gray-900 dark:text-white bg-white dark:bg-secondary-900 border-gray-300 dark:border-gray-600 rounded focus:ring-white focus:ring-2"
                     disabled={isLoading}
                   />
                   <span className="ml-2 text-sm text-gray-600 dark:text-gray-400">Recordarme</span>
@@ -176,7 +177,7 @@ export default function LoginPage() {
                 
                 <Link 
                   href="/forgot-password" 
-                  className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors focus-ring rounded px-1"
+                  className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white transition-colors focus-ring rounded px-1"
                 >
                   ¿Olvidaste tu contraseña?
                 </Link>
@@ -186,7 +187,7 @@ export default function LoginPage() {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full bg-white dark:bg-secondary-800 dark:bg-secondary-800 text-gray-900 dark:text-gray-100 py-3 px-4 rounded-xl font-semibold hover:opacity-90 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
+                  className="w-full bg-white dark:bg-secondary-800 text-gray-900 dark:text-gray-100 py-3 px-4 rounded-xl font-semibold hover:opacity-90 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
                 >
                   {isLoading ? (
                     <div className="flex items-center justify-center">
@@ -203,7 +204,7 @@ export default function LoginPage() {
             <motion.div variants={itemVariants} className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-center">
               <p className="text-sm text-gray-600 dark:text-gray-400">
                 ¿Necesitas acceso?{' '}
-                <Link href="/consulta" className="text-gray-900 dark:text-gray-900 dark:text-white hover:underline focus-ring rounded px-1">
+                <Link href="/consulta" className="text-gray-900 dark:text-white hover:underline focus-ring rounded px-1">
                   Contacta con soporte
                 </Link>
               </p>

@@ -130,7 +130,7 @@ export default function ConsultaPage() {
 
   if (isSuccess) {
     return (
-      <div className="min-h-screen bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 text-gray-900 dark:text-gray-100 flex items-center justify-center px-4 transition-colors duration-200">
+      <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 flex items-center justify-center px-4 transition-colors duration-200">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -149,7 +149,7 @@ export default function ConsultaPage() {
             Recibimos tu solicitud. Nuestro equipo se pondrá en contacto contigo en las próximas 24-48 horas para agendar tu consulta gratuita.
           </p>
           
-          <div className="bg-neutral-950/50 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 mb-8">
+          <div className="bg-gray-900 dark:bg-secondary-900/50 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 mb-8">
             <h3 className="text-lg font-semibold mb-4">¿Qué sigue?</h3>
             <div className="space-y-3 text-left">
               <div className="flex items-start space-x-3">
@@ -175,7 +175,7 @@ export default function ConsultaPage() {
           
           <Link 
             href="/"
-            className="inline-block bg-white dark:bg-secondary-800 dark:bg-secondary-800 text-gray-900 dark:text-gray-100 px-8 py-4 rounded-xl font-semibold hover:opacity-90 transition-opacity"
+            className="inline-block bg-white dark:bg-secondary-800 text-gray-900 dark:text-gray-100 px-8 py-4 rounded-xl font-semibold hover:opacity-90 transition-opacity"
           >
             Volver al inicio
           </Link>
@@ -185,7 +185,7 @@ export default function ConsultaPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
 
       {/* Main Content */}
@@ -205,7 +205,7 @@ export default function ConsultaPage() {
                 </div>
                 <h1 className="text-4xl md:text-5xl font-bold mb-6">Agenda tu consulta gratuita</h1>
                 <p className="text-xl text-gray-400 dark:text-gray-300 leading-relaxed">
-                  Descubre cómo Flow puede <span className="text-gray-900 dark:text-gray-900 dark:text-white font-semibold">reducir 80% el tiempo manual</span> y automatizar tus procesos financieros.
+                  Descubre cómo Flow puede <span className="text-gray-900 dark:text-white font-semibold">reducir 80% el tiempo manual</span> y automatizar tus procesos financieros.
                 </p>
               </div>
 
@@ -241,7 +241,7 @@ export default function ConsultaPage() {
                 </div>
               </div>
 
-              <div className="bg-neutral-950/50 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+              <div className="bg-gray-900 dark:bg-secondary-900/50 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                 <h3 className="text-lg font-semibold mb-4">¿Qué incluye la consulta?</h3>
                 <ul className="space-y-2 text-gray-400 dark:text-gray-300">
                   <li className="flex items-center space-x-2">
@@ -270,11 +270,11 @@ export default function ConsultaPage() {
 
             {/* Right Column - Form */}
             <motion.div variants={itemVariants}>
-              <div className="bg-neutral-950 border border-gray-200 dark:border-gray-700 rounded-2xl p-8">
+              <div className="bg-gray-900 dark:bg-secondary-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-8">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="nombre" className="block text-sm font-medium text-gray-900 dark:text-gray-900 dark:text-white mb-2">
+                      <label htmlFor="nombre" className="block text-sm font-medium text-gray-900 dark:text-white mb-2">
                         Nombre *
                       </label>
                       <input
@@ -284,14 +284,14 @@ export default function ConsultaPage() {
                         value={formData.nombre}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-gray-900 dark:text-white placeholder-neutral-400 focus-ring transition-colors"
+                        className="w-full px-4 py-3 bg-white dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-neutral-400 focus-ring transition-colors"
                         placeholder="Tu nombre"
                         disabled={isLoading}
                       />
                     </div>
 
                     <div>
-                      <label htmlFor="apellido" className="block text-sm font-medium text-gray-900 dark:text-gray-900 dark:text-white mb-2">
+                      <label htmlFor="apellido" className="block text-sm font-medium text-gray-900 dark:text-white mb-2">
                         Apellido *
                       </label>
                       <input
@@ -301,7 +301,7 @@ export default function ConsultaPage() {
                         value={formData.apellido}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-gray-900 dark:text-white placeholder-neutral-400 focus-ring transition-colors"
+                        className="w-full px-4 py-3 bg-white dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-neutral-400 focus-ring transition-colors"
                         placeholder="Tu apellido"
                         disabled={isLoading}
                       />
@@ -309,7 +309,7 @@ export default function ConsultaPage() {
                   </div>
 
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-900 dark:text-gray-900 dark:text-white mb-2">
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-900 dark:text-white mb-2">
                       Email corporativo *
                     </label>
                     <input
@@ -319,14 +319,14 @@ export default function ConsultaPage() {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-gray-900 dark:text-white placeholder-neutral-400 focus-ring transition-colors"
+                      className="w-full px-4 py-3 bg-white dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-neutral-400 focus-ring transition-colors"
                       placeholder="tu@empresa.com"
                       disabled={isLoading}
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="empresa" className="block text-sm font-medium text-gray-900 dark:text-gray-900 dark:text-white mb-2">
+                    <label htmlFor="empresa" className="block text-sm font-medium text-gray-900 dark:text-white mb-2">
                       Empresa *
                     </label>
                     <input
@@ -336,7 +336,7 @@ export default function ConsultaPage() {
                       value={formData.empresa}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-gray-900 dark:text-white placeholder-neutral-400 focus-ring transition-colors"
+                      className="w-full px-4 py-3 bg-white dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-neutral-400 focus-ring transition-colors"
                       placeholder="Nombre de tu empresa"
                       disabled={isLoading}
                     />
@@ -344,7 +344,7 @@ export default function ConsultaPage() {
 
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="cargo" className="block text-sm font-medium text-gray-900 dark:text-gray-900 dark:text-white mb-2">
+                      <label htmlFor="cargo" className="block text-sm font-medium text-gray-900 dark:text-white mb-2">
                         Cargo
                       </label>
                       <input
@@ -353,14 +353,14 @@ export default function ConsultaPage() {
                         name="cargo"
                         value={formData.cargo}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-gray-900 dark:text-white placeholder-neutral-400 focus-ring transition-colors"
+                        className="w-full px-4 py-3 bg-white dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-neutral-400 focus-ring transition-colors"
                         placeholder="CFO, Controller, etc."
                         disabled={isLoading}
                       />
                     </div>
 
                     <div>
-                      <label htmlFor="telefono" className="block text-sm font-medium text-gray-900 dark:text-gray-900 dark:text-white mb-2">
+                      <label htmlFor="telefono" className="block text-sm font-medium text-gray-900 dark:text-white mb-2">
                         Teléfono
                       </label>
                       <input
@@ -369,7 +369,7 @@ export default function ConsultaPage() {
                         name="telefono"
                         value={formData.telefono}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-gray-900 dark:text-white placeholder-neutral-400 focus-ring transition-colors"
+                        className="w-full px-4 py-3 bg-white dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-neutral-400 focus-ring transition-colors"
                         placeholder="+1 234 567 8900"
                         disabled={isLoading}
                       />
@@ -377,7 +377,7 @@ export default function ConsultaPage() {
                   </div>
 
                   <div>
-                    <label htmlFor="empleados" className="block text-sm font-medium text-gray-900 dark:text-gray-900 dark:text-white mb-2">
+                    <label htmlFor="empleados" className="block text-sm font-medium text-gray-900 dark:text-white mb-2">
                       Tamaño de la empresa
                     </label>
                     <select
@@ -385,7 +385,7 @@ export default function ConsultaPage() {
                       name="empleados"
                       value={formData.empleados}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-gray-900 dark:text-white focus-ring transition-colors"
+                      className="w-full px-4 py-3 bg-white dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white focus-ring transition-colors"
                       disabled={isLoading}
                     >
                       <option value="">Selecciona el tamaño</option>
@@ -398,7 +398,7 @@ export default function ConsultaPage() {
                   </div>
 
                   <div>
-                    <label htmlFor="procesos" className="block text-sm font-medium text-gray-900 dark:text-gray-900 dark:text-white mb-2">
+                    <label htmlFor="procesos" className="block text-sm font-medium text-gray-900 dark:text-white mb-2">
                       ¿Qué procesos te gustaría automatizar?
                     </label>
                     <select
@@ -406,7 +406,7 @@ export default function ConsultaPage() {
                       name="procesos"
                       value={formData.procesos}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-gray-900 dark:text-white focus-ring transition-colors"
+                      className="w-full px-4 py-3 bg-white dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white focus-ring transition-colors"
                       disabled={isLoading}
                     >
                       <option value="">Selecciona un área</option>
@@ -422,7 +422,7 @@ export default function ConsultaPage() {
                   </div>
 
                   <div>
-                    <label htmlFor="mensaje" className="block text-sm font-medium text-gray-900 dark:text-gray-900 dark:text-white mb-2">
+                    <label htmlFor="mensaje" className="block text-sm font-medium text-gray-900 dark:text-white mb-2">
                       Cuéntanos más sobre tu situación actual
                     </label>
                     <textarea
@@ -431,7 +431,7 @@ export default function ConsultaPage() {
                       value={formData.mensaje}
                       onChange={handleChange}
                       rows={4}
-                      className="w-full px-4 py-3 bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-gray-900 dark:text-white placeholder-neutral-400 focus-ring transition-colors resize-none"
+                      className="w-full px-4 py-3 bg-white dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-neutral-400 focus-ring transition-colors resize-none"
                       placeholder="Describe brevemente tus principales desafíos o procesos que consumen más tiempo..."
                       disabled={isLoading}
                     />
@@ -452,7 +452,7 @@ export default function ConsultaPage() {
                     disabled={isLoading || !formData.nombre || !formData.apellido || !formData.email || !formData.empresa}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full bg-white dark:bg-secondary-800 dark:bg-secondary-800 text-gray-900 dark:text-gray-100 font-semibold py-4 px-8 rounded-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className="w-full bg-white dark:bg-secondary-800 text-gray-900 dark:text-gray-100 font-semibold py-4 px-8 rounded-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
                     {isLoading ? (
                       <>

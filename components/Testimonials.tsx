@@ -35,7 +35,7 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-neutral-950/30">
+    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-secondary-900/50">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -43,13 +43,13 @@ export default function Testimonials() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <p className="text-xs font-medium text-neutral-500 tracking-wider uppercase mb-4">
+          <p className="text-xs font-medium text-gray-500 dark:text-gray-500 tracking-wider uppercase mb-4">
             Lo que dicen nuestros clientes
           </p>
-          <h2 className="text-2xl md:text-3xl font-semibold mb-4">
+          <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
             Historias de éxito reales
           </h2>
-          <p className="text-sm text-neutral-400 max-w-2xl mx-auto">
+          <p className="text-sm text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             Empresas que transformaron sus finanzas con Flow
           </p>
         </motion.div>
@@ -63,7 +63,7 @@ export default function Testimonials() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -8 }}
-              className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-8 hover:border-neutral-700 transition-all"
+              className="bg-white dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-8 hover:border-gray-300 dark:hover:border-gray-600 transition-all"
             >
               {/* Rating Stars */}
               <div className="flex gap-1 mb-4">
@@ -75,17 +75,17 @@ export default function Testimonials() {
               </div>
 
               {/* Quote */}
-              <p className="text-sm text-neutral-300 mb-6 leading-relaxed">
+              <p className="text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                 "{testimonial.quote}"
               </p>
 
               {/* Metric Badge */}
               <div className="inline-block bg-blue-500/10 border border-blue-500/20 rounded-full px-3 py-1 mb-6">
-                <span className="text-xs font-semibold text-blue-400">{testimonial.metrics}</span>
+                <span className="text-xs font-semibold text-blue-600 dark:text-blue-400">{testimonial.metrics}</span>
               </div>
 
               {/* Author */}
-              <div className="flex items-center gap-4 pt-6 border-t border-neutral-800">
+              <div className="flex items-center gap-4 pt-6 border-t border-gray-200 dark:border-gray-700">
                 <div className="relative w-12 h-12 rounded-full overflow-hidden">
                   <Image
                     src={testimonial.image}
@@ -95,8 +95,8 @@ export default function Testimonials() {
                   />
                 </div>
                 <div>
-                  <p className="font-semibold text-sm text-white">{testimonial.name}</p>
-                  <p className="text-xs text-neutral-400">{testimonial.role}, {testimonial.company}</p>
+                  <p className="font-semibold text-sm text-gray-900 dark:text-white">{testimonial.name}</p>
+                  <p className="text-xs text-gray-600 dark:text-gray-400">{testimonial.role}, {testimonial.company}</p>
                 </div>
               </div>
             </motion.div>

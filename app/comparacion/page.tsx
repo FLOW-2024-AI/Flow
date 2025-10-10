@@ -64,7 +64,7 @@ export default function ComparacionPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
 
       {/* Hero */}
@@ -151,7 +151,7 @@ export default function ComparacionPage() {
                 <div className="text-xs text-gray-600 dark:text-gray-400">Soporte dedicado</div>
               </div>
             </div>
-            <Link href="/consulta" className="inline-block bg-white dark:bg-secondary-800 dark:bg-secondary-800 text-gray-900 dark:text-gray-100 px-6 py-3 rounded-full font-medium text-sm hover:opacity-90 transition-opacity">
+            <Link href="/consulta" className="inline-block bg-white dark:bg-secondary-800 text-gray-900 dark:text-gray-100 px-6 py-3 rounded-full font-medium text-sm hover:opacity-90 transition-opacity">
               Comenzar con Flow
             </Link>
           </motion.div>

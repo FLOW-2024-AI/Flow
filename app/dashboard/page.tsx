@@ -98,11 +98,21 @@ export default function DashboardPage() {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const session = localStorage.getItem('demo_session')
-      if (session === 'true') {
+      const urlParams = new URLSearchParams(window.location.search)
+      const demoMode = urlParams.get('demo')
+      
+      if (session === 'true' || demoMode === 'true') {
+        // Auto-login for demo mode
+        if (demoMode === 'true') {
+          localStorage.setItem('demo_session', 'true')
+          localStorage.setItem('demo_user', JSON.stringify({ name: 'Demo User', email: 'demo@flow.finance' }))
+        }
         setIsAuthenticated(true)
       } else {
-        // Redirect to login - use window.location for static export
-        window.location.href = '/login'
+        // Redirect to login
+        setTimeout(() => {
+          window.location.href = '/login'
+        }, 100)
       }
     }
   }, [])
@@ -127,7 +137,7 @@ export default function DashboardPage() {
           <div className="p-6">
             <div className="flex items-center space-x-3 mb-8">
               <div className="w-6 h-6 bg-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-gray-900 dark:text-gray-900 dark:text-white font-bold text-xs">F</span>
+                <span className="text-gray-900 dark:text-white font-bold text-xs">F</span>
               </div>
               <span className="text-xl font-bold">Flow</span>
             </div>
@@ -140,7 +150,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'overview' 
                     ? 'bg-blue-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -154,7 +164,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'analytics' 
                     ? 'bg-blue-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -172,7 +182,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'facturacion' 
                     ? 'bg-blue-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -186,7 +196,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'cobranza' 
                     ? 'bg-blue-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -200,7 +210,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'cuentasPorPagar' 
                     ? 'bg-blue-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -214,7 +224,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'facturas' 
                     ? 'bg-blue-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -232,7 +242,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'tesoreria' 
                     ? 'bg-blue-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -246,7 +256,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'flujoProyectado' 
                     ? 'bg-blue-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -260,7 +270,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'conciliacion' 
                     ? 'bg-blue-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -278,7 +288,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'presupuesto' 
                     ? 'bg-blue-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -292,7 +302,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'reportes' 
                     ? 'bg-blue-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -310,7 +320,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'copiloto' 
                     ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -324,7 +334,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'predicciones' 
                     ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -338,7 +348,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'automatizaciones' 
                     ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -356,7 +366,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'salud' 
                     ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -370,7 +380,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'planificacion' 
                     ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -384,7 +394,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'riesgos' 
                     ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -402,7 +412,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'ecosistema' 
                     ? 'bg-gradient-to-r from-orange-600 to-amber-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -416,7 +426,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'bancario' 
                     ? 'bg-gradient-to-r from-orange-600 to-amber-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -433,7 +443,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'alertas' 
                     ? 'bg-blue-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -451,7 +461,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'integraciones' 
                     ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1451,7 +1461,7 @@ export default function DashboardPage() {
                       <input
                         type="text"
                         placeholder="Pregúntame sobre tus finanzas..."
-                        className="flex-1 bg-gray-100 dark:bg-secondary-700 border border-gray-300 dark:border-gray-600 rounded-xl px-4 py-3 text-sm text-gray-900 dark:text-gray-900 dark:text-white placeholder-neutral-500 focus:outline-none focus:border-blue-500"
+                        className="flex-1 bg-gray-100 dark:bg-secondary-700 border border-gray-300 dark:border-gray-600 rounded-xl px-4 py-3 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-blue-500"
                       />
                       <button className="bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-3 rounded-xl text-sm font-medium hover:opacity-90 transition-opacity">
                         Enviar
@@ -2030,7 +2040,7 @@ export default function DashboardPage() {
                         <span className="font-semibold">Hasta $500K</span>
                       </div>
                     </div>
-                    <button className="w-full bg-orange-600 hover:bg-orange-700 text-gray-900 dark:text-gray-900 dark:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                    <button className="w-full bg-orange-600 hover:bg-orange-700 text-gray-900 dark:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
                       Solicitar
                     </button>
                   </div>
@@ -2058,7 +2068,7 @@ export default function DashboardPage() {
                         <span className="font-semibold">Hasta $300K</span>
                       </div>
                     </div>
-                    <button className="w-full bg-blue-600 hover:bg-blue-700 text-gray-900 dark:text-gray-900 dark:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                    <button className="w-full bg-blue-600 hover:bg-blue-700 text-gray-900 dark:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
                       Solicitar
                     </button>
                   </div>
@@ -2086,7 +2096,7 @@ export default function DashboardPage() {
                         <span className="font-semibold">Hasta $150K</span>
                       </div>
                     </div>
-                    <button className="w-full bg-purple-600 hover:bg-purple-700 text-gray-900 dark:text-gray-900 dark:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                    <button className="w-full bg-purple-600 hover:bg-purple-700 text-gray-900 dark:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
                       Solicitar
                     </button>
                   </div>
@@ -2114,7 +2124,7 @@ export default function DashboardPage() {
                         <span className="font-semibold">Hasta $100K</span>
                       </div>
                     </div>
-                    <button className="w-full bg-green-600 hover:bg-green-700 text-gray-900 dark:text-gray-900 dark:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                    <button className="w-full bg-green-600 hover:bg-green-700 text-gray-900 dark:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
                       Solicitar
                     </button>
                   </div>
@@ -2205,7 +2215,7 @@ export default function DashboardPage() {
                         <span className="font-semibold">Hasta $1M</span>
                       </div>
                     </div>
-                    <button className="w-full bg-blue-600 hover:bg-blue-700 text-gray-900 dark:text-gray-900 dark:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                    <button className="w-full bg-blue-600 hover:bg-blue-700 text-gray-900 dark:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
                       Solicitar
                     </button>
                   </div>
@@ -2233,7 +2243,7 @@ export default function DashboardPage() {
                         <span className="font-semibold">Hasta 100%</span>
                       </div>
                     </div>
-                    <button className="w-full bg-purple-600 hover:bg-purple-700 text-gray-900 dark:text-gray-900 dark:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                    <button className="w-full bg-purple-600 hover:bg-purple-700 text-gray-900 dark:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
                       Solicitar
                     </button>
                   </div>
@@ -2261,7 +2271,7 @@ export default function DashboardPage() {
                         <span className="font-semibold">Desde $500K</span>
                       </div>
                     </div>
-                    <button className="w-full bg-green-600 hover:bg-green-700 text-gray-900 dark:text-gray-900 dark:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                    <button className="w-full bg-green-600 hover:bg-green-700 text-gray-900 dark:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
                       Solicitar
                     </button>
                   </div>

@@ -2,8 +2,8 @@
 const nextConfig = {
   // App Router is enabled by default in Next.js 14
   output: 'export',
+  basePath: '/Flow',
   distDir: 'docs',
-  basePath: process.env.NODE_ENV === 'production' ? '/Flow' : '',
   images: {
     unoptimized: true,
   },
