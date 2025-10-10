@@ -30,45 +30,39 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     setMounted(true)
     
-    // Check if user has manually set a preference
-    const hasUserPreference = localStorage.getItem('theme_user_preference') === 'true'
+    // Get system preference
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+    const systemTheme: Theme = mediaQuery.matches ? 'dark' : 'light'
     
-    if (hasUserPreference) {
-      // User has manually set a preference - use it
-      const savedTheme = localStorage.getItem('theme') as Theme
-      if (savedTheme === 'light' || savedTheme === 'dark') {
-        setTheme(savedTheme)
-        applyTheme(savedTheme)
-      }
-    } else {
-      // No user preference - use system preference
-      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-      const systemTheme: Theme = mediaQuery.matches ? 'dark' : 'light'
-      setTheme(systemTheme)
-      applyTheme(systemTheme)
-      
-      // Listen for system theme changes
-      const handleChange = (e: MediaQueryListEvent) => {
-        // Only update if user still hasn't set a preference
-        if (localStorage.getItem('theme_user_preference') !== 'true') {
-          const newTheme: Theme = e.matches ? 'dark' : 'light'
-          setTheme(newTheme)
-          applyTheme(newTheme)
-        }
-      }
-      
-      mediaQuery.addEventListener('change', handleChange)
-      return () => mediaQuery.removeEventListener('change', handleChange)
+    // Check if there's a saved theme
+    const savedTheme = localStorage.getItem('theme') as Theme | null
+    
+    // Use saved theme if exists, otherwise use system theme
+    const initialTheme = (savedTheme === 'light' || savedTheme === 'dark') ? savedTheme : systemTheme
+    setTheme(initialTheme)
+    applyTheme(initialTheme)
+    
+    // ALWAYS listen for system theme changes
+    const handleChange = (e: MediaQueryListEvent) => {
+      const newTheme: Theme = e.matches ? 'dark' : 'light'
+      setTheme(newTheme)
+      applyTheme(newTheme)
+      // Update localStorage to keep it in sync
+      localStorage.setItem('theme', newTheme)
+      console.log('🔄 Sistema cambió a:', newTheme)
     }
+    
+    mediaQuery.addEventListener('change', handleChange)
+    return () => mediaQuery.removeEventListener('change', handleChange)
   }, [])
 
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light'
     setTheme(newTheme)
     applyTheme(newTheme)
-    // Mark that user has set a preference
+    // Save to localStorage
     localStorage.setItem('theme', newTheme)
-    localStorage.setItem('theme_user_preference', 'true')
+    console.log('👤 Usuario cambió a:', newTheme)
   }
 
   // Prevent flash of unstyled content

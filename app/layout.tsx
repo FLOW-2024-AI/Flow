@@ -59,22 +59,15 @@ export default function RootLayout({
               (function() {
                 try {
                   var theme = localStorage.getItem('theme');
-                  var hasUserPreference = localStorage.getItem('theme_user_preference') === 'true';
+                  var systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
                   
-                  if (hasUserPreference && theme) {
-                    // User has set a preference manually
-                    if (theme === 'dark') {
-                      document.documentElement.classList.add('dark');
-                    } else {
-                      document.documentElement.classList.remove('dark');
-                    }
+                  // Use saved theme if exists, otherwise use system preference
+                  var shouldBeDark = theme ? (theme === 'dark') : systemPrefersDark;
+                  
+                  if (shouldBeDark) {
+                    document.documentElement.classList.add('dark');
                   } else {
-                    // No user preference, use system preference
-                    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                      document.documentElement.classList.add('dark');
-                    } else {
-                      document.documentElement.classList.remove('dark');
-                    }
+                    document.documentElement.classList.remove('dark');
                   }
                 } catch (e) {}
               })();
