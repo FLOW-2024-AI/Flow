@@ -104,7 +104,7 @@ export default function ChatWidget() {
                 <input
                   type="text"
                   placeholder="Escribe un mensaje..."
-                  className="flex-1 bg-neutral-800 border border-neutral-700 rounded-lg px-4 py-2 text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-blue-500"
+                  className="flex-1 bg-neutral-800 border border-neutral-700 rounded-lg px-4 py-2 text-sm text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-blue-500"
                 />
                 <button className="bg-blue-600 hover:bg-blue-700 p-2 rounded-lg transition-colors">
                   <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">

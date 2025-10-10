@@ -52,7 +52,7 @@ const integrations = [
 
 export default function IntegracionesPage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
 
       {/* Hero */}
@@ -101,7 +101,7 @@ export default function IntegracionesPage() {
                     className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 hover:border-gray-300 dark:border-gray-600 transition-all"
                   >
                     <div className="flex items-start space-x-4">
-                      <div className="w-16 h-16 flex-shrink-0 relative bg-white dark:bg-secondary-800 dark:bg-secondary-800 rounded-lg p-2 flex items-center justify-center">
+                      <div className="w-16 h-16 flex-shrink-0 relative bg-white dark:bg-secondary-800 rounded-lg p-2 flex items-center justify-center">
                         <img 
                           src={tool.logo} 
                           alt={tool.name}
@@ -168,7 +168,7 @@ export default function IntegracionesPage() {
             <p className="text-xl text-gray-400 dark:text-gray-300 mb-8">
               Creamos integraciones personalizadas para cualquier sistema con API
             </p>
-            <Link href="/consulta" className="inline-block bg-white dark:bg-secondary-800 dark:bg-secondary-800 text-gray-900 dark:text-gray-100 px-10 py-4 rounded-xl font-bold text-lg hover:opacity-90 transition-opacity">
+            <Link href="/consulta" className="inline-block bg-white dark:bg-secondary-800 text-gray-900 dark:text-gray-100 px-10 py-4 rounded-xl font-bold text-lg hover:opacity-90 transition-opacity">
               Consultar integración custom
             </Link>
           </div>

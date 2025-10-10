@@ -60,7 +60,7 @@ const categories = ["Todos", "IA & Tecnología", "Automatización", "Guías", "C
 
 export default function BlogPage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
 
       {/* Hero */}
@@ -120,7 +120,7 @@ export default function BlogPage() {
                     className="object-cover"
                   />
                   <div className="absolute top-4 left-4">
-                    <span className="bg-blue-600 text-gray-900 dark:text-gray-900 dark:text-white text-xs font-bold px-3 py-1 rounded-full">
+                    <span className="bg-blue-600 text-gray-900 dark:text-white text-xs font-bold px-3 py-1 rounded-full">
                       {post.category}
                     </span>
                   </div>
@@ -161,9 +161,9 @@ export default function BlogPage() {
             <input
               type="email"
               placeholder="tu@email.com"
-              className="flex-1 px-6 py-4 bg-gray-50 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-gray-900 dark:text-white placeholder-neutral-500 focus:outline-none focus:border-blue-500 transition-colors"
+              className="flex-1 px-6 py-4 bg-gray-50 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
             />
-            <button className="bg-white dark:bg-secondary-800 dark:bg-secondary-800 text-gray-900 dark:text-gray-100 px-8 py-4 rounded-xl font-bold hover:opacity-90 transition-opacity">
+            <button className="bg-white dark:bg-secondary-800 text-gray-900 dark:text-gray-100 px-8 py-4 rounded-xl font-bold hover:opacity-90 transition-opacity">
               Suscribirse
             </button>
           </div>

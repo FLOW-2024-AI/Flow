@@ -340,7 +340,7 @@ export default function FacturasTable() {
                 <input
                   type="text"
                   placeholder={`Filtrar ${field.label}`}
-                  className="w-full px-3 py-2 text-sm bg-neutral-800/50 border border-neutral-700 rounded-lg text-white placeholder-neutral-500 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 text-sm bg-neutral-800/50 border border-neutral-700 rounded-lg text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent"
                   value={filters[field.key] || ''}
                   onChange={(e) => setFilters(prev => ({ ...prev, [field.key]: e.target.value }))}
                 />

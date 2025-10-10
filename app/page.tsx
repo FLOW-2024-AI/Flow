@@ -42,7 +42,7 @@ export default function Home() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
 
       {/* Hero Section - Mejorado estilo Khipu */}
@@ -85,7 +85,7 @@ export default function Home() {
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-primary-600 hover:bg-primary-700 text-gray-900 dark:text-gray-900 dark:text-white px-6 py-3 rounded-full font-medium text-sm transition-all duration-200 inline-block cursor-pointer"
+                  className="bg-primary-600 hover:bg-primary-700 text-gray-900 dark:text-white px-6 py-3 rounded-full font-medium text-sm transition-all duration-200 inline-block cursor-pointer"
                 >
                   Agendar consulta gratis
                 </motion.div>
@@ -278,7 +278,7 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="absolute -left-4 top-1/4 bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-800 backdrop-blur-xl border border-gray-200 dark:border-gray-700 rounded-2xl p-6 max-w-xs shadow-2xl animate-float"
+              className="absolute -left-4 top-1/4 bg-white dark:bg-secondary-800 backdrop-blur-xl border border-gray-200 dark:border-gray-700 rounded-2xl p-6 max-w-xs shadow-2xl animate-float"
             >
               <div className="flex items-center gap-4 mb-3">
                 <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
@@ -300,7 +300,7 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="absolute -right-4 bottom-1/4 bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-800 backdrop-blur-xl border border-gray-200 dark:border-gray-700 rounded-2xl p-6 max-w-xs shadow-2xl"
+              className="absolute -right-4 bottom-1/4 bg-white dark:bg-secondary-800 backdrop-blur-xl border border-gray-200 dark:border-gray-700 rounded-2xl p-6 max-w-xs shadow-2xl"
               style={{ animationDelay: '2s' }}
             >
               <div className="flex items-center gap-4 mb-3">
@@ -485,7 +485,7 @@ export default function Home() {
             <motion.div
               variants={itemVariants}
               whileHover={{ y: -4 }}
-              className="bg-neutral-950 border border-gray-200 dark:border-gray-700 rounded-2xl p-8 transition-transform duration-200"
+              className="bg-gray-900 dark:bg-secondary-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-8 transition-transform duration-200"
             >
               <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mb-6">
                 <div className="w-6 h-6 bg-blue-400 rounded-sm"></div>
@@ -499,7 +499,7 @@ export default function Home() {
             <motion.div
               variants={itemVariants}
               whileHover={{ y: -4 }}
-              className="bg-neutral-950 border border-gray-200 dark:border-gray-700 rounded-2xl p-8 transition-transform duration-200"
+              className="bg-gray-900 dark:bg-secondary-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-8 transition-transform duration-200"
             >
               <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-6">
                 <div className="w-6 h-6 bg-green-400 rounded-sm"></div>
@@ -513,7 +513,7 @@ export default function Home() {
             <motion.div
               variants={itemVariants}
               whileHover={{ y: -4 }}
-              className="bg-neutral-950 border border-gray-200 dark:border-gray-700 rounded-2xl p-8 transition-transform duration-200"
+              className="bg-gray-900 dark:bg-secondary-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-8 transition-transform duration-200"
             >
               <div className="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center mb-6">
                 <div className="w-6 h-6 bg-purple-400 rounded-sm"></div>
@@ -555,7 +555,7 @@ export default function Home() {
             <motion.div
               variants={itemVariants}
               whileHover={{ y: -8, scale: 1.02 }}
-              className="group bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 border border-gray-200 dark:border-gray-700 rounded-3xl p-8 transition-all duration-300 overflow-hidden relative"
+              className="group bg-white dark:bg-secondary-900 border border-gray-200 dark:border-gray-700 rounded-3xl p-8 transition-all duration-300 overflow-hidden relative"
             >
               <div className="absolute top-0 right-0 w-40 h-40 bg-blue-500/5 rounded-full blur-3xl group-hover:bg-blue-500/10 transition-all duration-500" />
               <div className="relative z-10">
@@ -582,7 +582,7 @@ export default function Home() {
             <motion.div
               variants={itemVariants}
               whileHover={{ y: -8, scale: 1.02 }}
-              className="group bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 border border-gray-200 dark:border-gray-700 rounded-3xl p-8 transition-all duration-300 overflow-hidden relative"
+              className="group bg-white dark:bg-secondary-900 border border-gray-200 dark:border-gray-700 rounded-3xl p-8 transition-all duration-300 overflow-hidden relative"
             >
               <div className="absolute top-0 right-0 w-40 h-40 bg-green-500/5 rounded-full blur-3xl group-hover:bg-green-500/10 transition-all duration-500" />
               <div className="relative z-10">
@@ -609,7 +609,7 @@ export default function Home() {
             <motion.div
               variants={itemVariants}
               whileHover={{ y: -8, scale: 1.02 }}
-              className="group bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 border border-gray-200 dark:border-gray-700 rounded-3xl p-8 transition-all duration-300 overflow-hidden relative"
+              className="group bg-white dark:bg-secondary-900 border border-gray-200 dark:border-gray-700 rounded-3xl p-8 transition-all duration-300 overflow-hidden relative"
             >
               <div className="absolute top-0 right-0 w-40 h-40 bg-orange-500/5 rounded-full blur-3xl group-hover:bg-orange-500/10 transition-all duration-500" />
               <div className="relative z-10">
@@ -844,7 +844,7 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ y: -4 }}
-                className="bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-8 transition-transform duration-200"
+                className="bg-white dark:bg-secondary-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-8 transition-transform duration-200"
               >
                 <div className="flex gap-4 mb-6">
                   {testimonial.metrics.map((metric, idx) => (
@@ -861,7 +861,7 @@ export default function Home() {
                 
                 <div className="flex items-center">
                   <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mr-4">
-                    <span className="text-gray-900 dark:text-gray-900 dark:text-white font-semibold text-sm">
+                    <span className="text-gray-900 dark:text-white font-semibold text-sm">
                       {testimonial.name.split(' ').map(n => n[0]).join('')}
                     </span>
                   </div>
@@ -934,7 +934,7 @@ export default function Home() {
                 {[0, 1, 2].map((i) => (
                   <motion.div
                     key={i}
-                    className="absolute w-1 h-1 bg-white dark:bg-secondary-800 dark:bg-secondary-800 rounded-full"
+                    className="absolute w-1 h-1 bg-white dark:bg-secondary-800 rounded-full"
                     style={{
                       left: '50%',
                       top: '50%',
@@ -950,7 +950,7 @@ export default function Home() {
                     }}
                   >
                     <div 
-                      className="w-1 h-1 bg-white dark:bg-secondary-800 dark:bg-secondary-800 rounded-full"
+                      className="w-1 h-1 bg-white dark:bg-secondary-800 rounded-full"
                       style={{
                         transform: 'translate(-50%, -80px)',
                       }}
@@ -1116,7 +1116,7 @@ export default function Home() {
                 >
                   <div className="text-3xl flex-shrink-0">{item.icon}</div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-900 dark:text-white mb-2">{item.title}</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">{item.title}</h3>
                     <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{item.desc}</p>
                   </div>
                 </motion.div>
@@ -1295,7 +1295,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-8"
+                className="bg-white dark:bg-secondary-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-8"
               >
                 <h3 className="text-xl font-semibold mb-4 text-white">{faq.question}</h3>
                 <p className="text-gray-400 dark:text-gray-300 leading-relaxed">{faq.answer}</p>
@@ -1325,7 +1325,7 @@ export default function Home() {
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="inline-block bg-white dark:bg-secondary-800 dark:bg-secondary-800 text-gray-900 dark:text-gray-100 px-12 py-6 rounded-2xl font-bold text-xl hover:bg-neutral-100 transition-all duration-200 shadow-2xl cursor-pointer"
+                className="inline-block bg-white dark:bg-secondary-800 text-gray-900 dark:text-gray-100 px-12 py-6 rounded-2xl font-bold text-xl hover:bg-neutral-100 transition-all duration-200 shadow-2xl cursor-pointer"
               >
                 Agendar consulta gratis
               </motion.div>
@@ -1342,7 +1342,7 @@ export default function Home() {
       <Testimonials />
 
       {/* Footer Premium */}
-      <footer className="border-t border-gray-200 dark:border-gray-700 bg-neutral-950/50">
+      <footer className="border-t border-gray-200 dark:border-gray-700 bg-gray-900 dark:bg-secondary-900/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Newsletter Section */}
           <div className="py-16 border-b border-gray-200 dark:border-gray-700">
@@ -1355,7 +1355,7 @@ export default function Home() {
                 <input
                   type="email"
                   placeholder="tu@email.com"
-                  className="flex-1 px-6 py-4 bg-gray-50 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-gray-900 dark:text-white placeholder-neutral-500 focus:outline-none focus:border-blue-500 transition-colors"
+                  className="flex-1 px-6 py-4 bg-gray-50 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
                 />
                 <motion.button
                   whileHover={{ scale: 1.05 }}
@@ -1374,11 +1374,11 @@ export default function Home() {
             <div>
               <h4 className="font-semibold mb-4">Producto</h4>
               <ul className="space-y-3">
-                <li><Link href="/soluciones" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">Soluciones</Link></li>
-                <li><Link href="/como-funciona" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">Cómo funciona</Link></li>
-                <li><Link href="/precios" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">Precios</Link></li>
-                <li><Link href="/integraciones" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">Integraciones</Link></li>
-                <li><Link href="/seguridad" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">Seguridad</Link></li>
+                <li><Link href="/soluciones" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white transition-colors text-sm">Soluciones</Link></li>
+                <li><Link href="/como-funciona" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white transition-colors text-sm">Cómo funciona</Link></li>
+                <li><Link href="/precios" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white transition-colors text-sm">Precios</Link></li>
+                <li><Link href="/integraciones" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white transition-colors text-sm">Integraciones</Link></li>
+                <li><Link href="/seguridad" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white transition-colors text-sm">Seguridad</Link></li>
               </ul>
             </div>
 
@@ -1386,11 +1386,11 @@ export default function Home() {
             <div>
               <h4 className="font-semibold mb-4">Empresa</h4>
               <ul className="space-y-3">
-                <li><Link href="/quienes-somos" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">Quiénes somos</Link></li>
-                <li><Link href="/casos-exito" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">Casos de éxito</Link></li>
-                <li><Link href="/blog" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">Blog</Link></li>
-                <li><Link href="/consulta" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">Carreras</Link></li>
-                <li><Link href="/consulta" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">Prensa</Link></li>
+                <li><Link href="/quienes-somos" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white transition-colors text-sm">Quiénes somos</Link></li>
+                <li><Link href="/casos-exito" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white transition-colors text-sm">Casos de éxito</Link></li>
+                <li><Link href="/blog" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white transition-colors text-sm">Blog</Link></li>
+                <li><Link href="/consulta" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white transition-colors text-sm">Carreras</Link></li>
+                <li><Link href="/consulta" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white transition-colors text-sm">Prensa</Link></li>
               </ul>
             </div>
 
@@ -1398,11 +1398,11 @@ export default function Home() {
             <div>
               <h4 className="font-semibold mb-4">Recursos</h4>
               <ul className="space-y-3">
-                <li><Link href="/documentacion" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">Documentación</Link></li>
-                <li><Link href="/api-docs" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">API</Link></li>
-                <li><Link href="/faq" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">FAQ</Link></li>
-                <li><Link href="/contacto" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">Soporte</Link></li>
-                <li><Link href="/estado" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">Estado del sistema</Link></li>
+                <li><Link href="/documentacion" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white transition-colors text-sm">Documentación</Link></li>
+                <li><Link href="/api-docs" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white transition-colors text-sm">API</Link></li>
+                <li><Link href="/faq" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white transition-colors text-sm">FAQ</Link></li>
+                <li><Link href="/contacto" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white transition-colors text-sm">Soporte</Link></li>
+                <li><Link href="/estado" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white transition-colors text-sm">Estado del sistema</Link></li>
               </ul>
             </div>
 
@@ -1410,11 +1410,11 @@ export default function Home() {
             <div>
               <h4 className="font-semibold mb-4">Legal</h4>
               <ul className="space-y-3">
-                <li><Link href="/terminos" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">Términos de servicio</Link></li>
-                <li><Link href="/privacidad" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">Privacidad</Link></li>
-                <li><Link href="/privacidad" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">Cookies</Link></li>
-                <li><Link href="/terminos" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">Licencias</Link></li>
-                <li><Link href="/contacto" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white transition-colors text-sm">Contacto</Link></li>
+                <li><Link href="/terminos" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white transition-colors text-sm">Términos de servicio</Link></li>
+                <li><Link href="/privacidad" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white transition-colors text-sm">Privacidad</Link></li>
+                <li><Link href="/privacidad" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white transition-colors text-sm">Cookies</Link></li>
+                <li><Link href="/terminos" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white transition-colors text-sm">Licencias</Link></li>
+                <li><Link href="/contacto" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white transition-colors text-sm">Contacto</Link></li>
               </ul>
             </div>
           </div>
@@ -1444,7 +1444,7 @@ export default function Home() {
                     key={social.name}
                     href="#"
                     whileHover={{ y: -2 }}
-                    className="w-10 h-10 bg-gray-50 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-xl flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-gray-900 dark:text-white hover:border-gray-300 dark:border-gray-600 transition-all"
+                    className="w-10 h-10 bg-gray-50 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-xl flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white hover:border-gray-300 dark:border-gray-600 transition-all"
                     aria-label={social.name}
                   >
                     <span className="text-sm font-semibold">{social.icon}</span>

@@ -46,7 +46,7 @@ const certifications = [
 
 export default function SeguridadPage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
 
       {/* Hero */}
@@ -173,7 +173,7 @@ export default function SeguridadPage() {
           <p className="text-xl text-gray-400 dark:text-gray-300 mb-8">
             Nuestro equipo de seguridad está disponible para resolver todas tus dudas
           </p>
-          <Link href="/consulta" className="inline-block bg-white dark:bg-secondary-800 dark:bg-secondary-800 text-gray-900 dark:text-gray-100 px-10 py-4 rounded-xl font-bold text-lg hover:opacity-90 transition-opacity">
+          <Link href="/consulta" className="inline-block bg-white dark:bg-secondary-800 text-gray-900 dark:text-gray-100 px-10 py-4 rounded-xl font-bold text-lg hover:opacity-90 transition-opacity">
             Contactar equipo de seguridad
           </Link>
         </div>

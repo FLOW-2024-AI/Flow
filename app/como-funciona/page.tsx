@@ -66,7 +66,7 @@ const steps = [
 
 export default function ComoFuncionaPage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
 
       {/* Hero */}
@@ -88,7 +88,7 @@ export default function ComoFuncionaPage() {
             </h1>
             <p className="text-base md:text-lg text-gray-400 dark:text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed">
               Flow no reemplaza tu ERP. Es la capa inteligente que conecta todo tu ecosistema financiero.
-              <span className="text-gray-900 dark:text-gray-900 dark:text-white font-semibold"> 4 pasos. ROI 450%.</span>
+              <span className="text-gray-900 dark:text-white font-semibold"> 4 pasos. ROI 450%.</span>
             </p>
             <div className="flex flex-wrap justify-center gap-6 text-sm">
               <div className="flex items-center gap-2">
@@ -218,14 +218,14 @@ export default function ComoFuncionaPage() {
             </h2>
             <p className="text-lg text-gray-400 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
               Más de 20 empresas ya automatizaron sus finanzas con Flow. 
-              <span className="text-gray-900 dark:text-gray-900 dark:text-white font-semibold"> Reduce 80% el tiempo manual.</span> 
+              <span className="text-gray-900 dark:text-white font-semibold"> Reduce 80% el tiempo manual.</span> 
               {' '}Agenda tu demo y empieza hoy.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Link href="/consulta" className="inline-block bg-white dark:bg-secondary-800 dark:bg-secondary-800 text-gray-900 dark:text-gray-100 px-8 py-4 rounded-full font-bold text-base hover:opacity-90 transition-opacity shadow-xl">
+              <Link href="/consulta" className="inline-block bg-white dark:bg-secondary-800 text-gray-900 dark:text-gray-100 px-8 py-4 rounded-full font-bold text-base hover:opacity-90 transition-opacity shadow-xl">
                 Agendar demo gratuita →
               </Link>
-              <Link href="/precios" className="inline-block border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-900 dark:text-white px-8 py-4 rounded-full font-medium text-base hover:border-neutral-500 hover:bg-gray-100 dark:bg-secondary-800 transition-all">
+              <Link href="/precios" className="inline-block border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white px-8 py-4 rounded-full font-medium text-base hover:border-neutral-500 hover:bg-gray-100 dark:bg-secondary-800 transition-all">
                 Ver precios
               </Link>
             </div>

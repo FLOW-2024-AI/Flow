@@ -44,7 +44,7 @@ const scaleVariants = {
 
 export default function QuienesSomosPage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-800 dark:bg-secondary-800 dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
 
       {/* Hero Image with Parallax */}
@@ -69,7 +69,7 @@ export default function QuienesSomosPage() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="text-7xl md:text-8xl font-bold text-gray-900 dark:text-gray-900 dark:text-white text-center px-4"
+            className="text-7xl md:text-8xl font-bold text-gray-900 dark:text-white text-center px-4"
           >
             Quiénes Somos
           </motion.h1>
@@ -131,7 +131,7 @@ export default function QuienesSomosPage() {
                 <h2 className="text-xl font-bold mb-6">Nuestra Historia</h2>
                 <div className="space-y-6">
                   <p className="text-lg text-gray-400 dark:text-gray-300 leading-relaxed">
-                    Flow nació con una visión clara: <span className="text-gray-900 dark:text-gray-900 dark:text-white font-semibold">revolucionar la gestión financiera empresarial</span> mediante RPA + IA. No reemplazamos tu ERP, lo conectamos y potenciamos con automatización inteligente.
+                    Flow nació con una visión clara: <span className="text-gray-900 dark:text-white font-semibold">revolucionar la gestión financiera empresarial</span> mediante RPA + IA. No reemplazamos tu ERP, lo conectamos y potenciamos con automatización inteligente.
                   </p>
                   <p className="text-lg text-gray-400 dark:text-gray-300 leading-relaxed">
                     Identificamos que las PYMEs pierden <span className="text-blue-400 font-semibold">80% de su tiempo</span> en tareas manuales repetitivas. Nuestra plataforma conecta tu ERP, bancos y SUNAT para automatizar todo.
@@ -318,7 +318,7 @@ export default function QuienesSomosPage() {
                       <h3 className="text-base font-bold mb-2 group-hover:text-blue-400 transition-colors">Hugo Chávez</h3>
                       <p className="text-blue-400 font-semibold mb-4 text-sm tracking-wide">CEO & FUNDADOR</p>
                       <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                        Visionario fintech con <span className="text-gray-900 dark:text-gray-900 dark:text-white font-semibold">10+ años</span> liderando transformación financiera en corporaciones multinacionales. Arquitecto de ecosistemas de automatización que han procesado <span className="text-blue-400 font-semibold">+$500M</span> en transacciones.
+                        Visionario fintech con <span className="text-gray-900 dark:text-white font-semibold">10+ años</span> liderando transformación financiera en corporaciones multinacionales. Arquitecto de ecosistemas de automatización que han procesado <span className="text-blue-400 font-semibold">+$500M</span> en transacciones.
                       </p>
                     </div>
                   </div>
@@ -342,7 +342,7 @@ export default function QuienesSomosPage() {
                       <h3 className="text-base font-bold mb-2 group-hover:text-green-400 transition-colors">Marcelo Olivera</h3>
                       <p className="text-green-400 font-semibold mb-4 text-sm tracking-wide">CCO & FUNDADOR</p>
                       <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                        Growth hacker con ADN comercial. Experto en <span className="text-gray-900 dark:text-gray-900 dark:text-white font-semibold">escalar operaciones B2B</span> y construir pipelines de alto impacto. Maestro en convertir insights de mercado en estrategias de <span className="text-green-400 font-semibold">revenue exponencial</span>.
+                        Growth hacker con ADN comercial. Experto en <span className="text-gray-900 dark:text-white font-semibold">escalar operaciones B2B</span> y construir pipelines de alto impacto. Maestro en convertir insights de mercado en estrategias de <span className="text-green-400 font-semibold">revenue exponencial</span>.
                       </p>
                     </div>
                   </div>
@@ -366,7 +366,7 @@ export default function QuienesSomosPage() {
                       <h3 className="text-base font-bold mb-2 group-hover:text-purple-400 transition-colors">Nathan Villegas</h3>
                       <p className="text-purple-400 font-semibold mb-4 text-sm tracking-wide">CFO & FUNDADOR</p>
                       <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                        Ex-ingeniero de <span className="text-gray-900 dark:text-gray-900 dark:text-white font-semibold">Yape</span>, pionero en infraestructura fintech de alto volumen. Especialista en arquitectura financiera escalable y optimización de capital para <span className="text-purple-400 font-semibold">hypergrowth startups</span>.
+                        Ex-ingeniero de <span className="text-gray-900 dark:text-white font-semibold">Yape</span>, pionero en infraestructura fintech de alto volumen. Especialista en arquitectura financiera escalable y optimización de capital para <span className="text-purple-400 font-semibold">hypergrowth startups</span>.
                       </p>
                     </div>
                   </div>
@@ -423,7 +423,7 @@ export default function QuienesSomosPage() {
                     <motion.div
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="bg-white dark:bg-secondary-800 dark:bg-secondary-800 text-gray-900 dark:text-gray-100 px-10 py-5 rounded-2xl font-bold text-lg hover:opacity-90 transition-all duration-200 shadow-2xl inline-block cursor-pointer"
+                      className="bg-white dark:bg-secondary-800 text-gray-900 dark:text-gray-100 px-10 py-5 rounded-2xl font-bold text-lg hover:opacity-90 transition-all duration-200 shadow-2xl inline-block cursor-pointer"
                     >
                       Agendar consulta gratis
                     </motion.div>
@@ -432,7 +432,7 @@ export default function QuienesSomosPage() {
                     <motion.div
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="bg-blue-600 hover:bg-blue-700 text-gray-900 dark:text-gray-900 dark:text-white px-10 py-5 rounded-2xl font-bold text-lg transition-all duration-200 shadow-2xl inline-block cursor-pointer border-2 border-blue-500"
+                      className="bg-blue-600 hover:bg-blue-700 text-gray-900 dark:text-white px-10 py-5 rounded-2xl font-bold text-lg transition-all duration-200 shadow-2xl inline-block cursor-pointer border-2 border-blue-500"
                     >
                       Demo gratis aquí
                     </motion.div>

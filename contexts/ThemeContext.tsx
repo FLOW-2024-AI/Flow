@@ -20,33 +20,51 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     setMounted(true)
-    // Check localStorage for saved theme
+    
+    // Check localStorage for saved theme preference
     const savedTheme = localStorage.getItem('theme') as Theme
+    
     if (savedTheme) {
+      // User has a saved preference, use it
       setTheme(savedTheme)
-      if (savedTheme === 'dark') {
-        document.documentElement.classList.add('dark')
-      } else {
-        document.documentElement.classList.remove('dark')
-      }
+      applyTheme(savedTheme)
     } else {
-      // Default to dark theme
-      setTheme('dark')
-      document.documentElement.classList.add('dark')
+      // No saved preference, detect system preference
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+      const systemTheme: Theme = prefersDark ? 'dark' : 'light'
+      setTheme(systemTheme)
+      applyTheme(systemTheme)
     }
+
+    // Listen for system theme changes
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+    const handleChange = (e: MediaQueryListEvent) => {
+      // Only auto-update if user hasn't set a preference
+      if (!localStorage.getItem('theme')) {
+        const newTheme: Theme = e.matches ? 'dark' : 'light'
+        setTheme(newTheme)
+        applyTheme(newTheme)
+      }
+    }
+
+    mediaQuery.addEventListener('change', handleChange)
+    return () => mediaQuery.removeEventListener('change', handleChange)
   }, [])
 
   useEffect(() => {
     if (mounted) {
       localStorage.setItem('theme', theme)
-      // Update document class
-      if (theme === 'dark') {
-        document.documentElement.classList.add('dark')
-      } else {
-        document.documentElement.classList.remove('dark')
-      }
+      applyTheme(theme)
     }
   }, [theme, mounted])
+
+  const applyTheme = (newTheme: Theme) => {
+    if (newTheme === 'dark') {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  }
 
   const toggleTheme = () => {
     setTheme(prev => prev === 'light' ? 'dark' : 'light')
