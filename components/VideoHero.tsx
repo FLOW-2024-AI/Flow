@@ -58,7 +58,7 @@ export default function VideoHero({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-base md:text-lg text-neutral-300 mb-8 max-w-2xl mx-auto"
+            className="text-base md:text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto"
           >
             {subtitle}
           </motion.p>

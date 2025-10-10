@@ -148,7 +148,7 @@ export default function FacturasTable() {
         {/* Loading Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[1, 2, 3].map((i) => (
-            <div key={i} className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+            <div key={i} className="bg-neutral-900/50 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
               <div className="animate-pulse">
                 <div className="h-4 bg-neutral-700 rounded w-20 mb-2"></div>
                 <div className="h-8 bg-neutral-700 rounded w-16"></div>
@@ -191,7 +191,7 @@ export default function FacturasTable() {
           </div>
           <button 
             onClick={fetchFacturas}
-            className="mt-4 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-colors"
+            className="mt-4 bg-red-600 hover:bg-red-700 text-gray-900 dark:text-white px-4 py-2 rounded-lg transition-colors"
           >
             Reintentar
           </button>
@@ -208,7 +208,7 @@ export default function FacturasTable() {
         animate={{ opacity: 1, y: 0 }}
         className="grid grid-cols-1 md:grid-cols-3 gap-6"
       >
-        <div className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+        <div className="bg-neutral-900/50 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-neutral-400 text-sm">Facturas Hoy</p>
@@ -222,7 +222,7 @@ export default function FacturasTable() {
           </div>
         </div>
 
-        <div className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+        <div className="bg-neutral-900/50 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-neutral-400 text-sm">Total Mes</p>
@@ -236,7 +236,7 @@ export default function FacturasTable() {
           </div>
         </div>
 
-        <div className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+        <div className="bg-neutral-900/50 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-neutral-400 text-sm">Monto Total</p>
@@ -256,7 +256,7 @@ export default function FacturasTable() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
-        className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6 overflow-auto max-h-screen scrollbar-thick scrollbar-track-neutral-900 scrollbar-thumb-neutral-600 hover:scrollbar-thumb-neutral-500"
+        className="bg-neutral-900/50 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 overflow-auto max-h-screen scrollbar-thick scrollbar-track-neutral-900 scrollbar-thumb-neutral-600 hover:scrollbar-thumb-neutral-500"
       >
         <div className="flex justify-between items-center mb-6">
           <div>
@@ -266,7 +266,7 @@ export default function FacturasTable() {
           <div className="flex space-x-2">
             <button 
               onClick={fetchFacturas}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm transition-colors"
+              className="bg-blue-600 hover:bg-blue-700 text-gray-900 dark:text-white px-4 py-2 rounded-lg text-sm transition-colors"
             >
               Actualizar
             </button>
@@ -284,7 +284,7 @@ export default function FacturasTable() {
               <input
                 type="text"
                 placeholder="Buscar en todas las columnas..."
-                className="w-full pl-10 pr-4 py-3 bg-neutral-800 border border-neutral-700 rounded-lg text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full pl-10 pr-4 py-3 bg-neutral-800 border border-neutral-700 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -292,22 +292,22 @@ export default function FacturasTable() {
             
             {/* Selector de Registros por Página */}
             <div className="flex items-center space-x-2">
-              <label className="text-sm text-neutral-300">Mostrar:</label>
+              <label className="text-sm text-gray-600 dark:text-gray-300">Mostrar:</label>
               <select
                 value={itemsPerPage}
                 onChange={(e) => setItemsPerPage(Number(e.target.value))}
-                className="bg-neutral-800 border border-neutral-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="bg-neutral-800 border border-neutral-700 rounded-lg px-3 py-2 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value={10}>10</option>
                 <option value={50}>50</option>
                 <option value={100}>100</option>
               </select>
-              <span className="text-sm text-neutral-300">registros</span>
+              <span className="text-sm text-gray-600 dark:text-gray-300">registros</span>
             </div>
 
             {/* Selector de Tamaño de Tabla */}
             <div className="flex items-center space-x-2">
-              <label className="text-sm text-neutral-300">Tamaño:</label>
+              <label className="text-sm text-gray-600 dark:text-gray-300">Tamaño:</label>
               <div className="flex bg-neutral-800 rounded-lg border border-neutral-700">
                 {(['small', 'medium', 'large'] as const).map((size) => (
                   <button
@@ -316,7 +316,7 @@ export default function FacturasTable() {
                     className={`px-3 py-2 text-xs font-medium transition-colors ${
                       tableSize === size
                         ? 'bg-blue-600 text-white'
-                        : 'text-neutral-300 hover:text-white hover:bg-neutral-700'
+                        : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-neutral-700'
                     } ${size === 'small' ? 'rounded-l-lg' : size === 'large' ? 'rounded-r-lg' : ''}`}
                   >
                     {size === 'small' ? 'S' : size === 'medium' ? 'M' : 'L'}
@@ -340,14 +340,14 @@ export default function FacturasTable() {
                 <input
                   type="text"
                   placeholder={`Filtrar ${field.label}`}
-                  className="w-full px-3 py-2 text-sm bg-neutral-800/50 border border-neutral-700 rounded-lg text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 text-sm bg-neutral-800/50 border border-neutral-700 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent"
                   value={filters[field.key] || ''}
                   onChange={(e) => setFilters(prev => ({ ...prev, [field.key]: e.target.value }))}
                 />
                 {filters[field.key] && (
                   <button
                     onClick={() => setFilters(prev => ({ ...prev, [field.key]: '' }))}
-                    className="absolute right-2 top-1/2 transform -translate-y-1/2 text-neutral-400 hover:text-white"
+                    className="absolute right-2 top-1/2 transform -translate-y-1/2 text-neutral-400 hover:text-gray-900 dark:text-white"
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -366,7 +366,7 @@ export default function FacturasTable() {
                   setFilters({})
                   setSearchTerm('')
                 }}
-                className="px-4 py-2 text-sm bg-neutral-800 hover:bg-neutral-700 text-neutral-300 hover:text-white rounded-lg transition-colors"
+                className="px-4 py-2 text-sm bg-neutral-800 hover:bg-neutral-700 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:text-white rounded-lg transition-colors"
               >
                 Limpiar todos los filtros
               </button>
@@ -413,7 +413,7 @@ export default function FacturasTable() {
                     <th 
                       key={column.key}
                       className={`
-                        py-3 px-4 text-left text-xs font-medium text-neutral-300 uppercase tracking-wider
+                        py-3 px-4 text-left text-xs font-medium text-gray-600 dark:text-gray-300 uppercase tracking-wider
                         cursor-pointer hover:bg-neutral-700 transition-colors select-none
                         ${tableSize === 'small' ? 'py-2 px-2' : tableSize === 'large' ? 'py-4 px-6' : 'py-3 px-4'}
                       `}
@@ -452,18 +452,18 @@ export default function FacturasTable() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
-                    className="border-t border-neutral-800 hover:bg-neutral-800/30 transition-colors"
+                    className="border-t border-gray-200 dark:border-gray-700 hover:bg-neutral-800/30 transition-colors"
                   >
                     {[
-                      { value: factura.numero_factura || 'N/A', className: 'text-neutral-300 font-mono' },
-                      { value: factura.ruc_emisor || 'N/A', className: 'text-neutral-300 font-mono' },
-                      { value: factura.razon_social || 'N/A', className: 'text-white font-medium max-w-xs truncate' },
+                      { value: factura.numero_factura || 'N/A', className: 'text-gray-600 dark:text-gray-300 font-mono' },
+                      { value: factura.ruc_emisor || 'N/A', className: 'text-gray-600 dark:text-gray-300 font-mono' },
+                      { value: factura.razon_social || 'N/A', className: 'text-gray-900 dark:text-white font-medium max-w-xs truncate' },
                       { value: factura.direccion_emisor || 'N/A', className: 'text-neutral-400 max-w-xs truncate' },
-                      { value: formatDate(factura.fecha_emision), className: 'text-neutral-300' },
-                      { value: factura.proveedor || 'N/A', className: 'text-neutral-300 max-w-xs truncate' },
-                      { value: factura.codigo_producto || 'N/A', className: 'text-neutral-300 font-mono' },
-                      { value: factura.descripcion || 'N/A', className: 'text-neutral-300 max-w-xs truncate' },
-                      { value: factura.cantidad || 0, className: 'text-neutral-300 text-center' },
+                      { value: formatDate(factura.fecha_emision), className: 'text-gray-600 dark:text-gray-300' },
+                      { value: factura.proveedor || 'N/A', className: 'text-gray-600 dark:text-gray-300 max-w-xs truncate' },
+                      { value: factura.codigo_producto || 'N/A', className: 'text-gray-600 dark:text-gray-300 font-mono' },
+                      { value: factura.descripcion || 'N/A', className: 'text-gray-600 dark:text-gray-300 max-w-xs truncate' },
+                      { value: factura.cantidad || 0, className: 'text-gray-600 dark:text-gray-300 text-center' },
                       { value: `S/ ${factura.precio_unitario?.toLocaleString('es-PE', {minimumFractionDigits: 2}) || '0.00'}`, className: 'text-green-400 font-medium' },
                       { value: `S/ ${factura.valor_venta?.toLocaleString('es-PE', {minimumFractionDigits: 2}) || '0.00'}`, className: 'text-green-400 font-medium' },
                       { value: `S/ ${factura.igv?.toLocaleString('es-PE', {minimumFractionDigits: 2}) || '0.00'}`, className: 'text-yellow-400 font-medium' },
@@ -506,7 +506,7 @@ export default function FacturasTable() {
 
         {/* Paginación Mejorada */}
         {totalPages > 1 && (
-          <div className="flex flex-col sm:flex-row items-center justify-between mt-6 pt-4 border-t border-neutral-800 gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-between mt-6 pt-4 border-t border-gray-200 dark:border-gray-700 gap-4">
             <div className="text-sm text-neutral-400">
               Mostrando {((currentPage - 1) * itemsPerPage) + 1} - {Math.min(currentPage * itemsPerPage, stats.total)} de {stats.total} facturas
             </div>
@@ -547,7 +547,7 @@ export default function FacturasTable() {
                       className={`px-3 py-2 text-sm rounded-lg transition-colors ${
                         currentPage === pageNum
                           ? 'bg-blue-600 text-white'
-                          : 'bg-neutral-800 hover:bg-neutral-700 text-neutral-300 hover:text-white'
+                          : 'bg-neutral-800 hover:bg-neutral-700 text-gray-600 dark:text-gray-300 hover:text-white'
                       }`}
                     >
                       {pageNum}

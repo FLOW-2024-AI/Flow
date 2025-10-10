@@ -18,32 +18,46 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>('dark')
   const [mounted, setMounted] = useState(false)
 
+  // Initialize theme on mount
   useEffect(() => {
     setMounted(true)
     
-    // Check localStorage for saved theme preference
-    const savedTheme = localStorage.getItem('theme') as Theme
+    // Check localStorage first
+    const savedTheme = localStorage.getItem('theme') as Theme | null
     
-    if (savedTheme) {
-      // User has a saved preference, use it
+    if (savedTheme && (savedTheme === 'light' || savedTheme === 'dark')) {
+      // User has a saved preference
       setTheme(savedTheme)
-      applyTheme(savedTheme)
+      if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
     } else {
-      // No saved preference, detect system preference
+      // No saved preference, detect system
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
       const systemTheme: Theme = prefersDark ? 'dark' : 'light'
       setTheme(systemTheme)
-      applyTheme(systemTheme)
+      if (systemTheme === 'dark') {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
     }
 
     // Listen for system theme changes
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
     const handleChange = (e: MediaQueryListEvent) => {
-      // Only auto-update if user hasn't set a preference
-      if (!localStorage.getItem('theme')) {
+      // Only auto-update if user hasn't manually set a preference
+      const saved = localStorage.getItem('theme')
+      if (!saved) {
         const newTheme: Theme = e.matches ? 'dark' : 'light'
         setTheme(newTheme)
-        applyTheme(newTheme)
+        if (newTheme === 'dark') {
+          document.documentElement.classList.add('dark')
+        } else {
+          document.documentElement.classList.remove('dark')
+        }
       }
     }
 
@@ -51,23 +65,28 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     return () => mediaQuery.removeEventListener('change', handleChange)
   }, [])
 
+  // Apply theme changes
   useEffect(() => {
     if (mounted) {
       localStorage.setItem('theme', theme)
-      applyTheme(theme)
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
     }
   }, [theme, mounted])
 
-  const applyTheme = (newTheme: Theme) => {
-    if (newTheme === 'dark') {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
+  const toggleTheme = () => {
+    setTheme(prev => {
+      const newTheme = prev === 'light' ? 'dark' : 'light'
+      return newTheme
+    })
   }
 
-  const toggleTheme = () => {
-    setTheme(prev => prev === 'light' ? 'dark' : 'light')
+  // Prevent flash of unstyled content
+  if (!mounted) {
+    return <>{children}</>
   }
 
   return (

@@ -169,7 +169,7 @@ export default function QuienesSomosPage() {
                     whileHover={{ rotate: 360 }}
                     transition={{ duration: 0.6 }}
                   >
-                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-8 h-8 text-gray-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
                   </motion.div>
@@ -193,7 +193,7 @@ export default function QuienesSomosPage() {
                     whileHover={{ rotate: 360 }}
                     transition={{ duration: 0.6 }}
                   >
-                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-8 h-8 text-gray-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                     </svg>
@@ -231,7 +231,7 @@ export default function QuienesSomosPage() {
                       whileHover={{ rotate: 360, scale: 1.1 }}
                       transition={{ duration: 0.6 }}
                     >
-                      <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-10 h-10 text-gray-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </motion.div>
@@ -251,7 +251,7 @@ export default function QuienesSomosPage() {
                       whileHover={{ rotate: 360, scale: 1.1 }}
                       transition={{ duration: 0.6 }}
                     >
-                      <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-10 h-10 text-gray-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                       </svg>
                     </motion.div>
@@ -271,7 +271,7 @@ export default function QuienesSomosPage() {
                       whileHover={{ rotate: 360, scale: 1.1 }}
                       transition={{ duration: 0.6 }}
                     >
-                      <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-10 h-10 text-gray-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                       </svg>
                     </motion.div>
@@ -313,7 +313,7 @@ export default function QuienesSomosPage() {
                         whileHover={{ scale: 1.1, rotate: 5 }}
                         transition={{ duration: 0.3 }}
                       >
-                        <span className="text-lg font-bold text-white">HC</span>
+                        <span className="text-lg font-bold text-gray-900 dark:text-white">HC</span>
                       </motion.div>
                       <h3 className="text-base font-bold mb-2 group-hover:text-blue-400 transition-colors">Hugo Chávez</h3>
                       <p className="text-blue-400 font-semibold mb-4 text-sm tracking-wide">CEO & FUNDADOR</p>
@@ -337,7 +337,7 @@ export default function QuienesSomosPage() {
                         whileHover={{ scale: 1.1, rotate: 5 }}
                         transition={{ duration: 0.3 }}
                       >
-                        <span className="text-lg font-bold text-white">MO</span>
+                        <span className="text-lg font-bold text-gray-900 dark:text-white">MO</span>
                       </motion.div>
                       <h3 className="text-base font-bold mb-2 group-hover:text-green-400 transition-colors">Marcelo Olivera</h3>
                       <p className="text-green-400 font-semibold mb-4 text-sm tracking-wide">CCO & FUNDADOR</p>
@@ -361,7 +361,7 @@ export default function QuienesSomosPage() {
                         whileHover={{ scale: 1.1, rotate: 5 }}
                         transition={{ duration: 0.3 }}
                       >
-                        <span className="text-lg font-bold text-white">NV</span>
+                        <span className="text-lg font-bold text-gray-900 dark:text-white">NV</span>
                       </motion.div>
                       <h3 className="text-base font-bold mb-2 group-hover:text-purple-400 transition-colors">Nathan Villegas</h3>
                       <p className="text-purple-400 font-semibold mb-4 text-sm tracking-wide">CFO & FUNDADOR</p>

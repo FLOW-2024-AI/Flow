@@ -65,7 +65,7 @@ export default function ExitIntent() {
               {/* Content */}
               <div className="text-center">
                 <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-8 h-8 text-gray-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
@@ -79,7 +79,7 @@ export default function ExitIntent() {
                 <div className="space-y-3">
                   <button
                     onClick={handleCTA}
-                    className="w-full bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-full font-medium text-sm transition-colors"
+                    className="w-full bg-primary-600 hover:bg-primary-700 text-gray-900 dark:text-white px-6 py-3 rounded-full font-medium text-sm transition-colors"
                   >
                     Agendar Demo Gratuita
                   </button>

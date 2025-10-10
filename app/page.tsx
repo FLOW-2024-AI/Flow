@@ -282,12 +282,12 @@ export default function Home() {
             >
               <div className="flex items-center gap-4 mb-3">
                 <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-6 h-6 text-gray-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-white">
+                  <div className="text-2xl font-bold text-gray-900 dark:text-white">
                     <CounterAnimation end={95} suffix="%" />
                   </div>
                   <div className="text-sm text-gray-600 dark:text-gray-400">Automatización</div>
@@ -305,12 +305,12 @@ export default function Home() {
             >
               <div className="flex items-center gap-4 mb-3">
                 <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-6 h-6 text-gray-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-white">
+                  <div className="text-2xl font-bold text-gray-900 dark:text-white">
                     <CounterAnimation end={24} suffix="/7" />
                   </div>
                   <div className="text-sm text-gray-600 dark:text-gray-400">Monitoreo activo</div>
@@ -564,7 +564,7 @@ export default function Home() {
                   whileHover={{ rotate: [0, -10, 10, -10, 0] }}
                   transition={{ duration: 0.5 }}
                 >
-                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-10 h-10 text-gray-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                   </svg>
                 </motion.div>
@@ -591,7 +591,7 @@ export default function Home() {
                   whileHover={{ rotate: [0, -10, 10, -10, 0] }}
                   transition={{ duration: 0.5 }}
                 >
-                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-10 h-10 text-gray-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                   </svg>
                 </motion.div>
@@ -618,7 +618,7 @@ export default function Home() {
                   whileHover={{ rotate: [0, -10, 10, -10, 0] }}
                   transition={{ duration: 0.5 }}
                 >
-                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-10 h-10 text-gray-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
                 </motion.div>
@@ -849,7 +849,7 @@ export default function Home() {
                 <div className="flex gap-4 mb-6">
                   {testimonial.metrics.map((metric, idx) => (
                     <div key={idx} className="text-center">
-                      <div className="text-2xl font-bold text-white">{metric.value}</div>
+                      <div className="text-2xl font-bold text-gray-900 dark:text-white">{metric.value}</div>
                       <div className="text-xs text-gray-600 dark:text-gray-400">{metric.label}</div>
                     </div>
                   ))}
@@ -866,7 +866,7 @@ export default function Home() {
                     </span>
                   </div>
                   <div>
-                    <div className="font-semibold text-white">{testimonial.name}</div>
+                    <div className="font-semibold text-gray-900 dark:text-white">{testimonial.name}</div>
                     <div className="text-sm text-gray-600 dark:text-gray-400">{testimonial.role}</div>
                   </div>
                 </div>
@@ -1297,7 +1297,7 @@ export default function Home() {
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 className="bg-white dark:bg-secondary-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-8"
               >
-                <h3 className="text-xl font-semibold mb-4 text-white">{faq.question}</h3>
+                <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">{faq.question}</h3>
                 <p className="text-gray-400 dark:text-gray-300 leading-relaxed">{faq.answer}</p>
               </motion.div>
             ))}

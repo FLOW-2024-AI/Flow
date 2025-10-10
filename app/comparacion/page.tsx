@@ -108,7 +108,7 @@ export default function ComparacionPage() {
             {features.map((category, catIndex) => (
               <div key={catIndex} className="border-b border-gray-200 dark:border-gray-700 last:border-b-0">
                 <div className="bg-gray-100 dark:bg-secondary-800 px-6 py-3">
-                  <h3 className="text-sm font-semibold text-white">{category.category}</h3>
+                  <h3 className="text-sm font-semibold text-gray-900 dark:text-white">{category.category}</h3>
                 </div>
                 {category.items.map((item, itemIndex) => (
                   <motion.div

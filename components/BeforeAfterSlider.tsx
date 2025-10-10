@@ -42,7 +42,7 @@ export default function BeforeAfterSlider() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: idx * 0.1 }}
-                  className="flex items-center gap-3 text-neutral-300"
+                  className="flex items-center gap-3 text-gray-600 dark:text-gray-300"
                 >
                   <span className="text-2xl">{item.split(' ')[0]}</span>
                   <span>{item.substring(item.indexOf(' ') + 1)}</span>
@@ -73,7 +73,7 @@ export default function BeforeAfterSlider() {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: idx * 0.1 }}
-                  className="flex items-center gap-3 text-neutral-300"
+                  className="flex items-center gap-3 text-gray-600 dark:text-gray-300"
                 >
                   <span className="text-2xl">{item.split(' ')[0]}</span>
                   <span>{item.substring(item.indexOf(' ') + 1)}</span>

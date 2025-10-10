@@ -94,7 +94,7 @@ export default function CTAForm() {
         <div className="text-green-400 text-lg font-medium mb-2">
           ¡Listo! Recibimos tu solicitud.
         </div>
-        <p className="text-neutral-300">
+        <p className="text-gray-600 dark:text-gray-300">
           Te escribiremos pronto.
         </p>
       </motion.div>
@@ -111,7 +111,7 @@ export default function CTAForm() {
     >
       <div className="space-y-4">
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-white mb-2">
+          <label htmlFor="email" className="block text-sm font-medium text-gray-900 dark:text-white mb-2">
             Email *
           </label>
           <input
@@ -121,14 +121,14 @@ export default function CTAForm() {
             value={formData.email}
             onChange={handleChange}
             required
-            className="w-full px-4 py-3 bg-neutral-950 border border-neutral-800 rounded-xl text-white placeholder-neutral-400 focus-ring transition-colors"
+            className="w-full px-4 py-3 bg-white dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus-ring transition-colors"
             placeholder="tu@empresa.com"
             disabled={isLoading}
           />
         </div>
 
         <div>
-          <label htmlFor="company" className="block text-sm font-medium text-white mb-2">
+          <label htmlFor="company" className="block text-sm font-medium text-gray-900 dark:text-white mb-2">
             Empresa
           </label>
           <input
@@ -137,14 +137,14 @@ export default function CTAForm() {
             name="company"
             value={formData.company}
             onChange={handleChange}
-            className="w-full px-4 py-3 bg-neutral-950 border border-neutral-800 rounded-xl text-white placeholder-neutral-400 focus-ring transition-colors"
+            className="w-full px-4 py-3 bg-white dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus-ring transition-colors"
             placeholder="Nombre de tu empresa"
             disabled={isLoading}
           />
         </div>
 
         <div>
-          <label htmlFor="role" className="block text-sm font-medium text-white mb-2">
+          <label htmlFor="role" className="block text-sm font-medium text-gray-900 dark:text-white mb-2">
             Cargo
           </label>
           <input
@@ -153,7 +153,7 @@ export default function CTAForm() {
             name="role"
             value={formData.role}
             onChange={handleChange}
-            className="w-full px-4 py-3 bg-neutral-950 border border-neutral-800 rounded-xl text-white placeholder-neutral-400 focus-ring transition-colors"
+            className="w-full px-4 py-3 bg-white dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus-ring transition-colors"
             placeholder="CFO, Controller, etc."
             disabled={isLoading}
           />

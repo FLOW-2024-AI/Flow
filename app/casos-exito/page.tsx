@@ -160,12 +160,12 @@ export default function CasosExitoPage() {
                   </p>
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                      <span className="text-xs font-bold text-white">
+                      <span className="text-xs font-bold text-gray-900 dark:text-white">
                         {study.testimonial.author.split(' ').map(n => n[0]).join('')}
                       </span>
                     </div>
                     <div>
-                      <p className="text-sm font-semibold text-white">{study.testimonial.author}</p>
+                      <p className="text-sm font-semibold text-gray-900 dark:text-white">{study.testimonial.author}</p>
                       <p className="text-xs text-gray-600 dark:text-gray-400">{study.testimonial.role}</p>
                     </div>
                   </div>

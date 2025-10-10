@@ -66,7 +66,7 @@ export default function SupabaseDiagnostic() {
   };
 
   return (
-    <div className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+    <div className="bg-neutral-900/50 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
       <div className="flex justify-between items-center mb-6">
         <div>
           <h3 className="text-xl font-semibold flex items-center">
@@ -80,7 +80,7 @@ export default function SupabaseDiagnostic() {
         <button
           onClick={runDiagnostic}
           disabled={loading}
-          className="bg-blue-600 hover:bg-blue-700 disabled:bg-blue-800 text-white px-4 py-2 rounded-lg transition-colors flex items-center space-x-2"
+          className="bg-blue-600 hover:bg-blue-700 disabled:bg-blue-800 text-gray-900 dark:text-white px-4 py-2 rounded-lg transition-colors flex items-center space-x-2"
         >
           {loading ? (
             <>
@@ -151,11 +151,11 @@ export default function SupabaseDiagnostic() {
                 {test.details && (
                   <div className="mt-3 ml-11">
                     <details className="text-sm">
-                      <summary className="cursor-pointer text-neutral-400 hover:text-neutral-300">
+                      <summary className="cursor-pointer text-neutral-400 hover:text-gray-600 dark:text-gray-300">
                         Ver detalles
                       </summary>
                       <div className="mt-2 p-3 bg-neutral-900/50 rounded border border-neutral-600">
-                        <pre className="text-xs text-neutral-300 overflow-x-auto">
+                        <pre className="text-xs text-gray-600 dark:text-gray-300 overflow-x-auto">
                           {typeof test.details === 'string' 
                             ? test.details 
                             : JSON.stringify(test.details, null, 2)
