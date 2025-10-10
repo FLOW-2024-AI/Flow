@@ -14,82 +14,61 @@ const ThemeContext = createContext<ThemeContextType>({
   toggleTheme: () => {}
 })
 
+function applyTheme(theme: Theme) {
+  const root = document.documentElement
+  if (theme === 'dark') {
+    root.classList.add('dark')
+  } else {
+    root.classList.remove('dark')
+  }
+}
+
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>('dark')
   const [mounted, setMounted] = useState(false)
-  const [userPreference, setUserPreference] = useState(false)
 
-  // Initialize theme on mount
   useEffect(() => {
     setMounted(true)
     
-    // Check localStorage first
-    const savedTheme = localStorage.getItem('theme') as Theme | null
+    // Check if user has manually set a preference
     const hasUserPreference = localStorage.getItem('theme_user_preference') === 'true'
     
-    if (savedTheme && hasUserPreference) {
-      // User has manually set a preference
-      setTheme(savedTheme)
-      setUserPreference(true)
-      if (savedTheme === 'dark') {
-        document.documentElement.classList.add('dark')
-      } else {
-        document.documentElement.classList.remove('dark')
+    if (hasUserPreference) {
+      // User has manually set a preference - use it
+      const savedTheme = localStorage.getItem('theme') as Theme
+      if (savedTheme === 'light' || savedTheme === 'dark') {
+        setTheme(savedTheme)
+        applyTheme(savedTheme)
       }
     } else {
-      // No user preference, detect system
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-      const systemTheme: Theme = prefersDark ? 'dark' : 'light'
+      // No user preference - use system preference
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+      const systemTheme: Theme = mediaQuery.matches ? 'dark' : 'light'
       setTheme(systemTheme)
-      setUserPreference(false)
-      if (systemTheme === 'dark') {
-        document.documentElement.classList.add('dark')
-      } else {
-        document.documentElement.classList.remove('dark')
-      }
-    }
-
-    // Listen for system theme changes
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-    const handleChange = (e: MediaQueryListEvent) => {
-      // Only auto-update if user hasn't manually set a preference
-      const hasPreference = localStorage.getItem('theme_user_preference') === 'true'
-      if (!hasPreference) {
-        const newTheme: Theme = e.matches ? 'dark' : 'light'
-        setTheme(newTheme)
-        if (newTheme === 'dark') {
-          document.documentElement.classList.add('dark')
-        } else {
-          document.documentElement.classList.remove('dark')
+      applyTheme(systemTheme)
+      
+      // Listen for system theme changes
+      const handleChange = (e: MediaQueryListEvent) => {
+        // Only update if user still hasn't set a preference
+        if (localStorage.getItem('theme_user_preference') !== 'true') {
+          const newTheme: Theme = e.matches ? 'dark' : 'light'
+          setTheme(newTheme)
+          applyTheme(newTheme)
         }
       }
+      
+      mediaQuery.addEventListener('change', handleChange)
+      return () => mediaQuery.removeEventListener('change', handleChange)
     }
-
-    mediaQuery.addEventListener('change', handleChange)
-    return () => mediaQuery.removeEventListener('change', handleChange)
   }, [])
 
-  // Apply theme changes when user toggles
-  useEffect(() => {
-    if (mounted && userPreference) {
-      localStorage.setItem('theme', theme)
-      localStorage.setItem('theme_user_preference', 'true')
-      if (theme === 'dark') {
-        document.documentElement.classList.add('dark')
-      } else {
-        document.documentElement.classList.remove('dark')
-      }
-    }
-  }, [theme, mounted, userPreference])
-
   const toggleTheme = () => {
-    setUserPreference(true)
-    setTheme(prev => {
-      const newTheme = prev === 'light' ? 'dark' : 'light'
-      localStorage.setItem('theme', newTheme)
-      localStorage.setItem('theme_user_preference', 'true')
-      return newTheme
-    })
+    const newTheme = theme === 'light' ? 'dark' : 'light'
+    setTheme(newTheme)
+    applyTheme(newTheme)
+    // Mark that user has set a preference
+    localStorage.setItem('theme', newTheme)
+    localStorage.setItem('theme_user_preference', 'true')
   }
 
   // Prevent flash of unstyled content

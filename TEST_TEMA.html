@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Detección de Tema</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            padding: 40px;
+            transition: all 0.3s;
+        }
+        body.light {
+            background: white;
+            color: black;
+        }
+        body.dark {
+            background: #1a1a1a;
+            color: white;
+        }
+        .status {
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 2px solid;
+        }
+        .light .status {
+            background: #f0f0f0;
+            border-color: #ccc;
+        }
+        .dark .status {
+            background: #2a2a2a;
+            border-color: #444;
+        }
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        .light button {
+            background: #007bff;
+            color: white;
+        }
+        .dark button {
+            background: #0056b3;
+            color: white;
+        }
+        button:hover {
+            opacity: 0.8;
+        }
+        code {
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        .light code {
+            background: #e0e0e0;
+        }
+        .dark code {
+            background: #3a3a3a;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test de Detección Automática de Tema</h1>
+    
+    <div class="status">
+        <h2>Estado Actual:</h2>
+        <p><strong>Tema del Sistema:</strong> <code id="systemTheme">-</code></p>
+        <p><strong>Tema Aplicado:</strong> <code id="appliedTheme">-</code></p>
+        <p><strong>Preferencia de Usuario:</strong> <code id="userPref">-</code></p>
+        <p><strong>localStorage.theme:</strong> <code id="storedTheme">-</code></p>
+    </div>
+
+    <div>
+        <h2>Acciones:</h2>
+        <button onclick="toggleTheme()">🌓 Toggle Tema Manual</button>
+        <button onclick="clearPreference()">🗑️ Limpiar Preferencia</button>
+        <button onclick="updateStatus()">🔄 Actualizar Estado</button>
+    </div>
+
+    <div class="status">
+        <h2>Instrucciones:</h2>
+        <ol>
+            <li><strong>Limpia la preferencia</strong> haciendo clic en "Limpiar Preferencia"</li>
+            <li><strong>Cambia el tema de tu Mac:</strong> Preferencias del Sistema → Apariencia → Claro/Oscuro</li>
+            <li><strong>Observa:</strong> Esta página debería cambiar automáticamente</li>
+            <li><strong>Prueba el toggle:</strong> Haz clic en "Toggle Tema Manual"</li>
+            <li><strong>Cambia el tema del sistema otra vez:</strong> La página NO debería cambiar (respeta tu elección)</li>
+        </ol>
+    </div>
+
+    <script>
+        let hasUserPreference = false;
+
+        function applyTheme(theme) {
+            document.body.className = theme;
+            updateStatus();
+        }
+
+        function getSystemTheme() {
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        function initTheme() {
+            hasUserPreference = localStorage.getItem('theme_user_preference') === 'true';
+            
+            if (hasUserPreference) {
+                const savedTheme = localStorage.getItem('theme');
+                applyTheme(savedTheme || 'dark');
+            } else {
+                const systemTheme = getSystemTheme();
+                applyTheme(systemTheme);
+                
+                // Listen for system changes
+                const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+                mediaQuery.addEventListener('change', (e) => {
+                    if (localStorage.getItem('theme_user_preference') !== 'true') {
+                        const newTheme = e.matches ? 'dark' : 'light';
+                        applyTheme(newTheme);
+                        console.log('✅ Sistema cambió a:', newTheme);
+                    } else {
+                        console.log('⏭️ Sistema cambió pero respetando preferencia de usuario');
+                    }
+                });
+            }
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.body.className;
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            applyTheme(newTheme);
+            localStorage.setItem('theme', newTheme);
+            localStorage.setItem('theme_user_preference', 'true');
+            hasUserPreference = true;
+            console.log('👤 Usuario eligió:', newTheme);
+        }
+
+        function clearPreference() {
+            localStorage.removeItem('theme');
+            localStorage.removeItem('theme_user_preference');
+            hasUserPreference = false;
+            const systemTheme = getSystemTheme();
+            applyTheme(systemTheme);
+            console.log('🗑️ Preferencia limpiada, usando sistema:', systemTheme);
+            alert('✅ Preferencia limpiada. Ahora sigue el tema del sistema.');
+        }
+
+        function updateStatus() {
+            document.getElementById('systemTheme').textContent = getSystemTheme();
+            document.getElementById('appliedTheme').textContent = document.body.className;
+            document.getElementById('userPref').textContent = 
+                localStorage.getItem('theme_user_preference') === 'true' ? 'Sí (manual)' : 'No (automático)';
+            document.getElementById('storedTheme').textContent = 
+                localStorage.getItem('theme') || 'ninguno';
+        }
+
+        // Initialize
+        initTheme();
+        updateStatus();
+
+        // Update status every second
+        setInterval(updateStatus, 1000);
+    </script>
+</body>
+</html>
