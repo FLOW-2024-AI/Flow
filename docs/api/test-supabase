@@ -1,1 +1,1 @@
-{"success":false,"error":"Variables de entorno faltantes","diagnostics":{"timestamp":"2025-10-10T06:54:12.541Z","tests":[{"test":"Variables de entorno","status":"❌ FALLO","details":{"hasUrl":false,"hasKey":false,"urlFormat":false,"keyFormat":false}}]}}
+{"success":false,"error":"Variables de entorno faltantes","diagnostics":{"timestamp":"2025-10-10T06:48:39.447Z","tests":[{"test":"Variables de entorno","status":"❌ FALLO","details":{"hasUrl":false,"hasKey":false,"urlFormat":false,"keyFormat":false}}]}}

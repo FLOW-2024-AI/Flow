@@ -46,22 +46,20 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       const systemTheme: Theme = mediaQuery.matches ? 'dark' : 'light'
       setTheme(systemTheme)
       applyTheme(systemTheme)
-    }
-    
-    // ALWAYS listen for system theme changes (outside the if/else)
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-    const handleChange = (e: MediaQueryListEvent) => {
-      // Only update if user hasn't set a preference
-      if (localStorage.getItem('theme_user_preference') !== 'true') {
-        const newTheme: Theme = e.matches ? 'dark' : 'light'
-        setTheme(newTheme)
-        applyTheme(newTheme)
-        console.log('🔄 Tema del sistema cambió a:', newTheme)
+      
+      // Listen for system theme changes
+      const handleChange = (e: MediaQueryListEvent) => {
+        // Only update if user still hasn't set a preference
+        if (localStorage.getItem('theme_user_preference') !== 'true') {
+          const newTheme: Theme = e.matches ? 'dark' : 'light'
+          setTheme(newTheme)
+          applyTheme(newTheme)
+        }
       }
+      
+      mediaQuery.addEventListener('change', handleChange)
+      return () => mediaQuery.removeEventListener('change', handleChange)
     }
-    
-    mediaQuery.addEventListener('change', handleChange)
-    return () => mediaQuery.removeEventListener('change', handleChange)
   }, [])
 
   const toggleTheme = () => {
