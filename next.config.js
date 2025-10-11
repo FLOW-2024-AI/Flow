@@ -2,8 +2,8 @@
 const nextConfig = {
   // App Router is enabled by default in Next.js 14
   output: 'export',
-  basePath: '/Flow',
-  distDir: 'docs',
+  basePath: '',  // Sin basePath para DreamHost
+  distDir: 'out',  // Carpeta 'out' para DreamHost
   images: {
     unoptimized: true,
   },
