@@ -215,7 +215,7 @@ export default function QuienesSomosPage() {
                   fill
                   className="object-cover opacity-20"
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/90 to-black" />
+                <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/90 to-white dark:from-secondary-900/80 dark:via-secondary-900/90 dark:to-secondary-900 transition-colors duration-200" />
               </div>
               
               <motion.div variants={itemVariants} className="relative z-10 p-12">

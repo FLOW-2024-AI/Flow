@@ -1306,7 +1306,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-32 px-4 sm:px-6 lg:px-8 bg-black">
+      <section className="py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-gray-50 dark:from-secondary-900 dark:to-secondary-800 transition-colors duration-200">
         <div className="max-w-5xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1314,10 +1314,10 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight text-gray-900 dark:text-gray-100">
               El futuro de la gestión financiera
             </h2>
-            <p className="text-xl md:text-2xl text-gray-400 dark:text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed">
               Flow no es solo un software: es un copiloto que piensa, aprende y te anticipa los números antes de que lo hagas tú. Únete a la nueva era de la inteligencia financiera.
             </p>
             
