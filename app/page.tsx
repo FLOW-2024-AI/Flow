@@ -133,7 +133,7 @@ export default function Home() {
       </section>
 
       {/* Integrations Showcase */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-neutral-950">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-secondary-800 transition-colors duration-200">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -144,7 +144,7 @@ export default function Home() {
             <p className="text-xs font-medium text-gray-500 dark:text-gray-400 tracking-wider uppercase mb-4">
               🔌 INTEGRACIONES
             </p>
-            <h2 className="text-3xl md:text-4xl font-semibold mb-4">
+            <h2 className="text-3xl md:text-4xl font-semibold mb-4 text-gray-900 dark:text-gray-100">
               Conecta todo tu ecosistema
             </h2>
             <p className="text-sm text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
@@ -166,10 +166,10 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 whileHover={{ y: -5 }}
-                className={`bg-${integration.color}-900/10 border border-${integration.color}-500/20 rounded-2xl p-6 hover:border-${integration.color}-500/40 transition-all`}
+                className={`bg-white dark:bg-secondary-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 hover:border-${integration.color}-500/40 transition-all`}
               >
                 <div className="text-4xl mb-3">{integration.icon}</div>
-                <h3 className="font-semibold mb-3">{integration.category}</h3>
+                <h3 className="font-semibold mb-3 text-gray-900 dark:text-gray-100">{integration.category}</h3>
                 <div className="space-y-2">
                   {integration.items.map((item, i) => (
                     <div key={i} className="flex items-center gap-2">
@@ -186,23 +186,23 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-gradient-to-r from-purple-900/20 to-pink-900/20 border border-purple-500/30 rounded-2xl p-8 text-center"
+            className="bg-gradient-to-r from-primary-50 to-purple-50 dark:from-purple-900/20 dark:to-pink-900/20 border border-primary-200 dark:border-purple-500/30 rounded-2xl p-8 text-center transition-colors duration-200"
           >
-            <h3 className="text-2xl font-bold mb-3">Conecta todo tu ecosistema</h3>
+            <h3 className="text-2xl font-bold mb-3 text-gray-900 dark:text-gray-100">Conecta todo tu ecosistema</h3>
             <p className="text-gray-600 dark:text-gray-400 mb-6">
               Sincroniza automáticamente con RPA. Integraciones con ERPs, bancos y SUNAT.
             </p>
             <div className="flex justify-center gap-8">
               <div>
-                <p className="text-3xl font-bold text-green-400">Auto</p>
+                <p className="text-3xl font-bold text-green-500 dark:text-green-400">Auto</p>
                 <p className="text-sm text-gray-500 dark:text-gray-400">Sincronización continua</p>
               </div>
               <div>
-                <p className="text-3xl font-bold text-blue-400">80%</p>
+                <p className="text-3xl font-bold text-blue-500 dark:text-blue-400">80%</p>
                 <p className="text-sm text-gray-500 dark:text-gray-400">Menos tiempo manual</p>
               </div>
               <div>
-                <p className="text-3xl font-bold text-purple-400">450%</p>
+                <p className="text-3xl font-bold text-purple-500 dark:text-purple-400">450%</p>
                 <p className="text-sm text-gray-500 dark:text-gray-400">ROI promedio</p>
               </div>
             </div>
