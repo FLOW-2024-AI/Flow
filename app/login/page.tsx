@@ -67,10 +67,10 @@ export default function LoginPage() {
           localStorage.setItem('demo_session', 'true')
           localStorage.setItem('demo_user', JSON.stringify({ name: 'Admin', email: formData.email }))
         }
-        // Redirect to dashboard - use window.location for static export
+        // Redirect to apps - use window.location for static export
         console.log('Login successful!')
         // Use router.push for better compatibility
-        router.push('/dashboard')
+        router.push('/apps')
       } else {
         setError('Credenciales incorrectas. Intenta nuevamente.')
       }
