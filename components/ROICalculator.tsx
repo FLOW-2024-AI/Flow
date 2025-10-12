@@ -15,15 +15,15 @@ export default function ROICalculator() {
   const yearlyROI = ((yearlySavings - (flowMonthlyPrice * 12)) / (flowMonthlyPrice * 12)) * 100
 
   return (
-    <div className="bg-gradient-to-br from-secondary-900 via-secondary-800 to-primary-900 border border-primary-500/30 rounded-3xl p-8 md:p-12 shadow-2xl">
-      <h3 className="text-3xl font-bold mb-8 text-center text-white">Calcula tu ROI</h3>
+    <div className="bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-3xl p-8 md:p-12 shadow-lg transition-colors duration-300">
+      <h3 className="text-3xl font-bold mb-8 text-center text-text-primary-light dark:text-text-primary-dark">Calcula tu ROI</h3>
       
       <div className="space-y-6 mb-8">
         {/* Employees Slider */}
         <div>
           <div className="flex justify-between mb-3">
-            <label className="text-gray-200">Empleados en finanzas</label>
-            <span className="text-white font-bold">{employees}</span>
+            <label className="text-text-secondary-light dark:text-text-secondary-dark">Empleados en finanzas</label>
+            <span className="text-text-primary-light dark:text-text-primary-dark font-bold">{employees}</span>
           </div>
           <input
             type="range"
@@ -31,15 +31,15 @@ export default function ROICalculator() {
             max="50"
             value={employees}
             onChange={(e) => setEmployees(Number(e.target.value))}
-            className="w-full h-2 bg-secondary-700 rounded-lg appearance-none cursor-pointer slider"
+            className="w-full h-2 bg-border-light dark:bg-border-dark rounded-lg appearance-none cursor-pointer slider"
           />
         </div>
 
         {/* Hours Slider */}
         <div>
           <div className="flex justify-between mb-3">
-            <label className="text-gray-200">Horas manuales por semana</label>
-            <span className="text-white font-bold">{hoursPerWeek}h</span>
+            <label className="text-text-secondary-light dark:text-text-secondary-dark">Horas manuales por semana</label>
+            <span className="text-text-primary-light dark:text-text-primary-dark font-bold">{hoursPerWeek}h</span>
           </div>
           <input
             type="range"
@@ -47,15 +47,15 @@ export default function ROICalculator() {
             max="40"
             value={hoursPerWeek}
             onChange={(e) => setHoursPerWeek(Number(e.target.value))}
-            className="w-full h-2 bg-secondary-700 rounded-lg appearance-none cursor-pointer slider"
+            className="w-full h-2 bg-border-light dark:bg-border-dark rounded-lg appearance-none cursor-pointer slider"
           />
         </div>
 
         {/* Hourly Rate Slider */}
         <div>
           <div className="flex justify-between mb-3">
-            <label className="text-gray-200">Costo por hora (USD)</label>
-            <span className="text-white font-bold">${hourlyRate}</span>
+            <label className="text-text-secondary-light dark:text-text-secondary-dark">Costo por hora (USD)</label>
+            <span className="text-text-primary-light dark:text-text-primary-dark font-bold">${hourlyRate}</span>
           </div>
           <input
             type="range"
@@ -63,7 +63,7 @@ export default function ROICalculator() {
             max="100"
             value={hourlyRate}
             onChange={(e) => setHourlyRate(Number(e.target.value))}
-            className="w-full h-2 bg-secondary-700 rounded-lg appearance-none cursor-pointer slider"
+            className="w-full h-2 bg-border-light dark:bg-border-dark rounded-lg appearance-none cursor-pointer slider"
           />
         </div>
       </div>
@@ -97,7 +97,7 @@ export default function ROICalculator() {
         </div>
       </motion.div>
 
-      <p className="text-center text-gray-300 text-sm mt-6">
+      <p className="text-center text-text-secondary-light dark:text-text-secondary-dark text-sm mt-6">
         * Cálculo basado en automatización del 80% de tareas manuales
       </p>
     </div>

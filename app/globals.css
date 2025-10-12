@@ -5,9 +5,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 0, 0, 0;
-  --background-end-rgb: 0, 0, 0;
+  /* FLOW Brand Colors - Light Mode */
+  --background: #F9FAFB;
+  --surface: #FFFFFF;
+  --text-primary: #111827;
+  --text-secondary: #6B7280;
+  --accent-flow: #3B82F6;
+  --accent-ai: #8B5CF6;
+  --border: #E5E7EB;
+}
+
+.dark {
+  /* FLOW Brand Colors - Dark Mode (Deep Blue) */
+  --background: #0A0F1F;
+  --surface: #111827;
+  --text-primary: #F9FAFB;
+  --text-secondary: #9CA3AF;
+  --accent-flow: #60A5FA;
+  --accent-ai: #A78BFA;
+  --border: #1E293B;
 }
 
 * {
@@ -20,19 +36,15 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-  background-color: #000000;
-  color: #ffffff;
+  background-color: var(--background);
+  color: var(--text-primary);
   font-family: 'Inter', system-ui, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-color: var(--background);
+  color: var(--text-primary);
 }
 
 a {
@@ -52,16 +64,16 @@ a {
 }
 
 ::-webkit-scrollbar-track {
-  background: #000000;
+  background: var(--background);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #404040;
+  background: var(--border);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #525252;
+  background: var(--text-secondary);
 }
 
 /* Focus styles for accessibility */
@@ -80,22 +92,22 @@ a {
 }
 
 .scrollbar-thick::-webkit-scrollbar-track {
-  background: #171717;
+  background: var(--surface);
   border-radius: 8px;
 }
 
 .scrollbar-thick::-webkit-scrollbar-thumb {
-  background: #525252;
+  background: var(--border);
   border-radius: 8px;
-  border: 2px solid #171717;
+  border: 2px solid var(--surface);
 }
 
 .scrollbar-thick::-webkit-scrollbar-thumb:hover {
-  background: #737373;
+  background: var(--text-secondary);
 }
 
 .scrollbar-thick::-webkit-scrollbar-corner {
-  background: #171717;
+  background: var(--surface);
 }
 
 /* Gradient animation for hero text */
