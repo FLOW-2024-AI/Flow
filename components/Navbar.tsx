@@ -9,7 +9,7 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <nav className="fixed top-0 w-full bg-white/80 dark:bg-surface-dark/80 backdrop-blur-2xl border-b border-border-light dark:border-border-dark z-50 transition-colors duration-300">
+    <nav className="fixed top-0 w-full bg-white/80 dark:bg-neutral-950/80 backdrop-blur-2xl border-b border-neutral-200 dark:border-neutral-800 z-50 transition-colors duration-300">
       <div className="max-w-[980px] mx-auto px-6">
         <div className="flex justify-between items-center h-11">
           {/* Logo */}
@@ -66,7 +66,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white dark:bg-surface-dark backdrop-blur-2xl border-t border-border-light dark:border-border-dark transition-colors duration-300">
+        <div className="md:hidden bg-white dark:bg-neutral-950 backdrop-blur-2xl border-t border-neutral-200 dark:border-neutral-800 transition-colors duration-300">
           <div className="max-w-[980px] mx-auto px-6 py-4 space-y-3">
             <Link 
               href="/soluciones" 

@@ -5,25 +5,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  /* FLOW Brand Colors - Light Mode */
-  --background: #F9FAFB;
-  --surface: #FFFFFF;
-  --text-primary: #111827;
-  --text-secondary: #6B7280;
-  --accent-flow: #3B82F6;
-  --accent-ai: #8B5CF6;
-  --border: #E5E7EB;
+  /* Premium Webflow-inspired Light Mode */
+  --background: #ffffff;
+  --surface: #fafafa;
+  --text-primary: #0a0a0a;
+  --text-secondary: #737373;
+  --accent-primary: #0ea5e9;
+  --accent-secondary: #d946ef;
+  --accent-tertiary: #f97316;
+  --border: #e5e5e5;
 }
 
 .dark {
-  /* FLOW Brand Colors - Dark Mode (Deep Blue) */
-  --background: #0A0F1F;
-  --surface: #111827;
-  --text-primary: #F9FAFB;
-  --text-secondary: #9CA3AF;
-  --accent-flow: #60A5FA;
-  --accent-ai: #A78BFA;
-  --border: #1E293B;
+  /* Premium Webflow-inspired Dark Mode */
+  --background: #0a0a0a;
+  --surface: #171717;
+  --text-primary: #fafafa;
+  --text-secondary: #a3a3a3;
+  --accent-primary: #38bdf8;
+  --accent-secondary: #e879f9;
+  --accent-tertiary: #fb923c;
+  --border: #262626;
 }
 
 * {
