@@ -269,7 +269,7 @@ export default function Home() {
                 height={900}
                 className="w-full h-auto"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-secondary-950/80 via-transparent to-transparent" />
             </div>
             
             {/* Floating Feature Cards */}
@@ -485,7 +485,7 @@ export default function Home() {
             <motion.div
               variants={itemVariants}
               whileHover={{ y: -4 }}
-              className="bg-gray-900 dark:bg-secondary-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-8 transition-transform duration-200"
+              className="bg-gradient-to-br from-secondary-900 to-secondary-800 border border-primary-700/30 rounded-2xl p-8 transition-transform duration-200 shadow-lg"
             >
               <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mb-6">
                 <div className="w-6 h-6 bg-blue-400 rounded-sm"></div>
@@ -499,7 +499,7 @@ export default function Home() {
             <motion.div
               variants={itemVariants}
               whileHover={{ y: -4 }}
-              className="bg-gray-900 dark:bg-secondary-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-8 transition-transform duration-200"
+              className="bg-gradient-to-br from-secondary-900 to-secondary-800 border border-primary-700/30 rounded-2xl p-8 transition-transform duration-200 shadow-lg"
             >
               <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-6">
                 <div className="w-6 h-6 bg-green-400 rounded-sm"></div>
@@ -513,7 +513,7 @@ export default function Home() {
             <motion.div
               variants={itemVariants}
               whileHover={{ y: -4 }}
-              className="bg-gray-900 dark:bg-secondary-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-8 transition-transform duration-200"
+              className="bg-gradient-to-br from-secondary-900 to-secondary-800 border border-primary-700/30 rounded-2xl p-8 transition-transform duration-200 shadow-lg"
             >
               <div className="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center mb-6">
                 <div className="w-6 h-6 bg-purple-400 rounded-sm"></div>
@@ -1342,7 +1342,7 @@ export default function Home() {
       <Testimonials />
 
       {/* Footer Premium */}
-      <footer className="border-t border-gray-200 dark:border-gray-700 bg-gray-900 dark:bg-secondary-900/50">
+      <footer className="border-t border-gray-200 dark:border-primary-800/30 bg-gradient-to-b from-secondary-900 to-secondary-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Newsletter Section */}
           <div className="py-16 border-b border-gray-200 dark:border-gray-700">

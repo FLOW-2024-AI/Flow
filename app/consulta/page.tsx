@@ -149,7 +149,7 @@ export default function ConsultaPage() {
             Recibimos tu solicitud. Nuestro equipo se pondrá en contacto contigo en las próximas 24-48 horas para agendar tu consulta gratuita.
           </p>
           
-          <div className="bg-gray-900 dark:bg-secondary-900/50 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 mb-8">
+          <div className="bg-gradient-to-br from-secondary-900 to-secondary-800 border border-primary-700/30 rounded-2xl p-6 mb-8 shadow-lg">
             <h3 className="text-lg font-semibold mb-4">¿Qué sigue?</h3>
             <div className="space-y-3 text-left">
               <div className="flex items-start space-x-3">
@@ -241,7 +241,7 @@ export default function ConsultaPage() {
                 </div>
               </div>
 
-              <div className="bg-gray-900 dark:bg-secondary-900/50 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+              <div className="bg-gradient-to-br from-secondary-900 to-secondary-800 border border-primary-700/30 rounded-2xl p-6 shadow-lg">
                 <h3 className="text-lg font-semibold mb-4">¿Qué incluye la consulta?</h3>
                 <ul className="space-y-2 text-gray-400 dark:text-gray-300">
                   <li className="flex items-center space-x-2">
@@ -270,7 +270,7 @@ export default function ConsultaPage() {
 
             {/* Right Column - Form */}
             <motion.div variants={itemVariants}>
-              <div className="bg-gray-900 dark:bg-secondary-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-8">
+              <div className="bg-gradient-to-br from-secondary-900 to-secondary-800 border border-primary-700/30 rounded-2xl p-8 shadow-lg">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-2 gap-4">
                     <div>

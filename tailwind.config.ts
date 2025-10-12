@@ -11,7 +11,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Financial institution inspired palette
+        // Modern blue palette - replacing black with deep blues
         primary: {
           50: '#eff6ff',
           100: '#dbeafe',
@@ -25,16 +25,23 @@ const config: Config = {
           900: '#1e3a8a',
         },
         secondary: {
-          50: '#f8fafc',
-          100: '#f1f5f9',
-          200: '#e2e8f0',
-          300: '#cbd5e1',
-          400: '#94a3b8',
-          500: '#64748b',
-          600: '#475569',
-          700: '#334155',
-          800: '#1e293b',
-          900: '#0f172a',
+          50: '#f0f9ff',  // Very light blue
+          100: '#e0f2fe', // Light blue
+          200: '#bae6fd', // Soft blue
+          300: '#7dd3fc', // Medium blue
+          400: '#38bdf8', // Bright blue
+          500: '#0ea5e9', // Sky blue
+          600: '#0284c7', // Deep sky
+          700: '#0369a1', // Ocean blue
+          800: '#075985', // Dark ocean
+          900: '#0c4a6e', // Deep ocean (replaces black)
+          950: '#082f49', // Deepest blue (replaces darkest black)
+        },
+        accent: {
+          blue: '#3b82f6',
+          lightBlue: '#60a5fa',
+          darkBlue: '#1e40af',
+          deepBlue: '#0c4a6e',
         },
       },
       fontFamily: {

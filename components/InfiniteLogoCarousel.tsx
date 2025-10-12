@@ -38,7 +38,7 @@ export default function InfiniteLogoCarousel() {
         {duplicatedLogos.map((logo, index) => (
           <div
             key={index}
-            className="flex items-center justify-center px-8 py-4 bg-neutral-900/50 border border-gray-200 dark:border-gray-700 rounded-2xl min-w-[140px] hover:border-neutral-700 transition-colors"
+            className="flex items-center justify-center px-8 py-4 bg-secondary-900/50 border border-gray-200 dark:border-primary-700/30 rounded-2xl min-w-[140px] hover:border-primary-600 transition-colors"
           >
             <span className="text-neutral-400 font-semibold text-sm whitespace-nowrap">
               {logo.name}

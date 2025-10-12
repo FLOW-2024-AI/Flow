@@ -6,7 +6,7 @@ export default function Skeleton({ className = '' }: { className?: string }) {
 
 export function CardSkeleton() {
   return (
-    <div className="bg-neutral-900/50 border border-gray-200 dark:border-gray-700 rounded-2xl p-8">
+    <div className="bg-secondary-900/50 border border-gray-200 dark:border-primary-700/30 rounded-2xl p-8">
       <Skeleton className="h-16 w-16 rounded-2xl mb-6" />
       <Skeleton className="h-6 w-3/4 mb-4" />
       <Skeleton className="h-4 w-full mb-2" />
@@ -17,7 +17,7 @@ export function CardSkeleton() {
 
 export function TestimonialSkeleton() {
   return (
-    <div className="bg-neutral-900/50 border border-gray-200 dark:border-gray-700 rounded-2xl p-8">
+    <div className="bg-secondary-900/50 border border-gray-200 dark:border-primary-700/30 rounded-2xl p-8">
       <div className="flex gap-1 mb-4">
         {[...Array(5)].map((_, i) => (
           <Skeleton key={i} className="w-4 h-4" />
