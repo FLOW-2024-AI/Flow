@@ -42,7 +42,7 @@ export default function Home() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-neutral-950 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
 
       {/* Hero Section - Mejorado estilo Khipu */}
@@ -94,7 +94,7 @@ export default function Home() {
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100 px-6 py-3 rounded-full font-medium text-sm hover:border-primary-500 hover:bg-gray-50 dark:hover:bg-secondary-800 transition-all duration-200 inline-block cursor-pointer"
+                  className="border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100 px-6 py-3 rounded-full font-medium text-sm hover:border-primary-500 hover:bg-gray-50 dark:hover:bg-neutral-100 transition-all duration-200 inline-block cursor-pointer"
                 >
                   Ver casos de éxito
                 </motion.div>
@@ -107,7 +107,7 @@ export default function Home() {
             >
               {[
                 { value: 450, suffix: '%', label: 'ROI Promedio', color: 'from-blue-500 to-blue-600' },
-                { value: 80, suffix: '%', label: 'Menos tiempo manual', color: 'from-purple-500 to-purple-600' },
+                { value: 80, suffix: '%', label: 'Menos tiempo manual', color: 'from-secondary-500 to-secondary-600' },
                 { value: 100, suffix: '%', label: 'Visibilidad tiempo real', color: 'from-green-500 to-green-600' }
               ].map((stat, idx) => (
                 <motion.div
@@ -116,7 +116,7 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.8 + idx * 0.1 }}
                   whileHover={{ y: -5 }}
-                  className="group relative bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-3xl p-6 hover:border-gray-300 dark:border-gray-600 transition-all duration-300"
+                  className="group relative bg-gray-100 dark:bg-neutral-900 border border-gray-200 dark:border-gray-700 rounded-3xl p-6 hover:border-gray-300 dark:border-gray-600 transition-all duration-300"
                 >
                   <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-10 rounded-3xl transition-all duration-300`} />
                   <div className="relative z-10">
@@ -133,7 +133,7 @@ export default function Home() {
       </section>
 
       {/* Integrations Showcase */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-secondary-800 transition-colors duration-200">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-neutral-900 transition-colors duration-200">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -166,7 +166,7 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 whileHover={{ y: -5 }}
-                className={`bg-white dark:bg-secondary-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 hover:border-${integration.color}-500/40 transition-all`}
+                className={`bg-white dark:bg-neutral-950 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 hover:border-${integration.color}-500/40 transition-all`}
               >
                 <div className="text-4xl mb-3">{integration.icon}</div>
                 <h3 className="font-semibold mb-3 text-gray-900 dark:text-gray-100">{integration.category}</h3>
@@ -186,7 +186,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-gradient-to-r from-primary-50 to-purple-50 dark:from-purple-900/20 dark:to-pink-900/20 border border-primary-200 dark:border-purple-500/30 rounded-2xl p-8 text-center transition-colors duration-200"
+            className="bg-gradient-to-r from-primary-50 to-secondary-50 dark:from-secondary-900/20 dark:to-secondary-900/20 border border-primary-200 dark:border-secondary-500/30 rounded-2xl p-8 text-center transition-colors duration-200"
           >
             <h3 className="text-2xl font-bold mb-3 text-gray-900 dark:text-gray-100">Conecta todo tu ecosistema</h3>
             <p className="text-gray-600 dark:text-gray-400 mb-6">
@@ -202,7 +202,7 @@ export default function Home() {
                 <p className="text-sm text-gray-500 dark:text-gray-400">Menos tiempo manual</p>
               </div>
               <div>
-                <p className="text-3xl font-bold text-purple-500 dark:text-purple-400">450%</p>
+                <p className="text-3xl font-bold text-secondary-500 dark:text-secondary-400">450%</p>
                 <p className="text-sm text-gray-500 dark:text-gray-400">ROI promedio</p>
               </div>
             </div>
@@ -278,10 +278,10 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="absolute -left-4 top-1/4 bg-white dark:bg-secondary-800 backdrop-blur-xl border border-gray-200 dark:border-gray-700 rounded-2xl p-6 max-w-xs shadow-2xl animate-float"
+              className="absolute -left-4 top-1/4 bg-white dark:bg-neutral-900 backdrop-blur-xl border border-gray-200 dark:border-gray-700 rounded-2xl p-6 max-w-xs shadow-2xl animate-float"
             >
               <div className="flex items-center gap-4 mb-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-secondary-600 rounded-xl flex items-center justify-center">
                   <svg className="w-6 h-6 text-gray-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
@@ -300,7 +300,7 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="absolute -right-4 bottom-1/4 bg-white dark:bg-secondary-800 backdrop-blur-xl border border-gray-200 dark:border-gray-700 rounded-2xl p-6 max-w-xs shadow-2xl"
+              className="absolute -right-4 bottom-1/4 bg-white dark:bg-neutral-900 backdrop-blur-xl border border-gray-200 dark:border-gray-700 rounded-2xl p-6 max-w-xs shadow-2xl"
               style={{ animationDelay: '2s' }}
             >
               <div className="flex items-center gap-4 mb-3">
@@ -333,7 +333,7 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 whileHover={{ y: -5 }}
-                className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 hover:border-gray-300 dark:border-gray-600 transition-all"
+                className="bg-gray-100 dark:bg-neutral-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 hover:border-gray-300 dark:border-gray-600 transition-all"
               >
                 <div className="text-4xl mb-4">{feature.icon}</div>
                 <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
@@ -345,7 +345,7 @@ export default function Home() {
       </section>
 
       {/* Before/After Comparison Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-secondary-900/50">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-neutral-950/50">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -369,7 +369,7 @@ export default function Home() {
       </section>
 
       {/* Problem/Solution Section - Estilo Khipu */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-secondary-900/50">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-neutral-950/50">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
@@ -515,8 +515,8 @@ export default function Home() {
               whileHover={{ y: -4 }}
               className="bg-gradient-to-br from-secondary-900 to-secondary-800 border border-primary-700/30 rounded-2xl p-8 transition-transform duration-200 shadow-lg"
             >
-              <div className="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center mb-6">
-                <div className="w-6 h-6 bg-purple-400 rounded-sm"></div>
+              <div className="w-12 h-12 bg-secondary-500/20 rounded-xl flex items-center justify-center mb-6">
+                <div className="w-6 h-6 bg-secondary-400 rounded-sm"></div>
               </div>
               <h3 className="text-2xl font-semibold mb-4">Operaciones</h3>
               <p className="text-gray-400 dark:text-gray-300 leading-relaxed">
@@ -528,7 +528,7 @@ export default function Home() {
       </section>
 
       {/* Solutions Section - Con imágenes estilo Khipu */}
-      <section id="soluciones" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-secondary-900/50">
+      <section id="soluciones" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-neutral-950/50">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
@@ -555,12 +555,12 @@ export default function Home() {
             <motion.div
               variants={itemVariants}
               whileHover={{ y: -8, scale: 1.02 }}
-              className="group bg-white dark:bg-secondary-900 border border-gray-200 dark:border-gray-700 rounded-3xl p-8 transition-all duration-300 overflow-hidden relative"
+              className="group bg-white dark:bg-neutral-950 border border-gray-200 dark:border-gray-700 rounded-3xl p-8 transition-all duration-300 overflow-hidden relative"
             >
               <div className="absolute top-0 right-0 w-40 h-40 bg-blue-500/5 rounded-full blur-3xl group-hover:bg-blue-500/10 transition-all duration-500" />
               <div className="relative z-10">
                 <motion.div 
-                  className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-3xl flex items-center justify-center mb-6 shadow-xl shadow-blue-500/20"
+                  className="w-20 h-20 bg-gradient-to-br from-blue-500 to-secondary-600 rounded-3xl flex items-center justify-center mb-6 shadow-xl shadow-blue-500/20"
                   whileHover={{ rotate: [0, -10, 10, -10, 0] }}
                   transition={{ duration: 0.5 }}
                 >
@@ -582,7 +582,7 @@ export default function Home() {
             <motion.div
               variants={itemVariants}
               whileHover={{ y: -8, scale: 1.02 }}
-              className="group bg-white dark:bg-secondary-900 border border-gray-200 dark:border-gray-700 rounded-3xl p-8 transition-all duration-300 overflow-hidden relative"
+              className="group bg-white dark:bg-neutral-950 border border-gray-200 dark:border-gray-700 rounded-3xl p-8 transition-all duration-300 overflow-hidden relative"
             >
               <div className="absolute top-0 right-0 w-40 h-40 bg-green-500/5 rounded-full blur-3xl group-hover:bg-green-500/10 transition-all duration-500" />
               <div className="relative z-10">
@@ -609,7 +609,7 @@ export default function Home() {
             <motion.div
               variants={itemVariants}
               whileHover={{ y: -8, scale: 1.02 }}
-              className="group bg-white dark:bg-secondary-900 border border-gray-200 dark:border-gray-700 rounded-3xl p-8 transition-all duration-300 overflow-hidden relative"
+              className="group bg-white dark:bg-neutral-950 border border-gray-200 dark:border-gray-700 rounded-3xl p-8 transition-all duration-300 overflow-hidden relative"
             >
               <div className="absolute top-0 right-0 w-40 h-40 bg-orange-500/5 rounded-full blur-3xl group-hover:bg-orange-500/10 transition-all duration-500" />
               <div className="relative z-10">
@@ -674,7 +674,7 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: idx * 0.05 }}
                 whileHover={{ y: -5, scale: 1.05 }}
-                className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 text-center hover:border-blue-500/50 transition-all group"
+                className="bg-gray-100 dark:bg-neutral-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 text-center hover:border-blue-500/50 transition-all group"
               >
                 <div className="text-5xl mb-4 group-hover:scale-110 transition-transform">
                   {tech.icon}
@@ -701,7 +701,7 @@ export default function Home() {
                 <h3 className="text-2xl font-bold mb-8 text-center">Arquitectura de Flow</h3>
                 <div className="grid md:grid-cols-3 gap-8">
                   <div className="text-center">
-                    <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-secondary-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
                       <span className="text-3xl">📥</span>
                     </div>
                     <h4 className="font-semibold mb-2">Ingesta de Datos</h4>
@@ -735,7 +735,7 @@ export default function Home() {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-secondary-900/50">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-neutral-950/50">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
@@ -778,8 +778,8 @@ export default function Home() {
             </motion.div>
 
             <motion.div variants={itemVariants} className="text-center">
-              <div className="w-16 h-16 bg-purple-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <div className="w-8 h-8 bg-purple-400 rounded-lg"></div>
+              <div className="w-16 h-16 bg-secondary-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <div className="w-8 h-8 bg-secondary-400 rounded-lg"></div>
               </div>
               <h3 className="text-xl font-semibold mb-3">Sin equipo de desarrollo</h3>
               <p className="text-gray-400 dark:text-gray-300 text-sm">
@@ -801,7 +801,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonios" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-secondary-900/50">
+      <section id="testimonios" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-neutral-950/50">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
@@ -844,7 +844,7 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ y: -4 }}
-                className="bg-white dark:bg-secondary-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-8 transition-transform duration-200"
+                className="bg-white dark:bg-neutral-950 border border-gray-200 dark:border-gray-700 rounded-2xl p-8 transition-transform duration-200"
               >
                 <div className="flex gap-4 mb-6">
                   {testimonial.metrics.map((metric, idx) => (
@@ -860,7 +860,7 @@ export default function Home() {
                 </p>
                 
                 <div className="flex items-center">
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mr-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-secondary-600 rounded-full flex items-center justify-center mr-4">
                     <span className="text-gray-900 dark:text-white font-semibold text-sm">
                       {testimonial.name.split(' ').map(n => n[0]).join('')}
                     </span>
@@ -877,7 +877,7 @@ export default function Home() {
       </section>
 
       {/* ERP Integration Section - Estilo Khipu */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-secondary-900/50">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-neutral-950/50">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -934,7 +934,7 @@ export default function Home() {
                 {[0, 1, 2].map((i) => (
                   <motion.div
                     key={i}
-                    className="absolute w-1 h-1 bg-white dark:bg-secondary-800 rounded-full"
+                    className="absolute w-1 h-1 bg-white dark:bg-neutral-900 rounded-full"
                     style={{
                       left: '50%',
                       top: '50%',
@@ -950,7 +950,7 @@ export default function Home() {
                     }}
                   >
                     <div 
-                      className="w-1 h-1 bg-white dark:bg-secondary-800 rounded-full"
+                      className="w-1 h-1 bg-white dark:bg-neutral-900 rounded-full"
                       style={{
                         transform: 'translate(-50%, -80px)',
                       }}
@@ -968,7 +968,7 @@ export default function Home() {
                     repeat: Infinity,
                     ease: "easeInOut"
                   }}
-                  className="relative w-28 h-28 bg-gray-50 dark:bg-secondary-800 rounded-2xl border border-gray-200 dark:border-gray-700 flex items-center justify-center p-4"
+                  className="relative w-28 h-28 bg-gray-50 dark:bg-neutral-900 rounded-2xl border border-gray-200 dark:border-gray-700 flex items-center justify-center p-4"
                 >
                   <Image 
                     src="/images/logo/flow-logo.jpg" 
@@ -1147,7 +1147,7 @@ export default function Home() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
                   whileHover={{ x: 10 }}
-                  className="flex items-start space-x-4 p-4 rounded-2xl hover:bg-gray-100 dark:bg-secondary-800 transition-all duration-300"
+                  className="flex items-start space-x-4 p-4 rounded-2xl hover:bg-gray-100 dark:bg-neutral-900 transition-all duration-300"
                 >
                   <div className="text-3xl flex-shrink-0">{item.icon}</div>
                   <div>
@@ -1186,7 +1186,7 @@ export default function Home() {
             className="space-y-8"
           >
             {[
-              { num: 1, title: 'Descubrimiento', desc: 'Llamada rápida para mapear tus procesos y elegir qué automatizar.', color: 'from-blue-500 to-purple-600' },
+              { num: 1, title: 'Descubrimiento', desc: 'Llamada rápida para mapear tus procesos y elegir qué automatizar.', color: 'from-blue-500 to-secondary-600' },
               { num: 2, title: 'Desarrollo', desc: 'Construimos rápido. Tú revisas y ajustamos si hace falta.', color: 'from-green-500 to-teal-600' },
               { num: 3, title: 'Lanzamiento y mejora', desc: 'Se pone en marcha. Damos soporte y seguimos mejorando contigo.', color: 'from-orange-500 to-red-600' }
             ].map((step, idx) => (
@@ -1194,7 +1194,7 @@ export default function Home() {
                 key={idx}
                 variants={itemVariants} 
                 whileHover={{ scale: 1.02, x: 10 }}
-                className="group relative bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-3xl p-8 transition-all duration-300 overflow-hidden"
+                className="group relative bg-gray-100 dark:bg-neutral-900 border border-gray-200 dark:border-gray-700 rounded-3xl p-8 transition-all duration-300 overflow-hidden"
               >
                 <div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-br ${step.color} opacity-0 group-hover:opacity-10 rounded-full blur-3xl transition-all duration-500`} />
                 <div className="relative z-10 flex items-start space-x-6">
@@ -1250,7 +1250,7 @@ export default function Home() {
       </section>
 
       {/* FAQ Section */}
-      <section id="preguntas" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-secondary-900/50">
+      <section id="preguntas" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-neutral-950/50">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
@@ -1295,7 +1295,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="bg-white dark:bg-secondary-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-8"
+                className="bg-white dark:bg-neutral-950 border border-gray-200 dark:border-gray-700 rounded-2xl p-8"
               >
                 <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">{faq.question}</h3>
                 <p className="text-gray-400 dark:text-gray-300 leading-relaxed">{faq.answer}</p>
@@ -1325,7 +1325,7 @@ export default function Home() {
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="inline-block bg-white dark:bg-secondary-800 text-gray-900 dark:text-gray-100 px-12 py-6 rounded-2xl font-bold text-xl hover:bg-neutral-100 transition-all duration-200 shadow-2xl cursor-pointer"
+                className="inline-block bg-white dark:bg-neutral-900 text-gray-900 dark:text-gray-100 px-12 py-6 rounded-2xl font-bold text-xl hover:bg-neutral-100 transition-all duration-200 shadow-2xl cursor-pointer"
               >
                 Agendar consulta gratis
               </motion.div>
@@ -1355,7 +1355,7 @@ export default function Home() {
                 <input
                   type="email"
                   placeholder="tu@email.com"
-                  className="flex-1 px-6 py-4 bg-gray-50 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
+                  className="flex-1 px-6 py-4 bg-gray-50 dark:bg-neutral-900 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
                 />
                 <motion.button
                   whileHover={{ scale: 1.05 }}
@@ -1444,7 +1444,7 @@ export default function Home() {
                     key={social.name}
                     href="#"
                     whileHover={{ y: -2 }}
-                    className="w-10 h-10 bg-gray-50 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-xl flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white hover:border-gray-300 dark:border-gray-600 transition-all"
+                    className="w-10 h-10 bg-gray-50 dark:bg-neutral-900 border border-gray-200 dark:border-gray-700 rounded-xl flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white hover:border-gray-300 dark:border-gray-600 transition-all"
                     aria-label={social.name}
                   >
                     <span className="text-sm font-semibold">{social.icon}</span>

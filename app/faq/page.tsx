@@ -97,7 +97,7 @@ export default function FAQPage() {
   const [openIndex, setOpenIndex] = useState<string | null>(null)
 
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-neutral-950 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
 
       <div className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
@@ -130,7 +130,7 @@ export default function FAQPage() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: idx * 0.1 }}
-                        className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl overflow-hidden"
+                        className="bg-gray-100 dark:bg-neutral-900 border border-gray-200 dark:border-gray-700 rounded-2xl overflow-hidden"
                       >
                         <button
                           onClick={() => setOpenIndex(isOpen ? null : key)}
@@ -164,14 +164,14 @@ export default function FAQPage() {
             ))}
           </div>
 
-          <div className="mt-16 text-center bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-blue-800/30 rounded-2xl p-8">
+          <div className="mt-16 text-center bg-gradient-to-r from-blue-900/20 to-secondary-900/20 border border-blue-800/30 rounded-2xl p-8">
             <h3 className="text-2xl font-bold mb-4">¿No encuentras tu respuesta?</h3>
             <p className="text-gray-400 dark:text-gray-300 mb-6">
               Nuestro equipo está listo para ayudarte
             </p>
             <Link
               href="/consulta"
-              className="inline-block bg-white dark:bg-secondary-800 text-gray-900 dark:text-gray-100 px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity"
+              className="inline-block bg-white dark:bg-neutral-900 text-gray-900 dark:text-gray-100 px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity"
             >
               Contactar soporte
             </Link>

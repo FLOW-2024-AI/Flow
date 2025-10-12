@@ -141,7 +141,7 @@ export default function SolucionesPage() {
                 <span className="text-gray-600 dark:text-gray-400">80% menos tiempo</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+                <div className="w-2 h-2 bg-secondary-400 rounded-full"></div>
                 <span className="text-gray-600 dark:text-gray-400">450% ROI</span>
               </div>
             </div>
@@ -161,7 +161,7 @@ export default function SolucionesPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -8, scale: 1.02 }}
-                className="group bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-3xl p-8 hover:border-gray-300 dark:border-gray-600 transition-all relative overflow-hidden"
+                className="group bg-gray-100 dark:bg-neutral-900 border border-gray-200 dark:border-gray-700 rounded-3xl p-8 hover:border-gray-300 dark:border-gray-600 transition-all relative overflow-hidden"
               >
                 <div className={`absolute top-0 right-0 w-40 h-40 bg-gradient-to-br ${solution.color} opacity-0 group-hover:opacity-10 blur-3xl transition-all duration-500`}></div>
                 <div className="relative z-10">
@@ -198,7 +198,7 @@ export default function SolucionesPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-pink-900/20 border-t border-gray-200 dark:border-gray-700">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-900/20 via-secondary-900/20 to-secondary-900/20 border-t border-gray-200 dark:border-gray-700">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -211,7 +211,7 @@ export default function SolucionesPage() {
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               Reduce 80% el tiempo manual.{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-secondary-400">
                 Empieza hoy.
               </span>
             </h2>
@@ -221,10 +221,10 @@ export default function SolucionesPage() {
               {' '}Agenda tu demo gratuita y descubre por qué.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Link href="/consulta" className="inline-block bg-white dark:bg-secondary-800 text-gray-900 dark:text-gray-100 px-8 py-4 rounded-full font-bold text-base hover:opacity-90 transition-opacity shadow-xl">
+              <Link href="/consulta" className="inline-block bg-white dark:bg-neutral-900 text-gray-900 dark:text-gray-100 px-8 py-4 rounded-full font-bold text-base hover:opacity-90 transition-opacity shadow-xl">
                 Agendar demo gratuita →
               </Link>
-              <Link href="/precios" className="inline-block border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white px-8 py-4 rounded-full font-medium text-base hover:border-neutral-500 hover:bg-gray-100 dark:bg-secondary-800 transition-all">
+              <Link href="/precios" className="inline-block border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white px-8 py-4 rounded-full font-medium text-base hover:border-neutral-500 hover:bg-gray-100 dark:bg-neutral-900 transition-all">
                 Ver precios
               </Link>
             </div>

@@ -75,7 +75,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 antialiased transition-colors duration-200" style={{ fontFamily: '"Myriad Pro", "Myriad", "Liberation Sans", "Nimbus Sans L", "Helvetica Neue", Arial, sans-serif' }} suppressHydrationWarning>
+      <body className="bg-white dark:bg-neutral-950 text-gray-900 dark:text-gray-100 antialiased transition-colors duration-200" style={{ fontFamily: '"Myriad Pro", "Myriad", "Liberation Sans", "Nimbus Sans L", "Helvetica Neue", Arial, sans-serif' }} suppressHydrationWarning>
         <ThemeProvider>
           {children}
         </ThemeProvider>

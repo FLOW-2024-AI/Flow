@@ -102,7 +102,7 @@ const plans = [
 
 export default function PreciosPage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-neutral-950 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
 
       {/* Main Content */}
@@ -116,12 +116,12 @@ export default function PreciosPage() {
           >
             {/* Header */}
             <motion.div variants={itemVariants} className="text-center">
-              <div className="inline-block bg-purple-500/10 border border-purple-500/20 rounded-full px-6 py-2 text-sm font-semibold text-purple-400 mb-6">
+              <div className="inline-block bg-secondary-500/10 border border-secondary-500/20 rounded-full px-6 py-2 text-sm font-semibold text-secondary-400 mb-6">
                 💰 Desde $399/mes • ROI promedio 450%
               </div>
               <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
                 Precios transparentes.{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-secondary-400 to-secondary-400">
                   Sin sorpresas.
                 </span>
               </h1>
@@ -139,7 +139,7 @@ export default function PreciosPage() {
               {plans.map((plan, index) => (
                 <div 
                   key={plan.name}
-                  className={`relative bg-gray-50 dark:bg-secondary-800 border rounded-2xl p-8 transition-colors duration-200 ${
+                  className={`relative bg-gray-50 dark:bg-neutral-900 border rounded-2xl p-8 transition-colors duration-200 ${
                     plan.popular 
                       ? 'border-green-500 ring-2 ring-green-500/20' 
                       : 'border-gray-200 dark:border-gray-700'
@@ -187,7 +187,7 @@ export default function PreciosPage() {
                         className={`w-full block text-center py-3 px-6 rounded-xl font-semibold transition-all duration-200 ${
                           plan.popular
                             ? 'bg-green-600 hover:bg-green-700 text-white'
-                            : 'bg-white dark:bg-secondary-800 text-gray-900 dark:text-gray-100 hover:opacity-90'
+                            : 'bg-white dark:bg-neutral-900 text-gray-900 dark:text-gray-100 hover:opacity-90'
                         }`}
                       >
                         Contactar Ventas
@@ -198,7 +198,7 @@ export default function PreciosPage() {
                         className={`w-full block text-center py-3 px-6 rounded-xl font-semibold transition-all duration-200 ${
                           plan.popular
                             ? 'bg-green-600 hover:bg-green-700 text-white'
-                            : 'bg-white dark:bg-secondary-800 text-gray-900 dark:text-gray-100 hover:opacity-90'
+                            : 'bg-white dark:bg-neutral-900 text-gray-900 dark:text-gray-100 hover:opacity-90'
                         }`}
                       >
                         Comenzar Prueba
@@ -210,7 +210,7 @@ export default function PreciosPage() {
             </motion.div>
 
             {/* FAQ Section */}
-            <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-8">
+            <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-8">
               <h2 className="text-xl font-semibold mb-6 text-center">Preguntas Frecuentes</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
@@ -258,13 +258,13 @@ export default function PreciosPage() {
             </motion.div>
 
             {/* CTA */}
-            <motion.div variants={itemVariants} className="text-center bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-pink-900/20 border border-purple-500/30 rounded-2xl p-12">
+            <motion.div variants={itemVariants} className="text-center bg-gradient-to-br from-blue-900/20 via-secondary-900/20 to-secondary-900/20 border border-secondary-500/30 rounded-2xl p-12">
               <div className="inline-block bg-green-500/10 border border-green-500/20 rounded-full px-6 py-2 text-sm font-semibold text-green-400 mb-6">
                 ✓ 30 días gratis • Sin tarjeta de crédito
               </div>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
                 ¿No estás seguro?{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-secondary-400">
                   Pruébalo gratis.
                 </span>
               </h2>
@@ -277,7 +277,7 @@ export default function PreciosPage() {
                 <Link href="/consulta" className="bg-primary-600 hover:bg-primary-700 text-gray-900 dark:text-white px-8 py-4 rounded-full font-bold text-base transition-colors shadow-xl inline-block">
                   Agendar demo gratuita →
                 </Link>
-                <Link href="/login" className="border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white px-8 py-4 rounded-full font-medium text-base hover:border-primary-500 hover:bg-gray-50 dark:hover:bg-secondary-800 transition-all inline-block">
+                <Link href="/login" className="border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white px-8 py-4 rounded-full font-medium text-base hover:border-primary-500 hover:bg-gray-50 dark:hover:bg-neutral-100 transition-all inline-block">
                   Empezar prueba gratis
                 </Link>
               </div>

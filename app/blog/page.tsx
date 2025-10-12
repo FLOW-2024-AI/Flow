@@ -60,7 +60,7 @@ const categories = ["Todos", "IA & Tecnología", "Automatización", "Guías", "C
 
 export default function BlogPage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-neutral-950 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
 
       {/* Hero */}
@@ -75,7 +75,7 @@ export default function BlogPage() {
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
               Blog de
               <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-secondary-400">
                 Flow
               </span>
             </h1>
@@ -89,7 +89,7 @@ export default function BlogPage() {
             {categories.map((category, index) => (
               <button
                 key={index}
-                className="px-6 py-2 bg-gray-50 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-full hover:border-blue-500 hover:text-blue-400 transition-all"
+                className="px-6 py-2 bg-gray-50 dark:bg-neutral-900 border border-gray-200 dark:border-gray-700 rounded-full hover:border-blue-500 hover:text-blue-400 transition-all"
               >
                 {category}
               </button>
@@ -110,7 +110,7 @@ export default function BlogPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -8 }}
-                className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl overflow-hidden hover:border-gray-300 dark:border-gray-600 transition-all cursor-pointer"
+                className="bg-gray-100 dark:bg-neutral-900 border border-gray-200 dark:border-gray-700 rounded-2xl overflow-hidden hover:border-gray-300 dark:border-gray-600 transition-all cursor-pointer"
               >
                 <div className="relative h-48 overflow-hidden">
                   <Image
@@ -151,7 +151,7 @@ export default function BlogPage() {
       </section>
 
       {/* Newsletter */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-900/20 to-purple-900/20">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-900/20 to-secondary-900/20">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-6">Suscríbete al newsletter</h2>
           <p className="text-xl text-gray-400 dark:text-gray-300 mb-8">
@@ -161,9 +161,9 @@ export default function BlogPage() {
             <input
               type="email"
               placeholder="tu@email.com"
-              className="flex-1 px-6 py-4 bg-gray-50 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
+              className="flex-1 px-6 py-4 bg-gray-50 dark:bg-neutral-900 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
             />
-            <button className="bg-white dark:bg-secondary-800 text-gray-900 dark:text-gray-100 px-8 py-4 rounded-xl font-bold hover:opacity-90 transition-opacity">
+            <button className="bg-white dark:bg-neutral-900 text-gray-900 dark:text-gray-100 px-8 py-4 rounded-xl font-bold hover:opacity-90 transition-opacity">
               Suscribirse
             </button>
           </div>

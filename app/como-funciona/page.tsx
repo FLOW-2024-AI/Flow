@@ -66,7 +66,7 @@ const steps = [
 
 export default function ComoFuncionaPage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-neutral-950 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
 
       {/* Hero */}
@@ -82,7 +82,7 @@ export default function ComoFuncionaPage() {
             </div>
             <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
               Conecta. Automatiza. Analiza.{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-secondary-400 to-secondary-400">
                 Financia.
               </span>
             </h1>
@@ -100,7 +100,7 @@ export default function ComoFuncionaPage() {
                 <span className="text-gray-600 dark:text-gray-400">Ahorro: 80% tiempo</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+                <div className="w-2 h-2 bg-secondary-400 rounded-full"></div>
                 <span className="text-gray-600 dark:text-gray-400">ROI: 450%</span>
               </div>
             </div>
@@ -123,7 +123,7 @@ export default function ComoFuncionaPage() {
               <div className={`grid lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
                 <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
                   <div className="flex items-center gap-4 mb-6">
-                    <div className="text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">{step.number}</div>
+                    <div className="text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-secondary-400">{step.number}</div>
                     <div className="text-6xl">{step.icon}</div>
                   </div>
                   <div className="flex items-center gap-3 mb-4">
@@ -169,7 +169,7 @@ export default function ComoFuncionaPage() {
       </section>
 
       {/* Timeline */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-secondary-900/50">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-neutral-950/50">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-xl font-bold text-center mb-16">Timeline de implementación</h2>
           <div className="space-y-8">
@@ -188,7 +188,7 @@ export default function ComoFuncionaPage() {
                 className="flex items-start space-x-6"
               >
                 <div className="flex-shrink-0 w-32 text-blue-400 font-bold">{phase.week}</div>
-                <div className="flex-1 bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6">
+                <div className="flex-1 bg-gray-100 dark:bg-neutral-900 border border-gray-200 dark:border-gray-700 rounded-xl p-6">
                   <h3 className="text-sm font-bold mb-2">{phase.title}</h3>
                   <p className="text-gray-600 dark:text-gray-400">{phase.desc}</p>
                 </div>
@@ -199,7 +199,7 @@ export default function ComoFuncionaPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-pink-900/20 border-t border-gray-200 dark:border-gray-700">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-900/20 via-secondary-900/20 to-secondary-900/20 border-t border-gray-200 dark:border-gray-700">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -212,7 +212,7 @@ export default function ComoFuncionaPage() {
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               De Excel a IA.{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-secondary-400">
                 En 2 semanas.
               </span>
             </h2>
@@ -222,10 +222,10 @@ export default function ComoFuncionaPage() {
               {' '}Agenda tu demo y empieza hoy.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Link href="/consulta" className="inline-block bg-white dark:bg-secondary-800 text-gray-900 dark:text-gray-100 px-8 py-4 rounded-full font-bold text-base hover:opacity-90 transition-opacity shadow-xl">
+              <Link href="/consulta" className="inline-block bg-white dark:bg-neutral-900 text-gray-900 dark:text-gray-100 px-8 py-4 rounded-full font-bold text-base hover:opacity-90 transition-opacity shadow-xl">
                 Agendar demo gratuita →
               </Link>
-              <Link href="/precios" className="inline-block border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white px-8 py-4 rounded-full font-medium text-base hover:border-neutral-500 hover:bg-gray-100 dark:bg-secondary-800 transition-all">
+              <Link href="/precios" className="inline-block border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white px-8 py-4 rounded-full font-medium text-base hover:border-neutral-500 hover:bg-gray-100 dark:bg-neutral-900 transition-all">
                 Ver precios
               </Link>
             </div>

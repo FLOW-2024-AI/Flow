@@ -64,7 +64,7 @@ export default function ComparacionPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-neutral-950 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
 
       {/* Hero */}
@@ -91,9 +91,9 @@ export default function ComparacionPage() {
       {/* Comparison Table */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          <div className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-3xl overflow-hidden">
+          <div className="bg-gray-100 dark:bg-neutral-900 border border-gray-200 dark:border-gray-700 rounded-3xl overflow-hidden">
             {/* Header */}
-            <div className="grid grid-cols-4 gap-4 p-6 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-secondary-800/80">
+            <div className="grid grid-cols-4 gap-4 p-6 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-neutral-900/80">
               <div className="text-xs font-semibold text-gray-500 dark:text-gray-400">Característica</div>
               <div className="text-center">
                 <div className="inline-block bg-blue-500/10 border border-blue-500/20 rounded-full px-3 py-1 mb-2">
@@ -107,7 +107,7 @@ export default function ComparacionPage() {
             {/* Categories */}
             {features.map((category, catIndex) => (
               <div key={catIndex} className="border-b border-gray-200 dark:border-gray-700 last:border-b-0">
-                <div className="bg-gray-100 dark:bg-secondary-800 px-6 py-3">
+                <div className="bg-gray-100 dark:bg-neutral-900 px-6 py-3">
                   <h3 className="text-sm font-semibold text-gray-900 dark:text-white">{category.category}</h3>
                 </div>
                 {category.items.map((item, itemIndex) => (
@@ -117,7 +117,7 @@ export default function ComparacionPage() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: itemIndex * 0.05 }}
-                    className="grid grid-cols-4 gap-4 p-6 hover:bg-gray-50 dark:bg-secondary-800/30 transition-colors"
+                    className="grid grid-cols-4 gap-4 p-6 hover:bg-gray-50 dark:bg-neutral-900/30 transition-colors"
                   >
                     <div className="text-xs text-gray-400 dark:text-gray-300">{item.name}</div>
                     <div className="text-center font-semibold">{renderValue(item.flow)}</div>
@@ -134,7 +134,7 @@ export default function ComparacionPage() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mt-12 bg-gradient-to-br from-blue-900/20 to-purple-900/20 border border-blue-500/20 rounded-2xl p-8 text-center"
+            className="mt-12 bg-gradient-to-br from-blue-900/20 to-secondary-900/20 border border-blue-500/20 rounded-2xl p-8 text-center"
           >
             <h3 className="text-xl font-semibold mb-4">¿Por qué elegir Flow?</h3>
             <div className="grid md:grid-cols-3 gap-6 mb-8">
@@ -143,7 +143,7 @@ export default function ComparacionPage() {
                 <div className="text-xs text-gray-600 dark:text-gray-400">Implementación rápida</div>
               </div>
               <div>
-                <div className="text-2xl font-bold text-purple-400 mb-2">$299/mes</div>
+                <div className="text-2xl font-bold text-secondary-400 mb-2">$299/mes</div>
                 <div className="text-xs text-gray-600 dark:text-gray-400">Precio competitivo</div>
               </div>
               <div>
@@ -151,7 +151,7 @@ export default function ComparacionPage() {
                 <div className="text-xs text-gray-600 dark:text-gray-400">Soporte dedicado</div>
               </div>
             </div>
-            <Link href="/consulta" className="inline-block bg-white dark:bg-secondary-800 text-gray-900 dark:text-gray-100 px-6 py-3 rounded-full font-medium text-sm hover:opacity-90 transition-opacity">
+            <Link href="/consulta" className="inline-block bg-white dark:bg-neutral-900 text-gray-900 dark:text-gray-100 px-6 py-3 rounded-full font-medium text-sm hover:opacity-90 transition-opacity">
               Comenzar con Flow
             </Link>
           </motion.div>

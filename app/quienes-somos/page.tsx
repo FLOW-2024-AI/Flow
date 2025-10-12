@@ -44,7 +44,7 @@ const scaleVariants = {
 
 export default function QuienesSomosPage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-neutral-950 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
 
       {/* Hero Image with Parallax */}
@@ -100,7 +100,7 @@ export default function QuienesSomosPage() {
               >
                 Pioneros en automatización
                 <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-secondary-500">
                   financiera empresarial
                 </span>
               </motion.h2>
@@ -142,7 +142,7 @@ export default function QuienesSomosPage() {
                       <div className="text-sm text-gray-600 dark:text-gray-400">Empresas confiando</div>
                     </div>
                     <div>
-                      <div className="text-lg font-bold text-purple-400 mb-2">450%</div>
+                      <div className="text-lg font-bold text-secondary-400 mb-2">450%</div>
                       <div className="text-sm text-gray-600 dark:text-gray-400">ROI promedio</div>
                     </div>
                     <div>
@@ -184,12 +184,12 @@ export default function QuienesSomosPage() {
                 variants={scaleVariants}
                 whileHover={{ scale: 1.02, y: -5 }}
                 transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                className="group relative bg-gradient-to-br from-purple-900/30 to-purple-800/10 border border-purple-800/30 rounded-3xl p-10 overflow-hidden"
+                className="group relative bg-gradient-to-br from-secondary-900/30 to-secondary-800/10 border border-secondary-800/30 rounded-3xl p-10 overflow-hidden"
               >
-                <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl group-hover:bg-purple-500/20 transition-all duration-700" />
+                <div className="absolute top-0 right-0 w-64 h-64 bg-secondary-500/10 rounded-full blur-3xl group-hover:bg-secondary-500/20 transition-all duration-700" />
                 <div className="relative z-10">
                   <motion.div 
-                    className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 shadow-2xl shadow-purple-500/50"
+                    className="w-16 h-16 bg-gradient-to-br from-secondary-500 to-secondary-600 rounded-2xl flex items-center justify-center mb-6 shadow-2xl shadow-secondary-500/50"
                     whileHover={{ rotate: 360 }}
                     transition={{ duration: 0.6 }}
                   >
@@ -309,7 +309,7 @@ export default function QuienesSomosPage() {
                     <div className="absolute top-0 right-0 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/20 transition-all duration-700" />
                     <div className="relative z-10 text-center">
                       <motion.div 
-                        className="w-32 h-32 bg-gradient-to-br from-blue-500 via-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-2xl shadow-blue-500/50"
+                        className="w-32 h-32 bg-gradient-to-br from-blue-500 via-blue-600 to-secondary-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-2xl shadow-blue-500/50"
                         whileHover={{ scale: 1.1, rotate: 5 }}
                         transition={{ duration: 0.3 }}
                       >
@@ -354,19 +354,19 @@ export default function QuienesSomosPage() {
                   transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <div className="relative bg-gradient-to-br from-neutral-900 to-neutral-950 border border-gray-200 dark:border-gray-700 rounded-3xl p-8 overflow-hidden">
-                    <div className="absolute top-0 right-0 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl group-hover:bg-purple-500/20 transition-all duration-700" />
+                    <div className="absolute top-0 right-0 w-40 h-40 bg-secondary-500/10 rounded-full blur-3xl group-hover:bg-secondary-500/20 transition-all duration-700" />
                     <div className="relative z-10 text-center">
                       <motion.div 
-                        className="w-32 h-32 bg-gradient-to-br from-purple-500 via-purple-600 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-2xl shadow-purple-500/50"
+                        className="w-32 h-32 bg-gradient-to-br from-secondary-500 via-secondary-600 to-secondary-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-2xl shadow-secondary-500/50"
                         whileHover={{ scale: 1.1, rotate: 5 }}
                         transition={{ duration: 0.3 }}
                       >
                         <span className="text-lg font-bold text-gray-900 dark:text-white">NV</span>
                       </motion.div>
-                      <h3 className="text-base font-bold mb-2 group-hover:text-purple-400 transition-colors">Nathan Villegas</h3>
-                      <p className="text-purple-400 font-semibold mb-4 text-sm tracking-wide">CFO & FUNDADOR</p>
+                      <h3 className="text-base font-bold mb-2 group-hover:text-secondary-400 transition-colors">Nathan Villegas</h3>
+                      <p className="text-secondary-400 font-semibold mb-4 text-sm tracking-wide">CFO & FUNDADOR</p>
                       <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                        Ex-ingeniero de <span className="text-gray-900 dark:text-white font-semibold">Yape</span>, pionero en infraestructura fintech de alto volumen. Especialista en arquitectura financiera escalable y optimización de capital para <span className="text-purple-400 font-semibold">hypergrowth startups</span>.
+                        Ex-ingeniero de <span className="text-gray-900 dark:text-white font-semibold">Yape</span>, pionero en infraestructura fintech de alto volumen. Especialista en arquitectura financiera escalable y optimización de capital para <span className="text-secondary-400 font-semibold">hypergrowth startups</span>.
                       </p>
                     </div>
                   </div>
@@ -386,7 +386,7 @@ export default function QuienesSomosPage() {
                   fill
                   className="object-cover opacity-30"
                 />
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-purple-900/90 to-black/90" />
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-secondary-900/90 to-black/90" />
               </div>
               
               <div className="relative z-10 text-center p-16">
@@ -399,7 +399,7 @@ export default function QuienesSomosPage() {
                 >
                   ¿Listo para transformar
                   <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-secondary-400">
                     tus finanzas?
                   </span>
                 </motion.h2>
@@ -423,7 +423,7 @@ export default function QuienesSomosPage() {
                     <motion.div
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="bg-white dark:bg-secondary-800 text-gray-900 dark:text-gray-100 px-10 py-5 rounded-2xl font-bold text-lg hover:opacity-90 transition-all duration-200 shadow-2xl inline-block cursor-pointer"
+                      className="bg-white dark:bg-neutral-900 text-gray-900 dark:text-gray-100 px-10 py-5 rounded-2xl font-bold text-lg hover:opacity-90 transition-all duration-200 shadow-2xl inline-block cursor-pointer"
                     >
                       Agendar consulta gratis
                     </motion.div>

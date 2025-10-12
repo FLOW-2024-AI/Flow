@@ -64,7 +64,7 @@ const caseStudies = [
 
 export default function CasosExitoPage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-neutral-950 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
 
       {/* Hero */}
@@ -80,7 +80,7 @@ export default function CasosExitoPage() {
             </p>
             <h1 className="text-2xl md:text-3xl font-semibold mb-4">
               Empresas que transformaron{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-secondary-400">
                 sus finanzas con Flow
               </span>
             </h1>
@@ -146,7 +146,7 @@ export default function CasosExitoPage() {
                 {/* Results */}
                 <div className="grid grid-cols-3 gap-4 mb-8">
                   {study.results.map((result, idx) => (
-                    <div key={idx} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-xl p-4 text-center">
+                    <div key={idx} className="bg-gray-100 dark:bg-neutral-900 border border-gray-200 dark:border-gray-700 rounded-xl p-4 text-center">
                       <div className="text-lg font-bold text-blue-400 mb-1">{result.metric}</div>
                       <div className="text-xs text-gray-500 dark:text-gray-400">{result.label}</div>
                     </div>
@@ -154,12 +154,12 @@ export default function CasosExitoPage() {
                 </div>
 
                 {/* Testimonial */}
-                <div className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                <div className="bg-gray-100 dark:bg-neutral-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <p className="text-sm text-gray-400 dark:text-gray-300 mb-4 italic">
                     "{study.testimonial.quote}"
                   </p>
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                    <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-secondary-600 rounded-full flex items-center justify-center">
                       <span className="text-xs font-bold text-gray-900 dark:text-white">
                         {study.testimonial.author.split(' ').map(n => n[0]).join('')}
                       </span>
@@ -177,13 +177,13 @@ export default function CasosExitoPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-900/20 to-purple-900/20">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-900/20 to-secondary-900/20">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-xl font-semibold mb-4">¿Listo para tu historia de éxito?</h2>
           <p className="text-sm text-gray-600 dark:text-gray-400 mb-8">
             Únete a las empresas que ya están transformando sus finanzas con Flow
           </p>
-          <Link href="/consulta" className="inline-block bg-white dark:bg-secondary-800 text-gray-900 dark:text-gray-100 px-6 py-3 rounded-full font-medium text-sm hover:opacity-90 transition-opacity">
+          <Link href="/consulta" className="inline-block bg-white dark:bg-neutral-900 text-gray-900 dark:text-gray-100 px-6 py-3 rounded-full font-medium text-sm hover:opacity-90 transition-opacity">
             Agendar consulta gratuita
           </Link>
         </div>

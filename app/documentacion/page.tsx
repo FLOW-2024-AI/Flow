@@ -6,7 +6,7 @@ import Navbar from '@/components/Navbar'
 
 export default function DocumentacionPage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-neutral-950 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
       
       <div className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
@@ -23,7 +23,7 @@ export default function DocumentacionPage() {
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8 mb-16">
-            <div className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-8 hover:border-blue-500/50 transition-all">
+            <div className="bg-gray-100 dark:bg-neutral-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-8 hover:border-blue-500/50 transition-all">
               <div className="text-4xl mb-4">📚</div>
               <h3 className="text-xl font-bold mb-3">Guía de Inicio</h3>
               <p className="text-gray-600 dark:text-gray-400 mb-4">
@@ -34,7 +34,7 @@ export default function DocumentacionPage() {
               </Link>
             </div>
 
-            <div className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-8 hover:border-green-500/50 transition-all">
+            <div className="bg-gray-100 dark:bg-neutral-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-8 hover:border-green-500/50 transition-all">
               <div className="text-4xl mb-4">🔌</div>
               <h3 className="text-xl font-bold mb-3">Integraciones</h3>
               <p className="text-gray-600 dark:text-gray-400 mb-4">
@@ -45,26 +45,26 @@ export default function DocumentacionPage() {
               </Link>
             </div>
 
-            <div className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-8 hover:border-purple-500/50 transition-all">
+            <div className="bg-gray-100 dark:bg-neutral-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-8 hover:border-secondary-500/50 transition-all">
               <div className="text-4xl mb-4">🤖</div>
               <h3 className="text-xl font-bold mb-3">Automatizaciones</h3>
               <p className="text-gray-600 dark:text-gray-400 mb-4">
                 Configura RPA y automatiza tus procesos financieros.
               </p>
-              <Link href="/consulta" className="text-purple-400 hover:text-purple-300 text-sm font-semibold">
+              <Link href="/consulta" className="text-secondary-400 hover:text-secondary-300 text-sm font-semibold">
                 Explorar →
               </Link>
             </div>
           </div>
 
-          <div className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-blue-800/30 rounded-2xl p-12 text-center">
+          <div className="bg-gradient-to-r from-blue-900/20 to-secondary-900/20 border border-blue-800/30 rounded-2xl p-12 text-center">
             <h3 className="text-2xl font-bold mb-4">¿Necesitas ayuda personalizada?</h3>
             <p className="text-gray-400 dark:text-gray-300 mb-6">
               Nuestro equipo está disponible para ayudarte con la implementación
             </p>
             <Link
               href="/consulta"
-              className="inline-block bg-white dark:bg-secondary-800 text-gray-900 dark:text-gray-100 px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity"
+              className="inline-block bg-white dark:bg-neutral-900 text-gray-900 dark:text-gray-100 px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity"
             >
               Contactar soporte
             </Link>

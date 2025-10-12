@@ -6,7 +6,7 @@ import Navbar from '@/components/Navbar'
 
 export default function ContactoPage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-neutral-950 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
       
       <div className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
@@ -25,7 +25,7 @@ export default function ContactoPage() {
           <div className="grid md:grid-cols-2 gap-12">
             {/* Contact Info */}
             <div className="space-y-8">
-              <div className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-8">
+              <div className="bg-gray-100 dark:bg-neutral-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-8">
                 <div className="flex items-start space-x-4 mb-6">
                   <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
                     <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -40,7 +40,7 @@ export default function ContactoPage() {
                 </div>
               </div>
 
-              <div className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-8">
+              <div className="bg-gray-100 dark:bg-neutral-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-8">
                 <div className="flex items-start space-x-4 mb-6">
                   <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
                     <svg className="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -55,10 +55,10 @@ export default function ContactoPage() {
                 </div>
               </div>
 
-              <div className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-8">
+              <div className="bg-gray-100 dark:bg-neutral-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-8">
                 <div className="flex items-start space-x-4 mb-6">
-                  <div className="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-12 h-12 bg-secondary-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <svg className="w-6 h-6 text-secondary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
@@ -74,26 +74,26 @@ export default function ContactoPage() {
 
             {/* Quick Links */}
             <div className="space-y-6">
-              <div className="bg-gradient-to-br from-blue-900/20 to-purple-900/20 border border-blue-500/30 rounded-2xl p-8">
+              <div className="bg-gradient-to-br from-blue-900/20 to-secondary-900/20 border border-blue-500/30 rounded-2xl p-8">
                 <h3 className="text-2xl font-bold mb-6">¿Necesitas ayuda rápida?</h3>
                 <div className="space-y-4">
                   <Link
                     href="/consulta"
-                    className="block p-4 bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500/50 transition-colors"
+                    className="block p-4 bg-gray-100 dark:bg-neutral-900 border border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500/50 transition-colors"
                   >
                     <h4 className="font-semibold mb-1">Agendar Demo</h4>
                     <p className="text-sm text-gray-600 dark:text-gray-400">Consulta gratuita de 30 minutos</p>
                   </Link>
                   <Link
                     href="/faq"
-                    className="block p-4 bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500/50 transition-colors"
+                    className="block p-4 bg-gray-100 dark:bg-neutral-900 border border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500/50 transition-colors"
                   >
                     <h4 className="font-semibold mb-1">Preguntas Frecuentes</h4>
                     <p className="text-sm text-gray-600 dark:text-gray-400">Respuestas a dudas comunes</p>
                   </Link>
                   <Link
                     href="/dashboard"
-                    className="block p-4 bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500/50 transition-colors"
+                    className="block p-4 bg-gray-100 dark:bg-neutral-900 border border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500/50 transition-colors"
                   >
                     <h4 className="font-semibold mb-1">Soporte Técnico</h4>
                     <p className="text-sm text-gray-600 dark:text-gray-400">Para clientes actuales</p>
@@ -101,7 +101,7 @@ export default function ContactoPage() {
                 </div>
               </div>
 
-              <div className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-8">
+              <div className="bg-gray-100 dark:bg-neutral-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-8">
                 <h3 className="text-xl font-bold mb-4">Síguenos</h3>
                 <div className="flex space-x-4">
                   <a href="#" className="w-10 h-10 bg-gray-100 dark:bg-secondary-700 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">

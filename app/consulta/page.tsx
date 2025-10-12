@@ -130,7 +130,7 @@ export default function ConsultaPage() {
 
   if (isSuccess) {
     return (
-      <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 flex items-center justify-center px-4 transition-colors duration-200">
+      <div className="min-h-screen bg-white dark:bg-neutral-950 text-gray-900 dark:text-gray-100 flex items-center justify-center px-4 transition-colors duration-200">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -165,8 +165,8 @@ export default function ConsultaPage() {
                 <p className="text-gray-400 dark:text-gray-300">Analizaremos tus procesos y identificaremos oportunidades</p>
               </div>
               <div className="flex items-start space-x-3">
-                <div className="w-6 h-6 bg-purple-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+                <div className="w-6 h-6 bg-secondary-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <div className="w-2 h-2 bg-secondary-400 rounded-full"></div>
                 </div>
                 <p className="text-gray-400 dark:text-gray-300">Te mostraremos ejemplos específicos para tu industria</p>
               </div>
@@ -175,7 +175,7 @@ export default function ConsultaPage() {
           
           <Link 
             href="/"
-            className="inline-block bg-white dark:bg-secondary-800 text-gray-900 dark:text-gray-100 px-8 py-4 rounded-xl font-semibold hover:opacity-90 transition-opacity"
+            className="inline-block bg-white dark:bg-neutral-900 text-gray-900 dark:text-gray-100 px-8 py-4 rounded-xl font-semibold hover:opacity-90 transition-opacity"
           >
             Volver al inicio
           </Link>
@@ -185,7 +185,7 @@ export default function ConsultaPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-neutral-950 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
 
       {/* Main Content */}
@@ -231,8 +231,8 @@ export default function ConsultaPage() {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <div className="w-6 h-6 bg-purple-400 rounded-sm"></div>
+                  <div className="w-12 h-12 bg-secondary-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <div className="w-6 h-6 bg-secondary-400 rounded-sm"></div>
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold mb-2">Plan de implementación</h3>
@@ -284,7 +284,7 @@ export default function ConsultaPage() {
                         value={formData.nombre}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-white dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-neutral-400 focus-ring transition-colors"
+                        className="w-full px-4 py-3 bg-white dark:bg-neutral-950 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-neutral-400 focus-ring transition-colors"
                         placeholder="Tu nombre"
                         disabled={isLoading}
                       />
@@ -301,7 +301,7 @@ export default function ConsultaPage() {
                         value={formData.apellido}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-white dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-neutral-400 focus-ring transition-colors"
+                        className="w-full px-4 py-3 bg-white dark:bg-neutral-950 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-neutral-400 focus-ring transition-colors"
                         placeholder="Tu apellido"
                         disabled={isLoading}
                       />
@@ -319,7 +319,7 @@ export default function ConsultaPage() {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-white dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-neutral-400 focus-ring transition-colors"
+                      className="w-full px-4 py-3 bg-white dark:bg-neutral-950 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-neutral-400 focus-ring transition-colors"
                       placeholder="tu@empresa.com"
                       disabled={isLoading}
                     />
@@ -336,7 +336,7 @@ export default function ConsultaPage() {
                       value={formData.empresa}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-white dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-neutral-400 focus-ring transition-colors"
+                      className="w-full px-4 py-3 bg-white dark:bg-neutral-950 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-neutral-400 focus-ring transition-colors"
                       placeholder="Nombre de tu empresa"
                       disabled={isLoading}
                     />
@@ -353,7 +353,7 @@ export default function ConsultaPage() {
                         name="cargo"
                         value={formData.cargo}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 bg-white dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-neutral-400 focus-ring transition-colors"
+                        className="w-full px-4 py-3 bg-white dark:bg-neutral-950 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-neutral-400 focus-ring transition-colors"
                         placeholder="CFO, Controller, etc."
                         disabled={isLoading}
                       />
@@ -369,7 +369,7 @@ export default function ConsultaPage() {
                         name="telefono"
                         value={formData.telefono}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 bg-white dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-neutral-400 focus-ring transition-colors"
+                        className="w-full px-4 py-3 bg-white dark:bg-neutral-950 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-neutral-400 focus-ring transition-colors"
                         placeholder="+1 234 567 8900"
                         disabled={isLoading}
                       />
@@ -385,7 +385,7 @@ export default function ConsultaPage() {
                       name="empleados"
                       value={formData.empleados}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-white dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white focus-ring transition-colors"
+                      className="w-full px-4 py-3 bg-white dark:bg-neutral-950 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white focus-ring transition-colors"
                       disabled={isLoading}
                     >
                       <option value="">Selecciona el tamaño</option>
@@ -406,7 +406,7 @@ export default function ConsultaPage() {
                       name="procesos"
                       value={formData.procesos}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-white dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white focus-ring transition-colors"
+                      className="w-full px-4 py-3 bg-white dark:bg-neutral-950 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white focus-ring transition-colors"
                       disabled={isLoading}
                     >
                       <option value="">Selecciona un área</option>
@@ -431,7 +431,7 @@ export default function ConsultaPage() {
                       value={formData.mensaje}
                       onChange={handleChange}
                       rows={4}
-                      className="w-full px-4 py-3 bg-white dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-neutral-400 focus-ring transition-colors resize-none"
+                      className="w-full px-4 py-3 bg-white dark:bg-neutral-950 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-neutral-400 focus-ring transition-colors resize-none"
                       placeholder="Describe brevemente tus principales desafíos o procesos que consumen más tiempo..."
                       disabled={isLoading}
                     />
@@ -452,7 +452,7 @@ export default function ConsultaPage() {
                     disabled={isLoading || !formData.nombre || !formData.apellido || !formData.email || !formData.empresa}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full bg-white dark:bg-secondary-800 text-gray-900 dark:text-gray-100 font-semibold py-4 px-8 rounded-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className="w-full bg-white dark:bg-neutral-900 text-gray-900 dark:text-gray-100 font-semibold py-4 px-8 rounded-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
                     {isLoading ? (
                       <>
