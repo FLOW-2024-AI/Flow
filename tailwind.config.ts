@@ -26,17 +26,17 @@ const config: Config = {
           950: '#082f49',
         },
         secondary: {
-          50: '#f0fdfa',
-          100: '#ccfbf1',
-          200: '#99f6e4',
-          300: '#5eead4',
-          400: '#2dd4bf',
-          500: '#14b8a6',
-          600: '#0d9488',
-          700: '#0f766e',
-          800: '#115e59',
-          900: '#134e4a',
-          950: '#042f2e',
+          50: '#eef2ff',
+          100: '#e0e7ff',
+          200: '#c7d2fe',
+          300: '#a5b4fc',
+          400: '#818cf8',
+          500: '#6366f1',
+          600: '#4f46e5',
+          700: '#4338ca',
+          800: '#3730a3',
+          900: '#312e81',
+          950: '#1e1b4b',
         },
         accent: {
           50: '#fff7ed',
@@ -67,22 +67,36 @@ const config: Config = {
       fontFamily: {
         sans: ['"Myriad Pro"', 'Myriad', '"Liberation Sans"', '"Nimbus Sans L"', '"Helvetica Neue"', 'Arial', 'sans-serif'],
       },
+      boxShadow: {
+        'premium': '0 20px 60px -10px rgba(0, 0, 0, 0.1), 0 10px 20px -5px rgba(0, 0, 0, 0.04)',
+        'premium-lg': '0 25px 70px -15px rgba(0, 0, 0, 0.15), 0 15px 30px -10px rgba(0, 0, 0, 0.08)',
+        'glow': '0 0 40px rgba(99, 102, 241, 0.3)',
+        'glow-lg': '0 0 60px rgba(99, 102, 241, 0.4)',
+      },
       animation: {
         'fade-in': 'fadeIn 0.6s ease-out',
-        'slide-up': 'slideUp 0.6s ease-out',
+        'float': 'float 6s ease-in-out infinite',
+        'glow': 'glow 3s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {
-          '0%': { opacity: '0', transform: 'translateY(12px)' },
+          '0%': { opacity: '0', transform: 'translateY(20px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
         slideUp: {
-          '0%': { opacity: '0', transform: 'translateY(20px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
+          '0%': { transform: 'translateY(100%)' },
+          '100%': { transform: 'translateY(0)' },
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-20px)' },
+        },
+        glow: {
+          '0%, 100%': { boxShadow: '0 0 20px rgba(99, 102, 241, 0.3)' },
+          '50%': { boxShadow: '0 0 40px rgba(99, 102, 241, 0.6)' },
         },
       },
     },
   },
   plugins: [],
 }
-export default config

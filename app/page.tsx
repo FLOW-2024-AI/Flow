@@ -323,47 +323,84 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Final CTA Section */}
-      <section className="py-32 px-6 bg-gradient-to-br from-primary-600 via-primary-500 to-secondary-500 text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
+      {/* Final CTA Section - Glassmorphism Premium */}
+      <section className="py-32 px-6 relative overflow-hidden bg-gradient-to-br from-neutral-50 via-white to-neutral-50 dark:from-neutral-900 dark:via-neutral-950 dark:to-neutral-900">
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.02] dark:opacity-[0.05]" />
+        
+        {/* Animated Orbs - Sutiles */}
         <motion.div
           animate={{
             scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
+            opacity: [0.15, 0.25, 0.15],
           }}
           transition={{
             duration: 8,
             repeat: Infinity,
             ease: "easeInOut"
           }}
-          className="absolute top-0 left-0 w-96 h-96 bg-white/20 rounded-full blur-3xl"
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-primary-400 to-secondary-400 rounded-full blur-3xl"
+        />
+        <motion.div
+          animate={{
+            scale: [1, 1.3, 1],
+            opacity: [0.15, 0.25, 0.15],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1
+          }}
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-l from-secondary-400 to-accent-400 rounded-full blur-3xl"
         />
         
-        <div className="max-w-4xl mx-auto text-center relative z-10">
+        <div className="max-w-5xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
+            className="bg-white/80 dark:bg-neutral-900/80 backdrop-blur-2xl border border-neutral-200/50 dark:border-neutral-800/50 rounded-3xl p-16 shadow-2xl"
           >
-            <h2 className="text-4xl md:text-6xl font-bold mb-6">
-              ¿Listo para transformar
-              <br />
-              tu operación financiera?
-            </h2>
-            <p className="text-xl text-primary-100 mb-12 max-w-2xl mx-auto">
-              Agenda una demo gratuita y descubre cómo Flow puede ayudarte a automatizar, analizar y crecer.
-            </p>
-            <Link href="/consulta">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-12 py-5 bg-white text-primary-600 rounded-2xl font-bold text-xl shadow-2xl hover:shadow-3xl transition-all duration-300 inline-flex items-center gap-3"
-              >
-                Agendar Demo Ahora
-                <ArrowRight className="w-6 h-6" />
-              </motion.button>
-            </Link>
+            <div className="text-center">
+              <h2 className="text-4xl md:text-6xl font-bold mb-6 text-neutral-900 dark:text-neutral-50">
+                ¿Listo para transformar
+                <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 via-secondary-500 to-accent-500">
+                  tu operación financiera?
+                </span>
+              </h2>
+              <p className="text-xl text-neutral-600 dark:text-neutral-400 mb-12 max-w-2xl mx-auto leading-relaxed">
+                Agenda una demo gratuita y descubre cómo Flow puede ayudarte a automatizar, analizar y crecer.
+              </p>
+              <Link href="/consulta">
+                <motion.button
+                  whileHover={{ scale: 1.05, boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25)" }}
+                  whileTap={{ scale: 0.95 }}
+                  className="group px-12 py-5 bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-2xl font-bold text-xl shadow-xl hover:shadow-2xl transition-all duration-500 inline-flex items-center gap-3"
+                >
+                  Agendar Demo Ahora
+                  <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+                </motion.button>
+              </Link>
+              
+              {/* Trust indicators */}
+              <div className="mt-12 flex flex-wrap items-center justify-center gap-8 text-sm text-neutral-600 dark:text-neutral-400">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-green-500" />
+                  <span>Sin tarjeta de crédito</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-green-500" />
+                  <span>30 días gratis</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-green-500" />
+                  <span>Soporte dedicado</span>
+                </div>
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
