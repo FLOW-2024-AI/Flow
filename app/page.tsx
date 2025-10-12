@@ -77,7 +77,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-8"
+            className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-8 text-neutral-900 dark:text-neutral-50"
           >
             Tu Ecosistema
             <br />
@@ -91,10 +91,10 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl md:text-2xl text-neutral-600 dark:text-neutral-400 max-w-3xl mx-auto mb-12 leading-relaxed"
+            className="text-xl md:text-2xl text-neutral-700 dark:text-neutral-300 max-w-3xl mx-auto mb-12 leading-relaxed"
           >
             Conecta tu ERP, bancos y SUNAT. Automatiza con RPA, analiza con IA y accede a financiamiento.
-            <span className="font-semibold text-neutral-900 dark:text-neutral-100"> Todo en una plataforma.</span>
+            <span className="font-semibold text-neutral-900 dark:text-neutral-50"> Todo en una plataforma.</span>
           </motion.p>
 
           {/* CTA Buttons */}
@@ -169,13 +169,13 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="text-center mb-20"
           >
-            <h2 className="text-4xl md:text-6xl font-bold mb-6">
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-neutral-900 dark:text-neutral-50">
               Potencia tu{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600">
                 Operación Financiera
               </span>
             </h2>
-            <p className="text-xl text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
+            <p className="text-xl text-neutral-700 dark:text-neutral-300 max-w-2xl mx-auto">
               Automatización inteligente que se integra con tus sistemas existentes
             </p>
           </motion.div>
@@ -219,8 +219,8 @@ export default function Home() {
               className="bg-white dark:bg-neutral-800 rounded-3xl p-8 border border-neutral-200 dark:border-neutral-700 hover:border-primary-500 dark:hover:border-primary-500 transition-all duration-300"
             >
               <BarChart3 className="w-12 h-12 text-secondary-500 mb-6" />
-              <h3 className="text-2xl font-bold mb-4">Análisis con IA</h3>
-              <p className="text-neutral-600 dark:text-neutral-400">
+              <h3 className="text-2xl font-bold mb-4 text-neutral-900 dark:text-neutral-50">Análisis con IA</h3>
+              <p className="text-neutral-700 dark:text-neutral-300">
                 Predicciones financieras, detección de anomalías y recomendaciones inteligentes.
               </p>
             </motion.div>
@@ -235,8 +235,8 @@ export default function Home() {
               className="bg-white dark:bg-neutral-800 rounded-3xl p-8 border border-neutral-200 dark:border-neutral-700 hover:border-secondary-500 dark:hover:border-secondary-500 transition-all duration-300"
             >
               <Shield className="w-12 h-12 text-accent-500 mb-6" />
-              <h3 className="text-2xl font-bold mb-4">Seguridad Enterprise</h3>
-              <p className="text-neutral-600 dark:text-neutral-400">
+              <h3 className="text-2xl font-bold mb-4 text-neutral-900 dark:text-neutral-50">Seguridad Enterprise</h3>
+              <p className="text-neutral-700 dark:text-neutral-300">
                 Encriptación end-to-end, cumplimiento SOC 2 y auditorías completas.
               </p>
             </motion.div>
@@ -280,13 +280,13 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-6xl font-bold mb-6">
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-neutral-900 dark:text-neutral-50">
               Calcula tu{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-accent-600">
                 Retorno de Inversión
               </span>
             </h2>
-            <p className="text-xl text-neutral-600 dark:text-neutral-400">
+            <p className="text-xl text-neutral-700 dark:text-neutral-300">
               Descubre cuánto puedes ahorrar automatizando tus procesos financieros
             </p>
           </motion.div>
@@ -312,7 +312,7 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-6xl font-bold mb-6">
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-neutral-900 dark:text-neutral-50">
               Lo que dicen{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600">
                 nuestros clientes
