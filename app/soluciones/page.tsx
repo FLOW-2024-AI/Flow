@@ -16,7 +16,7 @@ const solutions = [
       "Clasificación inteligente de gastos con IA",
       "Detección automática de duplicados y errores"
     ],
-    color: "from-blue-500 to-purple-600",
+    color: "from-primary-500 to-secondary-500",
     stat: "80% menos tiempo manual"
   },
   {
@@ -30,7 +30,7 @@ const solutions = [
       "Predicciones con ML: Ingresos, gastos, flujo neto",
       "Alertas inteligentes antes de que surjan problemas"
     ],
-    color: "from-green-500 to-emerald-600",
+    color: "from-secondary-500 to-secondary-600",
     stat: "100% visibilidad en tiempo real"
   },
   {
@@ -72,7 +72,7 @@ const solutions = [
       "SIRE: Sincronización de facturas",
       "Alertas de vencimientos tributarios"
     ],
-    color: "from-purple-500 to-pink-600",
+    color: "from-secondary-600 to-primary-600",
     stat: "Cumplimiento garantizado"
   },
   {
@@ -86,30 +86,44 @@ const solutions = [
       "\"¿Puedo pagar esta factura sin afectar liquidez?\"",
       "Insights proactivos y recomendaciones"
     ],
-    color: "from-indigo-500 to-purple-600",
+    color: "from-primary-600 to-secondary-500",
     stat: "Respuestas instantáneas"
   }
 ]
 
 export default function SolucionesPage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50 transition-colors duration-200">
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+      <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        {/* Background gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-50 via-white to-secondary-50 dark:from-neutral-950 dark:via-neutral-900 dark:to-neutral-950" />
+        <motion.div
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-l from-primary-400 to-secondary-400 rounded-full blur-3xl opacity-20"
+        />
         <div className="max-w-7xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="inline-block bg-purple-500/10 border border-purple-500/20 rounded-full px-6 py-2 text-sm font-semibold text-purple-400 mb-6">
+            <div className="inline-block bg-gradient-to-r from-primary-50 to-secondary-50 dark:from-primary-950 dark:to-secondary-950 border border-primary-200 dark:border-primary-800 rounded-full px-6 py-2.5 text-sm font-bold text-primary-900 dark:text-primary-100 mb-6 shadow-lg">
               🚀 6 Soluciones. 1 Plataforma. ROI 450%
             </div>
             <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
               No reemplazamos tu ERP.{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 via-secondary-500 to-accent-500">
                 Lo conectamos todo.
               </span>
             </h1>

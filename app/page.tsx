@@ -64,10 +64,10 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-full px-4 py-2 mb-8 shadow-lg"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-primary-50 to-secondary-50 dark:from-primary-950 dark:to-secondary-950 border border-primary-200 dark:border-primary-800 rounded-full px-5 py-2.5 mb-8 shadow-lg backdrop-blur-sm"
           >
-            <Sparkles className="w-4 h-4 text-primary-500" />
-            <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+            <Sparkles className="w-4 h-4 text-primary-600 dark:text-primary-400" />
+            <span className="text-sm font-semibold text-primary-900 dark:text-primary-100">
               Potenciado por IA y RPA
             </span>
           </motion.div>
