@@ -24,9 +24,9 @@ export default function Home() {
       <Navbar />
 
       {/* Hero Section - Premium Webflow Style */}
-      <section ref={targetRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section ref={targetRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-neutral-950">
         {/* Animated Background Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-50 via-white to-secondary-50 dark:from-neutral-950 dark:via-neutral-900 dark:to-neutral-950" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-50 via-white to-secondary-50 dark:from-neutral-900 dark:via-neutral-950 dark:to-neutral-900" />
         
         {/* Animated Orbs */}
         <motion.div
@@ -130,19 +130,19 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1 }}
-            className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-8 text-sm text-neutral-600 dark:text-neutral-400"
+            className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-8 text-sm text-neutral-700 dark:text-neutral-300"
           >
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-5 h-5 text-green-500" />
-              <span>+20 empresas confían en Flow</span>
+              <span className="font-medium">+20 empresas confían en Flow</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-5 h-5 text-green-500" />
-              <span>80% reducción en tareas manuales</span>
+              <span className="font-medium">80% reducción en tareas manuales</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-5 h-5 text-green-500" />
-              <span>ROI en 3 meses</span>
+              <span className="font-medium">ROI en 3 meses</span>
             </div>
           </motion.div>
         </motion.div>
