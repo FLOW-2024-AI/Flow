@@ -98,7 +98,7 @@ export default function SeguridadPage() {
       </section>
 
       {/* Certifications */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-secondary-900/50">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-[#252525]/50">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-16">Certificaciones y cumplimiento</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">

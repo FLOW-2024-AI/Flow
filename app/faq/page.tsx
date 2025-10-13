@@ -134,7 +134,7 @@ export default function FAQPage() {
                       >
                         <button
                           onClick={() => setOpenIndex(isOpen ? null : key)}
-                          className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-100 dark:bg-secondary-700/50 transition-colors"
+                          className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-100 dark:hover:bg-[#252525]/50 transition-colors"
                         >
                           <span className="font-semibold text-lg">{faq.q}</span>
                           <svg
