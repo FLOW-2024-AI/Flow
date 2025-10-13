@@ -32,17 +32,17 @@ const plans = [
     description: "Automatiza lo básico. Perfecto para PYMEs que empiezan.",
     tagline: "RPA Básico",
     features: [
-      "✅ Dashboard Overview + Analytics",
-      "✅ Facturas Registradas",
-      "✅ Tesorería (Caja y Bancos)",
-      "✅ Conciliación Bancaria",
-      "✅ Reportes Financieros Básicos",
-      "✅ Alertas y Notificaciones",
-      "✅ Integraciones: 1 ERP + 2 Bancos",
-      "❌ Copiloto IA",
-      "❌ Predicciones ML",
-      "❌ Ecosistema Financiero",
-      "📧 Soporte: Email (48h)"
+      "Dashboard Overview + Analytics",
+      "Facturas Registradas",
+      "Tesorería (Caja y Bancos)",
+      "Conciliación Bancaria",
+      "Reportes Financieros Básicos",
+      "Alertas y Notificaciones",
+      "Integraciones: 1 ERP + 2 Bancos",
+      "Copiloto IA",
+      "Predicciones ML",
+      "Ecosistema Financiero",
+      "Soporte: Email (48h)"
     ],
     popular: false,
     color: "blue",
@@ -55,19 +55,19 @@ const plans = [
     description: "RPA + IA + CFO Digital. Lo que necesita tu empresa.",
     tagline: "Más Popular",
     features: [
-      "✅ Todo de Essentials +",
-      "✅ Facturación Electrónica (SUNAT)",
-      "✅ Cobranza Automatizada",
-      "✅ Cuentas por Pagar",
-      "✅ Presupuesto y Control",
-      "✅ Flujo de Caja Proyectado",
-      "✅ Copiloto IA Conversacional",
-      "✅ Predicciones con ML",
-      "✅ Automatizaciones RPA",
-      "✅ Salud Financiera (Score)",
-      "✅ Integraciones: 3 ERPs + Bancos ilimitados",
-      "✅ SUNAT: SOL, PLAME, PLE, SIRE",
-      "💬 Soporte: Chat prioritario (4h)"
+      "Todo de Essentials +",
+      "Facturación Electrónica (SUNAT)",
+      "Cobranza Automatizada",
+      "Cuentas por Pagar",
+      "Presupuesto y Control",
+      "Flujo de Caja Proyectado",
+      "Copiloto IA Conversacional",
+      "Predicciones con ML",
+      "Automatizaciones RPA",
+      "Salud Financiera (Score)",
+      "Integraciones: 3 ERPs + Bancos ilimitados",
+      "SUNAT: SOL, PLAME, PLE, SIRE",
+      "Soporte: Chat prioritario (4h)"
     ],
     popular: true,
     color: "green",
@@ -80,29 +80,29 @@ const plans = [
     description: "Todo Flow + Ecosistema Financiero + CFO Digital completo.",
     tagline: "Solución Completa",
     features: [
-      "✅ Todo de Professional +",
-      "✅ Planificación Estratégica",
-      "✅ Gestión de Riesgos",
-      "✅ Ecosistema Financiero (Confirming, Factoring, Flash)",
-      "✅ Productos Bancarios (Líneas, Leasing)",
-      "✅ Integraciones: Ilimitadas + API Custom",
-      "✅ Dashboard Personalizado",
-      "✅ Automatizaciones Custom",
-      "✅ White-label disponible",
-      "✅ Implementación dedicada",
-      "✅ SLA garantizado 99.9%",
-      "✅ Account Manager dedicado",
-      "🚀 Soporte: 24/7 + WhatsApp directo"
+      "Todo de Professional +",
+      "Planificación Estratégica",
+      "Gestión de Riesgos",
+      "Ecosistema Financiero (Confirming, Factoring, Flash)",
+      "Productos Bancarios (Líneas, Leasing)",
+      "Integraciones: Ilimitadas + API Custom",
+      "Dashboard Personalizado",
+      "Automatizaciones Custom",
+      "White-label disponible",
+      "Implementación dedicada",
+      "SLA garantizado 99.9%",
+      "Account Manager dedicado",
+      "Soporte: 24/7 + WhatsApp directo"
     ],
     popular: false,
-    color: "purple",
+    color: "blue",
     savings: "ROI 450%+"
   }
 ]
 
 export default function PreciosPage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-[#191919] text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
 
       {/* Main Content */}
@@ -116,12 +116,12 @@ export default function PreciosPage() {
           >
             {/* Header */}
             <motion.div variants={itemVariants} className="text-center">
-              <div className="inline-block bg-purple-500/10 border border-purple-500/20 rounded-full px-6 py-2 text-sm font-semibold text-purple-400 mb-6">
-                💰 Desde $399/mes • ROI promedio 450%
+              <div className="inline-block bg-blue-500/10 border border-blue-500/20 rounded-full px-6 py-2 text-sm font-semibold text-blue-600 dark:text-blue-400 mb-6">
+                Desde $399/mes • ROI promedio 450%
               </div>
               <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
                 Precios transparentes.{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-primary-500">
                   Sin sorpresas.
                 </span>
               </h1>
@@ -130,7 +130,7 @@ export default function PreciosPage() {
                 <span className="text-gray-900 dark:text-white font-semibold"> Todos incluyen implementación y capacitación.</span>
               </p>
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                ✓ Sin contratos largos • ✓ Cancela cuando quieras • ✓ 30 días de prueba gratis
+                Sin contratos largos • Cancela cuando quieras • 30 días de prueba gratis
               </p>
             </motion.div>
 
@@ -139,7 +139,7 @@ export default function PreciosPage() {
               {plans.map((plan, index) => (
                 <div 
                   key={plan.name}
-                  className={`relative bg-gray-50 dark:bg-secondary-800 border rounded-2xl p-8 transition-colors duration-200 ${
+                  className={`relative bg-gray-50 dark:bg-[#252525] border rounded-2xl p-8 transition-colors duration-200 ${
                     plan.popular 
                       ? 'border-green-500 ring-2 ring-green-500/20' 
                       : 'border-gray-200 dark:border-gray-700'
@@ -154,7 +154,7 @@ export default function PreciosPage() {
                   )}
                   {!plan.popular && plan.tagline && (
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                      <span className="bg-gray-200 dark:bg-secondary-700 text-gray-700 dark:text-gray-300 px-4 py-1.5 rounded-full text-xs font-semibold border border-gray-300 dark:border-gray-600">
+                      <span className="bg-gray-200 dark:bg-[#2F2F2F] text-gray-700 dark:text-gray-300 px-4 py-1.5 rounded-full text-xs font-semibold border border-gray-300 dark:border-gray-600">
                         {plan.tagline}
                       </span>
                     </div>
@@ -187,7 +187,7 @@ export default function PreciosPage() {
                         className={`w-full block text-center py-3 px-6 rounded-xl font-semibold transition-all duration-200 ${
                           plan.popular
                             ? 'bg-green-600 hover:bg-green-700 text-white'
-                            : 'bg-white dark:bg-secondary-800 text-gray-900 dark:text-gray-100 hover:opacity-90'
+                            : 'bg-white dark:bg-[#252525] text-gray-900 dark:text-gray-100 hover:opacity-90'
                         }`}
                       >
                         Contactar Ventas
@@ -198,7 +198,7 @@ export default function PreciosPage() {
                         className={`w-full block text-center py-3 px-6 rounded-xl font-semibold transition-all duration-200 ${
                           plan.popular
                             ? 'bg-green-600 hover:bg-green-700 text-white'
-                            : 'bg-white dark:bg-secondary-800 text-gray-900 dark:text-gray-100 hover:opacity-90'
+                            : 'bg-white dark:bg-[#252525] text-gray-900 dark:text-gray-100 hover:opacity-90'
                         }`}
                       >
                         Comenzar Prueba
@@ -210,7 +210,7 @@ export default function PreciosPage() {
             </motion.div>
 
             {/* FAQ Section */}
-            <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-8">
+            <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-[#252525] border border-gray-200 dark:border-gray-700 rounded-2xl p-8">
               <h2 className="text-xl font-semibold mb-6 text-center">Preguntas Frecuentes</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
@@ -258,13 +258,13 @@ export default function PreciosPage() {
             </motion.div>
 
             {/* CTA */}
-            <motion.div variants={itemVariants} className="text-center bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-pink-900/20 border border-purple-500/30 rounded-2xl p-12">
+            <motion.div variants={itemVariants} className="text-center bg-gradient-to-br from-blue-50 to-primary-50 dark:from-blue-900/20 dark:to-primary-900/20 border-2 border-blue-300 dark:border-blue-500/30 rounded-2xl p-12">
               <div className="inline-block bg-green-500/10 border border-green-500/20 rounded-full px-6 py-2 text-sm font-semibold text-green-400 mb-6">
-                ✓ 30 días gratis • Sin tarjeta de crédito
+                30 días gratis • Sin tarjeta de crédito
               </div>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
                 ¿No estás seguro?{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-primary-500">
                   Pruébalo gratis.
                 </span>
               </h2>

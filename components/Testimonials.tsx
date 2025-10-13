@@ -35,7 +35,7 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-secondary-900/50">
+    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-neutral-50 dark:bg-[#1A1A1A]">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -63,7 +63,7 @@ export default function Testimonials() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -8 }}
-              className="bg-white dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-8 hover:border-gray-300 dark:hover:border-gray-600 transition-all"
+              className="bg-white dark:bg-[#252525] border border-neutral-200 dark:border-neutral-800 rounded-2xl p-8 hover:border-neutral-300 dark:hover:border-neutral-700 transition-all"
             >
               {/* Rating Stars */}
               <div className="flex gap-1 mb-4">

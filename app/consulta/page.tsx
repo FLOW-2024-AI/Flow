@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Navbar from '@/components/Navbar'
 import { supabase } from '@/lib/supabaseClient'
+import { BarChart3, Presentation, Map } from 'lucide-react'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -130,7 +131,7 @@ export default function ConsultaPage() {
 
   if (isSuccess) {
     return (
-      <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 flex items-center justify-center px-4 transition-colors duration-200">
+      <div className="min-h-screen bg-white dark:bg-[#191919] text-gray-900 dark:text-gray-100 flex items-center justify-center px-4 transition-colors duration-200">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -165,8 +166,8 @@ export default function ConsultaPage() {
                 <p className="text-gray-400 dark:text-gray-300">Analizaremos tus procesos y identificaremos oportunidades</p>
               </div>
               <div className="flex items-start space-x-3">
-                <div className="w-6 h-6 bg-purple-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+                <div className="w-6 h-6 bg-blue-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <div className="w-2 h-2 bg-blue-500 dark:bg-blue-400 rounded-full"></div>
                 </div>
                 <p className="text-gray-400 dark:text-gray-300">Te mostraremos ejemplos específicos para tu industria</p>
               </div>
@@ -175,7 +176,7 @@ export default function ConsultaPage() {
           
           <Link 
             href="/"
-            className="inline-block bg-white dark:bg-secondary-800 text-gray-900 dark:text-gray-100 px-8 py-4 rounded-xl font-semibold hover:opacity-90 transition-opacity"
+            className="inline-block bg-white dark:bg-[#252525] text-gray-900 dark:text-gray-100 px-8 py-4 rounded-xl font-semibold hover:opacity-90 transition-opacity"
           >
             Volver al inicio
           </Link>
@@ -185,7 +186,7 @@ export default function ConsultaPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-[#191919] text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
 
       {/* Main Content */}
@@ -211,57 +212,57 @@ export default function ConsultaPage() {
 
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <div className="w-6 h-6 bg-blue-400 rounded-sm"></div>
+                  <div className="w-12 h-12 border-2 border-gray-900 dark:border-white rounded-xl flex items-center justify-center flex-shrink-0">
+                    <BarChart3 className="w-6 h-6 text-gray-900 dark:text-white" strokeWidth={1.5} />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold mb-2">Análisis personalizado</h3>
-                    <p className="text-gray-400 dark:text-gray-300">Evaluamos tus procesos actuales y identificamos oportunidades específicas de automatización.</p>
+                    <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">Análisis personalizado</h3>
+                    <p className="text-gray-600 dark:text-gray-300">Evaluamos tus procesos actuales y identificamos oportunidades específicas de automatización.</p>
                   </div>
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <div className="w-6 h-6 bg-green-400 rounded-sm"></div>
+                  <div className="w-12 h-12 border-2 border-gray-900 dark:border-white rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Presentation className="w-6 h-6 text-gray-900 dark:text-white" strokeWidth={1.5} />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold mb-2">Demo en vivo</h3>
-                    <p className="text-gray-400 dark:text-gray-300">Te mostramos casos reales de automatización similares a tu industria y necesidades.</p>
+                    <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">Demo en vivo</h3>
+                    <p className="text-gray-600 dark:text-gray-300">Te mostramos casos reales de automatización similares a tu industria y necesidades.</p>
                   </div>
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <div className="w-6 h-6 bg-purple-400 rounded-sm"></div>
+                  <div className="w-12 h-12 border-2 border-gray-900 dark:border-white rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Map className="w-6 h-6 text-gray-900 dark:text-white" strokeWidth={1.5} />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold mb-2">Plan de implementación</h3>
-                    <p className="text-gray-400 dark:text-gray-300">Diseñamos un roadmap claro con tiempos, costos y ROI esperado para tu proyecto.</p>
+                    <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">Plan de implementación</h3>
+                    <p className="text-gray-600 dark:text-gray-300">Diseñamos un roadmap claro con tiempos, costos y ROI esperado para tu proyecto.</p>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-secondary-900 to-secondary-800 border border-primary-700/30 rounded-2xl p-6 shadow-lg">
-                <h3 className="text-lg font-semibold mb-4">¿Qué incluye la consulta?</h3>
-                <ul className="space-y-2 text-gray-400 dark:text-gray-300">
+              <div className="bg-gradient-to-br from-white to-neutral-50 dark:from-[#252525] dark:to-[#252525] border-2 border-neutral-300 dark:border-neutral-800 rounded-2xl p-6 shadow-lg">
+                <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">¿Qué incluye la consulta?</h3>
+                <ul className="space-y-2 text-gray-600 dark:text-gray-300">
                   <li className="flex items-center space-x-2">
-                    <div className="w-1.5 h-1.5 bg-green-400 rounded-full"></div>
+                    <div className="w-1.5 h-1.5 bg-green-500 dark:bg-green-400 rounded-full"></div>
                     <span>30 minutos de consulta personalizada</span>
                   </li>
                   <li className="flex items-center space-x-2">
-                    <div className="w-1.5 h-1.5 bg-green-400 rounded-full"></div>
+                    <div className="w-1.5 h-1.5 bg-green-500 dark:bg-green-400 rounded-full"></div>
                     <span>Análisis de tus procesos actuales</span>
                   </li>
                   <li className="flex items-center space-x-2">
-                    <div className="w-1.5 h-1.5 bg-green-400 rounded-full"></div>
+                    <div className="w-1.5 h-1.5 bg-green-500 dark:bg-green-400 rounded-full"></div>
                     <span>Identificación de oportunidades</span>
                   </li>
                   <li className="flex items-center space-x-2">
-                    <div className="w-1.5 h-1.5 bg-green-400 rounded-full"></div>
+                    <div className="w-1.5 h-1.5 bg-green-500 dark:bg-green-400 rounded-full"></div>
                     <span>Propuesta de valor personalizada</span>
                   </li>
                   <li className="flex items-center space-x-2">
-                    <div className="w-1.5 h-1.5 bg-green-400 rounded-full"></div>
+                    <div className="w-1.5 h-1.5 bg-green-500 dark:bg-green-400 rounded-full"></div>
                     <span>Sin compromiso ni costo</span>
                   </li>
                 </ul>
@@ -270,7 +271,7 @@ export default function ConsultaPage() {
 
             {/* Right Column - Form */}
             <motion.div variants={itemVariants}>
-              <div className="bg-gradient-to-br from-secondary-900 to-secondary-800 border border-primary-700/30 rounded-2xl p-8 shadow-lg">
+              <div className="bg-gradient-to-br from-white to-neutral-50 dark:from-[#252525] dark:to-[#252525] border-2 border-neutral-300 dark:border-neutral-800 rounded-2xl p-8 shadow-lg">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-2 gap-4">
                     <div>
@@ -284,7 +285,7 @@ export default function ConsultaPage() {
                         value={formData.nombre}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-white dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-neutral-400 focus-ring transition-colors"
+                        className="w-full px-4 py-3 bg-white dark:bg-[#191919] border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 transition-all"
                         placeholder="Tu nombre"
                         disabled={isLoading}
                       />
@@ -301,7 +302,7 @@ export default function ConsultaPage() {
                         value={formData.apellido}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-white dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-neutral-400 focus-ring transition-colors"
+                        className="w-full px-4 py-3 bg-white dark:bg-[#191919] border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 transition-all"
                         placeholder="Tu apellido"
                         disabled={isLoading}
                       />
@@ -319,7 +320,7 @@ export default function ConsultaPage() {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-white dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-neutral-400 focus-ring transition-colors"
+                      className="w-full px-4 py-3 bg-white dark:bg-[#191919] border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 transition-all"
                       placeholder="tu@empresa.com"
                       disabled={isLoading}
                     />
@@ -336,7 +337,7 @@ export default function ConsultaPage() {
                       value={formData.empresa}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-white dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-neutral-400 focus-ring transition-colors"
+                      className="w-full px-4 py-3 bg-white dark:bg-[#191919] border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 transition-all"
                       placeholder="Nombre de tu empresa"
                       disabled={isLoading}
                     />
@@ -353,7 +354,7 @@ export default function ConsultaPage() {
                         name="cargo"
                         value={formData.cargo}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 bg-white dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-neutral-400 focus-ring transition-colors"
+                        className="w-full px-4 py-3 bg-white dark:bg-[#191919] border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 transition-all"
                         placeholder="CFO, Controller, etc."
                         disabled={isLoading}
                       />
@@ -369,7 +370,7 @@ export default function ConsultaPage() {
                         name="telefono"
                         value={formData.telefono}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 bg-white dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-neutral-400 focus-ring transition-colors"
+                        className="w-full px-4 py-3 bg-white dark:bg-[#191919] border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 transition-all"
                         placeholder="+1 234 567 8900"
                         disabled={isLoading}
                       />
@@ -385,7 +386,7 @@ export default function ConsultaPage() {
                       name="empleados"
                       value={formData.empleados}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-white dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white focus-ring transition-colors"
+                      className="w-full px-4 py-3 bg-white dark:bg-[#191919] border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 transition-all"
                       disabled={isLoading}
                     >
                       <option value="">Selecciona el tamaño</option>
@@ -406,7 +407,7 @@ export default function ConsultaPage() {
                       name="procesos"
                       value={formData.procesos}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-white dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white focus-ring transition-colors"
+                      className="w-full px-4 py-3 bg-white dark:bg-[#191919] border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 transition-all"
                       disabled={isLoading}
                     >
                       <option value="">Selecciona un área</option>
@@ -431,7 +432,7 @@ export default function ConsultaPage() {
                       value={formData.mensaje}
                       onChange={handleChange}
                       rows={4}
-                      className="w-full px-4 py-3 bg-white dark:bg-secondary-900 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-neutral-400 focus-ring transition-colors resize-none"
+                      className="w-full px-4 py-3 bg-white dark:bg-[#191919] border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 transition-all resize-none"
                       placeholder="Describe brevemente tus principales desafíos o procesos que consumen más tiempo..."
                       disabled={isLoading}
                     />
@@ -452,7 +453,7 @@ export default function ConsultaPage() {
                     disabled={isLoading || !formData.nombre || !formData.apellido || !formData.email || !formData.empresa}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full bg-white dark:bg-secondary-800 text-gray-900 dark:text-gray-100 font-semibold py-4 px-8 rounded-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className="w-full bg-primary-500 hover:bg-primary-600 text-white font-bold py-4 px-8 rounded-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg shadow-primary-500/20"
                   >
                     {isLoading ? (
                       <>

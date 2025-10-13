@@ -5,7 +5,7 @@ import Navbar from '@/components/Navbar'
 
 export default function EstadoPage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-[#191919] text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
       
       <div className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
@@ -47,7 +47,7 @@ export default function EstadoPage() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: idx * 0.1 }}
-                className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6"
+                className="bg-gray-100 dark:bg-[#252525] border border-gray-200 dark:border-gray-700 rounded-xl p-6"
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
@@ -67,7 +67,7 @@ export default function EstadoPage() {
           </div>
 
           {/* Historical Uptime */}
-          <div className="mt-12 bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-8">
+          <div className="mt-12 bg-gray-100 dark:bg-[#252525] border border-gray-200 dark:border-gray-700 rounded-2xl p-8">
             <h3 className="text-xl font-bold mb-6">Uptime Histórico (90 días)</h3>
             <div className="grid grid-cols-3 gap-6 text-center">
               <div>
@@ -79,7 +79,7 @@ export default function EstadoPage() {
                 <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">Incidentes mayores</p>
               </div>
               <div>
-                <p className="text-3xl font-bold text-purple-400">2</p>
+                <p className="text-3xl font-bold text-primary-500 dark:text-primary-400">2</p>
                 <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">Mantenimientos</p>
               </div>
             </div>

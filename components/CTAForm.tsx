@@ -121,7 +121,7 @@ export default function CTAForm() {
             value={formData.email}
             onChange={handleChange}
             required
-            className="w-full px-4 py-3 bg-white dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus-ring transition-colors"
+            className="w-full px-4 py-3 bg-white dark:bg-[#252525] border border-neutral-200 dark:border-neutral-800 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus-ring transition-colors"
             placeholder="tu@empresa.com"
             disabled={isLoading}
           />
@@ -137,7 +137,7 @@ export default function CTAForm() {
             name="company"
             value={formData.company}
             onChange={handleChange}
-            className="w-full px-4 py-3 bg-white dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus-ring transition-colors"
+            className="w-full px-4 py-3 bg-white dark:bg-[#252525] border border-neutral-200 dark:border-neutral-800 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus-ring transition-colors"
             placeholder="Nombre de tu empresa"
             disabled={isLoading}
           />
@@ -153,7 +153,7 @@ export default function CTAForm() {
             name="role"
             value={formData.role}
             onChange={handleChange}
-            className="w-full px-4 py-3 bg-white dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus-ring transition-colors"
+            className="w-full px-4 py-3 bg-white dark:bg-[#252525] border border-neutral-200 dark:border-neutral-800 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus-ring transition-colors"
             placeholder="CFO, Controller, etc."
             disabled={isLoading}
           />

@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import ThemeToggle from '@/components/ThemeToggle'
 import { 
   LayoutDashboard, 
   BarChart3, 
@@ -49,8 +50,8 @@ const apps: App[] = [
     description: 'Análisis y métricas',
     icon: BarChart3, 
     href: '/apps/analytics', 
-    color: 'bg-purple-500',
-    gradient: 'from-purple-500 to-purple-600',
+    color: 'bg-blue-500',
+    gradient: 'from-blue-500 to-primary-600',
     category: 'Principal'
   },
   
@@ -224,20 +225,35 @@ const categories = ['Principal', 'Operaciones', 'Tesorería', 'Planificación', 
 
 export default function AppsPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-secondary-900 dark:to-secondary-800 p-8">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-[#191919] dark:to-[#0C0A09] p-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-12"
+          className="mb-12 flex items-start justify-between"
         >
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-2">
-            Aplicaciones Flow
-          </h1>
-          <p className="text-gray-600 dark:text-gray-400">
-            Selecciona una aplicación para comenzar
-          </p>
+          <div className="flex items-center gap-4">
+            <img 
+              src="/images/icons/client-icon-dark.svg"
+              alt="Cliente"
+              className="w-12 h-12 dark:hidden"
+            />
+            <img 
+              src="/images/icons/client-icon-light.svg"
+              alt="Cliente"
+              className="w-12 h-12 hidden dark:block"
+            />
+            <div>
+              <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+                Aplicaciones
+              </h1>
+              <p className="text-gray-600 dark:text-gray-400">
+                Selecciona una aplicación para comenzar
+              </p>
+            </div>
+          </div>
+          <ThemeToggle />
         </motion.div>
 
         {/* Apps Grid by Category */}
@@ -262,7 +278,7 @@ export default function AppsPage() {
                         transition={{ delay: idx * 0.05 }}
                         whileHover={{ scale: 1.05, y: -5 }}
                         whileTap={{ scale: 0.95 }}
-                        className="bg-white dark:bg-secondary-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all cursor-pointer border border-gray-200 dark:border-gray-700 group"
+                        className="bg-white dark:bg-[#252525] rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all cursor-pointer border border-gray-200 dark:border-gray-700 group"
                       >
                         {/* Icon */}
                         <div className={`w-16 h-16 bg-gradient-to-br ${app.gradient} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-lg`}>

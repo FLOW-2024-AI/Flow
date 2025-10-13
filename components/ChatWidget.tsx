@@ -2,11 +2,12 @@
 
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
+import { Bot, Hand } from 'lucide-react'
 
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false)
   const [messages, setMessages] = useState([
-    { text: '¡Hola! 👋 ¿En qué puedo ayudarte hoy?', sender: 'bot' }
+    { text: '¡Hola! ¿En qué puedo ayudarte hoy?', sender: 'bot' }
   ])
 
   const quickReplies = [
@@ -23,7 +24,7 @@ export default function ChatWidget() {
         onClick={() => setIsOpen(!isOpen)}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-blue-600 hover:bg-blue-700 rounded-full shadow-2xl flex items-center justify-center text-gray-900 dark:text-white transition-colors"
+        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-blue-600 hover:bg-blue-700 rounded-full shadow-2xl flex items-center justify-center text-white transition-colors"
       >
         {isOpen ? (
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -43,21 +44,21 @@ export default function ChatWidget() {
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="fixed bottom-24 right-6 z-50 w-96 h-[500px] bg-neutral-900 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-2xl flex flex-col overflow-hidden"
+            className="fixed bottom-24 right-6 z-50 w-96 h-[500px] bg-white dark:bg-neutral-900 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-2xl flex flex-col overflow-hidden"
           >
             {/* Header */}
-            <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-4 flex items-center gap-3">
+            <div className="bg-gradient-to-r from-blue-600 to-primary-600 p-4 flex items-center gap-3">
               <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                <span className="text-lg">🤖</span>
+                <Bot className="w-6 h-6 text-blue-600" />
               </div>
               <div className="flex-1">
-                <h3 className="font-semibold text-sm">Flow Assistant</h3>
+                <h3 className="font-semibold text-sm text-white">Flow Assistant</h3>
                 <p className="text-xs text-blue-100">Siempre en línea</p>
               </div>
             </div>
 
             {/* Messages */}
-            <div className="flex-1 p-4 overflow-y-auto space-y-4">
+            <div className="flex-1 p-4 overflow-y-auto space-y-4 bg-gray-50 dark:bg-neutral-900">
               {messages.map((msg, idx) => (
                 <div
                   key={idx}
@@ -67,7 +68,7 @@ export default function ChatWidget() {
                     className={`max-w-[80%] rounded-2xl px-4 py-2 text-sm ${
                       msg.sender === 'user'
                         ? 'bg-blue-600 text-white'
-                        : 'bg-neutral-800 text-neutral-200'
+                        : 'bg-white dark:bg-neutral-800 text-gray-800 dark:text-neutral-200 border border-gray-200 dark:border-neutral-700'
                     }`}
                   >
                     {msg.text}
@@ -77,7 +78,7 @@ export default function ChatWidget() {
             </div>
 
             {/* Quick Replies */}
-            <div className="p-4 border-t border-gray-200 dark:border-gray-700">
+            <div className="p-4 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-neutral-900">
               <div className="grid grid-cols-2 gap-2 mb-3">
                 {quickReplies.map((reply, idx) => (
                   <button
@@ -92,7 +93,7 @@ export default function ChatWidget() {
                         }])
                       }, 500)
                     }}
-                    className="bg-neutral-800 hover:bg-neutral-700 text-xs text-gray-900 dark:text-white px-3 py-2 rounded-lg transition-colors"
+                    className="bg-gray-100 hover:bg-gray-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 text-xs text-gray-800 dark:text-white px-3 py-2 rounded-lg transition-colors border border-gray-200 dark:border-neutral-700"
                   >
                     {reply}
                   </button>
@@ -104,10 +105,10 @@ export default function ChatWidget() {
                 <input
                   type="text"
                   placeholder="Escribe un mensaje..."
-                  className="flex-1 bg-neutral-800 border border-neutral-700 rounded-lg px-4 py-2 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-blue-500"
+                  className="flex-1 bg-gray-100 dark:bg-neutral-800 border border-gray-300 dark:border-neutral-700 rounded-lg px-4 py-2 text-sm text-gray-800 dark:text-white placeholder-gray-500 dark:placeholder-gray-500 focus:outline-none focus:border-blue-500"
                 />
                 <button className="bg-blue-600 hover:bg-blue-700 p-2 rounded-lg transition-colors">
-                  <svg className="w-5 h-5 text-gray-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                   </svg>
                 </button>

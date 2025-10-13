@@ -2,7 +2,10 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 import FacturasTable from '@/components/FacturasTable'
+import ThemeToggle from '@/components/ThemeToggle'
+import { FileText, DollarSign, CreditCard, BarChart3, TrendingUp, Bot, Zap, Heart, Globe, Plug, Building2, Landmark, Wallet, AlertCircle, AlertTriangle, Tag, Lightbulb, BookOpen, Sparkles, CircleDot, ArrowLeft } from 'lucide-react'
 
 // Mock data para empresa cliente de Flow
 const mockStats = {
@@ -133,7 +136,7 @@ export default function DashboardPage() {
   // Show loading while checking auth
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 flex items-center justify-center transition-colors duration-200">
+      <div className="min-h-screen bg-white dark:bg-neutral-900 text-gray-900 dark:text-gray-100 flex items-center justify-center transition-colors duration-200">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
           <p className="text-gray-600 dark:text-gray-400">Verificando sesión...</p>
@@ -143,16 +146,34 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-neutral-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+      {/* Top Header */}
+      <header className="bg-white dark:bg-[#252525] border-b border-gray-200 dark:border-gray-700 sticky top-0 z-50">
+        <div className="px-6 py-4 flex items-center justify-between">
+          <Link href="/apps" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+            <ArrowLeft className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Volver a Apps</span>
+          </Link>
+          <ThemeToggle />
+        </div>
+      </header>
+
       <div className="flex">
         {/* Sidebar */}
-        <div className="w-64 bg-gray-50 dark:bg-secondary-800 border-r border-gray-200 dark:border-gray-700 min-h-screen transition-colors duration-200">
+        <div className="w-64 bg-gray-50 dark:bg-neutral-800 border-r border-gray-200 dark:border-gray-700 min-h-screen transition-colors duration-200">
           <div className="p-6">
             <div className="flex items-center space-x-3 mb-8">
-              <div className="w-6 h-6 bg-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-gray-900 dark:text-white font-bold text-xs">F</span>
-              </div>
-              <span className="text-xl font-bold">Flow</span>
+              <img 
+                src="/images/icons/client-icon-dark.svg"
+                alt="Cliente"
+                className="w-10 h-10 dark:hidden"
+              />
+              <img 
+                src="/images/icons/client-icon-light.svg"
+                alt="Cliente"
+                className="w-10 h-10 hidden dark:block"
+              />
+              <span className="text-2xl font-bold">Cliente Demo</span>
             </div>
 
             {/* Navigation */}
@@ -163,7 +184,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'overview' 
                     ? 'bg-blue-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-neutral-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -177,7 +198,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'analytics' 
                     ? 'bg-blue-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-neutral-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -195,7 +216,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'facturacion' 
                     ? 'bg-blue-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-neutral-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -209,7 +230,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'cobranza' 
                     ? 'bg-blue-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-neutral-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -223,7 +244,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'cuentasPorPagar' 
                     ? 'bg-blue-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-neutral-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -237,7 +258,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'facturas' 
                     ? 'bg-blue-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-neutral-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -255,7 +276,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'tesoreria' 
                     ? 'bg-blue-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-neutral-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -269,7 +290,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'flujoProyectado' 
                     ? 'bg-blue-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-neutral-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -283,7 +304,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'conciliacion' 
                     ? 'bg-blue-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-neutral-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -301,7 +322,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'presupuesto' 
                     ? 'bg-blue-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-neutral-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -315,7 +336,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'reportes' 
                     ? 'bg-blue-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-neutral-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -332,8 +353,8 @@ export default function DashboardPage() {
                 onClick={() => setActiveTab('copiloto')}
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'copiloto' 
-                    ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    ? 'bg-gradient-to-r from-blue-600 to-primary-600 text-white' 
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-neutral-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -346,8 +367,8 @@ export default function DashboardPage() {
                 onClick={() => setActiveTab('predicciones')}
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'predicciones' 
-                    ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    ? 'bg-gradient-to-r from-blue-600 to-primary-600 text-white' 
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-neutral-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -360,8 +381,8 @@ export default function DashboardPage() {
                 onClick={() => setActiveTab('automatizaciones')}
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'automatizaciones' 
-                    ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    ? 'bg-gradient-to-r from-blue-600 to-primary-600 text-white' 
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-neutral-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -379,7 +400,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'salud' 
                     ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-neutral-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -393,7 +414,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'planificacion' 
                     ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-neutral-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -407,7 +428,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'riesgos' 
                     ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-neutral-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -425,7 +446,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'ecosistema' 
                     ? 'bg-gradient-to-r from-orange-600 to-amber-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-neutral-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -439,7 +460,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'bancario' 
                     ? 'bg-gradient-to-r from-orange-600 to-amber-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-neutral-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -456,7 +477,7 @@ export default function DashboardPage() {
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'alertas' 
                     ? 'bg-blue-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-neutral-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -473,8 +494,8 @@ export default function DashboardPage() {
                 onClick={() => setActiveTab('integraciones')}
                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors text-left ${
                   activeTab === 'integraciones' 
-                    ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white' 
-                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-secondary-700'
+                    ? 'bg-gradient-to-r from-primary-600 to-blue-600 text-white' 
+                    : 'text-gray-400 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-neutral-700'
                 }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -505,20 +526,20 @@ export default function DashboardPage() {
                    activeTab === 'reportes' ? 'Reportes Financieros' :
                    activeTab === 'conciliacion' ? 'Conciliación Bancaria' :
                    activeTab === 'alertas' ? 'Alertas y Notificaciones' :
-                   activeTab === 'facturacion' ? '📄 Facturación Electrónica' :
-                   activeTab === 'cobranza' ? '💰 Cobranza' :
-                   activeTab === 'cuentasPorPagar' ? '💳 Cuentas por Pagar' :
-                   activeTab === 'presupuesto' ? '📊 Presupuesto' :
-                   activeTab === 'flujoProyectado' ? '📈 Flujo Proyectado' :
-                   activeTab === 'copiloto' ? '🤖 Copiloto Financiero IA' :
-                   activeTab === 'predicciones' ? '🔮 Predicciones Inteligentes' :
-                   activeTab === 'automatizaciones' ? '⚡ Automatizaciones' :
-                   activeTab === 'salud' ? '💚 Salud Financiera' :
-                   activeTab === 'planificacion' ? '📊 Planificación Estratégica' :
-                   activeTab === 'riesgos' ? '⚠️ Gestión de Riesgos' :
-                   activeTab === 'ecosistema' ? '🌐 Ecosistema Financiero' :
-                   activeTab === 'integraciones' ? '🔌 Integraciones' :
-                   '🏦 Productos Bancarios'}
+                   activeTab === 'facturacion' ? 'Facturación Electrónica' :
+                   activeTab === 'cobranza' ? 'Cobranza' :
+                   activeTab === 'cuentasPorPagar' ? 'Cuentas por Pagar' :
+                   activeTab === 'presupuesto' ? 'Presupuesto' :
+                   activeTab === 'flujoProyectado' ? 'Flujo Proyectado' :
+                   activeTab === 'copiloto' ? 'Copiloto Financiero IA' :
+                   activeTab === 'predicciones' ? 'Predicciones Inteligentes' :
+                   activeTab === 'automatizaciones' ? 'Automatizaciones' :
+                   activeTab === 'salud' ? 'Salud Financiera' :
+                   activeTab === 'planificacion' ? 'Planificación Estratégica' :
+                   activeTab === 'riesgos' ? 'Gestión de Riesgos' :
+                   activeTab === 'ecosistema' ? 'Ecosistema Financiero' :
+                   activeTab === 'integraciones' ? 'Integraciones' :
+                   'Productos Bancarios'}
                 </h1>
                 <p className="text-gray-600 dark:text-gray-400 mt-1 text-sm">
                   {activeTab === 'overview' ? 'Resumen general de tu plataforma' : 
@@ -554,15 +575,15 @@ export default function DashboardPage() {
             {activeTab === 'overview' && (
               <>
                 {/* CFO Scorecard - Health Score */}
-                <motion.div variants={itemVariants} className="bg-gradient-to-br from-green-900/20 to-emerald-900/10 border border-green-500/30 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gradient-to-br from-green-500/90 to-emerald-600/90 dark:from-green-900/20 dark:to-emerald-900/10 border-0 dark:border dark:border-green-500/30 rounded-2xl p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-gray-600 dark:text-gray-400 text-xs mb-2">Score de Salud Financiera</p>
+                      <p className="text-green-100 dark:text-gray-400 text-xs mb-2">Score de Salud Financiera</p>
                       <div className="flex items-baseline gap-3">
-                        <p className="text-4xl font-bold text-green-400">{healthScore}</p>
-                        <span className="text-sm text-gray-500 dark:text-gray-400">/100</span>
+                        <p className="text-4xl font-bold text-white dark:text-green-400">{healthScore}</p>
+                        <span className="text-sm text-green-100 dark:text-gray-400">/100</span>
                       </div>
-                      <p className="text-xs text-green-400 mt-2">Excelente • +5 pts vs mes anterior</p>
+                      <p className="text-xs text-green-100 dark:text-green-400 mt-2">Excelente • +5 pts vs mes anterior</p>
                     </div>
                     <div className="relative w-24 h-24">
                       <svg className="w-full h-full transform -rotate-90">
@@ -580,7 +601,7 @@ export default function DashboardPage() {
                         />
                       </svg>
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="text-2xl">💚</span>
+                        <Heart className="w-6 h-6 text-green-400 fill-green-400" />
                       </div>
                     </div>
                   </div>
@@ -588,32 +609,32 @@ export default function DashboardPage() {
 
                 {/* KPIs Financieros Clave */}
                 <motion.div variants={itemVariants} className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  <div className="bg-gradient-to-br from-blue-900/20 to-blue-900/5 border border-blue-500/20 rounded-xl p-4">
-                    <p className="text-gray-600 dark:text-gray-400 text-xs mb-1">Liquidez</p>
-                    <p className="text-2xl font-bold">${(stats.saldoCaja / 1000000).toFixed(2)}M</p>
-                    <p className="text-xs text-green-400 mt-1">+15% MoM</p>
+                  <div className="bg-gradient-to-br from-blue-500/90 to-blue-600/90 dark:from-blue-900/20 dark:to-blue-900/5 border-0 dark:border dark:border-blue-500/20 rounded-xl p-4">
+                    <p className="text-blue-100 dark:text-gray-400 text-xs mb-1">Liquidez</p>
+                    <p className="text-2xl font-bold text-white dark:text-gray-100">${(stats.saldoCaja / 1000000).toFixed(2)}M</p>
+                    <p className="text-xs text-blue-100 dark:text-green-400 mt-1">+15% MoM</p>
                   </div>
-                  <div className="bg-gradient-to-br from-green-900/20 to-green-900/5 border border-green-500/20 rounded-xl p-4">
-                    <p className="text-gray-600 dark:text-gray-400 text-xs mb-1">Por Cobrar</p>
-                    <p className="text-2xl font-bold">${(stats.cuentasPorCobrar / 1000).toFixed(0)}K</p>
-                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">23 facturas</p>
+                  <div className="bg-gradient-to-br from-green-500/90 to-green-600/90 dark:from-green-900/20 dark:to-green-900/5 border-0 dark:border dark:border-green-500/20 rounded-xl p-4">
+                    <p className="text-green-100 dark:text-gray-400 text-xs mb-1">Por Cobrar</p>
+                    <p className="text-2xl font-bold text-white dark:text-gray-100">${(stats.cuentasPorCobrar / 1000).toFixed(0)}K</p>
+                    <p className="text-xs text-green-100 dark:text-gray-400 mt-1">23 facturas</p>
                   </div>
-                  <div className="bg-gradient-to-br from-red-900/20 to-red-900/5 border border-red-500/20 rounded-xl p-4">
-                    <p className="text-gray-600 dark:text-gray-400 text-xs mb-1">Por Pagar</p>
-                    <p className="text-2xl font-bold">${(stats.cuentasPorPagar / 1000).toFixed(0)}K</p>
-                    <p className="text-xs text-red-400 mt-1">Vence 7 días</p>
+                  <div className="bg-gradient-to-br from-red-500/90 to-red-600/90 dark:from-red-900/20 dark:to-red-900/5 border-0 dark:border dark:border-red-500/20 rounded-xl p-4">
+                    <p className="text-red-100 dark:text-gray-400 text-xs mb-1">Por Pagar</p>
+                    <p className="text-2xl font-bold text-white dark:text-gray-100">${(stats.cuentasPorPagar / 1000).toFixed(0)}K</p>
+                    <p className="text-xs text-red-100 dark:text-red-400 mt-1">Vence 7 días</p>
                   </div>
-                  <div className="bg-gradient-to-br from-purple-900/20 to-purple-900/5 border border-purple-500/20 rounded-xl p-4">
-                    <p className="text-gray-600 dark:text-gray-400 text-xs mb-1">Flujo Neto</p>
-                    <p className="text-2xl font-bold">${(stats.flujoNeto / 1000).toFixed(0)}K</p>
-                    <p className="text-xs text-green-400 mt-1">+22% MoM</p>
+                  <div className="bg-gradient-to-br from-purple-500/90 to-purple-600/90 dark:from-purple-900/20 dark:to-purple-900/5 border-0 dark:border dark:border-purple-500/20 rounded-xl p-4">
+                    <p className="text-purple-100 dark:text-gray-400 text-xs mb-1">Flujo Neto</p>
+                    <p className="text-2xl font-bold text-white dark:text-gray-100">${(stats.flujoNeto / 1000).toFixed(0)}K</p>
+                    <p className="text-xs text-purple-100 dark:text-green-400 mt-1">+22% MoM</p>
                   </div>
                 </motion.div>
 
                 {/* Ratios Financieros + Predicciones */}
                 <div className="grid lg:grid-cols-2 gap-6">
                   {/* Ratios Clave */}
-                  <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                  <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                     <h3 className="text-lg font-bold mb-4">Ratios Financieros</h3>
                     <div className="space-y-4">
                       {[
@@ -643,23 +664,23 @@ export default function DashboardPage() {
                   </motion.div>
 
                   {/* Predicciones IA */}
-                  <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                  <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                     <h3 className="text-lg font-bold mb-4">Predicciones IA - Próximo Mes</h3>
                     <div className="space-y-4">
-                      <div className="p-4 bg-gradient-to-r from-blue-900/20 to-blue-900/5 border border-blue-500/20 rounded-xl">
-                        <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Ingresos Proyectados</p>
-                        <p className="text-2xl font-bold mb-1">$2.1M</p>
-                        <p className="text-xs text-green-400">+14% vs mes actual • Confianza: 87%</p>
+                      <div className="p-4 bg-gradient-to-r from-blue-500/90 to-blue-600/90 dark:from-blue-900/20 dark:to-blue-900/5 border-0 dark:border dark:border-blue-500/20 rounded-xl">
+                        <p className="text-xs text-blue-100 dark:text-gray-400 mb-1">Ingresos Proyectados</p>
+                        <p className="text-2xl font-bold text-white dark:text-gray-100 mb-1">$2.1M</p>
+                        <p className="text-xs text-blue-100 dark:text-green-400">+14% vs mes actual • Confianza: 87%</p>
                       </div>
-                      <div className="p-4 bg-gradient-to-r from-purple-900/20 to-purple-900/5 border border-purple-500/20 rounded-xl">
-                        <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Gastos Estimados</p>
-                        <p className="text-2xl font-bold mb-1">$1.3M</p>
-                        <p className="text-xs text-yellow-400">+8% vs mes actual • Confianza: 92%</p>
+                      <div className="p-4 bg-gradient-to-r from-orange-500/90 to-orange-600/90 dark:from-purple-900/20 dark:to-purple-900/5 border-0 dark:border dark:border-purple-500/20 rounded-xl">
+                        <p className="text-xs text-orange-100 dark:text-gray-400 mb-1">Gastos Estimados</p>
+                        <p className="text-2xl font-bold text-white dark:text-gray-100 mb-1">$1.3M</p>
+                        <p className="text-xs text-orange-100 dark:text-yellow-400">+8% vs mes actual • Confianza: 92%</p>
                       </div>
-                      <div className="p-4 bg-gradient-to-r from-green-900/20 to-green-900/5 border border-green-500/20 rounded-xl">
-                        <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Flujo Neto Proyectado</p>
-                        <p className="text-2xl font-bold mb-1">$800K</p>
-                        <p className="text-xs text-green-400">+22% vs mes actual • Confianza: 85%</p>
+                      <div className="p-4 bg-gradient-to-r from-green-500/90 to-green-600/90 dark:from-green-900/20 dark:to-green-900/5 border-0 dark:border dark:border-green-500/20 rounded-xl">
+                        <p className="text-xs text-green-100 dark:text-gray-400 mb-1">Flujo Neto Proyectado</p>
+                        <p className="text-2xl font-bold text-white dark:text-gray-100 mb-1">$800K</p>
+                        <p className="text-xs text-green-100 dark:text-green-400">+22% vs mes actual • Confianza: 85%</p>
                       </div>
                     </div>
                   </motion.div>
@@ -668,61 +689,61 @@ export default function DashboardPage() {
                 {/* Operaciones + Tesorería */}
                 <div className="grid lg:grid-cols-3 gap-6">
                   {/* Facturación */}
-                  <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                  <motion.div variants={itemVariants} className="bg-gradient-to-br from-blue-500/90 to-blue-600/90 dark:bg-neutral-800 border-0 dark:border dark:border-gray-700 rounded-2xl p-6">
                     <div className="flex items-center justify-between mb-4">
-                      <h3 className="text-sm font-bold">Facturación</h3>
-                      <span className="text-xs px-2 py-1 bg-green-900/20 text-green-400 rounded-full">Hoy</span>
+                      <h3 className="text-sm font-bold text-white dark:text-gray-100">Facturación</h3>
+                      <span className="text-xs px-2 py-1 bg-white/20 text-white dark:bg-green-900/20 dark:text-green-400 rounded-full">Hoy</span>
                     </div>
                     <div className="space-y-3">
                       <div>
-                        <p className="text-xs text-gray-600 dark:text-gray-400">Emitidas</p>
-                        <p className="text-xl font-bold">12</p>
-                        <p className="text-xs text-blue-400">$45K facturado</p>
+                        <p className="text-xs text-blue-100 dark:text-gray-400">Emitidas</p>
+                        <p className="text-xl font-bold text-white dark:text-gray-100">12</p>
+                        <p className="text-xs text-blue-100 dark:text-blue-400">$45K facturado</p>
                       </div>
-                      <div className="pt-3 border-t border-gray-200 dark:border-gray-700">
-                        <p className="text-xs text-gray-600 dark:text-gray-400">Este Mes</p>
-                        <p className="text-xl font-bold">156</p>
-                        <p className="text-xs text-green-400">$850K total</p>
+                      <div className="pt-3 border-t border-white/20 dark:border-gray-700">
+                        <p className="text-xs text-blue-100 dark:text-gray-400">Este Mes</p>
+                        <p className="text-xl font-bold text-white dark:text-gray-100">156</p>
+                        <p className="text-xs text-blue-100 dark:text-green-400">$850K total</p>
                       </div>
                     </div>
                   </motion.div>
 
                   {/* Cobranza */}
-                  <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                  <motion.div variants={itemVariants} className="bg-gradient-to-br from-orange-500/90 to-orange-600/90 dark:bg-neutral-800 border-0 dark:border dark:border-gray-700 rounded-2xl p-6">
                     <div className="flex items-center justify-between mb-4">
-                      <h3 className="text-sm font-bold">Cobranza</h3>
-                      <span className="text-xs px-2 py-1 bg-yellow-900/20 text-yellow-400 rounded-full">Atención</span>
+                      <h3 className="text-sm font-bold text-white dark:text-gray-100">Cobranza</h3>
+                      <span className="text-xs px-2 py-1 bg-white/20 text-white dark:bg-yellow-900/20 dark:text-yellow-400 rounded-full">Atención</span>
                     </div>
                     <div className="space-y-3">
                       <div>
-                        <p className="text-xs text-gray-600 dark:text-gray-400">Por Vencer (7 días)</p>
-                        <p className="text-xl font-bold">$320K</p>
-                        <p className="text-xs text-yellow-400">8 facturas</p>
+                        <p className="text-xs text-orange-100 dark:text-gray-400">Por Vencer (7 días)</p>
+                        <p className="text-xl font-bold text-white dark:text-gray-100">$320K</p>
+                        <p className="text-xs text-orange-100 dark:text-yellow-400">8 facturas</p>
                       </div>
-                      <div className="pt-3 border-t border-gray-200 dark:border-gray-700">
-                        <p className="text-xs text-gray-600 dark:text-gray-400">Vencidas</p>
-                        <p className="text-xl font-bold text-red-400">$180K</p>
-                        <p className="text-xs text-red-400">5 facturas • Acción requerida</p>
+                      <div className="pt-3 border-t border-white/20 dark:border-gray-700">
+                        <p className="text-xs text-orange-100 dark:text-gray-400">Vencidas</p>
+                        <p className="text-xl font-bold text-white dark:text-red-400">$180K</p>
+                        <p className="text-xs text-orange-100 dark:text-red-400">5 facturas • Acción requerida</p>
                       </div>
                     </div>
                   </motion.div>
 
                   {/* Tesorería */}
-                  <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                  <motion.div variants={itemVariants} className="bg-gradient-to-br from-cyan-500/90 to-cyan-600/90 dark:bg-neutral-800 border-0 dark:border dark:border-gray-700 rounded-2xl p-6">
                     <div className="flex items-center justify-between mb-4">
-                      <h3 className="text-sm font-bold">Tesorería</h3>
-                      <span className="text-xs px-2 py-1 bg-blue-900/20 text-blue-400 rounded-full">3 Cuentas</span>
+                      <h3 className="text-sm font-bold text-white dark:text-gray-100">Tesorería</h3>
+                      <span className="text-xs px-2 py-1 bg-white/20 text-white dark:bg-blue-900/20 dark:text-blue-400 rounded-full">3 Cuentas</span>
                     </div>
                     <div className="space-y-3">
                       <div>
-                        <p className="text-xs text-gray-600 dark:text-gray-400">Saldo Total</p>
-                        <p className="text-xl font-bold">$1.25M</p>
-                        <p className="text-xs text-green-400">BCP: $850K • BBVA: $280K</p>
+                        <p className="text-xs text-cyan-100 dark:text-gray-400">Saldo Total</p>
+                        <p className="text-xl font-bold text-white dark:text-gray-100">$1.25M</p>
+                        <p className="text-xs text-cyan-100 dark:text-green-400">BCP: $850K • BBVA: $280K</p>
                       </div>
-                      <div className="pt-3 border-t border-gray-200 dark:border-gray-700">
-                        <p className="text-xs text-gray-600 dark:text-gray-400">Movimientos Hoy</p>
-                        <p className="text-xl font-bold">{stats.transaccionesHoy}</p>
-                        <p className="text-xs text-gray-600 dark:text-gray-400">+$125K / -$85K</p>
+                      <div className="pt-3 border-t border-white/20 dark:border-gray-700">
+                        <p className="text-xs text-cyan-100 dark:text-gray-400">Movimientos Hoy</p>
+                        <p className="text-xl font-bold text-white dark:text-gray-100">{stats.transaccionesHoy}</p>
+                        <p className="text-xs text-cyan-100 dark:text-gray-400">+$125K / -$85K</p>
                       </div>
                     </div>
                   </motion.div>
@@ -731,22 +752,22 @@ export default function DashboardPage() {
                 {/* Presupuesto + Alertas */}
                 <div className="grid lg:grid-cols-2 gap-6">
                   {/* Presupuesto */}
-                  <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
-                    <h3 className="text-lg font-bold mb-4">Presupuesto 2025</h3>
+                  <motion.div variants={itemVariants} className="bg-gradient-to-br from-indigo-500/90 to-indigo-600/90 dark:bg-neutral-800 border-0 dark:border dark:border-gray-700 rounded-2xl p-6">
+                    <h3 className="text-lg font-bold text-white dark:text-gray-100 mb-4">Presupuesto 2025</h3>
                     <div className="grid grid-cols-3 gap-4 mb-4">
-                      <div className="text-center p-3 bg-blue-900/10 rounded-lg">
-                        <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Anual</p>
-                        <p className="text-lg font-bold">$12M</p>
+                      <div className="text-center p-3 bg-white/20 dark:bg-blue-900/10 rounded-lg">
+                        <p className="text-xs text-indigo-100 dark:text-gray-400 mb-1">Anual</p>
+                        <p className="text-lg font-bold text-white dark:text-gray-100">$12M</p>
                       </div>
-                      <div className="text-center p-3 bg-green-900/10 rounded-lg">
-                        <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Ejecutado</p>
-                        <p className="text-lg font-bold">$9.2M</p>
-                        <p className="text-xs text-green-400">77%</p>
+                      <div className="text-center p-3 bg-white/20 dark:bg-green-900/10 rounded-lg">
+                        <p className="text-xs text-indigo-100 dark:text-gray-400 mb-1">Ejecutado</p>
+                        <p className="text-lg font-bold text-white dark:text-gray-100">$9.2M</p>
+                        <p className="text-xs text-indigo-100 dark:text-green-400">77%</p>
                       </div>
-                      <div className="text-center p-3 bg-purple-900/10 rounded-lg">
-                        <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Disponible</p>
-                        <p className="text-lg font-bold">$2.8M</p>
-                        <p className="text-xs text-purple-400">23%</p>
+                      <div className="text-center p-3 bg-white/20 dark:bg-purple-900/10 rounded-lg">
+                        <p className="text-xs text-indigo-100 dark:text-gray-400 mb-1">Disponible</p>
+                        <p className="text-lg font-bold text-white dark:text-gray-100">$2.8M</p>
+                        <p className="text-xs text-indigo-100 dark:text-purple-400">23%</p>
                       </div>
                     </div>
                     <div className="space-y-2">
@@ -757,10 +778,10 @@ export default function DashboardPage() {
                       ].map((item, idx) => (
                         <div key={idx}>
                           <div className="flex items-center justify-between text-xs mb-1">
-                            <span className="text-gray-600 dark:text-gray-400">{item.cat}</span>
-                            <span className={item.exec > 100 ? 'text-red-400' : 'text-green-400'}>{item.exec}%</span>
+                            <span className="text-indigo-100 dark:text-gray-400">{item.cat}</span>
+                            <span className={item.exec > 100 ? 'text-white dark:text-red-400' : 'text-white dark:text-green-400'}>{item.exec}%</span>
                           </div>
-                          <div className="w-full bg-gray-100 dark:bg-secondary-700 rounded-full h-1.5">
+                          <div className="w-full bg-white/20 dark:bg-neutral-700 rounded-full h-1.5">
                             <div className={`${item.color} h-full rounded-full`} style={{ width: `${Math.min(item.exec, 100)}%` }}></div>
                           </div>
                         </div>
@@ -769,27 +790,27 @@ export default function DashboardPage() {
                   </motion.div>
 
                   {/* Alertas Críticas */}
-                  <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
-                    <h3 className="text-lg font-bold mb-4">Alertas Críticas</h3>
+                  <motion.div variants={itemVariants} className="bg-gradient-to-br from-rose-500/90 to-rose-600/90 dark:bg-neutral-800 border-0 dark:border dark:border-gray-700 rounded-2xl p-6">
+                    <h3 className="text-lg font-bold text-white dark:text-gray-100 mb-4">Alertas Críticas</h3>
                     <div className="space-y-3">
                       {[
-                        { type: 'Facturas Vencidas', count: 5, amount: '$180K', level: 'high', icon: '🔴' },
-                        { type: 'Pagos Esta Semana', count: 7, amount: '$180K', level: 'medium', icon: '🟡' },
-                        { type: 'Conciliación Pendiente', count: 3, amount: '-', level: 'medium', icon: '🟡' },
-                        { type: 'Sobregasto Operaciones', count: 1, amount: '+5.4%', level: 'medium', icon: '🟡' }
+                        { type: 'Facturas Vencidas', count: 5, amount: '$180K', level: 'high', IconComponent: AlertCircle, color: 'text-red-400' },
+                        { type: 'Pagos Esta Semana', count: 7, amount: '$180K', level: 'medium', IconComponent: AlertTriangle, color: 'text-yellow-400' },
+                        { type: 'Conciliación Pendiente', count: 3, amount: '-', level: 'medium', IconComponent: AlertTriangle, color: 'text-yellow-400' },
+                        { type: 'Sobregasto Operaciones', count: 1, amount: '+5.4%', level: 'medium', IconComponent: AlertTriangle, color: 'text-yellow-400' }
                       ].map((alert, idx) => (
                         <div key={idx} className={`p-3 rounded-lg border ${
-                          alert.level === 'high' ? 'bg-red-900/10 border-red-500/20' : 'bg-yellow-900/10 border-yellow-500/20'
+                          alert.level === 'high' ? 'bg-white/20 dark:bg-red-900/10 border-white/30 dark:border-red-500/20' : 'bg-white/20 dark:bg-yellow-900/10 border-white/30 dark:border-yellow-500/20'
                         }`}>
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-2">
-                              <span>{alert.icon}</span>
+                              <alert.IconComponent className={`w-5 h-5 text-white dark:${alert.color}`} />
                               <div>
-                                <p className="text-sm font-semibold">{alert.type}</p>
-                                <p className="text-xs text-gray-600 dark:text-gray-400">{alert.count} items • {alert.amount}</p>
+                                <p className="text-sm font-semibold text-white dark:text-gray-100">{alert.type}</p>
+                                <p className="text-xs text-rose-100 dark:text-gray-400">{alert.count} items • {alert.amount}</p>
                               </div>
                             </div>
-                            <button className="text-xs px-2 py-1 bg-gray-100 dark:bg-secondary-700 hover:bg-neutral-700 rounded transition-colors">
+                            <button className="text-xs px-2 py-1 bg-white/30 dark:bg-neutral-700 text-white dark:text-gray-100 hover:bg-white/40 dark:hover:bg-neutral-600 rounded transition-colors">
                               Ver
                             </button>
                           </div>
@@ -802,32 +823,32 @@ export default function DashboardPage() {
                 {/* Flujo Proyectado + Financiamiento */}
                 <div className="grid lg:grid-cols-2 gap-6">
                   {/* Flujo Proyectado */}
-                  <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
-                    <h3 className="text-lg font-bold mb-4">Flujo de Caja Proyectado (12 semanas)</h3>
+                  <motion.div variants={itemVariants} className="bg-gradient-to-br from-violet-500/90 to-violet-600/90 dark:bg-neutral-800 border-0 dark:border dark:border-gray-700 rounded-2xl p-6">
+                    <h3 className="text-lg font-bold text-white dark:text-gray-100 mb-4">Flujo de Caja Proyectado (12 semanas)</h3>
                     <div className="grid grid-cols-3 gap-3 mb-4">
-                      <div className="text-center p-3 bg-blue-900/10 rounded-lg">
-                        <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Saldo Inicial</p>
-                        <p className="text-lg font-bold">$1.25M</p>
+                      <div className="text-center p-3 bg-white/20 dark:bg-blue-900/10 rounded-lg">
+                        <p className="text-xs text-violet-100 dark:text-gray-400 mb-1">Saldo Inicial</p>
+                        <p className="text-lg font-bold text-white dark:text-gray-100">$1.25M</p>
                       </div>
-                      <div className="text-center p-3 bg-green-900/10 rounded-lg">
-                        <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Ingresos</p>
-                        <p className="text-lg font-bold text-green-400">+$2.8M</p>
+                      <div className="text-center p-3 bg-white/20 dark:bg-green-900/10 rounded-lg">
+                        <p className="text-xs text-violet-100 dark:text-gray-400 mb-1">Ingresos</p>
+                        <p className="text-lg font-bold text-white dark:text-green-400">+$2.8M</p>
                       </div>
-                      <div className="text-center p-3 bg-red-900/10 rounded-lg">
-                        <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Egresos</p>
-                        <p className="text-lg font-bold text-red-400">-$2.4M</p>
+                      <div className="text-center p-3 bg-white/20 dark:bg-red-900/10 rounded-lg">
+                        <p className="text-xs text-violet-100 dark:text-gray-400 mb-1">Egresos</p>
+                        <p className="text-lg font-bold text-white dark:text-red-400">-$2.4M</p>
                       </div>
                     </div>
-                    <div className="p-4 bg-gradient-to-r from-purple-900/20 to-purple-900/5 border border-purple-500/20 rounded-xl">
-                      <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Saldo Final Proyectado</p>
-                      <p className="text-3xl font-bold mb-1">$1.65M</p>
-                      <p className="text-xs text-green-400">+32% vs saldo inicial • Estado: Óptimo ✓</p>
+                    <div className="p-4 bg-white/20 dark:bg-gradient-to-r dark:from-purple-900/20 dark:to-purple-900/5 border border-white/30 dark:border-purple-500/20 rounded-xl">
+                      <p className="text-xs text-violet-100 dark:text-gray-400 mb-1">Saldo Final Proyectado</p>
+                      <p className="text-3xl font-bold text-white dark:text-gray-100 mb-1">$1.65M</p>
+                      <p className="text-xs text-violet-100 dark:text-green-400">+32% vs saldo inicial • Estado: Óptimo ✓</p>
                     </div>
                   </motion.div>
 
                   {/* Financiamiento Disponible */}
-                  <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
-                    <h3 className="text-lg font-bold mb-4">Financiamiento Disponible</h3>
+                  <motion.div variants={itemVariants} className="bg-gradient-to-br from-amber-500/90 to-amber-600/90 dark:bg-neutral-800 border-0 dark:border dark:border-gray-700 rounded-2xl p-6">
+                    <h3 className="text-lg font-bold text-white dark:text-gray-100 mb-4">Financiamiento Disponible</h3>
                     <div className="space-y-3">
                       <div className="p-3 bg-gradient-to-r from-orange-900/20 to-orange-900/5 border border-orange-500/20 rounded-lg">
                         <div className="flex items-center justify-between mb-2">
@@ -852,7 +873,7 @@ export default function DashboardPage() {
                 {/* SUNAT + Automatizaciones */}
                 <div className="grid lg:grid-cols-2 gap-6">
                   {/* SUNAT */}
-                  <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                  <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                     <h3 className="text-lg font-bold mb-4">Cumplimiento SUNAT</h3>
                     <div className="grid grid-cols-2 gap-3 mb-4">
                       <div className="p-3 bg-red-900/10 rounded-lg">
@@ -872,7 +893,7 @@ export default function DashboardPage() {
                         { item: 'Libros Electrónicos', status: '6/6 Al día', color: 'green' },
                         { item: 'SIRE', status: '156 facturas', color: 'blue' }
                       ].map((item, idx) => (
-                        <div key={idx} className="flex items-center justify-between p-2 bg-gray-100 dark:bg-secondary-700/30 rounded">
+                        <div key={idx} className="flex items-center justify-between p-2 bg-gray-100 dark:bg-neutral-700/30 rounded">
                           <span className="text-sm text-gray-400 dark:text-gray-300">{item.item}</span>
                           <span className={`text-xs px-2 py-1 bg-${item.color}-900/20 text-${item.color}-400 rounded-full`}>
                             {item.status}
@@ -883,7 +904,7 @@ export default function DashboardPage() {
                   </motion.div>
 
                   {/* Automatizaciones */}
-                  <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                  <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                     <h3 className="text-lg font-bold mb-4">Automatizaciones</h3>
                     <div className="grid grid-cols-3 gap-3 mb-4">
                       <div className="text-center p-3 bg-blue-900/10 rounded-lg">
@@ -905,7 +926,7 @@ export default function DashboardPage() {
                         'Recordatorio Facturas Vencidas',
                         'Clasificación Automática Gastos'
                       ].map((auto, idx) => (
-                        <div key={idx} className="flex items-center gap-2 p-2 bg-gray-100 dark:bg-secondary-700/30 rounded">
+                        <div key={idx} className="flex items-center gap-2 p-2 bg-gray-100 dark:bg-neutral-700/30 rounded">
                           <div className="w-6 h-6 bg-blue-900/20 rounded flex items-center justify-center">
                             <svg className="w-3 h-3 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -923,17 +944,19 @@ export default function DashboardPage() {
                   <h3 className="text-lg font-bold mb-4">Acciones Rápidas</h3>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                     {[
-                      { name: 'Emitir Factura', icon: '📄', tab: 'facturacion' },
-                      { name: 'Ver Cobranza', icon: '💰', tab: 'cobranza' },
-                      { name: 'Revisar Presupuesto', icon: '📊', tab: 'presupuesto' },
-                      { name: 'Chat con IA', icon: '🤖', tab: 'copiloto' }
+                      { name: 'Emitir Factura', IconComponent: FileText, tab: 'facturacion' },
+                      { name: 'Ver Cobranza', IconComponent: DollarSign, tab: 'cobranza' },
+                      { name: 'Revisar Presupuesto', IconComponent: BarChart3, tab: 'presupuesto' },
+                      { name: 'Chat con IA', IconComponent: Bot, tab: 'copiloto' }
                     ].map((action, idx) => (
                       <button
                         key={idx}
                         onClick={() => setActiveTab(action.tab as any)}
-                        className="p-4 bg-gray-100 dark:bg-secondary-800 hover:bg-gray-100 dark:bg-secondary-700/50 border border-gray-200 dark:border-gray-700 hover:border-blue-500/50 rounded-xl transition-all text-left"
+                        className="p-4 bg-gray-100 dark:bg-neutral-800 hover:bg-gray-100 dark:bg-neutral-700/50 border border-gray-200 dark:border-gray-700 hover:border-blue-500/50 rounded-xl transition-all text-left"
                       >
-                        <div className="text-2xl mb-2">{action.icon}</div>
+                        <div className="w-12 h-12 bg-primary-500/10 rounded-lg flex items-center justify-center mb-2">
+                          <action.IconComponent className="w-6 h-6 text-primary-500" />
+                        </div>
                         <p className="text-sm font-semibold">{action.name}</p>
                       </button>
                     ))}
@@ -943,10 +966,10 @@ export default function DashboardPage() {
             )}
 
             {activeTab === 'analytics' && (
-              <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-8">
+              <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-8">
                 <h2 className="text-2xl font-bold mb-6">Analytics Dashboard</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="bg-gray-100 dark:bg-secondary-700/50 rounded-xl p-6">
+                  <div className="bg-gray-100 dark:bg-neutral-700/50 rounded-xl p-6">
                     <h3 className="text-lg font-semibold mb-4">Métricas de Rendimiento</h3>
                     <div className="space-y-4">
                       <div className="flex justify-between items-center">
@@ -963,7 +986,7 @@ export default function DashboardPage() {
                       </div>
                     </div>
                   </div>
-                  <div className="bg-gray-100 dark:bg-secondary-700/50 rounded-xl p-6">
+                  <div className="bg-gray-100 dark:bg-neutral-700/50 rounded-xl p-6">
                     <h3 className="text-lg font-semibold mb-4">Crecimiento</h3>
                     <div className="space-y-4">
                       <div className="flex justify-between items-center">
@@ -983,7 +1006,7 @@ export default function DashboardPage() {
 
             {activeTab === 'facturas' && (
               <motion.div variants={itemVariants} className="space-y-6">
-                <div className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                <div className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <FacturasTable />
                 </div>
               </motion.div>
@@ -1041,11 +1064,11 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* Movimientos del Día */}
-                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Movimientos de Hoy</h3>
                   <div className="space-y-4">
                     {recentTransactions.slice(0, 8).map((tx, idx) => (
-                      <div key={idx} className="flex items-center justify-between p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-lg">
+                      <div key={idx} className="flex items-center justify-between p-4 bg-gray-100 dark:bg-neutral-700/30 rounded-lg">
                         <div className="flex items-center gap-4">
                           <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${tx.type === 'ingreso' ? 'bg-green-900/20' : 'bg-red-900/20'}`}>
                             {tx.type === 'ingreso' ? '↑' : '↓'}
@@ -1097,24 +1120,26 @@ export default function DashboardPage() {
                   <>
                     <motion.div variants={itemVariants} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                       {[
-                        { name: 'Estado de Resultados', icon: '📊', color: 'blue' },
-                        { name: 'Balance General', icon: '📈', color: 'green' },
-                        { name: 'Flujo de Caja', icon: '💰', color: 'purple' },
-                        { name: 'Libro Diario', icon: '📖', color: 'orange' }
+                        { name: 'Estado de Resultados', IconComponent: BarChart3, color: 'blue' },
+                        { name: 'Balance General', IconComponent: TrendingUp, color: 'green' },
+                        { name: 'Flujo de Caja', IconComponent: DollarSign, color: 'purple' },
+                        { name: 'Libro Diario', IconComponent: BookOpen, color: 'orange' }
                       ].map((report, idx) => (
                         <motion.button
                           key={idx}
                           whileHover={{ y: -4 }}
-                          className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 text-left hover:border-gray-300 dark:border-gray-600 transition-all"
+                          className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 text-left hover:border-gray-300 dark:border-gray-600 transition-all"
                         >
-                          <div className="text-4xl mb-4">{report.icon}</div>
+                          <div className="w-14 h-14 bg-primary-500/10 rounded-xl flex items-center justify-center mb-4">
+                            <report.IconComponent className="w-7 h-7 text-primary-500" />
+                          </div>
                           <h3 className="text-sm font-semibold mb-2">{report.name}</h3>
                           <p className="text-xs text-gray-600 dark:text-gray-400">Generar reporte</p>
                         </motion.button>
                       ))}
                     </motion.div>
 
-                    <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-8">
+                    <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-8">
                       <h3 className="text-lg font-bold mb-6">Reportes Recientes</h3>
                       <div className="space-y-4">
                         {[
@@ -1122,7 +1147,7 @@ export default function DashboardPage() {
                           { name: 'Balance General - Q2 2025', date: '30/06/2025', size: '1.8 MB' },
                           { name: 'Flujo de Caja - Mayo 2025', date: '31/05/2025', size: '1.2 MB' }
                         ].map((report, idx) => (
-                          <div key={idx} className="flex items-center justify-between p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-lg">
+                          <div key={idx} className="flex items-center justify-between p-4 bg-gray-100 dark:bg-neutral-700/30 rounded-lg">
                             <div className="flex items-center gap-4">
                               <div className="w-10 h-10 bg-blue-900/20 rounded-lg flex items-center justify-center">
                                 <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1174,7 +1199,7 @@ export default function DashboardPage() {
                     {/* Declaraciones y Libros SUNAT */}
                     <motion.div variants={itemVariants} className="grid md:grid-cols-2 gap-6">
                       {/* Declaraciones Mensuales */}
-                      <div className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                      <div className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                         <h3 className="text-lg font-bold mb-6">Declaraciones Mensuales</h3>
                         <div className="space-y-4">
                           {[
@@ -1182,7 +1207,7 @@ export default function DashboardPage() {
                             { name: 'PLAME', periodo: 'Octubre 2025', vence: '17/11/2025', status: 'Enviado' },
                             { name: 'PDT 617 - Otras Retenciones', periodo: 'Octubre 2025', vence: '20/11/2025', status: 'Pendiente' }
                           ].map((dec, idx) => (
-                            <div key={idx} className="p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-lg">
+                            <div key={idx} className="p-4 bg-gray-100 dark:bg-neutral-700/30 rounded-lg">
                               <div className="flex items-center justify-between mb-2">
                                 <h4 className="text-sm font-semibold">{dec.name}</h4>
                                 <span className={`text-xs px-2 py-1 rounded-full ${
@@ -1206,7 +1231,7 @@ export default function DashboardPage() {
                       </div>
 
                       {/* Libros Electrónicos */}
-                      <div className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                      <div className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                         <h3 className="text-lg font-bold mb-6">Libros Electrónicos (PLE)</h3>
                         <div className="space-y-4">
                           {[
@@ -1217,7 +1242,7 @@ export default function DashboardPage() {
                             { name: 'Libro de Inventarios', periodo: 'Octubre 2025', status: 'Enviado' },
                             { name: 'Libro Caja y Bancos', periodo: 'Octubre 2025', status: 'Enviado' }
                           ].map((libro, idx) => (
-                            <div key={idx} className="flex items-center justify-between p-3 bg-gray-100 dark:bg-secondary-700/30 rounded-lg">
+                            <div key={idx} className="flex items-center justify-between p-3 bg-gray-100 dark:bg-neutral-700/30 rounded-lg">
                               <div>
                                 <p className="text-sm font-semibold">{libro.name}</p>
                                 <p className="text-xs text-gray-600 dark:text-gray-400">{libro.periodo}</p>
@@ -1226,7 +1251,7 @@ export default function DashboardPage() {
                                 <span className="text-xs px-2 py-1 bg-green-900/20 text-green-400 rounded-full">
                                   {libro.status}
                                 </span>
-                                <button className="text-xs px-2 py-1 bg-gray-100 dark:bg-secondary-700 hover:bg-neutral-700 rounded transition-colors">
+                                <button className="text-xs px-2 py-1 bg-gray-100 dark:bg-neutral-700 hover:bg-neutral-700 rounded transition-colors">
                                   Ver
                                 </button>
                               </div>
@@ -1237,20 +1262,20 @@ export default function DashboardPage() {
                     </motion.div>
 
                     {/* SIRE y Comprobantes */}
-                    <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                    <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                       <h3 className="text-lg font-bold mb-6">SIRE - Sistema Integrado de Registros Electrónicos</h3>
                       <div className="grid md:grid-cols-3 gap-6 mb-6">
-                        <div className="text-center p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-xl">
+                        <div className="text-center p-4 bg-gray-100 dark:bg-neutral-700/30 rounded-xl">
                           <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">Facturas Emitidas</p>
                           <p className="text-3xl font-bold mb-1">156</p>
                           <p className="text-xs text-green-400">Octubre 2025</p>
                         </div>
-                        <div className="text-center p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-xl">
+                        <div className="text-center p-4 bg-gray-100 dark:bg-neutral-700/30 rounded-xl">
                           <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">Notas de Crédito</p>
                           <p className="text-3xl font-bold mb-1">8</p>
                           <p className="text-xs text-yellow-400">Octubre 2025</p>
                         </div>
-                        <div className="text-center p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-xl">
+                        <div className="text-center p-4 bg-gray-100 dark:bg-neutral-700/30 rounded-xl">
                           <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">Comprobantes Recibidos</p>
                           <p className="text-3xl font-bold mb-1">234</p>
                           <p className="text-xs text-blue-400">Octubre 2025</p>
@@ -1260,14 +1285,14 @@ export default function DashboardPage() {
                         <button className="flex-1 text-sm px-4 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors">
                           Enviar a SIRE
                         </button>
-                        <button className="flex-1 text-sm px-4 py-3 bg-gray-100 dark:bg-secondary-700 hover:bg-neutral-700 rounded-lg transition-colors">
+                        <button className="flex-1 text-sm px-4 py-3 bg-gray-100 dark:bg-neutral-700 hover:bg-neutral-700 rounded-lg transition-colors">
                           Descargar Reporte
                         </button>
                       </div>
                     </motion.div>
 
                     {/* Calendario Tributario */}
-                    <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                    <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                       <h3 className="text-lg font-bold mb-6">Calendario Tributario - Noviembre 2025</h3>
                       <div className="space-y-3">
                         {[
@@ -1278,7 +1303,7 @@ export default function DashboardPage() {
                           { fecha: '17 Nov', obligacion: 'PLAME - Planilla Electrónica', monto: '$180K' },
                           { fecha: '20 Nov', obligacion: 'PDT 617 - Otras Retenciones', monto: '$12K' }
                         ].map((item, idx) => (
-                          <div key={idx} className="flex items-center justify-between p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-lg hover:bg-gray-100 dark:bg-secondary-700/50 transition-colors">
+                          <div key={idx} className="flex items-center justify-between p-4 bg-gray-100 dark:bg-neutral-700/30 rounded-lg hover:bg-gray-100 dark:bg-neutral-700/50 transition-colors">
                             <div className="flex items-center gap-4">
                               <div className="w-16 text-center">
                                 <p className="text-xs font-bold text-blue-400">{item.fecha}</p>
@@ -1320,7 +1345,7 @@ export default function DashboardPage() {
                   </div>
                 </motion.div>
 
-                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Transacciones Pendientes de Conciliar</h3>
                   <div className="space-y-3">
                     {[
@@ -1328,7 +1353,7 @@ export default function DashboardPage() {
                       { banco: 'BBVA', monto: -32000, fecha: '03/10/2025', concepto: 'Pago Proveedor ABC' },
                       { banco: 'BCP', monto: 28000, fecha: '02/10/2025', concepto: 'Cobro Factura #1245' }
                     ].map((tx, idx) => (
-                      <div key={idx} className="flex items-center justify-between p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-lg">
+                      <div key={idx} className="flex items-center justify-between p-4 bg-gray-100 dark:bg-neutral-700/30 rounded-lg">
                         <div className="flex items-center gap-4">
                           <div className="w-10 h-10 bg-blue-900/20 rounded-lg flex items-center justify-center">
                             <span className="text-xs font-bold text-blue-400">{tx.banco}</span>
@@ -1375,7 +1400,7 @@ export default function DashboardPage() {
                   </div>
                 </motion.div>
 
-                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Alertas Activas</h3>
                   <div className="space-y-4">
                     {[
@@ -1397,7 +1422,7 @@ export default function DashboardPage() {
                           </div>
                           <p className="text-sm text-gray-400 dark:text-gray-300">{alert.mensaje}</p>
                         </div>
-                        <button className="text-xs px-3 py-1.5 bg-gray-100 dark:bg-secondary-700 hover:bg-neutral-700 rounded-lg transition-colors">
+                        <button className="text-xs px-3 py-1.5 bg-gray-100 dark:bg-neutral-700 hover:bg-neutral-700 rounded-lg transition-colors">
                           Resolver
                         </button>
                       </div>
@@ -1415,7 +1440,7 @@ export default function DashboardPage() {
                   <div className="bg-gradient-to-br from-blue-900/20 to-blue-900/5 border border-blue-500/20 rounded-xl p-4">
                     <div className="flex items-center gap-3 mb-2">
                       <div className="w-8 h-8 bg-blue-900/30 rounded-lg flex items-center justify-center">
-                        <span className="text-lg">💡</span>
+                        <Lightbulb className="w-5 h-5 text-blue-400" />
                       </div>
                       <p className="text-xs font-semibold text-blue-400">Insight del Día</p>
                     </div>
@@ -1424,7 +1449,7 @@ export default function DashboardPage() {
                   <div className="bg-gradient-to-br from-green-900/20 to-green-900/5 border border-green-500/20 rounded-xl p-4">
                     <div className="flex items-center gap-3 mb-2">
                       <div className="w-8 h-8 bg-green-900/30 rounded-lg flex items-center justify-center">
-                        <span className="text-lg">📈</span>
+                        <TrendingUp className="w-5 h-5 text-green-400" />
                       </div>
                       <p className="text-xs font-semibold text-green-400">Oportunidad</p>
                     </div>
@@ -1433,7 +1458,7 @@ export default function DashboardPage() {
                   <div className="bg-gradient-to-br from-yellow-900/20 to-yellow-900/5 border border-yellow-500/20 rounded-xl p-4">
                     <div className="flex items-center gap-3 mb-2">
                       <div className="w-8 h-8 bg-yellow-900/30 rounded-lg flex items-center justify-center">
-                        <span className="text-lg">⚠️</span>
+                        <AlertTriangle className="w-5 h-5 text-yellow-400" />
                       </div>
                       <p className="text-xs font-semibold text-yellow-400">Recomendación</p>
                     </div>
@@ -1442,11 +1467,11 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* Chat Interface */}
-                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl overflow-hidden">
-                  <div className="bg-gradient-to-r from-blue-900/30 to-purple-900/30 p-4 border-b border-gray-200 dark:border-gray-700">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl overflow-hidden">
+                  <div className="bg-gradient-to-r from-blue-900/30 to-primary-900/30 p-4 border-b border-gray-200 dark:border-gray-700">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
-                        <span className="text-xl">🤖</span>
+                      <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-primary-600 rounded-xl flex items-center justify-center">
+                        <Bot className="w-6 h-6 text-white" />
                       </div>
                       <div>
                         <h3 className="text-sm font-semibold">Copiloto Financiero</h3>
@@ -1461,7 +1486,7 @@ export default function DashboardPage() {
                         <div className={`max-w-[80%] rounded-2xl px-4 py-3 ${
                           msg.role === 'user' 
                             ? 'bg-blue-600 text-white' 
-                            : 'bg-gray-100 dark:bg-secondary-700 text-neutral-200'
+                            : 'bg-gray-100 dark:bg-neutral-700 text-neutral-200'
                         }`}>
                           <p className="text-sm">{msg.content}</p>
                         </div>
@@ -1474,15 +1499,15 @@ export default function DashboardPage() {
                       <input
                         type="text"
                         placeholder="Pregúntame sobre tus finanzas..."
-                        className="flex-1 bg-gray-100 dark:bg-secondary-700 border border-gray-300 dark:border-gray-600 rounded-xl px-4 py-3 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-blue-500"
+                        className="flex-1 bg-gray-100 dark:bg-neutral-700 border border-gray-300 dark:border-gray-600 rounded-xl px-4 py-3 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-blue-500"
                       />
-                      <button className="bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-3 rounded-xl text-sm font-medium hover:opacity-90 transition-opacity">
+                      <button className="bg-gradient-to-r from-blue-600 to-primary-600 px-6 py-3 rounded-xl text-sm font-medium hover:opacity-90 transition-opacity">
                         Enviar
                       </button>
                     </div>
                     <div className="flex gap-2 mt-3">
                       {['¿Cómo va mi flujo de caja?', '¿Cuándo debo pagar facturas?', 'Analiza mis gastos'].map((q, idx) => (
-                        <button key={idx} className="text-xs px-3 py-1.5 bg-gray-100 dark:bg-secondary-700 hover:bg-neutral-700 rounded-lg transition-colors">
+                        <button key={idx} className="text-xs px-3 py-1.5 bg-gray-100 dark:bg-neutral-700 hover:bg-neutral-700 rounded-lg transition-colors">
                           {q}
                         </button>
                       ))}
@@ -1518,7 +1543,7 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* Predicción de Flujo de Caja */}
-                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-8">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-8">
                   <h3 className="text-lg font-bold mb-6">Predicción de Flujo de Caja - Próximos 3 Meses</h3>
                   <div className="h-64 flex items-end justify-between gap-4 px-4">
                     {[
@@ -1534,9 +1559,9 @@ export default function DashboardPage() {
                               initial={{ height: 0 }}
                               animate={{ height: `${height}%` }}
                               transition={{ duration: 1, delay: idx * 0.2 }}
-                              className="w-full bg-gradient-to-t from-purple-600 to-purple-400 rounded-t-lg relative group cursor-pointer"
+                              className="w-full bg-gradient-to-t from-blue-600 to-blue-400 rounded-t-lg relative group cursor-pointer"
                             >
-                              <div className="absolute -top-12 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-gray-100 dark:bg-secondary-700 px-3 py-2 rounded-lg text-xs whitespace-nowrap">
+                              <div className="absolute -top-12 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-gray-100 dark:bg-neutral-700 px-3 py-2 rounded-lg text-xs whitespace-nowrap">
                                 <p className="font-bold">${(data.amount / 1000).toFixed(1)}M</p>
                                 <p className="text-gray-600 dark:text-gray-400">Confianza: {data.confidence}%</p>
                               </div>
@@ -1551,16 +1576,18 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* Recomendaciones IA */}
-                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Recomendaciones Basadas en IA</h3>
                   <div className="space-y-4">
                     {[
-                      { icon: '💰', title: 'Optimiza tu capital de trabajo', desc: 'Basado en tu flujo proyectado, considera reducir inventario en 15%', impact: 'Alto' },
-                      { icon: '📊', title: 'Diversifica ingresos', desc: 'El 60% de tus ingresos depende de 3 clientes. Recomendamos diversificar', impact: 'Medio' },
-                      { icon: '⚡', title: 'Automatiza pagos recurrentes', desc: 'Puedes ahorrar 12 horas/mes automatizando pagos a proveedores fijos', impact: 'Alto' }
+                      { IconComponent: DollarSign, title: 'Optimiza tu capital de trabajo', desc: 'Basado en tu flujo proyectado, considera reducir inventario en 15%', impact: 'Alto' },
+                      { IconComponent: BarChart3, title: 'Diversifica ingresos', desc: 'El 60% de tus ingresos depende de 3 clientes. Recomendamos diversificar', impact: 'Medio' },
+                      { IconComponent: Zap, title: 'Automatiza pagos recurrentes', desc: 'Puedes ahorrar 12 horas/mes automatizando pagos a proveedores fijos', impact: 'Alto' }
                     ].map((rec, idx) => (
-                      <div key={idx} className="flex items-start gap-4 p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-lg">
-                        <div className="text-3xl">{rec.icon}</div>
+                      <div key={idx} className="flex items-start gap-4 p-4 bg-gray-100 dark:bg-neutral-700/30 rounded-lg">
+                        <div className="w-12 h-12 bg-primary-500/10 rounded-lg flex items-center justify-center">
+                          <rec.IconComponent className="w-6 h-6 text-primary-500" />
+                        </div>
                         <div className="flex-1">
                           <div className="flex items-center justify-between mb-2">
                             <h4 className="text-sm font-semibold">{rec.title}</h4>
@@ -1606,10 +1633,10 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* Automatizaciones Activas */}
-                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <div className="flex items-center justify-between mb-6">
                     <h3 className="text-lg font-bold">Automatizaciones Activas</h3>
-                    <button className="text-xs px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg hover:opacity-90 transition-opacity">
+                    <button className="text-xs px-4 py-2 bg-gradient-to-r from-blue-600 to-primary-600 rounded-lg hover:opacity-90 transition-opacity">
                       + Nueva Automatización
                     </button>
                   </div>
@@ -1620,9 +1647,9 @@ export default function DashboardPage() {
                       { name: 'Clasificación Automática de Gastos', trigger: 'Al recibir factura', status: 'Activa', executions: 156 },
                       { name: 'Reporte Semanal de Flujo de Caja', trigger: 'Lunes 9:00 AM', status: 'Activa', executions: 12 }
                     ].map((auto, idx) => (
-                      <div key={idx} className="flex items-center justify-between p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-lg">
+                      <div key={idx} className="flex items-center justify-between p-4 bg-gray-100 dark:bg-neutral-700/30 rounded-lg">
                         <div className="flex items-center gap-4">
-                          <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+                          <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-primary-600 rounded-lg flex items-center justify-center">
                             <svg className="w-5 h-5 text-gray-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                             </svg>
@@ -1636,7 +1663,7 @@ export default function DashboardPage() {
                           <span className="text-xs px-2 py-1 bg-green-900/20 text-green-400 rounded-full">
                             {auto.status}
                           </span>
-                          <button className="text-xs px-3 py-1.5 bg-gray-100 dark:bg-secondary-700 hover:bg-neutral-700 rounded-lg transition-colors">
+                          <button className="text-xs px-3 py-1.5 bg-gray-100 dark:bg-neutral-700 hover:bg-neutral-700 rounded-lg transition-colors">
                             Editar
                           </button>
                         </div>
@@ -1646,16 +1673,18 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* Templates de Automatización */}
-                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Templates Populares</h3>
                   <div className="grid md:grid-cols-3 gap-4">
                     {[
-                      { name: 'Auto-pago de Facturas', icon: '💳', desc: 'Paga facturas automáticamente en fecha de vencimiento' },
-                      { name: 'Alertas de Saldo Bajo', icon: '⚠️', desc: 'Notifica cuando el saldo esté por debajo del mínimo' },
-                      { name: 'Categorización IA', icon: '🏷️', desc: 'Clasifica gastos automáticamente con IA' }
+                      { name: 'Auto-pago de Facturas', IconComponent: CreditCard, desc: 'Paga facturas automáticamente en fecha de vencimiento' },
+                      { name: 'Alertas de Saldo Bajo', IconComponent: AlertTriangle, desc: 'Notifica cuando el saldo esté por debajo del mínimo' },
+                      { name: 'Categorización IA', IconComponent: Tag, desc: 'Clasifica gastos automáticamente con IA' }
                     ].map((template, idx) => (
-                      <button key={idx} className="text-left p-4 bg-gray-100 dark:bg-secondary-700/30 hover:bg-gray-100 dark:bg-secondary-700/50 rounded-xl transition-colors">
-                        <div className="text-3xl mb-3">{template.icon}</div>
+                      <button key={idx} className="text-left p-4 bg-gray-100 dark:bg-neutral-700/30 hover:bg-gray-100 dark:bg-neutral-700/50 rounded-xl transition-colors">
+                        <div className="w-12 h-12 bg-primary-500/10 rounded-lg flex items-center justify-center mb-3">
+                          <template.IconComponent className="w-6 h-6 text-primary-500" />
+                        </div>
                         <h4 className="text-sm font-semibold mb-2">{template.name}</h4>
                         <p className="text-xs text-gray-600 dark:text-gray-400 mb-3">{template.desc}</p>
                         <span className="text-xs text-blue-400">Usar template →</span>
@@ -1702,15 +1731,15 @@ export default function DashboardPage() {
                     </div>
                   </div>
                   <div className="grid md:grid-cols-3 gap-4">
-                    <div className="text-center p-4 bg-gray-100 dark:bg-secondary-800 rounded-xl">
+                    <div className="text-center p-4 bg-gray-100 dark:bg-neutral-800 rounded-xl">
                       <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Liquidez</p>
                       <p className="text-2xl font-bold text-green-400">92</p>
                     </div>
-                    <div className="text-center p-4 bg-gray-100 dark:bg-secondary-800 rounded-xl">
+                    <div className="text-center p-4 bg-gray-100 dark:bg-neutral-800 rounded-xl">
                       <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Solvencia</p>
                       <p className="text-2xl font-bold text-green-400">85</p>
                     </div>
-                    <div className="text-center p-4 bg-gray-100 dark:bg-secondary-800 rounded-xl">
+                    <div className="text-center p-4 bg-gray-100 dark:bg-neutral-800 rounded-xl">
                       <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Rentabilidad</p>
                       <p className="text-2xl font-bold text-yellow-400">68</p>
                     </div>
@@ -1718,7 +1747,7 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* Ratios Financieros */}
-                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Ratios Financieros Clave</h3>
                   <div className="grid md:grid-cols-2 gap-6">
                     {[
@@ -1729,7 +1758,7 @@ export default function DashboardPage() {
                       { name: 'Días de Cobro', value: '42', benchmark: '45', status: 'good', desc: 'Tiempo promedio de cobro' },
                       { name: 'Rotación de Inventario', value: '6.2', benchmark: '5.0', status: 'good', desc: 'Veces que rota el inventario al año' }
                     ].map((ratio, idx) => (
-                      <div key={idx} className="p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-lg">
+                      <div key={idx} className="p-4 bg-gray-100 dark:bg-neutral-700/30 rounded-lg">
                         <div className="flex items-center justify-between mb-2">
                           <h4 className="text-sm font-semibold">{ratio.name}</h4>
                           <span className={`text-xs px-2 py-1 rounded-full ${
@@ -1749,7 +1778,7 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* Comparación con Industria */}
-                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Comparación con tu Industria (Retail)</h3>
                   <div className="space-y-4">
                     {[
@@ -1766,10 +1795,10 @@ export default function DashboardPage() {
                           </div>
                         </div>
                         <div className="flex gap-2">
-                          <div className="flex-1 bg-gray-100 dark:bg-secondary-700 rounded-full h-2 overflow-hidden">
+                          <div className="flex-1 bg-gray-100 dark:bg-neutral-700 rounded-full h-2 overflow-hidden">
                             <div className="bg-green-500 h-full" style={{ width: `${(comp.tuEmpresa / 50) * 100}%` }}></div>
                           </div>
-                          <div className="flex-1 bg-gray-100 dark:bg-secondary-700 rounded-full h-2 overflow-hidden">
+                          <div className="flex-1 bg-gray-100 dark:bg-neutral-700 rounded-full h-2 overflow-hidden">
                             <div className="bg-neutral-600 h-full" style={{ width: `${(comp.industria / 50) * 100}%` }}></div>
                           </div>
                         </div>
@@ -1784,7 +1813,7 @@ export default function DashboardPage() {
             {activeTab === 'planificacion' && (
               <div className="space-y-6">
                 {/* Escenarios What-If */}
-                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Simulador de Escenarios "What-If"</h3>
                   <div className="grid md:grid-cols-3 gap-6 mb-6">
                     <div className="bg-gradient-to-br from-green-900/20 to-green-900/5 border border-green-500/20 rounded-xl p-6">
@@ -1830,30 +1859,30 @@ export default function DashboardPage() {
                     </div>
                   </div>
 
-                  <div className="bg-gray-100 dark:bg-secondary-700/30 rounded-xl p-6">
+                  <div className="bg-gray-100 dark:bg-neutral-700/30 rounded-xl p-6">
                     <h4 className="text-sm font-semibold mb-4">Simula tu Escenario</h4>
                     <div className="grid md:grid-cols-3 gap-4">
                       <div>
                         <label className="text-xs text-gray-600 dark:text-gray-400 mb-2 block">Crecimiento Ventas (%)</label>
-                        <input type="number" defaultValue="15" className="w-full bg-gray-50 dark:bg-secondary-800 border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm" />
+                        <input type="number" defaultValue="15" className="w-full bg-gray-50 dark:bg-neutral-800 border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm" />
                       </div>
                       <div>
                         <label className="text-xs text-gray-600 dark:text-gray-400 mb-2 block">Aumento Costos (%)</label>
-                        <input type="number" defaultValue="8" className="w-full bg-gray-50 dark:bg-secondary-800 border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm" />
+                        <input type="number" defaultValue="8" className="w-full bg-gray-50 dark:bg-neutral-800 border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm" />
                       </div>
                       <div>
                         <label className="text-xs text-gray-600 dark:text-gray-400 mb-2 block">Nueva Inversión ($)</label>
-                        <input type="number" defaultValue="50000" className="w-full bg-gray-50 dark:bg-secondary-800 border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm" />
+                        <input type="number" defaultValue="50000" className="w-full bg-gray-50 dark:bg-neutral-800 border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm" />
                       </div>
                     </div>
-                    <button className="mt-4 bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-2 rounded-lg text-sm font-medium hover:opacity-90 transition-opacity">
+                    <button className="mt-4 bg-gradient-to-r from-blue-600 to-primary-600 px-6 py-2 rounded-lg text-sm font-medium hover:opacity-90 transition-opacity">
                       Calcular Escenario
                     </button>
                   </div>
                 </motion.div>
 
                 {/* Objetivos y Metas */}
-                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <div className="flex items-center justify-between mb-6">
                     <h3 className="text-lg font-bold">Objetivos 2025</h3>
                     <button className="text-xs px-4 py-2 bg-blue-600 rounded-lg hover:opacity-90 transition-opacity">
@@ -1868,13 +1897,13 @@ export default function DashboardPage() {
                     ].map((goal, idx) => {
                       const progress = (goal.current / goal.target) * 100
                       return (
-                        <div key={idx} className="p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-lg">
+                        <div key={idx} className="p-4 bg-gray-100 dark:bg-neutral-700/30 rounded-lg">
                           <div className="flex items-center justify-between mb-3">
                             <h4 className="text-sm font-semibold">{goal.name}</h4>
                             <span className="text-xs text-gray-600 dark:text-gray-400">{progress.toFixed(0)}% completado</span>
                           </div>
-                          <div className="w-full bg-gray-100 dark:bg-secondary-700 rounded-full h-3 overflow-hidden mb-2">
-                            <div className="bg-gradient-to-r from-blue-600 to-purple-600 h-full" style={{ width: `${progress}%` }}></div>
+                          <div className="w-full bg-gray-100 dark:bg-neutral-700 rounded-full h-3 overflow-hidden mb-2">
+                            <div className="bg-gradient-to-r from-blue-600 to-primary-600 h-full" style={{ width: `${progress}%` }}></div>
                           </div>
                           <div className="flex items-center justify-between text-xs">
                             <span className="text-gray-600 dark:text-gray-400">Actual: {goal.unit}{goal.current.toLocaleString()}</span>
@@ -1892,7 +1921,7 @@ export default function DashboardPage() {
             {activeTab === 'riesgos' && (
               <div className="space-y-6">
                 {/* Matriz de Riesgos */}
-                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Matriz de Riesgos Identificados</h3>
                   <div className="grid md:grid-cols-2 gap-4">
                     {[
@@ -1932,7 +1961,7 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* Alertas Tempranas */}
-                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Sistema de Alertas Tempranas</h3>
                   <div className="space-y-3">
                     {[
@@ -1941,7 +1970,7 @@ export default function DashboardPage() {
                       { indicator: 'Nivel de Endeudamiento', current: 45, threshold: 50, status: 'warning', trend: 'up' },
                       { indicator: 'Margen de Utilidad', current: 18, threshold: 15, status: 'safe', trend: 'stable' }
                     ].map((alert, idx) => (
-                      <div key={idx} className="flex items-center justify-between p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-lg">
+                      <div key={idx} className="flex items-center justify-between p-4 bg-gray-100 dark:bg-neutral-700/30 rounded-lg">
                         <div className="flex items-center gap-4">
                           <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
                             alert.status === 'safe' ? 'bg-green-900/20' : 'bg-yellow-900/20'
@@ -1965,7 +1994,7 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* Recomendaciones de Seguros */}
-                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Coberturas Recomendadas</h3>
                   <div className="grid md:grid-cols-3 gap-4">
                     {[
@@ -1973,7 +2002,7 @@ export default function DashboardPage() {
                       { name: 'Seguro de Responsabilidad', coverage: 'Hasta $1M', premium: '$1,800/mes', priority: 'Media' },
                       { name: 'Seguro de Interrupción', coverage: 'Hasta $300K', premium: '$1,200/mes', priority: 'Media' }
                     ].map((insurance, idx) => (
-                      <div key={idx} className="p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-xl">
+                      <div key={idx} className="p-4 bg-gray-100 dark:bg-neutral-700/30 rounded-xl">
                         <h4 className="text-sm font-semibold mb-3">{insurance.name}</h4>
                         <div className="space-y-2 mb-4">
                           <div className="flex items-center justify-between text-xs">
@@ -2031,7 +2060,7 @@ export default function DashboardPage() {
                 {/* Productos Disponibles */}
                 <motion.div variants={itemVariants} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                   {/* Confirming */}
-                  <div className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 hover:border-orange-500/50 transition-all cursor-pointer">
+                  <div className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 hover:border-orange-500/50 transition-all cursor-pointer">
                     <div className="w-12 h-12 bg-orange-900/20 rounded-xl flex items-center justify-center mb-4">
                       <svg className="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -2059,7 +2088,7 @@ export default function DashboardPage() {
                   </div>
 
                   {/* Factoring */}
-                  <div className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 hover:border-blue-500/50 transition-all cursor-pointer">
+                  <div className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 hover:border-blue-500/50 transition-all cursor-pointer">
                     <div className="w-12 h-12 bg-blue-900/20 rounded-xl flex items-center justify-center mb-4">
                       <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 8h6m-5 0a3 3 0 110 6H9l3 3m-3-6h6m6 1a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -2087,7 +2116,7 @@ export default function DashboardPage() {
                   </div>
 
                   {/* Línea Spot */}
-                  <div className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 hover:border-purple-500/50 transition-all cursor-pointer">
+                  <div className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 hover:border-purple-500/50 transition-all cursor-pointer">
                     <div className="w-12 h-12 bg-purple-900/20 rounded-xl flex items-center justify-center mb-4">
                       <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -2109,13 +2138,13 @@ export default function DashboardPage() {
                         <span className="font-semibold">Hasta $150K</span>
                       </div>
                     </div>
-                    <button className="w-full bg-purple-600 hover:bg-purple-700 text-gray-900 dark:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                    <button className="w-full bg-blue-600 hover:bg-blue-700 text-gray-900 dark:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
                       Solicitar
                     </button>
                   </div>
 
                   {/* Línea Flash */}
-                  <div className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 hover:border-green-500/50 transition-all cursor-pointer">
+                  <div className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 hover:border-green-500/50 transition-all cursor-pointer">
                     <div className="w-12 h-12 bg-green-900/20 rounded-xl flex items-center justify-center mb-4">
                       <svg className="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -2144,7 +2173,7 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* Operaciones Activas */}
-                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Operaciones Activas</h3>
                   <div className="space-y-4">
                     {[
@@ -2152,7 +2181,7 @@ export default function DashboardPage() {
                       { type: 'Factoring', cliente: 'Cliente XYZ Corp', monto: 85000, vencimiento: '30/10/2025', tasa: 1.5, status: 'Activa' },
                       { type: 'Línea Flash', concepto: 'Capital de trabajo', monto: 50000, vencimiento: '20/10/2025', tasa: 1.8, status: 'Activa' }
                     ].map((op, idx) => (
-                      <div key={idx} className="flex items-center justify-between p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-lg">
+                      <div key={idx} className="flex items-center justify-between p-4 bg-gray-100 dark:bg-neutral-700/30 rounded-lg">
                         <div className="flex items-center gap-4">
                           <div className="w-10 h-10 bg-orange-900/20 rounded-lg flex items-center justify-center">
                             <span className="text-xs font-bold text-orange-400">{op.type.charAt(0)}</span>
@@ -2206,7 +2235,7 @@ export default function DashboardPage() {
                 {/* Productos Bancarios */}
                 <motion.div variants={itemVariants} className="grid md:grid-cols-3 gap-6">
                   {/* Línea de Crédito */}
-                  <div className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 hover:border-blue-500/50 transition-all">
+                  <div className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 hover:border-blue-500/50 transition-all">
                     <div className="w-12 h-12 bg-blue-900/20 rounded-xl flex items-center justify-center mb-4">
                       <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
@@ -2234,7 +2263,7 @@ export default function DashboardPage() {
                   </div>
 
                   {/* Leasing */}
-                  <div className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 hover:border-purple-500/50 transition-all">
+                  <div className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 hover:border-purple-500/50 transition-all">
                     <div className="w-12 h-12 bg-purple-900/20 rounded-xl flex items-center justify-center mb-4">
                       <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
@@ -2256,13 +2285,13 @@ export default function DashboardPage() {
                         <span className="font-semibold">Hasta 100%</span>
                       </div>
                     </div>
-                    <button className="w-full bg-purple-600 hover:bg-purple-700 text-gray-900 dark:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                    <button className="w-full bg-blue-600 hover:bg-blue-700 text-gray-900 dark:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
                       Solicitar
                     </button>
                   </div>
 
                   {/* Mediano Plazo */}
-                  <div className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 hover:border-green-500/50 transition-all">
+                  <div className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 hover:border-green-500/50 transition-all">
                     <div className="w-12 h-12 bg-green-900/20 rounded-xl flex items-center justify-center mb-4">
                       <svg className="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
@@ -2291,7 +2320,7 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* Líneas Activas */}
-                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Líneas de Crédito Activas</h3>
                   <div className="space-y-4">
                     {[
@@ -2301,7 +2330,7 @@ export default function DashboardPage() {
                     ].map((linea, idx) => {
                       const porcentajeUsado = (linea.usado / linea.monto) * 100
                       return (
-                        <div key={idx} className="p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-lg">
+                        <div key={idx} className="p-4 bg-gray-100 dark:bg-neutral-700/30 rounded-lg">
                           <div className="flex items-center justify-between mb-3">
                             <div className="flex items-center gap-3">
                               <div className="w-10 h-10 bg-blue-900/20 rounded-lg flex items-center justify-center">
@@ -2317,7 +2346,7 @@ export default function DashboardPage() {
                               <p className="text-xs text-gray-600 dark:text-gray-400">Disponible: ${((linea.monto - linea.usado) / 1000).toFixed(0)}K</p>
                             </div>
                           </div>
-                          <div className="w-full bg-gray-100 dark:bg-secondary-700 rounded-full h-2 overflow-hidden">
+                          <div className="w-full bg-gray-100 dark:bg-neutral-700 rounded-full h-2 overflow-hidden">
                             <div className="bg-blue-600 h-full" style={{ width: `${porcentajeUsado}%` }}></div>
                           </div>
                           <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">{porcentajeUsado.toFixed(0)}% utilizado</p>
@@ -2328,10 +2357,10 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* Solicitudes en Proceso */}
-                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Solicitudes en Proceso</h3>
                   <div className="space-y-4">
-                    <div className="p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-lg">
+                    <div className="p-4 bg-gray-100 dark:bg-neutral-700/30 rounded-lg">
                       <div className="flex items-center justify-between mb-3">
                         <div className="flex items-center gap-3">
                           <div className="w-10 h-10 bg-orange-900/20 rounded-lg flex items-center justify-center">
@@ -2355,7 +2384,7 @@ export default function DashboardPage() {
                         <button className="flex-1 text-xs px-3 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors">
                           Ver Detalles
                         </button>
-                        <button className="flex-1 text-xs px-3 py-2 bg-gray-100 dark:bg-secondary-700 hover:bg-neutral-700 rounded-lg transition-colors">
+                        <button className="flex-1 text-xs px-3 py-2 bg-gray-100 dark:bg-neutral-700 hover:bg-neutral-700 rounded-lg transition-colors">
                           Seguimiento
                         </button>
                       </div>
@@ -2400,7 +2429,7 @@ export default function DashboardPage() {
                       <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg text-sm font-medium transition-colors">
                         + Factura
                       </button>
-                      <button className="px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg text-sm font-medium transition-colors">
+                      <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg text-sm font-medium transition-colors">
                         + Boleta
                       </button>
                       <button className="px-4 py-2 bg-orange-600 hover:bg-orange-700 rounded-lg text-sm font-medium transition-colors">
@@ -2409,18 +2438,24 @@ export default function DashboardPage() {
                     </div>
                   </div>
                   <div className="grid md:grid-cols-3 gap-4">
-                    <div className="text-center p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-xl">
-                      <p className="text-3xl mb-2">📄</p>
+                    <div className="text-center p-4 bg-gray-100 dark:bg-neutral-700/30 rounded-xl">
+                      <div className="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center mx-auto mb-2">
+                        <FileText className="w-6 h-6 text-blue-500" />
+                      </div>
                       <p className="text-sm font-semibold mb-1">Factura Electrónica</p>
                       <p className="text-xs text-gray-600 dark:text-gray-400">Para empresas con RUC</p>
                     </div>
-                    <div className="text-center p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-xl">
-                      <p className="text-3xl mb-2">🧾</p>
+                    <div className="text-center p-4 bg-gray-100 dark:bg-neutral-700/30 rounded-xl">
+                      <div className="w-12 h-12 bg-green-500/10 rounded-lg flex items-center justify-center mx-auto mb-2">
+                        <FileText className="w-6 h-6 text-green-500" />
+                      </div>
                       <p className="text-sm font-semibold mb-1">Boleta de Venta</p>
                       <p className="text-xs text-gray-600 dark:text-gray-400">Para consumidores finales</p>
                     </div>
-                    <div className="text-center p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-xl">
-                      <p className="text-3xl mb-2">↩️</p>
+                    <div className="text-center p-4 bg-gray-100 dark:bg-neutral-700/30 rounded-xl">
+                      <div className="w-12 h-12 bg-orange-500/10 rounded-lg flex items-center justify-center mx-auto mb-2">
+                        <FileText className="w-6 h-6 text-orange-500" />
+                      </div>
                       <p className="text-sm font-semibold mb-1">Nota de Crédito</p>
                       <p className="text-xs text-gray-600 dark:text-gray-400">Anulaciones y devoluciones</p>
                     </div>
@@ -2428,7 +2463,7 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* Comprobantes Recientes */}
-                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Comprobantes Recientes</h3>
                   <div className="space-y-3">
                     {[
@@ -2437,7 +2472,7 @@ export default function DashboardPage() {
                       { tipo: 'Boleta', numero: 'B001-00234', cliente: 'Juan Pérez', monto: 450, fecha: '04/10/2025', estado: 'Aceptado' },
                       { tipo: 'Factura', numero: 'F001-00154', cliente: 'Distribuidora LMN', monto: 15600, fecha: '03/10/2025', estado: 'Aceptado' }
                     ].map((comp, idx) => (
-                      <div key={idx} className="flex items-center justify-between p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-lg hover:bg-gray-100 dark:bg-secondary-700/50 transition-colors">
+                      <div key={idx} className="flex items-center justify-between p-4 bg-gray-100 dark:bg-neutral-700/30 rounded-lg hover:bg-gray-100 dark:bg-neutral-700/50 transition-colors">
                         <div className="flex items-center gap-4">
                           <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
                             comp.tipo === 'Factura' ? 'bg-blue-900/20' : 'bg-purple-900/20'
@@ -2457,13 +2492,13 @@ export default function DashboardPage() {
                             </span>
                           </div>
                           <div className="flex gap-2">
-                            <button className="text-xs px-2 py-1 bg-gray-100 dark:bg-secondary-700 hover:bg-neutral-700 rounded transition-colors">
+                            <button className="text-xs px-2 py-1 bg-gray-100 dark:bg-neutral-700 hover:bg-neutral-700 rounded transition-colors">
                               Ver
                             </button>
-                            <button className="text-xs px-2 py-1 bg-gray-100 dark:bg-secondary-700 hover:bg-neutral-700 rounded transition-colors">
+                            <button className="text-xs px-2 py-1 bg-gray-100 dark:bg-neutral-700 hover:bg-neutral-700 rounded transition-colors">
                               PDF
                             </button>
-                            <button className="text-xs px-2 py-1 bg-gray-100 dark:bg-secondary-700 hover:bg-neutral-700 rounded transition-colors">
+                            <button className="text-xs px-2 py-1 bg-gray-100 dark:bg-neutral-700 hover:bg-neutral-700 rounded transition-colors">
                               XML
                             </button>
                           </div>
@@ -2503,7 +2538,7 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* Aging de Cuentas por Cobrar */}
-                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Aging de Cuentas por Cobrar</h3>
                   <div className="grid md:grid-cols-5 gap-4">
                     {[
@@ -2523,7 +2558,7 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* Facturas por Cobrar */}
-                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <div className="flex items-center justify-between mb-6">
                     <h3 className="text-lg font-bold">Facturas por Cobrar</h3>
                     <button className="text-xs px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors">
@@ -2537,7 +2572,7 @@ export default function DashboardPage() {
                       { cliente: 'Distribuidora LMN', factura: 'F001-00138', monto: 156000, vence: '01/10/2025', dias: -3, status: 'Vencida' },
                       { cliente: 'Comercial PQR', factura: 'F001-00135', monto: 45000, vence: '28/09/2025', dias: -6, status: 'Vencida' }
                     ].map((fact, idx) => (
-                      <div key={idx} className="flex items-center justify-between p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-lg">
+                      <div key={idx} className="flex items-center justify-between p-4 bg-gray-100 dark:bg-neutral-700/30 rounded-lg">
                         <div className="flex items-center gap-4">
                           <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
                             fact.status === 'Vencida' ? 'bg-red-900/20' : 'bg-yellow-900/20'
@@ -2597,7 +2632,7 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* Calendario de Pagos */}
-                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Calendario de Pagos - Próximos 7 Días</h3>
                   <div className="space-y-3">
                     {[
@@ -2606,7 +2641,7 @@ export default function DashboardPage() {
                       { proveedor: 'Comercial LMN', factura: 'F-2025-9012', monto: 32000, fecha: '08/10/2025', dias: 4, descuento: 1.5 },
                       { proveedor: 'Importadora PQR', factura: 'F-2025-3456', monto: 125000, fecha: '10/10/2025', dias: 6, descuento: 3 }
                     ].map((pago, idx) => (
-                      <div key={idx} className="flex items-center justify-between p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-lg">
+                      <div key={idx} className="flex items-center justify-between p-4 bg-gray-100 dark:bg-neutral-700/30 rounded-lg">
                         <div className="flex items-center gap-4">
                           <div className="w-10 h-10 bg-red-900/20 rounded-lg flex items-center justify-center">
                             <span className="text-xs font-bold text-red-400">{pago.proveedor.charAt(0)}</span>
@@ -2634,7 +2669,7 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* Top Proveedores */}
-                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Top Proveedores por Monto</h3>
                   <div className="space-y-3">
                     {[
@@ -2642,7 +2677,7 @@ export default function DashboardPage() {
                       { nombre: 'Distribuidora XYZ', monto: 320000, facturas: 8, promedioDias: 42 },
                       { nombre: 'Importadora PQR', monto: 280000, facturas: 6, promedioDias: 30 }
                     ].map((prov, idx) => (
-                      <div key={idx} className="flex items-center justify-between p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-lg">
+                      <div key={idx} className="flex items-center justify-between p-4 bg-gray-100 dark:bg-neutral-700/30 rounded-lg">
                         <div className="flex items-center gap-4">
                           <div className="w-10 h-10 bg-blue-900/20 rounded-lg flex items-center justify-center">
                             <span className="text-lg font-bold text-blue-400">#{idx + 1}</span>
@@ -2688,7 +2723,7 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* Presupuesto por Categoría */}
-                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Presupuesto por Categoría - Octubre 2025</h3>
                   <div className="space-y-4">
                     {[
@@ -2700,7 +2735,7 @@ export default function DashboardPage() {
                     ].map((cat, idx) => {
                       const porcentaje = (cat.real / cat.presupuesto) * 100
                       return (
-                        <div key={idx} className="p-4 bg-gray-100 dark:bg-secondary-700/30 rounded-lg">
+                        <div key={idx} className="p-4 bg-gray-100 dark:bg-neutral-700/30 rounded-lg">
                           <div className="flex items-center justify-between mb-3">
                             <h4 className="text-sm font-semibold">{cat.categoria}</h4>
                             <span className={`text-xs px-2 py-1 rounded-full ${
@@ -2715,7 +2750,7 @@ export default function DashboardPage() {
                             <span>Presupuesto: ${(cat.presupuesto / 1000).toFixed(0)}K</span>
                             <span>Real: ${(cat.real / 1000).toFixed(0)}K</span>
                           </div>
-                          <div className="w-full bg-gray-100 dark:bg-secondary-700 rounded-full h-2 overflow-hidden">
+                          <div className="w-full bg-gray-100 dark:bg-neutral-700 rounded-full h-2 overflow-hidden">
                             <div 
                               className={`h-full ${porcentaje > 100 ? 'bg-red-500' : 'bg-blue-600'}`}
                               style={{ width: `${Math.min(porcentaje, 100)}%` }}
@@ -2728,7 +2763,7 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* Alertas de Presupuesto */}
-                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Alertas de Presupuesto</h3>
                   <div className="space-y-3">
                     {[
@@ -2785,7 +2820,7 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* Proyección Semanal */}
-                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Proyección de Flujo de Caja - 12 Semanas</h3>
                   <div className="overflow-x-auto">
                     <table className="w-full text-sm">
@@ -2808,7 +2843,7 @@ export default function DashboardPage() {
                           { semana: 'S5 (Nov 4-10)', inicial: 1375, ingresos: 290, egresos: 210, final: 1455 },
                           { semana: 'S6 (Nov 11-17)', inicial: 1455, ingresos: 240, egresos: 195, final: 1500 }
                         ].map((sem, idx) => (
-                          <tr key={idx} className="border-b border-gray-200 dark:border-gray-700/50 hover:bg-gray-100 dark:bg-secondary-700/30">
+                          <tr key={idx} className="border-b border-gray-200 dark:border-gray-700/50 hover:bg-gray-100 dark:bg-neutral-700/30">
                             <td className="py-3 px-2 font-medium">{sem.semana}</td>
                             <td className="py-3 px-2 text-right">${(sem.inicial / 1000).toFixed(1)}M</td>
                             <td className="py-3 px-2 text-right text-green-400">+${sem.ingresos}K</td>
@@ -2899,7 +2934,9 @@ export default function DashboardPage() {
                       <h2 className="text-2xl font-bold mb-2">Conecta tu Ecosistema Financiero</h2>
                       <p className="text-gray-600 dark:text-gray-400">Flow se integra con tus sistemas existentes mediante RPA + IA para automatizar y potenciar tus finanzas</p>
                     </div>
-                    <div className="text-6xl">🔌</div>
+                    <div className="w-20 h-20 bg-purple-500/10 rounded-2xl flex items-center justify-center">
+                      <Plug className="w-12 h-12 text-purple-500" />
+                    </div>
                   </div>
                 </motion.div>
 
@@ -2928,20 +2965,22 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* ERP & Contabilidad */}
-                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">ERP & Contabilidad</h3>
                   <div className="grid md:grid-cols-3 gap-4">
                     {[
-                      { name: 'QuickBooks', status: 'Conectado', icon: '📊', color: 'green', lastSync: 'Hace 5 min' },
-                      { name: 'Siigo', status: 'Conectado', icon: '📈', color: 'green', lastSync: 'Hace 12 min' },
-                      { name: 'Concar', status: 'Disponible', icon: '💼', color: 'gray', lastSync: '-' }
+                      { name: 'QuickBooks', status: 'Conectado', IconComponent: BarChart3, color: 'green', lastSync: 'Hace 5 min' },
+                      { name: 'Siigo', status: 'Conectado', IconComponent: TrendingUp, color: 'green', lastSync: 'Hace 12 min' },
+                      { name: 'Concar', status: 'Disponible', IconComponent: Wallet, color: 'gray', lastSync: '-' }
                     ].map((erp, idx) => (
                       <div key={idx} className={`p-4 rounded-xl border ${
-                        erp.status === 'Conectado' ? 'bg-green-900/10 border-green-500/20' : 'bg-gray-100 dark:bg-secondary-700/30 border-gray-300 dark:border-gray-600'
+                        erp.status === 'Conectado' ? 'bg-green-900/10 border-green-500/20' : 'bg-gray-100 dark:bg-neutral-700/30 border-gray-300 dark:border-gray-600'
                       }`}>
                         <div className="flex items-center justify-between mb-3">
                           <div className="flex items-center gap-3">
-                            <div className="text-3xl">{erp.icon}</div>
+                            <div className="w-10 h-10 bg-primary-500/10 rounded-lg flex items-center justify-center">
+                              <erp.IconComponent className="w-6 h-6 text-primary-500" />
+                            </div>
                             <div>
                               <p className="font-semibold">{erp.name}</p>
                               <p className="text-xs text-gray-600 dark:text-gray-400">{erp.lastSync}</p>
@@ -2954,7 +2993,7 @@ export default function DashboardPage() {
                           </span>
                         </div>
                         {erp.status === 'Conectado' ? (
-                          <button className="w-full text-xs px-3 py-2 bg-gray-100 dark:bg-secondary-700 hover:bg-neutral-700 rounded-lg transition-colors">
+                          <button className="w-full text-xs px-3 py-2 bg-gray-100 dark:bg-neutral-700 hover:bg-neutral-700 rounded-lg transition-colors">
                             Configurar
                           </button>
                         ) : (
@@ -2968,20 +3007,22 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* Bancos */}
-                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Bancos (Open Banking)</h3>
                   <div className="grid md:grid-cols-4 gap-4">
                     {[
-                      { name: 'BCP', status: 'Conectado', icon: '🏦', accounts: 3, lastSync: 'Hace 2 min' },
-                      { name: 'BBVA', status: 'Conectado', icon: '🏦', accounts: 2, lastSync: 'Hace 8 min' },
-                      { name: 'Interbank', status: 'Conectado', icon: '🏦', accounts: 1, lastSync: 'Hace 15 min' },
-                      { name: 'Scotiabank', status: 'Disponible', icon: '🏦', accounts: 0, lastSync: '-' }
+                      { name: 'BCP', status: 'Conectado', IconComponent: Building2, accounts: 3, lastSync: 'Hace 2 min' },
+                      { name: 'BBVA', status: 'Conectado', IconComponent: Building2, accounts: 2, lastSync: 'Hace 8 min' },
+                      { name: 'Interbank', status: 'Conectado', IconComponent: Building2, accounts: 1, lastSync: 'Hace 15 min' },
+                      { name: 'Scotiabank', status: 'Disponible', IconComponent: Building2, accounts: 0, lastSync: '-' }
                     ].map((bank, idx) => (
                       <div key={idx} className={`p-4 rounded-xl border ${
-                        bank.status === 'Conectado' ? 'bg-blue-900/10 border-blue-500/20' : 'bg-gray-100 dark:bg-secondary-700/30 border-gray-300 dark:border-gray-600'
+                        bank.status === 'Conectado' ? 'bg-blue-900/10 border-blue-500/20' : 'bg-gray-100 dark:bg-neutral-700/30 border-gray-300 dark:border-gray-600'
                       }`}>
                         <div className="text-center mb-3">
-                          <div className="text-3xl mb-2">{bank.icon}</div>
+                          <div className="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center mx-auto mb-2">
+                            <bank.IconComponent className="w-6 h-6 text-blue-500" />
+                          </div>
                           <p className="font-semibold text-sm">{bank.name}</p>
                           {bank.status === 'Conectado' && (
                             <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">{bank.accounts} cuentas</p>
@@ -2999,7 +3040,7 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* SUNAT & Gobierno */}
-                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">SUNAT & Gobierno</h3>
                   <div className="grid md:grid-cols-3 gap-4">
                     {[
@@ -3019,7 +3060,7 @@ export default function DashboardPage() {
                           </span>
                         </div>
                         <div className="flex gap-2">
-                          <button className="flex-1 text-xs px-3 py-2 bg-gray-100 dark:bg-secondary-700 hover:bg-neutral-700 rounded-lg transition-colors">
+                          <button className="flex-1 text-xs px-3 py-2 bg-gray-100 dark:bg-neutral-700 hover:bg-neutral-700 rounded-lg transition-colors">
                             Ver Logs
                           </button>
                           <button className="flex-1 text-xs px-3 py-2 bg-green-600 hover:bg-green-700 rounded-lg transition-colors">
@@ -3032,7 +3073,7 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* Pagos & Facturación */}
-                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Pasarelas de Pago</h3>
                   <div className="grid md:grid-cols-4 gap-4">
                     {[
@@ -3042,7 +3083,7 @@ export default function DashboardPage() {
                       { name: 'PayPal', status: 'Disponible', icon: '💳', color: 'gray' }
                     ].map((payment, idx) => (
                       <div key={idx} className={`p-4 rounded-xl border text-center ${
-                        payment.status === 'Conectado' ? 'bg-blue-900/10 border-blue-500/20' : 'bg-gray-100 dark:bg-secondary-700/30 border-gray-300 dark:border-gray-600'
+                        payment.status === 'Conectado' ? 'bg-blue-900/10 border-blue-500/20' : 'bg-gray-100 dark:bg-neutral-700/30 border-gray-300 dark:border-gray-600'
                       }`}>
                         <div className="text-3xl mb-2">{payment.icon}</div>
                         <p className="font-semibold text-sm mb-2">{payment.name}</p>
@@ -3057,7 +3098,7 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* Activity Feed - RPA en Acción */}
-                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <div className="flex items-center justify-between mb-6">
                     <h3 className="text-lg font-bold">Activity Feed - RPA en Acción</h3>
                     <span className="text-xs px-3 py-1 bg-green-900/20 text-green-400 rounded-full">
@@ -3124,7 +3165,7 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* Otras Integraciones */}
-                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
+                <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
                   <h3 className="text-lg font-bold mb-6">Otras Integraciones</h3>
                   <div className="grid md:grid-cols-3 gap-4">
                     {[
@@ -3136,7 +3177,7 @@ export default function DashboardPage() {
                       { name: 'API Custom', status: 'Disponible', icon: '🔧', desc: 'Tu propio sistema' }
                     ].map((other, idx) => (
                       <div key={idx} className={`p-4 rounded-xl border ${
-                        other.status === 'Conectado' ? 'bg-purple-900/10 border-purple-500/20' : 'bg-gray-100 dark:bg-secondary-700/30 border-gray-300 dark:border-gray-600'
+                        other.status === 'Conectado' ? 'bg-purple-900/10 border-purple-500/20' : 'bg-gray-100 dark:bg-neutral-700/30 border-gray-300 dark:border-gray-600'
                       }`}>
                         <div className="flex items-center gap-3 mb-2">
                           <div className="text-2xl">{other.icon}</div>

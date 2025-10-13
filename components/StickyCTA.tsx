@@ -31,7 +31,7 @@ export default function StickyCTA() {
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="bg-primary-600 hover:bg-primary-700 text-gray-900 dark:text-white px-6 py-3 rounded-full font-medium text-sm shadow-2xl transition-all flex items-center gap-2"
+          className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-full font-medium text-sm shadow-2xl transition-all flex items-center gap-2"
         >
           <span>Agendar Demo</span>
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

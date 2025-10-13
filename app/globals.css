@@ -5,25 +5,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  /* FLOW Brand Colors - Light Mode */
-  --background: #F9FAFB;
-  --surface: #FFFFFF;
-  --text-primary: #111827;
-  --text-secondary: #6B7280;
-  --accent-flow: #3B82F6;
-  --accent-ai: #8B5CF6;
-  --border: #E5E7EB;
+  /* Notion-inspired Light Mode - Warm & Sophisticated */
+  --background: #FFFFFF;        /* Pure white base */
+  --surface: #FAFAF9;           /* Warm off-white */
+  --surface-hover: #F5F5F4;     /* Subtle hover state */
+  --text-primary: #1C1917;      /* Warm black */
+  --text-secondary: #78716C;    /* Warm gray */
+  --text-tertiary: #A8A29E;     /* Light warm gray */
+  --accent-primary: #2563EB;    /* Notion blue */
+  --accent-secondary: #A855F7;  /* Notion purple */
+  --border: #E7E5E4;            /* Warm border */
+  --border-hover: #D6D3D1;      /* Darker warm border */
+  --shadow: rgba(0, 0, 0, 0.04); /* Subtle shadow */
 }
 
 .dark {
-  /* FLOW Brand Colors - Dark Mode (Deep Blue) */
-  --background: #0A0F1F;
-  --surface: #111827;
-  --text-primary: #F9FAFB;
-  --text-secondary: #9CA3AF;
-  --accent-flow: #60A5FA;
-  --accent-ai: #A78BFA;
-  --border: #1E293B;
+  /* Notion-inspired Dark Mode - Deep & Refined */
+  --background: #191919;        /* True dark (Notion-style) */
+  --surface: #252525;           /* Elevated surface */
+  --surface-hover: #2F2F2F;     /* Hover surface */
+  --text-primary: #EFEFEF;      /* Soft white */
+  --text-secondary: #9B9A97;    /* Muted gray */
+  --text-tertiary: #6C6C6C;     /* Darker muted gray */
+  --accent-primary: #5B8DEF;    /* Bright blue (more vibrant in dark) */
+  --accent-secondary: #B87FE7;  /* Bright purple */
+  --border: #373737;            /* Subtle border */
+  --border-hover: #4A4A4A;      /* Lighter border on hover */
+  --shadow: rgba(0, 0, 0, 0.3); /* Deeper shadow */
 }
 
 * {

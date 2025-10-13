@@ -66,7 +66,7 @@ const steps = [
 
 export default function ComoFuncionaPage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-[#191919] text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
 
       {/* Hero */}
@@ -78,15 +78,15 @@ export default function ComoFuncionaPage() {
             transition={{ duration: 0.8 }}
           >
             <div className="inline-block bg-blue-500/10 border border-blue-500/20 rounded-full px-6 py-2 text-sm font-semibold text-blue-400 mb-6">
-              ⚡ De 0 a automatizado en 2 semanas
+              De 0 a automatizado en 2 semanas
             </div>
             <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
               Conecta. Automatiza. Analiza.{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-primary-500">
                 Financia.
               </span>
             </h1>
-            <p className="text-base md:text-lg text-gray-400 dark:text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed">
+            <p className="text-base md:text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed">
               Flow no reemplaza tu ERP. Es la capa inteligente que conecta todo tu ecosistema financiero.
               <span className="text-gray-900 dark:text-white font-semibold"> 4 pasos. ROI 450%.</span>
             </p>
@@ -100,7 +100,7 @@ export default function ComoFuncionaPage() {
                 <span className="text-gray-600 dark:text-gray-400">Ahorro: 80% tiempo</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+                <div className="w-2 h-2 bg-primary-500 rounded-full"></div>
                 <span className="text-gray-600 dark:text-gray-400">ROI: 450%</span>
               </div>
             </div>
@@ -123,7 +123,7 @@ export default function ComoFuncionaPage() {
               <div className={`grid lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
                 <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
                   <div className="flex items-center gap-4 mb-6">
-                    <div className="text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">{step.number}</div>
+                    <div className="text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-primary-500">{step.number}</div>
                     <div className="text-6xl">{step.icon}</div>
                   </div>
                   <div className="flex items-center gap-3 mb-4">
@@ -135,10 +135,10 @@ export default function ComoFuncionaPage() {
                     </span>
                   </div>
                   <h2 className="text-2xl md:text-3xl font-bold mb-4">{step.title}</h2>
-                  <p className="text-base text-gray-400 dark:text-gray-300 mb-6 leading-relaxed">{step.description}</p>
+                  <p className="text-base text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">{step.description}</p>
                   <ul className="space-y-3">
                     {step.details.map((detail, idx) => (
-                      <li key={idx} className="flex items-start text-sm text-gray-400 dark:text-gray-300">
+                      <li key={idx} className="flex items-start text-sm text-gray-700 dark:text-gray-300">
                         <svg className="w-5 h-5 text-green-400 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
@@ -169,7 +169,7 @@ export default function ComoFuncionaPage() {
       </section>
 
       {/* Timeline */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-secondary-900/50">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-[#1A1A1A]">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-xl font-bold text-center mb-16">Timeline de implementación</h2>
           <div className="space-y-8">
@@ -188,7 +188,7 @@ export default function ComoFuncionaPage() {
                 className="flex items-start space-x-6"
               >
                 <div className="flex-shrink-0 w-32 text-blue-400 font-bold">{phase.week}</div>
-                <div className="flex-1 bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6">
+                <div className="flex-1 bg-gray-100 dark:bg-[#252525] border border-gray-200 dark:border-gray-700 rounded-xl p-6">
                   <h3 className="text-sm font-bold mb-2">{phase.title}</h3>
                   <p className="text-gray-600 dark:text-gray-400">{phase.desc}</p>
                 </div>
@@ -199,7 +199,7 @@ export default function ComoFuncionaPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-pink-900/20 border-t border-gray-200 dark:border-gray-700">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-primary-50 dark:from-blue-900/20 dark:to-primary-900/20 border-t-2 border-blue-300 dark:border-gray-700">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -208,24 +208,24 @@ export default function ComoFuncionaPage() {
             transition={{ duration: 0.8 }}
           >
             <div className="inline-block bg-green-500/10 border border-green-500/20 rounded-full px-6 py-2 text-sm font-semibold text-green-400 mb-6">
-              ✓ Implementación en 2 semanas • ROI 450%
+              Implementación en 2 semanas • ROI 450%
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               De Excel a IA.{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-primary-500">
                 En 2 semanas.
               </span>
             </h2>
-            <p className="text-lg text-gray-400 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-700 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
               Más de 20 empresas ya automatizaron sus finanzas con Flow. 
               <span className="text-gray-900 dark:text-white font-semibold"> Reduce 80% el tiempo manual.</span> 
               {' '}Agenda tu demo y empieza hoy.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Link href="/consulta" className="inline-block bg-white dark:bg-secondary-800 text-gray-900 dark:text-gray-100 px-8 py-4 rounded-full font-bold text-base hover:opacity-90 transition-opacity shadow-xl">
+              <Link href="/consulta" className="inline-block bg-white dark:bg-[#252525] text-gray-900 dark:text-gray-100 px-8 py-4 rounded-full font-bold text-base hover:opacity-90 transition-opacity shadow-xl">
                 Agendar demo gratuita →
               </Link>
-              <Link href="/precios" className="inline-block border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white px-8 py-4 rounded-full font-medium text-base hover:border-neutral-500 hover:bg-gray-100 dark:bg-secondary-800 transition-all">
+              <Link href="/precios" className="inline-block border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white px-8 py-4 rounded-full font-medium text-base hover:border-neutral-500 hover:bg-gray-100 dark:bg-[#252525] transition-all">
                 Ver precios
               </Link>
             </div>

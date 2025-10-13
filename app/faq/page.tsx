@@ -97,7 +97,7 @@ export default function FAQPage() {
   const [openIndex, setOpenIndex] = useState<string | null>(null)
 
   return (
-    <div className="min-h-screen bg-white dark:bg-secondary-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-[#191919] text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <Navbar />
 
       <div className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
@@ -130,7 +130,7 @@ export default function FAQPage() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: idx * 0.1 }}
-                        className="bg-gray-100 dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl overflow-hidden"
+                        className="bg-gray-100 dark:bg-[#252525] border border-gray-200 dark:border-gray-700 rounded-2xl overflow-hidden"
                       >
                         <button
                           onClick={() => setOpenIndex(isOpen ? null : key)}
@@ -171,7 +171,7 @@ export default function FAQPage() {
             </p>
             <Link
               href="/consulta"
-              className="inline-block bg-white dark:bg-secondary-800 text-gray-900 dark:text-gray-100 px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity"
+              className="inline-block bg-white dark:bg-[#252525] text-gray-900 dark:text-gray-100 px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity"
             >
               Contactar soporte
             </Link>

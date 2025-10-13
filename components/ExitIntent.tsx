@@ -41,7 +41,7 @@ export default function ExitIntent() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={handleClose}
-            className="fixed inset-0 bg-secondary-950/80 backdrop-blur-sm z-[100]"
+            className="fixed inset-0 bg-neutral-950/80 backdrop-blur-sm z-[100]"
           />
 
           {/* Popup */}
@@ -51,7 +51,7 @@ export default function ExitIntent() {
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[101] w-full max-w-lg mx-4"
           >
-            <div className="bg-white dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-3xl p-8 relative">
+            <div className="bg-white dark:bg-[#252525] border border-neutral-200 dark:border-neutral-800 rounded-3xl p-8 relative">
               {/* Close button */}
               <button
                 onClick={handleClose}
@@ -64,7 +64,7 @@ export default function ExitIntent() {
 
               {/* Content */}
               <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
                   <svg className="w-8 h-8 text-gray-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
@@ -79,7 +79,7 @@ export default function ExitIntent() {
                 <div className="space-y-3">
                   <button
                     onClick={handleCTA}
-                    className="w-full bg-primary-600 hover:bg-primary-700 text-gray-900 dark:text-white px-6 py-3 rounded-full font-medium text-sm transition-colors"
+                    className="w-full bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-full font-medium text-sm transition-colors"
                   >
                     Agendar Demo Gratuita
                   </button>

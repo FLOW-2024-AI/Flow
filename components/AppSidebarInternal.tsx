@@ -25,12 +25,12 @@ export default function AppSidebarInternal({ sections, appSlug }: AppSidebarInte
   const [collapsed, setCollapsed] = useState(false)
 
   return (
-    <aside className={`${collapsed ? 'w-16' : 'w-64'} bg-white dark:bg-secondary-800 border-r border-gray-200 dark:border-gray-700 transition-all duration-300 flex-shrink-0`}>
+    <aside className={`${collapsed ? 'w-16' : 'w-64'} bg-white dark:bg-[#252525] border-r border-gray-200 dark:border-gray-700 transition-all duration-300 flex-shrink-0`}>
       {/* Collapse Button */}
       <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-end">
         <button
           onClick={() => setCollapsed(!collapsed)}
-          className="p-1.5 hover:bg-gray-100 dark:hover:bg-secondary-700 rounded-lg transition-colors"
+          className="p-1.5 hover:bg-gray-100 dark:hover:bg-[#1A1A1A] rounded-lg transition-colors"
         >
           {collapsed ? (
             <ChevronRight className="w-5 h-5 text-gray-600 dark:text-gray-400" />
@@ -61,7 +61,7 @@ export default function AppSidebarInternal({ sections, appSlug }: AppSidebarInte
                     className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all ${
                       isActive
                         ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400'
-                        : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-secondary-700'
+                        : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-[#1A1A1A]'
                     }`}
                     title={collapsed ? item.name : undefined}
                   >

@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { ClipboardList, Keyboard, Search, Mail, Clock, X, Bot, Zap, CheckCircle, RefreshCw, Timer, Target } from 'lucide-react'
 
 export default function BeforeAfterSlider() {
   const [sliderPosition, setSliderPosition] = useState(50)
@@ -18,34 +19,34 @@ export default function BeforeAfterSlider() {
   return (
     <div className="relative w-full max-w-5xl mx-auto">
       <div
-        className="relative h-[500px] rounded-3xl overflow-hidden cursor-col-resize select-none"
+        className="relative h-[500px] rounded-3xl overflow-hidden cursor-col-resize select-none border-2 border-neutral-300 dark:border-neutral-800 shadow-lg"
         onMouseMove={handleMove}
         onMouseDown={() => setIsDragging(true)}
         onMouseUp={() => setIsDragging(false)}
         onMouseLeave={() => setIsDragging(false)}
       >
         {/* Antes - Proceso Manual */}
-        <div className="absolute inset-0 bg-gradient-to-br from-red-950/40 to-neutral-950">
+        <div className="absolute inset-0 bg-gradient-to-br from-red-300 via-red-200 to-red-100 dark:from-red-950/40 dark:to-neutral-950">
           <div className="p-12 h-full flex flex-col justify-center">
-            <h3 className="text-3xl font-bold mb-8 text-red-400">Proceso Manual</h3>
+            <h3 className="text-3xl font-bold mb-8 text-red-700 dark:text-red-400">Proceso Manual</h3>
             <div className="space-y-4">
               {[
-                '📋 Recopilación manual de facturas',
-                '⌨️ Entrada de datos en Excel',
-                '🔍 Revisión manual de errores',
-                '📧 Emails de ida y vuelta',
-                '⏰ 8+ horas de trabajo repetitivo',
-                '❌ Alto riesgo de errores humanos'
+                { IconComponent: ClipboardList, text: 'Recopilación manual de facturas' },
+                { IconComponent: Keyboard, text: 'Entrada de datos en Excel' },
+                { IconComponent: Search, text: 'Revisión manual de errores' },
+                { IconComponent: Mail, text: 'Emails de ida y vuelta' },
+                { IconComponent: Clock, text: '8+ horas de trabajo repetitivo' },
+                { IconComponent: X, text: 'Alto riesgo de errores humanos' }
               ].map((item, idx) => (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: idx * 0.1 }}
-                  className="flex items-center gap-3 text-gray-600 dark:text-gray-300"
+                  className="flex items-center gap-3 text-gray-800 dark:text-gray-300 font-medium"
                 >
-                  <span className="text-2xl">{item.split(' ')[0]}</span>
-                  <span>{item.substring(item.indexOf(' ') + 1)}</span>
+                  <item.IconComponent className="w-6 h-6 text-red-600 dark:text-red-400" />
+                  <span>{item.text}</span>
                 </motion.div>
               ))}
             </div>
@@ -54,29 +55,29 @@ export default function BeforeAfterSlider() {
 
         {/* Después - Con Flow */}
         <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-green-950/95 to-black"
+          className="absolute inset-0 bg-gradient-to-br from-green-300 via-green-200 to-emerald-200 dark:from-green-950/95 dark:to-black"
           style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
         >
           <div className="p-12 h-full flex flex-col justify-center">
-            <h3 className="text-3xl font-bold mb-8 text-green-400">Con Flow</h3>
+            <h3 className="text-3xl font-bold mb-8 text-green-700 dark:text-green-400">Con Flow</h3>
             <div className="space-y-4">
               {[
-                '🤖 Captura automática de facturas',
-                '⚡ Procesamiento instantáneo con IA',
-                '✅ Validación automática de datos',
-                '🔄 Sincronización en tiempo real',
-                '⏱️ 30 minutos de supervisión',
-                '🎯 99.9% de precisión garantizada'
+                { IconComponent: Bot, text: 'Captura automática de facturas' },
+                { IconComponent: Zap, text: 'Procesamiento instantáneo con IA' },
+                { IconComponent: CheckCircle, text: 'Validación automática de datos' },
+                { IconComponent: RefreshCw, text: 'Sincronización en tiempo real' },
+                { IconComponent: Timer, text: '30 minutos de supervisión' },
+                { IconComponent: Target, text: '99.9% de precisión garantizada' }
               ].map((item, idx) => (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: idx * 0.1 }}
-                  className="flex items-center gap-3 text-gray-600 dark:text-gray-300"
+                  className="flex items-center gap-3 text-gray-800 dark:text-gray-300 font-medium"
                 >
-                  <span className="text-2xl">{item.split(' ')[0]}</span>
-                  <span>{item.substring(item.indexOf(' ') + 1)}</span>
+                  <item.IconComponent className="w-6 h-6 text-green-600 dark:text-green-400" />
+                  <span>{item.text}</span>
                 </motion.div>
               ))}
             </div>
@@ -96,7 +97,7 @@ export default function BeforeAfterSlider() {
         </div>
       </div>
 
-      <div className="flex justify-between mt-6 text-sm text-neutral-400">
+      <div className="flex justify-between mt-6 text-sm text-neutral-600 dark:text-neutral-400 font-medium">
         <span>← Arrastra para comparar →</span>
         <span>Ahorra hasta 90% del tiempo</span>
       </div>

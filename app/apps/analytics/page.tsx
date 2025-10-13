@@ -46,7 +46,7 @@ export default function AnalyticsPage() {
       appName="Analytics"
       appDescription="Análisis y métricas financieras avanzadas"
       icon={BarChart3}
-      color="from-purple-500 to-purple-600"
+      color="from-blue-500 to-primary-600"
       sidebarSections={sidebarSections}
       appSlug="analytics"
     />

@@ -6,7 +6,7 @@ export default function AppsLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-secondary-900">
+    <div className="min-h-screen bg-gray-50 dark:bg-[#191919]">
       {children}
     </div>
   )

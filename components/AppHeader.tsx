@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { motion } from 'framer-motion'
+import ThemeToggle from './ThemeToggle'
 
 interface AppHeaderProps {
   appName: string
@@ -11,7 +12,7 @@ interface AppHeaderProps {
 
 export default function AppHeader({ appName, appIcon: Icon }: AppHeaderProps) {
   return (
-    <header className="bg-white dark:bg-secondary-800 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-40">
+    <header className="bg-white dark:bg-[#252525] border-b border-gray-200 dark:border-gray-700 sticky top-0 z-40">
       <div className="px-6 py-4 flex items-center justify-between">
         {/* Logo + Back Button */}
         <div className="flex items-center gap-4">
@@ -21,11 +22,18 @@ export default function AppHeader({ appName, appIcon: Icon }: AppHeaderProps) {
               whileTap={{ scale: 0.95 }}
               className="flex items-center gap-3 cursor-pointer group"
             >
-              <div className="w-10 h-10 bg-primary-600 rounded-xl flex items-center justify-center">
-                <span className="text-white font-bold text-xl">F</span>
-              </div>
+              <img 
+                src="/images/icons/client-icon-dark.svg"
+                alt="Cliente"
+                className="w-10 h-10 dark:hidden"
+              />
+              <img 
+                src="/images/icons/client-icon-light.svg"
+                alt="Cliente"
+                className="w-10 h-10 hidden dark:block"
+              />
               <div className="hidden sm:block">
-                <div className="font-bold text-lg text-gray-900 dark:text-gray-100">Flow</div>
+                <div className="text-sm font-semibold text-gray-900 dark:text-gray-100">Cliente Demo</div>
                 <div className="text-xs text-gray-500 dark:text-gray-400 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
                   Volver a Apps
                 </div>
@@ -49,16 +57,21 @@ export default function AppHeader({ appName, appIcon: Icon }: AppHeaderProps) {
           </div>
         </div>
 
-        {/* Mobile Back Button */}
-        <Link href="/apps" className="sm:hidden">
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="p-2 hover:bg-gray-100 dark:hover:bg-secondary-700 rounded-lg transition-colors"
-          >
-            <ArrowLeft className="w-6 h-6 text-gray-600 dark:text-gray-400" />
-          </motion.button>
-        </Link>
+        {/* Right Side Actions */}
+        <div className="flex items-center gap-3">
+          <ThemeToggle />
+          
+          {/* Mobile Back Button */}
+          <Link href="/apps" className="sm:hidden">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="p-2 hover:bg-gray-100 dark:hover:bg-[#1A1A1A] rounded-lg transition-colors"
+            >
+              <ArrowLeft className="w-6 h-6 text-gray-600 dark:text-gray-400" />
+            </motion.button>
+          </Link>
+        </div>
       </div>
     </header>
   )

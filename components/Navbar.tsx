@@ -9,7 +9,7 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <nav className="fixed top-0 w-full bg-white/80 dark:bg-surface-dark/80 backdrop-blur-2xl border-b border-border-light dark:border-border-dark z-50 transition-colors duration-300">
+    <nav className="fixed top-0 w-full bg-white/80 dark:bg-[#191919]/80 backdrop-blur-2xl border-b border-neutral-200 dark:border-neutral-800 z-50 transition-colors duration-300">
       <div className="max-w-[980px] mx-auto px-6">
         <div className="flex justify-between items-center h-11">
           {/* Logo */}
@@ -42,7 +42,7 @@ export default function Navbar() {
             <Link href="/login" className="hidden sm:block text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors text-[12px] font-normal px-2">
               Iniciar sesión
             </Link>
-            <Link href="/consulta" className="bg-primary-600 hover:bg-primary-700 text-gray-900 dark:text-white px-3 py-1.5 rounded-full text-[12px] font-normal transition-colors">
+            <Link href="/consulta" className="bg-primary-500 hover:bg-primary-600 text-white px-3 py-1.5 rounded-full text-[12px] font-normal transition-colors">
               Consulta
             </Link>
             
@@ -66,7 +66,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white dark:bg-surface-dark backdrop-blur-2xl border-t border-border-light dark:border-border-dark transition-colors duration-300">
+        <div className="md:hidden bg-white dark:bg-[#191919] backdrop-blur-2xl border-t border-neutral-200 dark:border-neutral-800 transition-colors duration-300">
           <div className="max-w-[980px] mx-auto px-6 py-4 space-y-3">
             <Link 
               href="/soluciones" 

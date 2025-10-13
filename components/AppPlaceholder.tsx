@@ -44,13 +44,13 @@ export default function AppPlaceholder({
         <AppSidebarInternal sections={sidebarSections} appSlug={appSlug} />
         
         {/* Content Area */}
-        <main className="flex-1 overflow-y-auto bg-gradient-to-br from-gray-50 to-gray-100 dark:from-secondary-900 dark:to-secondary-800 p-8">
+        <main className="flex-1 overflow-y-auto bg-gradient-to-br from-gray-50 to-gray-100 dark:from-[#191919] dark:to-[#0C0A09] p-8">
           <div className="max-w-4xl mx-auto">
             {/* Content */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-white dark:bg-secondary-800 rounded-3xl shadow-2xl p-12 text-center"
+              className="bg-white dark:bg-[#252525] rounded-3xl shadow-2xl p-12 text-center"
             >
               {/* Icon */}
               <div className={`w-24 h-24 bg-gradient-to-br ${color} rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl`}>
@@ -79,7 +79,7 @@ export default function AppPlaceholder({
               </div>
 
               {/* Sidebar Preview */}
-              <div className="text-left bg-gray-50 dark:bg-secondary-900 rounded-2xl p-6">
+              <div className="text-left bg-gray-50 dark:bg-[#1A1A1A] rounded-2xl p-6">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
                   📋 Navegación Propuesta (ver sidebar):
                 </h3>

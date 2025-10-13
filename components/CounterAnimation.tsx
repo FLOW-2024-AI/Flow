@@ -19,11 +19,16 @@ export default function CounterAnimation({
   className = ''
 }: CounterAnimationProps) {
   const [count, setCount] = useState(0)
+  const [mounted, setMounted] = useState(false)
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true })
 
   useEffect(() => {
-    if (!isInView) return
+    setMounted(true)
+  }, [])
+
+  useEffect(() => {
+    if (!isInView || !mounted) return
 
     let startTime: number | null = null
     const startValue = 0
@@ -45,7 +50,11 @@ export default function CounterAnimation({
     }
 
     requestAnimationFrame(animate)
-  }, [end, duration, isInView])
+  }, [end, duration, isInView, mounted])
+
+  if (!mounted) {
+    return <span ref={ref} className={className}>{prefix}{end}{suffix}</span>
+  }
 
   return (
     <span ref={ref} className={className}>

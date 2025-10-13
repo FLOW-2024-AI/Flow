@@ -1,43 +1,44 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { Lock, CheckCircle, Globe, CreditCard, Shield, Zap } from 'lucide-react'
 
 const badges = [
   {
     name: 'SOC 2 Type II',
-    icon: '🔒',
+    IconComponent: Lock,
     description: 'Certificación de seguridad'
   },
   {
     name: 'ISO 27001',
-    icon: '✓',
+    IconComponent: CheckCircle,
     description: 'Gestión de seguridad'
   },
   {
     name: 'GDPR',
-    icon: '🇪🇺',
+    IconComponent: Globe,
     description: 'Protección de datos'
   },
   {
     name: 'PCI DSS',
-    icon: '💳',
+    IconComponent: CreditCard,
     description: 'Seguridad de pagos'
   },
   {
     name: '256-bit SSL',
-    icon: '🛡️',
+    IconComponent: Shield,
     description: 'Encriptación bancaria'
   },
   {
     name: '99.9% Uptime',
-    icon: '⚡',
+    IconComponent: Zap,
     description: 'Disponibilidad garantizada'
   }
 ]
 
 export default function TrustBadges() {
   return (
-    <section className="py-12 px-4 sm:px-6 lg:px-8 border-y border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-secondary-900/50">
+    <section id="trust-badges" className="py-12 px-4 sm:px-6 lg:px-8 border-y border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-[#1A1A1A]">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -59,11 +60,15 @@ export default function TrustBadges() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -4 }}
-              className="bg-white dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-xl p-4 text-center hover:border-gray-300 dark:hover:border-gray-600 transition-all"
+              className="bg-white dark:bg-[#252525] border border-neutral-200 dark:border-neutral-800 rounded-xl p-4 text-center hover:border-neutral-300 dark:hover:border-neutral-700 transition-all"
             >
-              <div className="text-2xl mb-2">{badge.icon}</div>
-              <div className="text-xs font-semibold text-gray-900 dark:text-white mb-1">{badge.name}</div>
-              <div className="text-[10px] text-gray-500 dark:text-gray-500">{badge.description}</div>
+              <div className="flex flex-col items-center">
+                <div className="w-10 h-10 flex items-center justify-center mb-3">
+                  <badge.IconComponent className="w-8 h-8 text-gray-900 dark:text-white" strokeWidth={1.5} />
+                </div>
+                <div className="text-xs font-semibold text-gray-900 dark:text-white mb-1">{badge.name}</div>
+                <div className="text-[10px] text-gray-500 dark:text-gray-500">{badge.description}</div>
+              </div>
             </motion.div>
           ))}
         </div>

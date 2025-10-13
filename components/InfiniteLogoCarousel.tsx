@@ -13,37 +13,39 @@ const logos = [
 ]
 
 export default function InfiniteLogoCarousel() {
-  // Duplicar logos para efecto infinito
-  const duplicatedLogos = [...logos, ...logos, ...logos]
+  // Duplicar logos para efecto infinito suave
+  const duplicatedLogos = [...logos, ...logos, ...logos, ...logos]
 
   return (
-    <div className="relative overflow-hidden py-12">
-      <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-black to-transparent z-10" />
-      <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-black to-transparent z-10" />
+    <div className="relative overflow-hidden py-8">
+      {/* Máscaras de desvanecimiento sutiles y adaptativas */}
+      <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white dark:from-[#191919] via-white/80 dark:via-[#191919]/80 to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white dark:from-[#191919] via-white/80 dark:via-[#191919]/80 to-transparent z-10 pointer-events-none" />
       
       <motion.div
-        className="flex gap-16"
+        className="flex gap-8 items-center"
         animate={{
-          x: [0, -1920],
+          x: [0, -1600],
         }}
         transition={{
           x: {
             repeat: Infinity,
             repeatType: "loop",
-            duration: 30,
+            duration: 40,
             ease: "linear",
           },
         }}
       >
         {duplicatedLogos.map((logo, index) => (
-          <div
+          <motion.div
             key={index}
-            className="flex items-center justify-center px-8 py-4 bg-secondary-900/50 border border-gray-200 dark:border-primary-700/30 rounded-2xl min-w-[140px] hover:border-primary-600 transition-colors"
+            whileHover={{ scale: 1.05, y: -2 }}
+            className="flex items-center justify-center px-6 py-3 bg-gradient-to-br from-white to-neutral-50 dark:from-[#252525] dark:to-[#252525] border-2 border-neutral-200 dark:border-neutral-800 rounded-xl min-w-[160px] shadow-sm hover:shadow-md hover:border-primary-500/50 dark:hover:border-primary-500/50 transition-all duration-200 cursor-pointer"
           >
-            <span className="text-neutral-400 font-semibold text-sm whitespace-nowrap">
+            <span className="text-neutral-700 dark:text-neutral-300 font-semibold text-sm whitespace-nowrap">
               {logo.name}
             </span>
-          </div>
+          </motion.div>
         ))}
       </motion.div>
     </div>

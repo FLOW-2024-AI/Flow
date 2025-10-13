@@ -28,7 +28,7 @@ export default function LiveStats() {
   }
 
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-900/10 to-purple-900/10 dark:from-blue-900/5 dark:to-purple-900/5">
+    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-neutral-50 dark:bg-[#1A1A1A]">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -58,7 +58,7 @@ export default function LiveStats() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="bg-white dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-8 text-center relative overflow-hidden"
+            className="bg-white dark:bg-[#252525] border border-neutral-200 dark:border-neutral-800 rounded-2xl p-8 text-center relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl" />
             <div className="relative z-10">
@@ -81,16 +81,16 @@ export default function LiveStats() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="bg-white dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-8 text-center relative overflow-hidden"
+            className="bg-white dark:bg-[#252525] border border-neutral-200 dark:border-neutral-800 rounded-2xl p-8 text-center relative overflow-hidden"
           >
-            <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-full blur-3xl" />
+            <div className="absolute top-0 right-0 w-32 h-32 bg-primary-500/10 rounded-full blur-3xl" />
             <div className="relative z-10">
               <div className="text-xs text-gray-500 dark:text-gray-500 mb-2">Empresas activas</div>
               <motion.div
                 key={stats.companies}
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2"
+                className="text-3xl font-bold text-primary-600 dark:text-primary-400 mb-2"
               >
                 {stats.companies}+
               </motion.div>
@@ -104,7 +104,7 @@ export default function LiveStats() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="bg-white dark:bg-secondary-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-8 text-center relative overflow-hidden"
+            className="bg-white dark:bg-[#252525] border border-neutral-200 dark:border-neutral-800 rounded-2xl p-8 text-center relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-green-500/10 rounded-full blur-3xl" />
             <div className="relative z-10">

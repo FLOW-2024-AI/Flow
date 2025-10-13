@@ -39,7 +39,7 @@ const categories: AppCategory[] = [
     title: 'PRINCIPAL',
     apps: [
       { name: 'Dashboard', icon: LayoutDashboard, href: '/apps/dashboard', color: 'bg-blue-500' },
-      { name: 'Analytics', icon: BarChart3, href: '/apps/analytics', color: 'bg-purple-500' }
+      { name: 'Analytics', icon: BarChart3, href: '/apps/analytics', color: 'bg-primary-500' }
     ]
   },
   {
@@ -96,7 +96,7 @@ export default function AppsSidebar() {
   const [collapsed, setCollapsed] = useState(false)
 
   return (
-    <aside className={`${collapsed ? 'w-16' : 'w-64'} bg-secondary-900 dark:bg-secondary-950 text-gray-100 h-screen fixed left-0 top-0 transition-all duration-300 overflow-y-auto border-r border-gray-800`}>
+    <aside className={`${collapsed ? 'w-16' : 'w-64'} bg-[#252525] dark:bg-[#1A1A1A] text-gray-100 h-screen fixed left-0 top-0 transition-all duration-300 overflow-y-auto border-r border-gray-700 dark:border-gray-800`}>
       {/* Header */}
       <div className="p-4 border-b border-gray-800 flex items-center justify-between">
         {!collapsed && (
@@ -109,7 +109,7 @@ export default function AppsSidebar() {
         )}
         <button
           onClick={() => setCollapsed(!collapsed)}
-          className="p-1 hover:bg-secondary-800 rounded transition-colors"
+          className="p-1 hover:bg-[#1A1A1A] dark:hover:bg-[#0C0A09] rounded transition-colors"
         >
           {collapsed ? '→' : '←'}
         </button>
@@ -136,7 +136,7 @@ export default function AppsSidebar() {
                     className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all ${
                       isActive
                         ? 'bg-primary-600 text-white'
-                        : 'text-gray-300 hover:bg-secondary-800 hover:text-white'
+                        : 'text-gray-300 hover:bg-[#1A1A1A] dark:hover:bg-[#0C0A09] hover:text-white'
                     }`}
                     title={collapsed ? app.name : undefined}
                   >
