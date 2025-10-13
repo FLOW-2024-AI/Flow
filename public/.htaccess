@@ -1,5 +1,5 @@
 # Next.js Static Export - Routing for DreamHost
-Options -MultiViews
+Options -MultiViews -Indexes
 RewriteEngine On
 
 # Redirect www to non-www (optional)
@@ -13,22 +13,13 @@ RewriteEngine On
 # Handle root
 DirectoryIndex index.html
 
-# Handle trailing slashes - redirect to folder/index.html
+# Serve index.html for directories (sin redirección)
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_URI} !(.*)/$
 RewriteCond %{REQUEST_FILENAME}/index.html -f
-RewriteRule ^(.*)$ $1/ [L,R=301]
+RewriteRule ^(.*)$ $1/index.html [L,QSA]
 
-# Serve index.html for directories
+# Serve .html files without extension
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}/index.html -f
-RewriteRule ^(.*)$ $1/index.html [L]
-
-# Serve .html files without extension (fallback)
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.html -f
 RewriteRule ^(.+)$ $1.html [L,QSA]
 
