@@ -1041,7 +1041,22 @@ export default function Home() {
           <div className="py-8 border-t border-gray-200 dark:border-gray-700">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
               <div className="flex items-center gap-2">
-                <Logo width={100} height={46} className="h-12 w-auto object-contain" />
+                {/* Logo oscuro para tema claro */}
+                <img 
+                  src="/images/logo/flow-logo-dark.svg"
+                  alt="Flow" 
+                  width={100}
+                  height={46}
+                  className="h-12 w-auto object-contain dark:hidden"
+                />
+                {/* Logo claro para tema oscuro */}
+                <img 
+                  src="/images/logo/flow-logo-light.svg"
+                  alt="Flow" 
+                  width={100}
+                  height={46}
+                  className="h-12 w-auto object-contain hidden dark:block"
+                />
               </div>
 
               {/* Social Links */}
