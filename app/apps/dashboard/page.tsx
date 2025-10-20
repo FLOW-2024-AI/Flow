@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import FacturasTable from '@/components/FacturasTable'
 import ThemeToggle from '@/components/ThemeToggle'
-import { FileText, DollarSign, CreditCard, BarChart3, TrendingUp, Bot, Zap, Heart, Globe, Plug, Building2, Landmark, Wallet, AlertCircle, AlertTriangle, Tag, Lightbulb, BookOpen, Sparkles, CircleDot, ArrowLeft } from 'lucide-react'
+import { FileText, DollarSign, CreditCard, BarChart3, TrendingUp, Bot, Zap, Heart, Globe, Plug, Building2, Landmark, Wallet, AlertCircle, AlertTriangle, Tag, Lightbulb, BookOpen, Sparkles, CircleDot, ArrowLeft, Menu, X } from 'lucide-react'
 
 // Mock data para empresa cliente de Flow
 const mockStats = {
@@ -96,6 +96,7 @@ export default function DashboardPage() {
   const [healthScore] = useState(82)
   const [reportesTab, setReportesTab] = useState<'financieros' | 'impuestos'>('financieros')
   const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
   // Check authentication on mount
   useEffect(() => {
@@ -149,18 +150,28 @@ export default function DashboardPage() {
     <div className="min-h-screen bg-white dark:bg-neutral-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       {/* Top Header */}
       <header className="bg-white dark:bg-[#252525] border-b border-gray-200 dark:border-gray-700 sticky top-0 z-50">
-        <div className="px-6 py-4 flex items-center justify-between">
-          <Link href="/apps" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-            <ArrowLeft className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Volver a Apps</span>
-          </Link>
+        <div className="px-4 md:px-6 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+              className="md:hidden p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+            >
+              <Menu className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+            </button>
+            <Link href="/apps" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+              <ArrowLeft className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-300 hidden sm:inline">Volver a Apps</span>
+            </Link>
+          </div>
           <ThemeToggle />
         </div>
       </header>
 
       <div className="flex">
         {/* Sidebar */}
-        <div className="w-64 bg-gray-50 dark:bg-neutral-800 border-r border-gray-200 dark:border-gray-700 min-h-screen transition-colors duration-200">
+        <div className={`fixed md:sticky top-0 left-0 z-40 w-64 bg-gray-50 dark:bg-neutral-800 border-r border-gray-200 dark:border-gray-700 h-screen transition-transform duration-300 md:translate-x-0 ${
+          isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}>
           <div className="p-6">
             <div className="flex items-center space-x-3 mb-8">
               <img 
@@ -507,8 +518,16 @@ export default function DashboardPage() {
           </div>
         </div>
 
+        {/* Overlay para móvil */}
+        {isSidebarOpen && (
+          <div
+            className="fixed inset-0 bg-black/50 z-30 md:hidden"
+            onClick={() => setIsSidebarOpen(false)}
+          />
+        )}
+
         {/* Main Content */}
-        <div className="flex-1 p-8">
+        <div className="flex-1 p-4 md:p-6 lg:p-8 w-full">
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -516,9 +535,9 @@ export default function DashboardPage() {
             className="space-y-8"
           >
             {/* Header */}
-            <motion.div variants={itemVariants} className="flex items-center justify-between">
+            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
-                <h1 className="text-2xl font-semibold">
+                <h1 className="text-xl sm:text-2xl font-semibold">
                   {activeTab === 'overview' ? 'Dashboard Overview' : 
                    activeTab === 'analytics' ? 'Analytics' : 
                    activeTab === 'facturas' ? 'Facturas Registradas' :
@@ -541,7 +560,7 @@ export default function DashboardPage() {
                    activeTab === 'integraciones' ? 'Integraciones' :
                    'Productos Bancarios'}
                 </h1>
-                <p className="text-gray-600 dark:text-gray-400 mt-1 text-sm">
+                <p className="text-gray-600 dark:text-gray-400 mt-1 text-xs sm:text-sm">
                   {activeTab === 'overview' ? 'Resumen general de tu plataforma' : 
                    activeTab === 'analytics' ? 'Análisis detallado de métricas' :
                    activeTab === 'facturas' ? 'Gestión y visualización de facturas' :
@@ -565,9 +584,9 @@ export default function DashboardPage() {
                    'Líneas de Crédito, Leasing y Financiamiento a Mediano Plazo'}
                 </p>
               </div>
-              <div className="text-right">
+              <div className="text-left sm:text-right">
                 <p className="text-xs text-gray-600 dark:text-gray-400">Última actualización</p>
-                <p className="text-sm font-medium">{new Date().toLocaleDateString('es-ES')}</p>
+                <p className="text-xs sm:text-sm font-medium">{new Date().toLocaleDateString('es-ES')}</p>
               </div>
             </motion.div>
 
@@ -575,17 +594,17 @@ export default function DashboardPage() {
             {activeTab === 'overview' && (
               <>
                 {/* CFO Scorecard - Health Score */}
-                <motion.div variants={itemVariants} className="bg-gradient-to-br from-green-500/90 to-emerald-600/90 dark:from-green-900/20 dark:to-emerald-900/10 border-0 dark:border dark:border-green-500/30 rounded-2xl p-6">
-                  <div className="flex items-center justify-between">
+                <motion.div variants={itemVariants} className="bg-gradient-to-br from-green-500/90 to-emerald-600/90 dark:from-green-900/20 dark:to-emerald-900/10 border-0 dark:border dark:border-green-500/30 rounded-2xl p-4 sm:p-6">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                     <div>
                       <p className="text-green-100 dark:text-gray-400 text-xs mb-2">Score de Salud Financiera</p>
                       <div className="flex items-baseline gap-3">
-                        <p className="text-4xl font-bold text-white dark:text-green-400">{healthScore}</p>
+                        <p className="text-3xl sm:text-4xl font-bold text-white dark:text-green-400">{healthScore}</p>
                         <span className="text-sm text-green-100 dark:text-gray-400">/100</span>
                       </div>
                       <p className="text-xs text-green-100 dark:text-green-400 mt-2">Excelente • +5 pts vs mes anterior</p>
                     </div>
-                    <div className="relative w-24 h-24">
+                    <div className="relative w-20 h-20 sm:w-24 sm:h-24">
                       <svg className="w-full h-full transform -rotate-90">
                         <circle cx="48" cy="48" r="40" fill="none" stroke="currentColor" strokeWidth="6" className="text-neutral-800" />
                         <circle 
@@ -608,34 +627,34 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* KPIs Financieros Clave */}
-                <motion.div variants={itemVariants} className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  <div className="bg-gradient-to-br from-blue-500/90 to-blue-600/90 dark:from-blue-900/20 dark:to-blue-900/5 border-0 dark:border dark:border-blue-500/20 rounded-xl p-4">
+                <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+                  <div className="bg-gradient-to-br from-blue-500/90 to-blue-600/90 dark:from-blue-900/20 dark:to-blue-900/5 border-0 dark:border dark:border-blue-500/20 rounded-xl p-4 sm:p-5">
                     <p className="text-blue-100 dark:text-gray-400 text-xs mb-1">Liquidez</p>
-                    <p className="text-2xl font-bold text-white dark:text-gray-100">${(stats.saldoCaja / 1000000).toFixed(2)}M</p>
+                    <p className="text-xl sm:text-2xl font-bold text-white dark:text-gray-100">${(stats.saldoCaja / 1000000).toFixed(2)}M</p>
                     <p className="text-xs text-blue-100 dark:text-green-400 mt-1">+15% MoM</p>
                   </div>
-                  <div className="bg-gradient-to-br from-green-500/90 to-green-600/90 dark:from-green-900/20 dark:to-green-900/5 border-0 dark:border dark:border-green-500/20 rounded-xl p-4">
+                  <div className="bg-gradient-to-br from-green-500/90 to-green-600/90 dark:from-green-900/20 dark:to-green-900/5 border-0 dark:border dark:border-green-500/20 rounded-xl p-4 sm:p-5">
                     <p className="text-green-100 dark:text-gray-400 text-xs mb-1">Por Cobrar</p>
-                    <p className="text-2xl font-bold text-white dark:text-gray-100">${(stats.cuentasPorCobrar / 1000).toFixed(0)}K</p>
+                    <p className="text-xl sm:text-2xl font-bold text-white dark:text-gray-100">${(stats.cuentasPorCobrar / 1000).toFixed(0)}K</p>
                     <p className="text-xs text-green-100 dark:text-gray-400 mt-1">23 facturas</p>
                   </div>
-                  <div className="bg-gradient-to-br from-red-500/90 to-red-600/90 dark:from-red-900/20 dark:to-red-900/5 border-0 dark:border dark:border-red-500/20 rounded-xl p-4">
+                  <div className="bg-gradient-to-br from-red-500/90 to-red-600/90 dark:from-red-900/20 dark:to-red-900/5 border-0 dark:border dark:border-red-500/20 rounded-xl p-4 sm:p-5">
                     <p className="text-red-100 dark:text-gray-400 text-xs mb-1">Por Pagar</p>
-                    <p className="text-2xl font-bold text-white dark:text-gray-100">${(stats.cuentasPorPagar / 1000).toFixed(0)}K</p>
+                    <p className="text-xl sm:text-2xl font-bold text-white dark:text-gray-100">${(stats.cuentasPorPagar / 1000).toFixed(0)}K</p>
                     <p className="text-xs text-red-100 dark:text-red-400 mt-1">Vence 7 días</p>
                   </div>
-                  <div className="bg-gradient-to-br from-purple-500/90 to-purple-600/90 dark:from-purple-900/20 dark:to-purple-900/5 border-0 dark:border dark:border-purple-500/20 rounded-xl p-4">
+                  <div className="bg-gradient-to-br from-purple-500/90 to-purple-600/90 dark:from-purple-900/20 dark:to-purple-900/5 border-0 dark:border dark:border-purple-500/20 rounded-xl p-4 sm:p-5">
                     <p className="text-purple-100 dark:text-gray-400 text-xs mb-1">Flujo Neto</p>
-                    <p className="text-2xl font-bold text-white dark:text-gray-100">${(stats.flujoNeto / 1000).toFixed(0)}K</p>
+                    <p className="text-xl sm:text-2xl font-bold text-white dark:text-gray-100">${(stats.flujoNeto / 1000).toFixed(0)}K</p>
                     <p className="text-xs text-purple-100 dark:text-green-400 mt-1">+22% MoM</p>
                   </div>
                 </motion.div>
 
                 {/* Ratios Financieros + Predicciones */}
-                <div className="grid lg:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                   {/* Ratios Clave */}
-                  <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
-                    <h3 className="text-lg font-bold mb-4">Ratios Financieros</h3>
+                  <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-4 sm:p-6">
+                    <h3 className="text-base sm:text-lg font-bold mb-4">Ratios Financieros</h3>
                     <div className="space-y-4">
                       {[
                         { name: 'Liquidez Corriente', value: '2.8', target: '2.0', status: 'good' },
@@ -664,8 +683,8 @@ export default function DashboardPage() {
                   </motion.div>
 
                   {/* Predicciones IA */}
-                  <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6">
-                    <h3 className="text-lg font-bold mb-4">Predicciones IA - Próximo Mes</h3>
+                  <motion.div variants={itemVariants} className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-4 sm:p-6">
+                    <h3 className="text-base sm:text-lg font-bold mb-4">Predicciones IA - Próximo Mes</h3>
                     <div className="space-y-4">
                       <div className="p-4 bg-gradient-to-r from-blue-500/90 to-blue-600/90 dark:from-blue-900/20 dark:to-blue-900/5 border-0 dark:border dark:border-blue-500/20 rounded-xl">
                         <p className="text-xs text-blue-100 dark:text-gray-400 mb-1">Ingresos Proyectados</p>
@@ -687,9 +706,9 @@ export default function DashboardPage() {
                 </div>
 
                 {/* Operaciones + Tesorería */}
-                <div className="grid lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
                   {/* Facturación */}
-                  <motion.div variants={itemVariants} className="bg-gradient-to-br from-blue-500/90 to-blue-600/90 dark:bg-neutral-800 border-0 dark:border dark:border-gray-700 rounded-2xl p-6">
+                  <motion.div variants={itemVariants} className="bg-gradient-to-br from-blue-500/90 to-blue-600/90 dark:bg-neutral-800 border-0 dark:border dark:border-gray-700 rounded-2xl p-4 sm:p-6">
                     <div className="flex items-center justify-between mb-4">
                       <h3 className="text-sm font-bold text-white dark:text-gray-100">Facturación</h3>
                       <span className="text-xs px-2 py-1 bg-white/20 text-white dark:bg-green-900/20 dark:text-green-400 rounded-full">Hoy</span>

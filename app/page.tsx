@@ -73,7 +73,7 @@ export default function Home() {
       <ScrollProgress />
 
       {/* Hero Section - UX Optimized with Notion colors */}
-      <section id="hero" className="relative pt-40 pb-32 px-4 sm:px-6 lg:px-8 overflow-hidden min-h-[85vh] flex items-center">
+      <section id="hero" className="relative pt-24 sm:pt-32 md:pt-40 pb-20 sm:pb-24 md:pb-32 px-4 sm:px-6 lg:px-8 overflow-hidden min-h-[80vh] sm:min-h-[85vh] flex items-center">
         {/* Background gradient orbs - Notion-style subtle depth (solo azul) */}
         <div className="absolute top-20 left-10 w-96 h-96 bg-primary-500/8 dark:bg-primary-400/6 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary-600/8 dark:bg-primary-500/6 rounded-full blur-3xl pointer-events-none" />
@@ -95,7 +95,7 @@ export default function Home() {
             {/* Heading - strong visual hierarchy with Notion colors */}
             <motion.h1 
               variants={itemVariants} 
-              className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-[1.15] tracking-tight max-w-4xl mx-auto text-neutral-900 dark:text-neutral-50"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold leading-[1.15] tracking-tight max-w-4xl mx-auto text-neutral-900 dark:text-neutral-50 px-2"
             >
               Facturación electrónica.
               <br />
@@ -105,10 +105,10 @@ export default function Home() {
             </motion.h1>
             
             {/* Subheading - balanced spacing with Notion grays */}
-            <motion.p variants={itemVariants} className="text-xl md:text-2xl text-neutral-900 dark:text-neutral-100 max-w-2xl mx-auto leading-relaxed font-medium mb-4">
+            <motion.p variants={itemVariants} className="text-lg sm:text-xl md:text-2xl text-neutral-900 dark:text-neutral-100 max-w-2xl mx-auto leading-relaxed font-medium mb-4 px-2">
               Donde las finanzas fluyen, la empresa crece.
             </motion.p>
-            <motion.p variants={itemVariants} className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto leading-relaxed">
+            <motion.p variants={itemVariants} className="text-sm sm:text-base md:text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto leading-relaxed px-2">
               Flow procesa tus facturas electrónicas automáticamente. Desde tu correo o SUNAT directo a tu ERP o Excel. Cero trabajo manual. Cero errores.
             </motion.p>
 
