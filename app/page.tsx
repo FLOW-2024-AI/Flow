@@ -88,7 +88,7 @@ export default function Home() {
             {/* Trust badge - Notion-style subtle hierarchy */}
             <motion.div variants={itemVariants} className="flex justify-center">
               <div className="bg-primary-50 dark:bg-primary-500/10 border border-primary-100 dark:border-primary-500/20 rounded-full px-6 py-2.5 text-sm font-semibold text-primary-600 dark:text-primary-400 inline-flex items-center gap-2 shadow-sm">
-                +20 empresas ya confían en nosotros
+                Automatización inteligente de facturas
               </div>
             </motion.div>
 
@@ -97,17 +97,19 @@ export default function Home() {
               variants={itemVariants} 
               className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-[1.15] tracking-tight max-w-4xl mx-auto text-neutral-900 dark:text-neutral-50"
             >
-              RPA + IA para tu Ecosistema Financiero
+              Facturación electrónica.
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-500 via-primary-600 to-primary-700 animate-gradient">
-                No reemplazamos tu ERP. Lo potenciamos.
+                Automatizada.
               </span>
             </motion.h1>
             
             {/* Subheading - balanced spacing with Notion grays */}
+            <motion.p variants={itemVariants} className="text-xl md:text-2xl text-neutral-900 dark:text-neutral-100 max-w-2xl mx-auto leading-relaxed font-medium mb-4">
+              Donde las finanzas fluyen, la empresa crece.
+            </motion.p>
             <motion.p variants={itemVariants} className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto leading-relaxed">
-              Flow conecta tu ERP, Bancos, SUNAT y más. Automatiza con RPA, analiza con IA y accede a financiamiento. 
-              Tu CFO Digital + Ecosistema Financiero en una plataforma.
+              Flow procesa tus facturas electrónicas automáticamente. Desde tu correo o SUNAT directo a tu ERP o Excel. Cero trabajo manual. Cero errores.
             </motion.p>
 
             {/* CTAs - clear focus with Notion styling */}
@@ -118,16 +120,16 @@ export default function Home() {
                   whileTap={{ scale: 0.98 }}
                   className="bg-primary-500 hover:bg-primary-600 text-white px-8 py-3.5 rounded-lg font-medium text-base transition-all duration-200 inline-block cursor-pointer shadow-lg shadow-primary-500/20 hover:shadow-xl hover:shadow-primary-500/30"
                 >
-                  Agendar consulta gratis
+                  Empezar ahora
                 </motion.div>
               </Link>
-              <a href="#testimonios">
+              <a href="#como-funciona">
                 <motion.div
                   whileHover={{ scale: 1.02, y: -1 }}
                   whileTap={{ scale: 0.98 }}
                   className="border-2 border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-neutral-100 px-8 py-3.5 rounded-lg font-medium text-base hover:border-primary-500 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-all duration-200 inline-block cursor-pointer"
                 >
-                  Ver casos de éxito
+                  Ver cómo funciona
                 </motion.div>
               </a>
             </motion.div>
@@ -138,9 +140,9 @@ export default function Home() {
               className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-24 max-w-5xl mx-auto"
             >
               {[
-                { value: 450, suffix: '%', label: 'ROI Promedio', color: 'from-primary-500 to-primary-600' },
-                { value: 80, suffix: '%', label: 'Menos tiempo manual', color: 'from-accent-teal to-accent-teal' },
-                { value: 100, suffix: '%', label: 'Visibilidad tiempo real', color: 'from-accent-green to-accent-green' }
+                { value: 95, suffix: '%', label: 'Precisión con IA', color: 'from-primary-500 to-primary-600' },
+                { value: 10, suffix: 'min', label: 'De correo a ERP', color: 'from-accent-teal to-accent-teal' },
+                { value: 100, suffix: '%', label: 'Automático', color: 'from-accent-green to-accent-green' }
               ].map((stat, idx) => (
                 <motion.div
                   key={idx}
@@ -304,8 +306,8 @@ export default function Home() {
           >
             <div className="relative rounded-3xl overflow-hidden border border-gray-200 dark:border-gray-700 shadow-2xl shadow-blue-500/20 animate-glow">
               <Image
-                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600&h=900&fit=crop&q=90"
-                alt="F.L.O.W. Dashboard"
+                src="/images/dashboard-overview.png"
+                alt="F.L.O.W. Dashboard - Vista general del ecosistema financiero"
                 width={1600}
                 height={900}
                 className="w-full h-auto"
