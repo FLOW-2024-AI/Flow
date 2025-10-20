@@ -343,7 +343,7 @@ export default function FacturasRegistradasPage() {
     <div className="min-h-screen bg-white dark:bg-neutral-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
       {/* Top Header */}
       <header className="bg-white dark:bg-[#252525] border-b border-gray-200 dark:border-gray-700 sticky top-0 z-50">
-        <div className="px-6 py-4 flex items-center justify-between">
+        <div className="px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <Link href="/apps" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
               <ArrowLeft className="w-5 h-5 text-gray-600 dark:text-gray-400" />
@@ -361,7 +361,7 @@ export default function FacturasRegistradasPage() {
 
       <div className="flex">
         {/* Sidebar */}
-        <div className="w-64 bg-gray-50 dark:bg-neutral-800 border-r border-gray-200 dark:border-gray-700 min-h-screen transition-colors duration-200">
+        <div className="hidden md:block w-64 bg-gray-50 dark:bg-neutral-800 border-r border-gray-200 dark:border-gray-700 min-h-screen transition-colors duration-200">
           <div className="p-6">
             <div className="flex items-center space-x-3 mb-8">
               <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg flex items-center justify-center">
@@ -460,17 +460,17 @@ export default function FacturasRegistradasPage() {
         </div>
 
         {/* Main Content */}
-        <div className="flex-1 p-8">
+        <div className="flex-1 p-4 sm:p-6 md:p-8 w-full overflow-x-hidden">
           
           {/* VALIDACIÓN DE FACTURAS */}
           {activeTab === 'validacion' && (
             <div>
-              <div className="mb-6">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Pendientes de Validación</h2>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Facturas procesadas por IA que requieren tu revisión</p>
+              <div className="mb-4 sm:mb-6">
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">Pendientes de Validación</h2>
+                <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Facturas procesadas por IA que requieren tu revisión</p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -550,11 +550,11 @@ export default function FacturasRegistradasPage() {
 
               {/* Tabla de facturas pendientes */}
               <div className="bg-white dark:bg-[#252525] border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden">
-                <div className="overflow-x-auto">
-                  <table className="w-full">
+                <div className="overflow-x-auto -mx-4 sm:mx-0">
+                  <table className="w-full min-w-[800px]">
                     <thead className="bg-gray-50 dark:bg-neutral-800 border-b border-gray-200 dark:border-gray-700">
                       <tr>
-                        <th className="px-6 py-4 text-left">
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-left">
                           <input
                             type="checkbox"
                             checked={selectedFacturas.length === mockFacturasPendientes.length}

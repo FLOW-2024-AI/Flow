@@ -225,30 +225,30 @@ const categories = ['Principal', 'Operaciones', 'Tesorería', 'Planificación', 
 
 export default function AppsPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-[#191919] dark:to-[#0C0A09] p-8">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-[#191919] dark:to-[#0C0A09] p-4 sm:p-6 md:p-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-12 flex items-start justify-between"
+          className="mb-8 sm:mb-12 flex flex-col sm:flex-row items-start justify-between gap-4"
         >
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 sm:gap-4">
             <img 
               src="/images/icons/client-icon-dark.svg"
               alt="Cliente"
-              className="w-12 h-12 dark:hidden"
+              className="w-10 h-10 sm:w-12 sm:h-12 dark:hidden"
             />
             <img 
               src="/images/icons/client-icon-light.svg"
               alt="Cliente"
-              className="w-12 h-12 hidden dark:block"
+              className="w-10 h-10 sm:w-12 sm:h-12 hidden dark:block"
             />
             <div>
-              <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-1 sm:mb-2">
                 Aplicaciones
               </h1>
-              <p className="text-gray-600 dark:text-gray-400">
+              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
                 Selecciona una aplicación para comenzar
               </p>
             </div>
@@ -261,12 +261,12 @@ export default function AppsPage() {
           const categoryApps = apps.filter(app => app.category === category)
           
           return (
-            <div key={catIdx} className="mb-12">
-              <h2 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4">
+            <div key={catIdx} className="mb-8 sm:mb-12">
+              <h2 className="text-xs sm:text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3 sm:mb-4">
                 {category}
               </h2>
               
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4 md:gap-6">
                 {categoryApps.map((app, idx) => {
                   const Icon = app.icon
                   
@@ -278,20 +278,20 @@ export default function AppsPage() {
                         transition={{ delay: idx * 0.05 }}
                         whileHover={{ scale: 1.05, y: -5 }}
                         whileTap={{ scale: 0.95 }}
-                        className="bg-white dark:bg-[#252525] rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all cursor-pointer border border-gray-200 dark:border-gray-700 group"
+                        className="bg-white dark:bg-[#252525] rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 shadow-lg hover:shadow-xl transition-all cursor-pointer border border-gray-200 dark:border-gray-700 group"
                       >
                         {/* Icon */}
-                        <div className={`w-16 h-16 bg-gradient-to-br ${app.gradient} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-lg`}>
-                          <Icon className="w-8 h-8 text-white" />
+                        <div className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br ${app.gradient} rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform shadow-lg`}>
+                          <Icon className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" />
                         </div>
                         
                         {/* Name */}
-                        <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-1 text-sm">
+                        <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-1 text-xs sm:text-sm leading-tight">
                           {app.name}
                         </h3>
                         
                         {/* Description */}
-                        <p className="text-xs text-gray-500 dark:text-gray-400 line-clamp-2">
+                        <p className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400 line-clamp-2 leading-tight">
                           {app.description}
                         </p>
                       </motion.div>
