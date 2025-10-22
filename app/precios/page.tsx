@@ -98,6 +98,31 @@ const plans = [
     color: "blue",
     savings: "ROI 450%+",
     ideal: "Empresas con alto volumen"
+  },
+  {
+    name: "CFO Digital",
+    price: "$350",
+    period: "/mes",
+    description: "El futuro de la gestión financiera. Suite completa de apps para el CFO moderno.",
+    tagline: "🚀 Próximamente",
+    limit: "Todo Flow +",
+    features: [
+      "📊 Analytics Avanzado",
+      "📈 Predicciones con IA",
+      "💰 Planificación Estratégica",
+      "🎯 Presupuesto Inteligente",
+      "📉 Flujo de Caja Proyectado",
+      "⚠️ Gestión de Riesgos",
+      "💼 Salud Financiera (Score)",
+      "🤖 Automatizaciones RPA",
+      "🏦 Ecosistema Financiero",
+      "💳 Productos Bancarios"
+    ],
+    popular: false,
+    color: "purple",
+    savings: "Suite completa",
+    ideal: "CFOs visionarios",
+    comingSoon: true
   }
 ]
 
@@ -136,13 +161,15 @@ export default function PreciosPage() {
             </motion.div>
 
             {/* Pricing Cards */}
-            <motion.div variants={itemVariants} className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
               {plans.map((plan, index) => (
                 <div 
                   key={plan.name}
-                  className={`relative bg-gray-50 dark:bg-[#252525] border rounded-2xl p-8 transition-colors duration-200 ${
+                  className={`relative bg-gray-50 dark:bg-[#252525] border rounded-2xl p-6 lg:p-8 transition-colors duration-200 ${
                     plan.popular 
                       ? 'border-green-500 ring-2 ring-green-500/20' 
+                      : plan.comingSoon
+                      ? 'border-purple-500/30 ring-2 ring-purple-500/10'
                       : 'border-gray-200 dark:border-gray-700'
                   }`}
                 >
@@ -188,7 +215,14 @@ export default function PreciosPage() {
                   </ul>
 
                   <div className="mt-auto">
-                    {plan.name === 'Enterprise' ? (
+                    {plan.comingSoon ? (
+                      <button 
+                        disabled
+                        className="w-full block text-center py-3 px-6 rounded-xl font-semibold transition-all duration-200 border bg-purple-600/10 border-purple-500/30 text-purple-400 cursor-not-allowed"
+                      >
+                        Próximamente
+                      </button>
+                    ) : plan.name === 'Enterprise' ? (
                       <Link 
                         href="/consulta"
                         className={`w-full block text-center py-3 px-6 rounded-xl font-semibold transition-all duration-200 border ${
