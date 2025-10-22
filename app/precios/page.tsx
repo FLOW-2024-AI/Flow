@@ -191,10 +191,10 @@ export default function PreciosPage() {
                     {plan.name === 'Enterprise' ? (
                       <Link 
                         href="/consulta"
-                        className={`w-full block text-center py-3 px-6 rounded-xl font-semibold transition-all duration-200 ${
+                        className={`w-full block text-center py-3 px-6 rounded-xl font-semibold transition-all duration-200 border ${
                           plan.popular
-                            ? 'bg-green-600 hover:bg-green-700 text-white'
-                            : 'bg-white dark:bg-[#252525] text-gray-900 dark:text-gray-100 hover:opacity-90'
+                            ? 'bg-green-600 hover:bg-green-700 text-white border-green-600'
+                            : 'bg-blue-600 hover:bg-blue-700 text-white border-blue-600'
                         }`}
                       >
                         Contactar Ventas
@@ -202,10 +202,10 @@ export default function PreciosPage() {
                     ) : (
                       <Link 
                         href="/consulta"
-                        className={`w-full block text-center py-3 px-6 rounded-xl font-semibold transition-all duration-200 ${
+                        className={`w-full block text-center py-3 px-6 rounded-xl font-semibold transition-all duration-200 border ${
                           plan.popular
-                            ? 'bg-green-600 hover:bg-green-700 text-white'
-                            : 'bg-white dark:bg-[#252525] text-gray-900 dark:text-gray-100 hover:opacity-90'
+                            ? 'bg-green-600 hover:bg-green-700 text-white border-green-600'
+                            : 'border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800'
                         }`}
                       >
                         Comenzar Prueba
