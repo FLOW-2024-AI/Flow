@@ -26,77 +26,78 @@ const itemVariants = {
 
 const plans = [
   {
-    name: "Essentials",
-    price: "$399",
+    name: "Essential",
+    price: "$99",
     period: "/mes",
-    description: "Automatiza lo básico. Perfecto para PYMEs que empiezan.",
-    tagline: "RPA Básico",
+    description: "Digitaliza tus facturas. Perfecto para PYMEs que están empezando su transformación digital.",
+    tagline: "Para Iniciar",
+    limit: "Hasta 350 facturas/mes",
     features: [
-      "Dashboard Overview + Analytics",
-      "Facturas Registradas",
-      "Tesorería (Caja y Bancos)",
-      "Conciliación Bancaria",
-      "Reportes Financieros Básicos",
-      "Alertas y Notificaciones",
-      "Integraciones: 1 ERP + 2 Bancos",
-      "Copiloto IA",
-      "Predicciones ML",
-      "Ecosistema Financiero",
-      "Soporte: Email (48h)"
+      "✨ IA para procesamiento automático de facturas por correo",
+      "📊 Dashboard financiero intuitivo",
+      "✅ Validación automática con SUNAT",
+      "📥 Extracción de datos con IA",
+      "📧 Monitoreo de correos 24/7",
+      "🔔 Alertas de nuevas facturas",
+      "💾 Almacenamiento en la nube",
+      "📱 Acceso móvil",
+      "🎯 Reportes básicos",
+      "📞 Soporte por email (48h)"
     ],
     popular: false,
     color: "blue",
-    savings: "Ahorra 15h/mes"
+    savings: "Ahorra 20h/mes",
+    ideal: "PYMEs no digitalizadas"
   },
   {
-    name: "Professional",
-    price: "$799",
+    name: "Flow",
+    price: "$150",
     period: "/mes",
-    description: "RPA + IA + CFO Digital. Lo que necesita tu empresa.",
-    tagline: "Más Popular",
+    description: "Automatización completa. Para PYMEs digitalizadas que buscan eficiencia máxima.",
+    tagline: "⭐ Más Popular",
+    limit: "Hasta 600 facturas/mes",
     features: [
-      "Todo de Essentials +",
-      "Facturación Electrónica (SUNAT)",
-      "Cobranza Automatizada",
-      "Cuentas por Pagar",
-      "Presupuesto y Control",
-      "Flujo de Caja Proyectado",
-      "Copiloto IA Conversacional",
-      "Predicciones con ML",
-      "Automatizaciones RPA",
-      "Salud Financiera (Score)",
-      "Integraciones: 3 ERPs + Bancos ilimitados",
-      "SUNAT: SOL, PLAME, PLE, SIRE",
-      "Soporte: Chat prioritario (4h)"
+      "✅ Todo lo de Essential +",
+      "🔗 Integración directa con tu ERP",
+      "🤖 Agente IA contextual para consultas",
+      "⚡ Sincronización automática en tiempo real",
+      "📊 Analytics avanzados",
+      "🎨 Personalización de flujos de trabajo",
+      "🔄 API para integraciones custom",
+      "📈 Predicciones con Machine Learning",
+      "👥 Multi-usuario (hasta 5)",
+      "💬 Soporte prioritario (24h)"
     ],
     popular: true,
     color: "green",
-    savings: "Ahorra 40h/mes"
+    savings: "Ahorra 40h/mes",
+    ideal: "PYMEs digitalizadas"
   },
   {
     name: "Enterprise",
-    price: "Custom",
+    price: "Personalizado",
     period: "",
-    description: "Todo Flow + Ecosistema Financiero + CFO Digital completo.",
+    description: "Sin límites. Solución empresarial a medida según tu volumen y necesidades específicas.",
     tagline: "Solución Completa",
+    limit: "Facturas ilimitadas",
     features: [
-      "Todo de Professional +",
-      "Planificación Estratégica",
-      "Gestión de Riesgos",
-      "Ecosistema Financiero (Confirming, Factoring, Flash)",
-      "Productos Bancarios (Líneas, Leasing)",
-      "Integraciones: Ilimitadas + API Custom",
-      "Dashboard Personalizado",
-      "Automatizaciones Custom",
-      "White-label disponible",
-      "Implementación dedicada",
-      "SLA garantizado 99.9%",
-      "Account Manager dedicado",
-      "Soporte: 24/7 + WhatsApp directo"
+      "✅ Todo lo de Flow +",
+      "♾️ Facturas ilimitadas",
+      "🏢 Multi-empresa",
+      "👥 Usuarios ilimitados",
+      "🎯 Onboarding personalizado",
+      "🔧 Integraciones custom ilimitadas",
+      "📊 Dashboards personalizados",
+      "🤝 Account Manager dedicado",
+      "⚙️ SLA garantizado 99.9%",
+      "🚀 Implementación prioritaria",
+      "📞 Soporte 24/7 + WhatsApp directo",
+      "🎓 Capacitación ilimitada para tu equipo"
     ],
     popular: false,
     color: "blue",
-    savings: "ROI 450%+"
+    savings: "ROI 450%+",
+    ideal: "Empresas con alto volumen"
   }
 ]
 
@@ -117,20 +118,20 @@ export default function PreciosPage() {
             {/* Header */}
             <motion.div variants={itemVariants} className="text-center">
               <div className="inline-block bg-blue-500/10 border border-blue-500/20 rounded-full px-6 py-2 text-sm font-semibold text-blue-600 dark:text-blue-400 mb-6">
-                Desde $399/mes • ROI promedio 450%
+                Desde $99/mes • ROI promedio 450%
               </div>
               <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
-                Precios transparentes.{' '}
+                Planes que se adaptan{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-primary-500">
-                  Sin sorpresas.
+                  a tu crecimiento.
                 </span>
               </h1>
               <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-4 leading-relaxed">
-                Elige el plan perfecto según las funcionalidades que necesitas.
-                <span className="text-gray-900 dark:text-white font-semibold"> Todos incluyen implementación y capacitación.</span>
+                Desde PYMEs que inician su digitalización hasta empresas con alto volumen de facturas.
+                <span className="text-gray-900 dark:text-white font-semibold"> Paga solo por lo que necesitas.</span>
               </p>
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                Sin contratos largos • Cancela cuando quieras • 30 días de prueba gratis
+                Sin contratos largos • Cancela cuando quieras • 14 días de prueba gratis
               </p>
             </motion.div>
 
@@ -161,14 +162,20 @@ export default function PreciosPage() {
                   )}
 
                   <div className="text-center mb-8">
-                    <h3 className="text-xl font-bold mb-3">{plan.name}</h3>
+                    <h3 className="text-xl font-bold mb-2">{plan.name}</h3>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 font-semibold mb-3">{plan.limit}</p>
                     <div className="mb-3">
                       <span className="text-3xl font-bold">{plan.price}</span>
                       <span className="text-gray-500 dark:text-gray-400 text-lg">{plan.period}</span>
                     </div>
                     <p className="text-gray-600 dark:text-gray-400 text-sm mb-3">{plan.description}</p>
-                    <div className="inline-block bg-blue-500/10 border border-blue-500/20 rounded-full px-3 py-1 text-xs font-semibold text-blue-400">
-                      {plan.savings}
+                    <div className="flex flex-col sm:flex-row gap-2 justify-center items-center">
+                      <div className="inline-block bg-blue-500/10 border border-blue-500/20 rounded-full px-3 py-1 text-xs font-semibold text-blue-400">
+                        {plan.savings}
+                      </div>
+                      <div className="inline-block bg-purple-500/10 border border-purple-500/20 rounded-full px-3 py-1 text-xs font-semibold text-purple-400">
+                        {plan.ideal}
+                      </div>
                     </div>
                   </div>
 
@@ -216,42 +223,42 @@ export default function PreciosPage() {
                 <div>
                   <h3 className="text-sm font-semibold mb-2">¿Hay período de prueba gratuito?</h3>
                   <p className="text-gray-500 dark:text-gray-400 text-xs">
-                    Sí, ofrecemos 30 días de prueba gratuita para todos los planes. No se requiere tarjeta de crédito.
+                    Sí, ofrecemos 14 días de prueba gratuita para los planes Essential y Flow. No se requiere tarjeta de crédito.
                   </p>
                 </div>
 
                 <div>
-                  <h3 className="text-sm font-semibold mb-2">¿Puedo cambiar de plan en cualquier momento?</h3>
+                  <h3 className="text-sm font-semibold mb-2">¿Qué pasa si supero el límite de facturas?</h3>
                   <p className="text-gray-500 dark:text-gray-400 text-xs">
-                    Absolutamente. Puedes actualizar o reducir tu plan en cualquier momento. Los cambios se aplican en el siguiente ciclo de facturación.
+                    Te contactaremos para ayudarte a migrar al plan Flow o Enterprise según tu volumen. Sin cargos sorpresa.
                   </p>
                 </div>
 
                 <div>
                   <h3 className="text-sm font-semibold mb-2">¿Qué incluye la implementación?</h3>
                   <p className="text-gray-500 dark:text-gray-400 text-xs">
-                    Incluye configuración inicial, integración con tus sistemas existentes, migración de datos y capacitación del equipo.
+                    Incluye configuración inicial, conexión a tu correo, validación SUNAT y capacitación del equipo. En Flow también configuramos la integración con tu ERP.
                   </p>
                 </div>
 
                 <div>
-                  <h3 className="text-sm font-semibold mb-2">¿Hay costos adicionales por integraciones?</h3>
+                  <h3 className="text-sm font-semibold mb-2">¿Necesito tener un ERP para usar Flow?</h3>
                   <p className="text-gray-500 dark:text-gray-400 text-xs">
-                    Las integraciones estándar están incluidas. Integraciones personalizadas pueden tener costo adicional según complejidad.
+                    No. El plan Essential funciona sin ERP. Flow está diseñado para empresas que ya tienen un ERP y quieren automatizar la integración.
                   </p>
                 </div>
 
                 <div>
                   <h3 className="text-sm font-semibold mb-2">¿Ofrecen descuentos por pago anual?</h3>
                   <p className="text-gray-500 dark:text-gray-400 text-xs">
-                    Sí, ofrecemos 15% de descuento en todos los planes al pagar anualmente por adelantado.
+                    Sí, ofrecemos 20% de descuento en los planes Essential y Flow al pagar anualmente por adelantado.
                   </p>
                 </div>
 
                 <div>
                   <h3 className="text-sm font-semibold mb-2">¿Qué nivel de soporte incluye cada plan?</h3>
                   <p className="text-gray-500 dark:text-gray-400 text-xs">
-                    Starter: Email (48h), Professional: Email prioritario (24h), Enterprise: Soporte dedicado 24/7.
+                    Essential: Email (48h), Flow: Email prioritario (24h), Enterprise: Soporte dedicado 24/7 + WhatsApp directo.
                   </p>
                 </div>
               </div>
@@ -260,7 +267,7 @@ export default function PreciosPage() {
             {/* CTA */}
             <motion.div variants={itemVariants} className="text-center bg-gradient-to-br from-blue-50 to-primary-50 dark:from-blue-900/20 dark:to-primary-900/20 border-2 border-blue-300 dark:border-blue-500/30 rounded-2xl p-12">
               <div className="inline-block bg-green-500/10 border border-green-500/20 rounded-full px-6 py-2 text-sm font-semibold text-green-400 mb-6">
-                30 días gratis • Sin tarjeta de crédito
+                14 días gratis • Sin tarjeta de crédito
               </div>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
                 ¿No estás seguro?{' '}
@@ -269,9 +276,9 @@ export default function PreciosPage() {
                 </span>
               </h2>
               <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-                Más de 20 empresas ya confían en Flow. 
+                Más de 50 PYMEs ya confían en Flow. 
                 <span className="text-gray-900 dark:text-white font-semibold"> ROI promedio: 450%.</span>
-                {' '}Agenda tu demo o empieza tu prueba gratuita hoy.
+                {' '}Agenda tu demo o empieza tu prueba gratuita de 14 días hoy.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/consulta" className="bg-primary-600 hover:bg-primary-700 text-gray-900 dark:text-white px-8 py-4 rounded-full font-bold text-base transition-colors shadow-xl inline-block">
@@ -282,7 +289,7 @@ export default function PreciosPage() {
                 </Link>
               </div>
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-6">
-                Sin tarjeta de crédito • Implementación en 2 semanas • Soporte en español
+                Sin tarjeta de crédito • Implementación en 1 semana • Soporte en español
               </p>
             </motion.div>
           </motion.div>
