@@ -112,7 +112,7 @@ def lambda_handler(event, context):
         print(f"❌ ERROR: {str(e)}")
         import traceback
         traceback.print_exc()
-        
+
         return {
             'statusCode': 500,
             'body': json.dumps({

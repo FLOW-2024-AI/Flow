@@ -2,7 +2,14 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { supabase, type Lead } from '@/lib/supabaseClient'
+
+type Lead = {
+  id?: string
+  email: string
+  company?: string
+  role?: string
+  created_at?: string
+}
 
 export default function CTAForm() {
   const [formData, setFormData] = useState({
@@ -36,36 +43,26 @@ export default function CTAForm() {
     setIsLoading(true)
 
     try {
-      // 1. Insertar en Supabase
+      // Enviar datos al API
       const leadData: Lead = {
         email: formData.email,
         company: formData.company || '',
         role: formData.role || '',
       }
 
-      const { data, error: supabaseError } = await supabase
-        .from('leads')
-        .insert([leadData])
-        .select()
-
-      if (supabaseError) {
-        throw new Error(supabaseError.message)
-      }
-
-      // 2. Notificar a n8n
-      const createdLead = data[0]
-      await fetch('/api/notify', {
+      const response = await fetch('/api/leads', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          email: createdLead.email,
-          company: createdLead.company,
-          role: createdLead.role,
-          created_at: createdLead.created_at,
-        }),
+        body: JSON.stringify(leadData),
       })
+
+      const result = await response.json()
+
+      if (!result.success) {
+        throw new Error(result.error || 'Error al procesar la solicitud')
+      }
 
       setIsSuccess(true)
       setFormData({ email: '', company: '', role: '' })

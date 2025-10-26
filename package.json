@@ -10,11 +10,12 @@
     "export": "next build"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.45.0",
+    "@types/pg": "^8.15.5",
     "autoprefixer": "^10.4.21",
     "framer-motion": "^11.3.19",
     "lucide-react": "^0.545.0",
     "next": "14.2.5",
+    "pg": "^8.16.3",
     "react": "^18",
     "react-dom": "^18"
   },

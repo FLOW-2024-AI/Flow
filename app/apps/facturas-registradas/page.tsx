@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import ThemeToggle from '@/components/ThemeToggle'
@@ -187,18 +187,6 @@ const mockFacturasPendientes = [
     confianza: 87,
     campos: { proveedor: 82, ruc: 100, monto: 88, fecha: 90 },
     origen: 'Email'
-  },
-  {
-    id: 'TEMP-2025-004',
-    proveedor: 'Suministros Industriales',
-    ruc: '20987654321',
-    fecha: '2025-10-17',
-    monto: 1450.00,
-    impuesto: 261.00,
-    total: 1711.00,
-    confianza: 95,
-    campos: { proveedor: 96, ruc: 100, monto: 92, fecha: 98 },
-    origen: 'SUNAT'
   }
 ]
 
@@ -232,6 +220,35 @@ export default function FacturasRegistradasPage() {
   const [editingId, setEditingId] = useState<string | null>(null)
   const [editedData, setEditedData] = useState<any>({})
   const [facturasPendientes, setFacturasPendientes] = useState(mockFacturasPendientes)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  // Cargar facturas pendientes desde la API
+  useEffect(() => {
+    fetchFacturasPendientes()
+  }, [])
+
+  const fetchFacturasPendientes = async () => {
+    try {
+      setLoading(true)
+      setError(null)
+
+      const response = await fetch('/api/facturas-pendientes')
+      const result = await response.json()
+
+      if (result.success) {
+        setFacturasPendientes(result.data)
+      } else {
+        setError(result.error || 'Error al cargar facturas')
+        console.error('Error:', result.error)
+      }facturasPendientes.length
+    } catch (err) {
+      setError('Error de conexión con el servidor')
+      console.error('Error fetching facturas:', err)
+    } finally {
+      setLoading(false)
+    }
+  }
   
   const toggleFacturaSelection = (id: string) => {
     setSelectedFacturas(prev => 
@@ -284,33 +301,66 @@ export default function FacturasRegistradasPage() {
     setEditedData({})
   }
   
-  const enviarFactura = (id: string) => {
-    // Aquí iría la lógica para enviar a BD como validada
-    console.log('Enviando factura a BD:', id)
-    
-    // Remover de pendientes
-    setFacturasPendientes(prev => prev.filter(f => f.id !== id))
-    
-    // Remover de seleccionadas si estaba seleccionada
-    setSelectedFacturas(prev => prev.filter(fId => fId !== id))
-    
-    // En producción: API call para marcar como validada en BD
-    // await supabase.from('facturas').update({ estado: 'validada' }).eq('id', id)
+  const enviarFactura = async (id: string) => {
+    try {
+      const response = await fetch('/api/facturas-pendientes', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ facturaIds: [id] })
+      })
+
+      const result = await response.json()
+
+      if (result.success) {
+        // Remover de pendientes
+        setFacturasPendientes(prev => prev.filter(f => f.id !== id))
+
+        // Remover de seleccionadas si estaba seleccionada
+        setSelectedFacturas(prev => prev.filter(fId => fId !== id))
+
+        console.log('Factura enviada exitosamente:', id)
+      } else {
+        console.error('Error al enviar factura:', result.error)
+        alert('Error al aprobar la factura: ' + result.error)
+      }
+    } catch (err) {
+      console.error('Error enviando factura:', err)
+      alert('Error de conexión al aprobar la factura')
+    }
   }
   
-  const enviarSeleccionadas = () => {
-    console.log('Enviando facturas seleccionadas a BD:', selectedFacturas)
-    
-    // Remover todas las seleccionadas de pendientes
-    setFacturasPendientes(prev => 
-      prev.filter(f => !selectedFacturas.includes(f.id))
-    )
-    
-    // Limpiar selección
-    setSelectedFacturas([])
-    
-    // En producción: API call para marcar como validadas en BD
-    // await supabase.from('facturas').update({ estado: 'validada' }).in('id', selectedFacturas)
+  const enviarSeleccionadas = async () => {
+    try {
+      const response = await fetch('/api/facturas-pendientes', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ facturaIds: selectedFacturas })
+      })
+
+      const result = await response.json()
+
+      if (result.success) {
+        // Remover todas las seleccionadas de pendientes
+        setFacturasPendientes(prev =>
+          prev.filter(f => !selectedFacturas.includes(f.id))
+        )
+
+        // Limpiar selección
+        setSelectedFacturas([])
+
+        console.log('Facturas enviadas exitosamente:', result.approvedIds)
+      } else {
+        console.error('Error al enviar facturas:', result.error)
+        alert('Error al aprobar las facturas: ' + result.error)
+      }
+    } catch (err) {
+      console.error('Error enviando facturas:', err)
+      alert('Error de conexión al aprobar las facturas')
+    }
   }
 
   const filteredFacturas = mockFacturas.filter(factura => {
@@ -470,6 +520,36 @@ export default function FacturasRegistradasPage() {
                 <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Facturas procesadas por IA que requieren tu revisión</p>
               </div>
 
+              {/* Loading State */}
+              {loading && (
+                <div className="flex items-center justify-center py-12">
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+                  <span className="ml-3 text-gray-600 dark:text-gray-400">Cargando facturas...</span>
+                </div>
+              )}
+
+              {/* Error State */}
+              {error && !loading && (
+                <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl p-6 mb-6">
+                  <div className="flex items-center gap-3">
+                    <AlertCircle className="w-6 h-6 text-red-600 dark:text-red-400" />
+                    <div>
+                      <h3 className="font-semibold text-red-900 dark:text-red-100">Error al cargar facturas</h3>
+                      <p className="text-sm text-red-700 dark:text-red-300">{error}</p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={fetchFacturasPendientes}
+                    className="mt-4 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors"
+                  >
+                    Reintentar
+                  </button>
+                </div>
+              )}
+
+              {!loading && !error && (
+                <>
+
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -584,6 +664,12 @@ export default function FacturasRegistradasPage() {
                           Origen
                         </th>
                         <th className="px-6 py-4 text-center text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                          Estado CPE
+                        </th>
+                        <th className="px-6 py-4 text-center text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                          Estado RUC
+                        </th>
+                        <th className="px-6 py-4 text-center text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
                           Acciones
                         </th>
                         <th className="px-6 py-4 text-center text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
@@ -692,6 +778,28 @@ export default function FacturasRegistradasPage() {
                               {factura.origen}
                             </span>
                           </td>
+                          <td className="px-6 py-4 text-center">
+                            <span className={`inline-flex px-2.5 py-1 text-xs font-medium rounded-full ${
+                              (factura as any).estadoSunat === 'VALIDO'
+                                ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400'
+                                : (factura as any).estadoSunat === 'INVALIDO'
+                                ? 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400'
+                                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'
+                            }`}>
+                              {(factura as any).estadoSunat || 'N/A'}
+                            </span>
+                          </td>
+                          <td className="px-6 py-4 text-center">
+                            <span className={`inline-flex px-2.5 py-1 text-xs font-medium rounded-full ${
+                              (factura as any).estadoRuc === 'ACTIVO'
+                                ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400'
+                                : (factura as any).estadoRuc === 'INACTIVO' || (factura as any).estadoRuc === 'SUSPENDIDO'
+                                ? 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400'
+                                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'
+                            }`}>
+                              {(factura as any).estadoRuc || 'N/A'}
+                            </span>
+                          </td>
                           <td className="px-6 py-4">
                             <div className="flex items-center justify-center gap-2">
                               {editingId === factura.id ? (
@@ -746,6 +854,8 @@ export default function FacturasRegistradasPage() {
                   </table>
                 </div>
               </div>
+              </>
+              )}
             </div>
           )}
 

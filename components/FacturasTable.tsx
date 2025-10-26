@@ -184,9 +184,9 @@ export default function FacturasTable() {
           <div className="bg-red-800/30 p-4 rounded-lg text-left max-w-md mx-auto">
             <p className="text-sm text-red-200 mb-2">Posibles soluciones:</p>
             <ul className="text-sm text-red-300 space-y-1">
-              <li>• Verifica que Supabase esté configurado en .env.local</li>
+              <li>• Verifica que la base de datos esté configurada correctamente</li>
               <li>• Confirma que la tabla 'facturas' existe</li>
-              <li>• Revisa que las credenciales sean correctas</li>
+              <li>• Revisa la conexión a la base de datos</li>
             </ul>
           </div>
           <button 
@@ -380,7 +380,7 @@ export default function FacturasTable() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
             <h4 className="text-lg font-semibold mb-2">No hay facturas</h4>
-            <p className="text-neutral-400">Aún no se han procesado facturas desde n8n</p>
+            <p className="text-neutral-400">Aún no se han procesado facturas</p>
           </div>
         ) : (
           <div className={`
