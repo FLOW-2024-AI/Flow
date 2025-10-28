@@ -1964,6 +1964,7 @@ export default function FacturasRegistradasPage() {
                             <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 dark:text-gray-300">Descripción</th>
                             <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 dark:text-gray-300">Cantidad</th>
                             <th className="px-4 py-3 text-center text-xs font-semibold text-gray-700 dark:text-gray-300">Unidad</th>
+                            <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 dark:text-gray-300">Valor Unit.</th>
                             <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 dark:text-gray-300">P. Unit.</th>
                             <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 dark:text-gray-300">Descuento</th>
                             <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 dark:text-gray-300">Subtotal</th>
@@ -1976,6 +1977,7 @@ export default function FacturasRegistradasPage() {
                             selectedFacturaDetalle.items.map((item: any, index: number) => {
                               // Mapear valores desde la DB
                               const cantidad = parseFloat(item.cantidad || 0);
+                              const valorUnitario = parseFloat(item.valor_unitario || 0); // precio SIN IGV
                               const precioUnitario = parseFloat(item.precio_unitario || 0); // precio CON IGV
                               const descuento = parseFloat(item.descuento || 0);
                               const subtotal = parseFloat(item.subtotal || item.valor_venta || 0); // valor antes de IGV
@@ -1989,6 +1991,9 @@ export default function FacturasRegistradasPage() {
                                   <td className="px-4 py-3 text-gray-900 dark:text-white max-w-xs">{item.descripcion}</td>
                                   <td className="px-4 py-3 text-right text-gray-900 dark:text-white">{cantidad}</td>
                                   <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">{item.unidad_medida}</td>
+                                  <td className="px-4 py-3 text-right text-gray-900 dark:text-white">
+                                    {selectedFacturaDetalle.factura.moneda === 'USD' ? '$' : 'S/'} {valorUnitario.toFixed(2)}
+                                  </td>
                                   <td className="px-4 py-3 text-right text-gray-900 dark:text-white">
                                     {selectedFacturaDetalle.factura.moneda === 'USD' ? '$' : 'S/'} {precioUnitario.toFixed(2)}
                                   </td>
@@ -2009,7 +2014,7 @@ export default function FacturasRegistradasPage() {
                             })
                           ) : (
                             <tr>
-                              <td colSpan={10} className="px-4 py-8 text-center text-gray-500 dark:text-gray-400">
+                              <td colSpan={11} className="px-4 py-8 text-center text-gray-500 dark:text-gray-400">
                                 No hay productos en esta factura
                               </td>
                             </tr>
