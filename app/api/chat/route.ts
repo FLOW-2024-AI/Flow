@@ -72,9 +72,35 @@ async function getFacturasContext() {
 
     const facturasResult = await pool.query(facturasQuery)
 
+    // Obtener algunos detalles de productos de las últimas facturas
+    const detallesQuery = `
+      SELECT
+        df.id as factura_id,
+        df.numero_item,
+        df.codigo,
+        df.descripcion,
+        df.cantidad,
+        df.unidad_medida,
+        df.valor_unitario,
+        df.precio_unitario,
+        df.descuento,
+        df.valor_venta,
+        df.igv,
+        df.total,
+        f.numero_factura,
+        f.nombre_proveedor
+      FROM detalles_facturas df
+      JOIN facturas f ON df.id = f.id
+      ORDER BY f.fecha_emision DESC
+      LIMIT 100
+    `
+
+    const detallesResult = await pool.query(detallesQuery)
+
     return {
       stats,
-      facturas: facturasResult.rows
+      facturas: facturasResult.rows,
+      detalles: detallesResult.rows
     }
   } catch (error) {
     console.error('Error obteniendo contexto:', error)
@@ -84,7 +110,7 @@ async function getFacturasContext() {
 
 // Prompt template con LangChain
 const promptTemplate = PromptTemplate.fromTemplate(`
-Eres un asistente especializado en facturas llamado "Agente IA". Tu trabajo es ayudar a los usuarios con consultas sobre sus facturas.
+Eres un asistente especializado en facturas llamado "Agente IA". Tu trabajo es ayudar a los usuarios con consultas sobre sus facturas y productos.
 
 ESTADÍSTICAS GENERALES:
 - Total de facturas: {total_facturas}
@@ -97,14 +123,19 @@ ESTADÍSTICAS GENERALES:
 FACTURAS RECIENTES:
 {facturas_recientes}
 
+PRODUCTOS/SERVICIOS RECIENTES:
+{productos_recientes}
+
 INSTRUCCIONES:
 - Responde de manera concisa, profesional y amigable
 - Si te preguntan por información específica que no está en el contexto, indícalo claramente
 - Puedes hacer cálculos y análisis basados en los datos proporcionados
 - Usa formato markdown con bullets, negritas y listas cuando sea apropiado
 - Responde siempre en español
-- Si te preguntan sobre proveedores, fechas o montos específicos, busca en las facturas recientes
+- Si te preguntan sobre proveedores, fechas, montos o productos específicos, busca en el contexto proporcionado
+- Cuando te pregunten sobre productos de una factura específica, busca en la sección de PRODUCTOS/SERVICIOS
 - Sé específico con números y datos cuando sea posible
+- Si te preguntan por detalles de productos de una factura, proporciona la información disponible (código, descripción, cantidad, precios, etc.)
 
 PREGUNTA DEL USUARIO:
 {question}
@@ -138,6 +169,20 @@ ${i + 1}. ${f.numero_factura}
    - SUNAT: ${f.sunat_estado || 'N/A'}
 `).join('\n')
 
+    // Formatear productos/servicios para el contexto
+    const productosFormateados = context.detalles.map((d: any, i: number) => `
+${i + 1}. Factura: ${d.numero_factura} - Proveedor: ${d.nombre_proveedor}
+   - Ítem #${d.numero_item}: ${d.descripcion}
+   - Código: ${d.codigo || 'N/A'}
+   - Cantidad: ${d.cantidad} ${d.unidad_medida}
+   - Precio unitario (sin IGV): S/ ${parseFloat(d.valor_unitario || 0).toFixed(2)}
+   - Precio unitario (con IGV): S/ ${parseFloat(d.precio_unitario || 0).toFixed(2)}
+   - Descuento: S/ ${parseFloat(d.descuento || 0).toFixed(2)}
+   - Subtotal: S/ ${parseFloat(d.valor_venta || 0).toFixed(2)}
+   - IGV: S/ ${parseFloat(d.igv || 0).toFixed(2)}
+   - Total: S/ ${parseFloat(d.total || 0).toFixed(2)}
+`).join('\n')
+
     // Crear el modelo de Bedrock
     const model = new ChatBedrockConverse(bedrockConfig)
 
@@ -157,6 +202,7 @@ ${i + 1}. ${f.numero_factura}
       total_pen: parseFloat(context.stats.total_pen || 0).toFixed(2),
       total_usd: parseFloat(context.stats.total_usd || 0).toFixed(2),
       facturas_recientes: facturasFormateadas,
+      productos_recientes: productosFormateados,
       question: message
     })
 
