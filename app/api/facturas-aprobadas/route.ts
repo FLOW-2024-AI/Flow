@@ -18,56 +18,48 @@ const pool = new Pool({
 
 export async function GET() {
   try {
-    // Query para obtener facturas aprobadas por el cliente
+    // Query simple y segura - solo campos esenciales
     const query = `
-      SELECT
-        id,
-        invoice_id,
-        numero_factura,
-        ruc_emisor,
-        nombre_proveedor,
-        fecha_emision,
-        monto_subtotal,
-        monto_igv,
-        monto_total,
-        moneda,
-        procesamiento_motor,
-        procesamiento_confidence,
-        sunat_estado,
-        sunat_estado_ruc_descripcion,
-        s3_url,
-        aprobado_fecha,
-        creado_en
+      SELECT *
       FROM facturas
       WHERE aprobado_por_cliente = TRUE
-      ORDER BY aprobado_fecha DESC
+      ORDER BY fecha_emision DESC
+      LIMIT 100
     `
 
     const result = await pool.query(query)
 
     // Transformar los datos al formato que espera el frontend
-    const facturas = result.rows.map(row => ({
-      id: row.invoice_id || row.id,
-      proveedor: row.nombre_proveedor || 'Sin nombre',
-      ruc: row.ruc_emisor,
-      fecha: row.fecha_emision?.toISOString().split('T')[0] || '',
-      monto: parseFloat(row.monto_subtotal) || 0,
-      impuesto: parseFloat(row.monto_igv) || 0,
-      total: parseFloat(row.monto_total) || 0,
-      moneda: row.moneda || 'PEN',
-      confianza: row.procesamiento_confidence === 'high' ? 95 : row.procesamiento_confidence === 'medium' ? 75 : 50,
-      campos: {
-        proveedor: row.procesamiento_confidence === 'high' ? 95 : 75,
-        ruc: 100,
-        monto: row.procesamiento_confidence === 'high' ? 95 : 75,
-        fecha: row.procesamiento_confidence === 'high' ? 95 : 75
-      },
-      origen: row.procesamiento_motor?.includes('sunat') ? 'SUNAT' : 'Email',
-      estadoSunat: row.sunat_estado || 'N/A',
-      estadoRuc: row.sunat_estado_ruc_descripcion || 'N/A',
-      s3_url: row.s3_url,
-      aprobadoFecha: row.aprobado_fecha?.toISOString().split('T')[0] || ''
-    }))
+    const facturas = result.rows.map(row => {
+      // Helper para convertir fechas de forma segura
+      const formatFecha = (fecha: any) => {
+        if (!fecha) return null
+        try {
+          if (fecha instanceof Date) return fecha.toISOString().split('T')[0]
+          return new Date(fecha).toISOString().split('T')[0]
+        } catch {
+          return null
+        }
+      }
+
+      return {
+        id: row.invoice_id || row.numero_factura || row.id,
+        proveedor: row.nombre_proveedor || row.proveedor || 'Sin nombre',
+        ruc: row.ruc_emisor || row.ruc || '',
+        fecha: formatFecha(row.fecha_emision) || formatFecha(row.fecha) || '',
+        fechaVencimiento: formatFecha(row.fecha_vencimiento),
+        plazoPago: row.plazo_pago || null,
+        monto: parseFloat(row.monto_subtotal || row.subtotal || 0),
+        impuesto: parseFloat(row.monto_igv || row.igv || 0),
+        total: parseFloat(row.monto_total || row.total || 0),
+        moneda: row.moneda || 'PEN',
+        origen: row.procesamiento_motor?.includes?.('sunat') ? 'SUNAT' : 'Email',
+        estadoSunat: row.sunat_estado || row.estado_sunat || 'N/A',
+        estadoRuc: row.sunat_estado_ruc_descripcion || row.estado_ruc || 'N/A',
+        s3_url: row.s3_url || null,
+        aprobadoFecha: formatFecha(row.aprobado_fecha) || ''
+      }
+    })
 
     return NextResponse.json({
       success: true,

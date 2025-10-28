@@ -117,6 +117,38 @@ export default function FacturasRegistradasPage() {
     procesadasHoy: 0
   })
 
+  // Función para calcular tiempo relativo desde/hasta la fecha de vencimiento
+  const getRelativeTime = (fechaVencimiento: string | null) => {
+    if (!fechaVencimiento) return { text: 'Sin vencimiento', color: 'text-gray-500 dark:text-gray-400' }
+
+    const hoy = new Date()
+    hoy.setHours(0, 0, 0, 0)
+
+    const fecha = new Date(fechaVencimiento)
+    fecha.setHours(0, 0, 0, 0)
+
+    const diffTime = fecha.getTime() - hoy.getTime()
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+
+    if (diffDays < 0) {
+      const diasPasados = Math.abs(diffDays)
+      return {
+        text: `Hace ${diasPasados} día${diasPasados !== 1 ? 's' : ''}`,
+        color: 'text-red-600 dark:text-red-400'
+      }
+    } else if (diffDays === 0) {
+      return {
+        text: 'Vence hoy',
+        color: 'text-orange-600 dark:text-orange-400'
+      }
+    } else {
+      return {
+        text: `En ${diffDays} día${diffDays !== 1 ? 's' : ''}`,
+        color: 'text-gray-700 dark:text-gray-300'
+      }
+    }
+  }
+
   // Cargar facturas pendientes y estadísticas desde la API
   useEffect(() => {
     fetchFacturasPendientes()
@@ -1032,6 +1064,9 @@ export default function FacturasRegistradasPage() {
                     <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
                       Fecha
                     </th>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                      Estado de Pago
+                    </th>
                     <th className="px-6 py-4 text-right text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
                       Subtotal
                     </th>
@@ -1087,6 +1122,16 @@ export default function FacturasRegistradasPage() {
                       </td>
                       <td className="px-6 py-4">
                         <div className="text-sm text-gray-900 dark:text-white">{factura.fecha}</div>
+                      </td>
+                      <td className="px-6 py-4">
+                        {(() => {
+                          const relativeTime = getRelativeTime(factura.fechaVencimiento)
+                          return (
+                            <div className={`text-sm font-medium ${relativeTime.color}`}>
+                              {relativeTime.text}
+                            </div>
+                          )
+                        })()}
                       </td>
                       <td className="px-6 py-4 text-right">
                         <div className="text-sm font-medium text-gray-900 dark:text-white">
