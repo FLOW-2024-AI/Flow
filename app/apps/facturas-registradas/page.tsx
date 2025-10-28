@@ -32,7 +32,9 @@ import {
   X,
   FileSpreadsheet,
   ChevronDown,
-  ChevronUp
+  ChevronUp,
+  User,
+  Loader2
 } from 'lucide-react'
 import * as XLSX from 'xlsx'
 import jsPDF from 'jspdf'
@@ -130,6 +132,17 @@ export default function FacturasRegistradasPage() {
   const [pdfSignedUrl, setPdfSignedUrl] = useState<string | null>(null)
   const [loadingPdf, setLoadingPdf] = useState(false)
   const [pdfSectionExpanded, setPdfSectionExpanded] = useState(true)
+
+  // Estados para el chat
+  const [chatMessages, setChatMessages] = useState<Array<{role: 'user' | 'assistant', content: string, timestamp: Date}>>([
+    {
+      role: 'assistant',
+      content: '¡Hola! Soy tu asistente de facturas. Puedo ayudarte con consultas como:\n\n• "¿Cuántas facturas tengo pendientes?"\n• "¿Cuál es el monto total de facturas de octubre?"\n• "Muéstrame las facturas del proveedor ABC"\n• "¿Qué facturas vencen esta semana?"',
+      timestamp: new Date()
+    }
+  ])
+  const [chatInput, setChatInput] = useState('')
+  const [chatLoading, setChatLoading] = useState(false)
 
   // Función para calcular tiempo relativo desde/hasta la fecha de vencimiento
   const getRelativeTime = (fechaVencimiento: string | null) => {
@@ -435,6 +448,63 @@ export default function FacturasRegistradasPage() {
     setShowDetalleModal(false)
     setSelectedFacturaDetalle(null)
     setPdfSignedUrl(null)
+  }
+
+  // Función para enviar mensaje del chat
+  const handleChatSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (!chatInput.trim() || chatLoading) return
+
+    const messageToSend = chatInput.trim()
+
+    const userMessage = {
+      role: 'user' as const,
+      content: messageToSend,
+      timestamp: new Date()
+    }
+
+    setChatMessages(prev => [...prev, userMessage])
+    setChatInput('')
+    setChatLoading(true)
+
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: messageToSend })
+      })
+
+      const result = await response.json()
+
+      if (result.success) {
+        const assistantMessage = {
+          role: 'assistant' as const,
+          content: result.response,
+          timestamp: new Date()
+        }
+        setChatMessages(prev => [...prev, assistantMessage])
+      } else {
+        const errorMessage = {
+          role: 'assistant' as const,
+          content: 'Lo siento, hubo un error al procesar tu pregunta. Por favor, intenta de nuevo.',
+          timestamp: new Date()
+        }
+        setChatMessages(prev => [...prev, errorMessage])
+      }
+    } catch (error) {
+      console.error('Error:', error)
+      const errorMessage = {
+        role: 'assistant' as const,
+        content: 'Error de conexión. Por favor, verifica tu conexión e intenta de nuevo.',
+        timestamp: new Date()
+      }
+      setChatMessages(prev => [...prev, errorMessage])
+    } finally {
+      setChatLoading(false)
+    }
   }
 
   const toggleFacturaSelection = (id: string) => {
@@ -1638,38 +1708,61 @@ export default function FacturasRegistradasPage() {
                 {/* Chat messages */}
                 <div className="flex-1 p-6 overflow-y-auto">
                   <div className="space-y-4">
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <Bot className="w-5 h-5 text-white" />
+                    {chatMessages.map((message, index) => (
+                      <div key={index} className={`flex items-start gap-3 ${message.role === 'user' ? 'justify-end' : ''}`}>
+                        {message.role === 'assistant' && (
+                          <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <Bot className="w-5 h-5 text-white" />
+                          </div>
+                        )}
+                        <div className={`flex-1 max-w-[80%] ${message.role === 'user' ? 'bg-blue-600 text-white' : 'bg-gray-100 dark:bg-gray-800'} rounded-lg p-4`}>
+                          <p className={`whitespace-pre-wrap text-sm ${message.role === 'user' ? 'text-white' : 'text-gray-900 dark:text-white'}`}>
+                            {message.content}
+                          </p>
+                          <p className={`text-xs mt-2 ${message.role === 'user' ? 'text-blue-100' : 'text-gray-500 dark:text-gray-400'}`}>
+                            {message.timestamp.toLocaleTimeString('es-PE', { hour: '2-digit', minute: '2-digit' })}
+                          </p>
+                        </div>
+                        {message.role === 'user' && (
+                          <div className="w-8 h-8 bg-gray-300 dark:bg-neutral-700 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <User className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+                          </div>
+                        )}
                       </div>
-                      <div className="flex-1 bg-gray-100 dark:bg-gray-800 rounded-lg p-4">
-                        <p className="text-gray-900 dark:text-white">
-                          ¡Hola! Soy tu asistente de facturas. Puedo ayudarte con consultas como:
-                        </p>
-                        <ul className="mt-2 space-y-1 text-sm text-gray-600 dark:text-gray-400">
-                          <li>• "¿Cuántas facturas tengo pendientes?"</li>
-                          <li>• "¿Cuál es el monto total de facturas de octubre?"</li>
-                          <li>• "Muéstrame las facturas del proveedor ABC"</li>
-                          <li>• "¿Qué facturas vencen esta semana?"</li>
-                        </ul>
+                    ))}
+                    {chatLoading && (
+                      <div className="flex items-start gap-3">
+                        <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <Bot className="w-5 h-5 text-white" />
+                        </div>
+                        <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4">
+                          <Loader2 className="w-5 h-5 text-blue-600 animate-spin" />
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
                 </div>
 
                 {/* Input area */}
                 <div className="border-t border-gray-200 dark:border-gray-700 p-4">
-                  <div className="flex gap-2">
+                  <form onSubmit={handleChatSubmit} className="flex gap-2">
                     <input
                       type="text"
+                      value={chatInput}
+                      onChange={(e) => setChatInput(e.target.value)}
                       placeholder="Escribe tu pregunta..."
-                      className="flex-1 px-4 py-3 bg-gray-50 dark:bg-neutral-800 border border-gray-300 dark:border-gray-600 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="flex-1 px-4 py-3 bg-gray-50 dark:bg-neutral-800 border border-gray-300 dark:border-gray-600 rounded-lg text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      disabled={chatLoading}
                     />
-                    <button className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors flex items-center gap-2">
+                    <button
+                      type="submit"
+                      disabled={!chatInput.trim() || chatLoading}
+                      className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
                       <Send className="w-4 h-4" />
                       Enviar
                     </button>
-                  </div>
+                  </form>
                 </div>
               </div>
             </div>

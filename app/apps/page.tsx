@@ -143,11 +143,11 @@ const apps: App[] = [
   },
   
   // COPILOTO IA
-  { 
-    name: 'Chat IA', 
-    description: 'Asistente inteligente',
-    icon: MessageSquare, 
-    href: '/apps/chat-ia', 
+  {
+    name: 'Agente IA',
+    description: 'Consulta tus facturas en lenguaje natural',
+    icon: MessageSquare,
+    href: '/chat',
     color: 'bg-blue-500',
     gradient: 'from-blue-500 to-blue-600',
     category: 'Copiloto IA'
