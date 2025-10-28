@@ -30,7 +30,9 @@ import {
   TrendingUp,
   PieChart,
   X,
-  FileSpreadsheet
+  FileSpreadsheet,
+  ChevronDown,
+  ChevronUp
 } from 'lucide-react'
 import * as XLSX from 'xlsx'
 import jsPDF from 'jspdf'
@@ -125,6 +127,9 @@ export default function FacturasRegistradasPage() {
   const [showDetalleModal, setShowDetalleModal] = useState(false)
   const [selectedFacturaDetalle, setSelectedFacturaDetalle] = useState<any>(null)
   const [loadingDetalle, setLoadingDetalle] = useState(false)
+  const [pdfSignedUrl, setPdfSignedUrl] = useState<string | null>(null)
+  const [loadingPdf, setLoadingPdf] = useState(false)
+  const [pdfSectionExpanded, setPdfSectionExpanded] = useState(true)
 
   // Función para calcular tiempo relativo desde/hasta la fecha de vencimiento
   const getRelativeTime = (fechaVencimiento: string | null) => {
@@ -384,12 +389,34 @@ export default function FacturasRegistradasPage() {
     try {
       setLoadingDetalle(true)
       setShowDetalleModal(true)
+      setPdfSignedUrl(null)
 
       const response = await fetch(`/api/factura-detalle?id=${encodeURIComponent(invoiceId)}`)
       const result = await response.json()
 
       if (result.success) {
         setSelectedFacturaDetalle(result.data)
+
+        // Si hay s3_url, obtener la URL firmada
+        if (result.data.factura.s3_url) {
+          setLoadingPdf(true)
+          try {
+            const pdfResponse = await fetch('/api/get-pdf-url', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ s3Url: result.data.factura.s3_url })
+            })
+            const pdfResult = await pdfResponse.json()
+
+            if (pdfResult.success) {
+              setPdfSignedUrl(pdfResult.url)
+            }
+          } catch (pdfErr) {
+            console.error('Error obteniendo URL del PDF:', pdfErr)
+          } finally {
+            setLoadingPdf(false)
+          }
+        }
       } else {
         console.error('Error al cargar detalle:', result.error)
         alert('Error al cargar el detalle de la factura')
@@ -407,6 +434,7 @@ export default function FacturasRegistradasPage() {
   const cerrarDetalleModal = () => {
     setShowDetalleModal(false)
     setSelectedFacturaDetalle(null)
+    setPdfSignedUrl(null)
   }
 
   const toggleFacturaSelection = (id: string) => {
@@ -2024,6 +2052,63 @@ export default function FacturasRegistradasPage() {
                     </div>
                   </div>
 
+                  {/* Sección: Visualizador de PDF */}
+                  {selectedFacturaDetalle.factura.s3_url && (
+                    <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-6">
+                      <div
+                        className="flex items-center justify-between mb-4 cursor-pointer"
+                        onClick={() => setPdfSectionExpanded(!pdfSectionExpanded)}
+                      >
+                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center gap-2">
+                          <FileText className="w-5 h-5" />
+                          PDF Original
+                        </h3>
+                        <button
+                          className="p-2 hover:bg-gray-200 dark:hover:bg-gray-800 rounded-lg transition-colors"
+                          title={pdfSectionExpanded ? "Colapsar" : "Expandir"}
+                        >
+                          {pdfSectionExpanded ? (
+                            <ChevronUp className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                          ) : (
+                            <ChevronDown className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                          )}
+                        </button>
+                      </div>
+                      {pdfSectionExpanded && (
+                        <>
+                          {loadingPdf ? (
+                            <div className="flex items-center justify-center py-12 bg-gray-100 dark:bg-gray-800 rounded-lg">
+                              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+                            </div>
+                          ) : pdfSignedUrl ? (
+                            <div className="relative w-full" style={{ height: '600px' }}>
+                              <iframe
+                                src={pdfSignedUrl}
+                                className="w-full h-full border-0 rounded-lg"
+                                title="PDF Viewer"
+                              />
+                              <a
+                                href={pdfSignedUrl}
+                                download
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="absolute top-4 right-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2 shadow-lg"
+                              >
+                                <Download className="w-4 h-4" />
+                                Descargar
+                              </a>
+                            </div>
+                          ) : (
+                            <div className="flex flex-col items-center justify-center py-12 bg-gray-100 dark:bg-gray-800 rounded-lg">
+                              <FileText className="w-12 h-12 text-gray-400 mb-2" />
+                              <p className="text-gray-600 dark:text-gray-400">No se pudo cargar el PDF</p>
+                            </div>
+                          )}
+                        </>
+                      )}
+                    </div>
+                  )}
+
                   {/* Sección: Totales */}
                   <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-lg p-6">
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Totales</h3>
@@ -2052,18 +2137,7 @@ export default function FacturasRegistradasPage() {
                   </div>
 
                   {/* Botón de cerrar al final */}
-                  <div className="flex justify-end gap-3">
-                    {selectedFacturaDetalle.factura.s3_url && (
-                      <a
-                        href={selectedFacturaDetalle.factura.s3_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors flex items-center gap-2"
-                      >
-                        <Download className="w-4 h-4" />
-                        Ver PDF Original
-                      </a>
-                    )}
+                  <div className="flex justify-end">
                     <button
                       onClick={cerrarDetalleModal}
                       className="px-6 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
