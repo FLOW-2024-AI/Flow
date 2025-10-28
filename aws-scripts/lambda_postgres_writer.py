@@ -12,9 +12,10 @@ import json
 import os
 import psycopg2
 from psycopg2.extras import Json
-from datetime import datetime
+from datetime import datetime, timedelta
 import boto3
 from botocore.exceptions import ClientError
+import re
 
 # Environment variables
 DB_HOST = os.environ.get('DB_HOST')
@@ -22,6 +23,71 @@ DB_PORT = int(os.environ.get('DB_PORT', '5432'))
 DB_NAME = os.environ.get('DB_NAME')
 DB_USER = os.environ.get('DB_USER')
 DB_PASSWORD = os.environ.get('DB_PASSWORD')
+
+
+def calcular_plazo_y_vencimiento(fecha_emision_str, plazo_credito_raw, fecha_vencimiento_raw):
+    """
+    Calcula plazo_credito (días) y fecha_vencimiento basándose en los datos disponibles.
+
+    Lógica:
+    1. Si viene fecha_vencimiento y fecha_emision → calcular plazo_credito = diferencia en días
+    2. Si viene solo plazo_credito (número o "30 dias") → calcular fecha_vencimiento = fecha_emision + plazo
+    3. Si ambos vienen, validar consistencia y usar los datos
+
+    Args:
+        fecha_emision_str: Fecha de emisión en formato YYYY-MM-DD
+        plazo_credito_raw: Puede ser int (30), string ("30 dias", "30"), o None
+        fecha_vencimiento_raw: Puede ser fecha YYYY-MM-DD o None
+
+    Returns:
+        tuple: (plazo_credito_int, fecha_vencimiento_date)
+    """
+    plazo_credito = None
+    fecha_vencimiento = None
+
+    # Parsear fecha de emisión
+    try:
+        if fecha_emision_str:
+            fecha_emision = datetime.strptime(fecha_emision_str, '%Y-%m-%d').date()
+        else:
+            return None, None
+    except (ValueError, TypeError):
+        return None, None
+
+    # Parsear fecha de vencimiento si existe
+    if fecha_vencimiento_raw:
+        try:
+            fecha_vencimiento = datetime.strptime(str(fecha_vencimiento_raw), '%Y-%m-%d').date()
+        except (ValueError, TypeError):
+            fecha_vencimiento = None
+
+    # Parsear plazo_credito si existe (extraer número)
+    if plazo_credito_raw:
+        try:
+            # Si es número directamente
+            if isinstance(plazo_credito_raw, (int, float)):
+                plazo_credito = int(plazo_credito_raw)
+            # Si es string, extraer números
+            elif isinstance(plazo_credito_raw, str):
+                match = re.search(r'\d+', plazo_credito_raw)
+                if match:
+                    plazo_credito = int(match.group())
+        except (ValueError, TypeError):
+            plazo_credito = None
+
+    # Lógica de cálculo
+    if fecha_vencimiento and fecha_emision:
+        # Calcular plazo desde las fechas
+        plazo_calculado = (fecha_vencimiento - fecha_emision).days
+        # Si ya teníamos plazo, validar consistencia (diferencia <= 2 días)
+        if plazo_credito and abs(plazo_calculado - plazo_credito) > 2:
+            print(f"⚠️ WARNING: Inconsistencia entre plazo ({plazo_credito}) y fechas ({plazo_calculado} días)")
+        plazo_credito = plazo_calculado
+    elif plazo_credito and fecha_emision:
+        # Calcular fecha_vencimiento desde el plazo
+        fecha_vencimiento = fecha_emision + timedelta(days=plazo_credito)
+
+    return plazo_credito, fecha_vencimiento
 
 
 def lambda_handler(event, context):
@@ -201,6 +267,13 @@ def prepare_factura_record(client_id, invoice_data, s3_data, sunat_validation, p
     # Convertir fecha de emisión (YYYY-MM-DD)
     fecha_emision = invoice_data.get('fechaEmision')
 
+    # Calcular plazo_credito y fecha_vencimiento
+    plazo_credito_raw = condiciones.get('plazoCredito')
+    fecha_vencimiento_raw = condiciones.get('fechaVencimiento') or invoice_data.get('fechaVencimiento')
+    plazo_credito_final, fecha_vencimiento_final = calcular_plazo_y_vencimiento(
+        fecha_emision, plazo_credito_raw, fecha_vencimiento_raw
+    )
+
     # Construir S3 URL
     s3_bucket = s3_data.get('bucket', '')
     s3_key = s3_data.get('key', '')
@@ -225,7 +298,7 @@ def prepare_factura_record(client_id, invoice_data, s3_data, sunat_validation, p
         'correlativo': invoice_data.get('correlativo'),
         'fecha_emision': fecha_emision,
         'hora_emision': invoice_data.get('horaEmision'),
-        'fecha_vencimiento': None,  # No está en el JSON estándar
+        'fecha_vencimiento': fecha_vencimiento_final,
         'moneda': montos.get('moneda', 'PEN'),
 
         # Datos del Emisor
@@ -255,7 +328,7 @@ def prepare_factura_record(client_id, invoice_data, s3_data, sunat_validation, p
         # Condiciones de pago
         'condicion_pago': condiciones.get('formaPago'),
         'medio_pago': condiciones.get('medioPago'),
-        'plazo_credito': condiciones.get('plazoCredito'),
+        'plazo_credito': plazo_credito_final,
         'vendedor': condiciones.get('vendedor'),
         'numero_pedido': condiciones.get('numeroPedido'),
         'oc_asociada': condiciones.get('ordenCompra'),

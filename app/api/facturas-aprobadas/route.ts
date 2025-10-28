@@ -11,14 +11,14 @@ const pool = new Pool({
   ssl: {
     rejectUnauthorized: false
   },
-  max: 20, // Máximo de conexiones en el pool
+  max: 20,
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 2000,
 })
 
 export async function GET() {
   try {
-    // Query para obtener facturas pendientes de aprobación del cliente
+    // Query para obtener facturas aprobadas por el cliente
     const query = `
       SELECT
         id,
@@ -36,10 +36,11 @@ export async function GET() {
         sunat_estado,
         sunat_estado_ruc_descripcion,
         s3_url,
+        aprobado_fecha,
         creado_en
       FROM facturas
-      WHERE aprobado_por_cliente IS NULL
-      ORDER BY creado_en DESC
+      WHERE aprobado_por_cliente = TRUE
+      ORDER BY aprobado_fecha DESC
     `
 
     const result = await pool.query(query)
@@ -64,7 +65,8 @@ export async function GET() {
       origen: row.procesamiento_motor?.includes('sunat') ? 'SUNAT' : 'Email',
       estadoSunat: row.sunat_estado || 'N/A',
       estadoRuc: row.sunat_estado_ruc_descripcion || 'N/A',
-      s3_url: row.s3_url
+      s3_url: row.s3_url,
+      aprobadoFecha: row.aprobado_fecha?.toISOString().split('T')[0] || ''
     }))
 
     return NextResponse.json({
@@ -74,54 +76,11 @@ export async function GET() {
     })
 
   } catch (error) {
-    console.error('Error fetching facturas pendientes:', error)
+    console.error('Error fetching facturas aprobadas:', error)
 
     return NextResponse.json({
       success: false,
-      error: 'Error al obtener facturas pendientes',
-      message: error instanceof Error ? error.message : 'Unknown error'
-    }, { status: 500 })
-  }
-}
-
-// POST endpoint para aprobar facturas
-export async function POST(request: Request) {
-  try {
-    const body = await request.json()
-    const { facturaIds } = body
-
-    if (!facturaIds || !Array.isArray(facturaIds) || facturaIds.length === 0) {
-      return NextResponse.json({
-        success: false,
-        error: 'Se requiere un array de IDs de facturas'
-      }, { status: 400 })
-    }
-
-    // Actualizar facturas como aprobadas
-    const query = `
-      UPDATE facturas
-      SET
-        aprobado_por_cliente = TRUE,
-        aprobado_fecha = NOW(),
-        actualizado_en = NOW()
-      WHERE invoice_id = ANY($1)
-      RETURNING invoice_id
-    `
-
-    const result = await pool.query(query, [facturaIds])
-
-    return NextResponse.json({
-      success: true,
-      message: `${result.rowCount} factura(s) aprobada(s)`,
-      approvedIds: result.rows.map(r => r.invoice_id)
-    })
-
-  } catch (error) {
-    console.error('Error aprobando facturas:', error)
-
-    return NextResponse.json({
-      success: false,
-      error: 'Error al aprobar facturas',
+      error: 'Error al obtener facturas aprobadas',
       message: error instanceof Error ? error.message : 'Unknown error'
     }, { status: 500 })
   }

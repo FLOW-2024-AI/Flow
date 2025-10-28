@@ -32,123 +32,7 @@ import {
   X
 } from 'lucide-react'
 
-// Data dummy de facturas
-const mockFacturas = [
-  {
-    id: 'F001-00012345',
-    proveedor: 'Distribuidora ABC SAC',
-    ruc: '20123456789',
-    fecha: '2025-10-15',
-    monto: 8500.00,
-    impuesto: 1530.00,
-    total: 10030.00,
-    estado: 'Registrada',
-    categoria: 'Mercadería',
-    formaPago: 'Crédito 30 días',
-    fechaVencimiento: '2025-11-15'
-  },
-  {
-    id: 'F002-00087654',
-    proveedor: 'Servicios Tecnológicos XYZ',
-    ruc: '20987654321',
-    fecha: '2025-10-14',
-    monto: 3200.00,
-    impuesto: 576.00,
-    total: 3776.00,
-    estado: 'Registrada',
-    categoria: 'Servicios',
-    formaPago: 'Contado',
-    fechaVencimiento: '-'
-  },
-  {
-    id: 'F001-00045678',
-    proveedor: 'Logística Express SAC',
-    ruc: '20456789123',
-    fecha: '2025-10-13',
-    monto: 1850.00,
-    impuesto: 333.00,
-    total: 2183.00,
-    estado: 'Procesando',
-    categoria: 'Transporte',
-    formaPago: 'Crédito 15 días',
-    fechaVencimiento: '2025-10-28'
-  },
-  {
-    id: 'F003-00023456',
-    proveedor: 'Suministros Generales EIRL',
-    ruc: '20234567891',
-    fecha: '2025-10-12',
-    monto: 950.00,
-    impuesto: 171.00,
-    total: 1121.00,
-    estado: 'Registrada',
-    categoria: 'Suministros',
-    formaPago: 'Contado',
-    fechaVencimiento: '-'
-  },
-  {
-    id: 'F001-00098765',
-    proveedor: 'Marketing Digital Corp',
-    ruc: '20876543219',
-    fecha: '2025-10-11',
-    monto: 5600.00,
-    impuesto: 1008.00,
-    total: 6608.00,
-    estado: 'Pendiente',
-    categoria: 'Marketing',
-    formaPago: 'Crédito 45 días',
-    fechaVencimiento: '2025-11-25'
-  },
-  {
-    id: 'F002-00034567',
-    proveedor: 'Consultoría Empresarial SAC',
-    ruc: '20345678912',
-    fecha: '2025-10-10',
-    monto: 12000.00,
-    impuesto: 2160.00,
-    total: 14160.00,
-    estado: 'Registrada',
-    categoria: 'Consultoría',
-    formaPago: 'Crédito 60 días',
-    fechaVencimiento: '2025-12-10'
-  },
-  {
-    id: 'F001-00056789',
-    proveedor: 'Mantenimiento Industrial EIRL',
-    ruc: '20567891234',
-    fecha: '2025-10-09',
-    monto: 2300.00,
-    impuesto: 414.00,
-    total: 2714.00,
-    estado: 'Registrada',
-    categoria: 'Mantenimiento',
-    formaPago: 'Contado',
-    fechaVencimiento: '-'
-  },
-  {
-    id: 'F003-00067890',
-    proveedor: 'Alquiler de Equipos SAC',
-    ruc: '20678901234',
-    fecha: '2025-10-08',
-    monto: 4500.00,
-    impuesto: 810.00,
-    total: 5310.00,
-    estado: 'Procesando',
-    categoria: 'Alquiler',
-    formaPago: 'Crédito 30 días',
-    fechaVencimiento: '2025-11-08'
-  }
-]
 
-// Estadísticas
-const mockStats = {
-  totalFacturas: 847,
-  facturasEsteMes: 156,
-  montoTotal: 2850420.00,
-  montoEsteMes: 458900.00,
-  pendientesValidacion: 12,
-  confianzaPromedio: 94
-}
 
 // Facturas pendientes de validación
 const mockFacturasPendientes = [
@@ -214,19 +98,42 @@ const analyticsData = {
 export default function FacturasRegistradasPage() {
   const [activeTab, setActiveTab] = useState<'validacion' | 'edicion' | 'bd' | 'agente' | 'analytics'>('validacion')
   const [searchTerm, setSearchTerm] = useState('')
-  const [selectedEstado, setSelectedEstado] = useState('Todas')
   const [selectedCategoria, setSelectedCategoria] = useState('Todas')
   const [selectedFacturas, setSelectedFacturas] = useState<string[]>([])
   const [editingId, setEditingId] = useState<string | null>(null)
   const [editedData, setEditedData] = useState<any>({})
   const [facturasPendientes, setFacturasPendientes] = useState(mockFacturasPendientes)
+  const [facturasAprobadas, setFacturasAprobadas] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
+  const [loadingAprobadas, setLoadingAprobadas] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [errorAprobadas, setErrorAprobadas] = useState<string | null>(null)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [itemsPerPage] = useState(10)
+  const [stats, setStats] = useState({
+    pendientes: 0,
+    montoPendientePen: 0,
+    montoPendienteUsd: 0,
+    procesadasHoy: 0
+  })
 
-  // Cargar facturas pendientes desde la API
+  // Cargar facturas pendientes y estadísticas desde la API
   useEffect(() => {
     fetchFacturasPendientes()
+    fetchStats()
   }, [])
+
+  // Cargar facturas aprobadas cuando se selecciona la pestaña BD
+  useEffect(() => {
+    if (activeTab === 'bd') {
+      fetchFacturasAprobadas()
+    }
+  }, [activeTab])
+
+  // Resetear a la primera página cuando cambian los filtros
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [searchTerm, selectedCategoria])
 
   const fetchFacturasPendientes = async () => {
     try {
@@ -241,7 +148,7 @@ export default function FacturasRegistradasPage() {
       } else {
         setError(result.error || 'Error al cargar facturas')
         console.error('Error:', result.error)
-      }facturasPendientes.length
+      }
     } catch (err) {
       setError('Error de conexión con el servidor')
       console.error('Error fetching facturas:', err)
@@ -249,7 +156,42 @@ export default function FacturasRegistradasPage() {
       setLoading(false)
     }
   }
-  
+
+  const fetchStats = async () => {
+    try {
+      const response = await fetch('/api/facturas-stats')
+      const result = await response.json()
+
+      if (result.success) {
+        setStats(result.data)
+      }
+    } catch (err) {
+      console.error('Error fetching stats:', err)
+    }
+  }
+
+  const fetchFacturasAprobadas = async () => {
+    try {
+      setLoadingAprobadas(true)
+      setErrorAprobadas(null)
+
+      const response = await fetch('/api/facturas-aprobadas')
+      const result = await response.json()
+
+      if (result.success) {
+        setFacturasAprobadas(result.data)
+      } else {
+        setErrorAprobadas(result.error || 'Error al cargar facturas aprobadas')
+        console.error('Error:', result.error)
+      }
+    } catch (err) {
+      setErrorAprobadas('Error de conexión con el servidor')
+      console.error('Error fetching facturas aprobadas:', err)
+    } finally {
+      setLoadingAprobadas(false)
+    }
+  }
+
   const toggleFacturaSelection = (id: string) => {
     setSelectedFacturas(prev => 
       prev.includes(id) ? prev.filter(f => f !== id) : [...prev, id]
@@ -302,6 +244,26 @@ export default function FacturasRegistradasPage() {
   }
   
   const enviarFactura = async (id: string) => {
+    // Buscar la factura para mostrar sus detalles
+    const factura = facturasPendientes.find(f => f.id === id)
+    if (!factura) return
+
+    // Determinar símbolo de moneda
+    const moneda = (factura as any).moneda || 'PEN'
+    const simbolo = moneda === 'USD' ? '$' : 'S/'
+    const locale = moneda === 'USD' ? 'en-US' : 'es-PE'
+
+    // Mostrar confirmación
+    const confirmar = window.confirm(
+      `¿Estás seguro que deseas aprobar esta factura?\n\n` +
+      `Proveedor: ${factura.proveedor}\n` +
+      `RUC: ${factura.ruc}\n` +
+      `Total: ${simbolo} ${factura.total.toLocaleString(locale, { minimumFractionDigits: 2 })}\n\n` +
+      `Esta acción marcará la factura como aprobada.`
+    )
+
+    if (!confirmar) return
+
     try {
       const response = await fetch('/api/facturas-pendientes', {
         method: 'POST',
@@ -320,18 +282,51 @@ export default function FacturasRegistradasPage() {
         // Remover de seleccionadas si estaba seleccionada
         setSelectedFacturas(prev => prev.filter(fId => fId !== id))
 
+        // Actualizar estadísticas
+        fetchStats()
+
+        // Mostrar mensaje de éxito
+        alert('✅ Factura aprobada exitosamente')
         console.log('Factura enviada exitosamente:', id)
       } else {
         console.error('Error al enviar factura:', result.error)
-        alert('Error al aprobar la factura: ' + result.error)
+        alert('❌ Error al aprobar la factura: ' + result.error)
       }
     } catch (err) {
       console.error('Error enviando factura:', err)
-      alert('Error de conexión al aprobar la factura')
+      alert('❌ Error de conexión al aprobar la factura')
     }
   }
   
   const enviarSeleccionadas = async () => {
+    if (selectedFacturas.length === 0) {
+      alert('⚠️ Por favor selecciona al menos una factura')
+      return
+    }
+
+    // Calcular totales por moneda
+    const facturasAEnviar = facturasPendientes.filter(f => selectedFacturas.includes(f.id))
+    const totalPen = facturasAEnviar
+      .filter(f => (f as any).moneda === 'PEN' || !(f as any).moneda)
+      .reduce((acc, f) => acc + f.total, 0)
+    const totalUsd = facturasAEnviar
+      .filter(f => (f as any).moneda === 'USD')
+      .reduce((acc, f) => acc + f.total, 0)
+
+    let mensaje = `¿Estás seguro que deseas aprobar ${selectedFacturas.length} factura(s)?\n\n`
+    if (totalPen > 0) {
+      mensaje += `Total en soles: S/ ${totalPen.toLocaleString('es-PE', { minimumFractionDigits: 2 })}\n`
+    }
+    if (totalUsd > 0) {
+      mensaje += `Total en dólares: $ ${totalUsd.toLocaleString('en-US', { minimumFractionDigits: 2 })}\n`
+    }
+    mensaje += `\nEsta acción marcará las facturas como aprobadas.`
+
+    // Mostrar confirmación
+    const confirmar = window.confirm(mensaje)
+
+    if (!confirmar) return
+
     try {
       const response = await fetch('/api/facturas-pendientes', {
         method: 'POST',
@@ -352,42 +347,22 @@ export default function FacturasRegistradasPage() {
         // Limpiar selección
         setSelectedFacturas([])
 
+        // Actualizar estadísticas
+        fetchStats()
+
+        // Mostrar mensaje de éxito
+        alert(`✅ ${result.approvedIds?.length || selectedFacturas.length} factura(s) aprobada(s) exitosamente`)
         console.log('Facturas enviadas exitosamente:', result.approvedIds)
       } else {
         console.error('Error al enviar facturas:', result.error)
-        alert('Error al aprobar las facturas: ' + result.error)
+        alert('❌ Error al aprobar las facturas: ' + result.error)
       }
     } catch (err) {
       console.error('Error enviando facturas:', err)
-      alert('Error de conexión al aprobar las facturas')
+      alert('❌ Error de conexión al aprobar las facturas')
     }
   }
 
-  const filteredFacturas = mockFacturas.filter(factura => {
-    const matchSearch = factura.proveedor.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                       factura.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                       factura.ruc.includes(searchTerm)
-    const matchEstado = selectedEstado === 'Todas' || factura.estado === selectedEstado
-    const matchCategoria = selectedCategoria === 'Todas' || factura.categoria === selectedCategoria
-    return matchSearch && matchEstado && matchCategoria
-  })
-
-  const getEstadoBadge = (estado: string) => {
-    const badges: { [key: string]: { bg: string, text: string, icon: any } } = {
-      'Registrada': { bg: 'bg-green-100 dark:bg-green-900/30', text: 'text-green-700 dark:text-green-400', icon: CheckCircle },
-      'Procesando': { bg: 'bg-blue-100 dark:bg-blue-900/30', text: 'text-blue-700 dark:text-blue-400', icon: Clock },
-      'Pendiente': { bg: 'bg-yellow-100 dark:bg-yellow-900/30', text: 'text-yellow-700 dark:text-yellow-400', icon: AlertCircle }
-    }
-    const badge = badges[estado] || badges['Pendiente']
-    const Icon = badge.icon
-    
-    return (
-      <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium ${badge.bg} ${badge.text}`}>
-        <Icon className="w-3.5 h-3.5" />
-        {estado}
-      </span>
-    )
-  }
 
   return (
     <div className="min-h-screen bg-white dark:bg-neutral-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
@@ -550,7 +525,7 @@ export default function FacturasRegistradasPage() {
               {!loading && !error && (
                 <>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -560,7 +535,7 @@ export default function FacturasRegistradasPage() {
                     <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Pendientes</span>
                     <AlertCircle className="w-5 h-5 text-yellow-500" />
                   </div>
-                  <p className="text-3xl font-bold text-gray-900 dark:text-white">{facturasPendientes.length}</p>
+                  <p className="text-3xl font-bold text-gray-900 dark:text-white">{stats.pendientes}</p>
                   <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Requieren atención</p>
                 </motion.div>
 
@@ -574,8 +549,24 @@ export default function FacturasRegistradasPage() {
                     <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Monto Pendiente</span>
                     <TrendingUp className="w-5 h-5 text-orange-500" />
                   </div>
-                  <p className="text-3xl font-bold text-gray-900 dark:text-white">
-                    S/ {facturasPendientes.reduce((acc, f) => acc + f.total, 0).toLocaleString('es-PE', { minimumFractionDigits: 2 })}
+                  <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                    S/ {stats.montoPendientePen.toLocaleString('es-PE', { minimumFractionDigits: 2 })}
+                  </p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Por validar</p>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.15 }}
+                  className="bg-gradient-to-br from-white to-gray-50 dark:from-[#252525] dark:to-[#252525] border-2 border-gray-200 dark:border-gray-700 rounded-xl p-6"
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Monto Pendiente</span>
+                    <TrendingUp className="w-5 h-5 text-green-500" />
+                  </div>
+                  <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                    $ {stats.montoPendienteUsd.toLocaleString('en-US', { minimumFractionDigits: 2 })}
                   </p>
                   <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Por validar</p>
                 </motion.div>
@@ -590,7 +581,7 @@ export default function FacturasRegistradasPage() {
                     <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Procesadas Hoy</span>
                     <CheckCircle className="w-5 h-5 text-blue-500" />
                   </div>
-                  <p className="text-3xl font-bold text-gray-900 dark:text-white">{analyticsData.procesadasHoy}</p>
+                  <p className="text-3xl font-bold text-gray-900 dark:text-white">{stats.procesadasHoy}</p>
                   <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Automático</p>
                 </motion.div>
               </div>
@@ -746,7 +737,7 @@ export default function FacturasRegistradasPage() {
                               />
                             ) : (
                               <div className="text-sm font-medium text-gray-900 dark:text-white">
-                                S/ {factura.monto.toLocaleString('es-PE', { minimumFractionDigits: 2 })}
+                                {(factura as any).moneda === 'USD' ? '$' : 'S/'} {factura.monto.toLocaleString((factura as any).moneda === 'USD' ? 'en-US' : 'es-PE', { minimumFractionDigits: 2 })}
                               </div>
                             )}
                           </td>
@@ -761,15 +752,15 @@ export default function FacturasRegistradasPage() {
                               />
                             ) : (
                               <div className="text-sm font-medium text-gray-900 dark:text-white">
-                                S/ {factura.impuesto.toLocaleString('es-PE', { minimumFractionDigits: 2 })}
+                                {(factura as any).moneda === 'USD' ? '$' : 'S/'} {factura.impuesto.toLocaleString((factura as any).moneda === 'USD' ? 'en-US' : 'es-PE', { minimumFractionDigits: 2 })}
                               </div>
                             )}
                           </td>
                           <td className="px-6 py-4 text-right">
                             <div className="text-base font-bold text-gray-900 dark:text-white">
-                              S/ {editingId === factura.id 
-                                ? (editedData.monto + editedData.impuesto).toLocaleString('es-PE', { minimumFractionDigits: 2 })
-                                : factura.total.toLocaleString('es-PE', { minimumFractionDigits: 2 })
+                              {(factura as any).moneda === 'USD' ? '$' : 'S/'} {editingId === factura.id
+                                ? (editedData.monto + editedData.impuesto).toLocaleString((factura as any).moneda === 'USD' ? 'en-US' : 'es-PE', { minimumFractionDigits: 2 })
+                                : factura.total.toLocaleString((factura as any).moneda === 'USD' ? 'en-US' : 'es-PE', { minimumFractionDigits: 2 })
                               }
                             </div>
                           </td>
@@ -888,8 +879,42 @@ export default function FacturasRegistradasPage() {
           {/* BASE DE DATOS */}
           {activeTab === 'bd' && (
             <div>
+              <div className="mb-4 sm:mb-6">
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">Facturas Registradas</h2>
+                <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Todas las facturas aprobadas y registradas en el sistema</p>
+              </div>
+
+              {/* Loading State */}
+              {loadingAprobadas && (
+                <div className="flex items-center justify-center py-12">
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+                  <span className="ml-3 text-gray-600 dark:text-gray-400">Cargando facturas...</span>
+                </div>
+              )}
+
+              {/* Error State */}
+              {errorAprobadas && !loadingAprobadas && (
+                <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl p-6 mb-6">
+                  <div className="flex items-center gap-3">
+                    <AlertCircle className="w-6 h-6 text-red-600 dark:text-red-400" />
+                    <div>
+                      <h3 className="font-semibold text-red-900 dark:text-red-100">Error al cargar facturas</h3>
+                      <p className="text-sm text-red-700 dark:text-red-300">{errorAprobadas}</p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={fetchFacturasAprobadas}
+                    className="mt-4 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors"
+                  >
+                    Reintentar
+                  </button>
+                </div>
+              )}
+
+              {!loadingAprobadas && !errorAprobadas && (
+                <>
           {/* Stats Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -899,8 +924,8 @@ export default function FacturasRegistradasPage() {
                 <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Total Facturas</span>
                 <FileText className="w-5 h-5 text-indigo-500" />
               </div>
-              <p className="text-3xl font-bold text-gray-900 dark:text-white">{mockStats.totalFacturas}</p>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Histórico completo</p>
+              <p className="text-3xl font-bold text-gray-900 dark:text-white">{facturasAprobadas.length}</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Aprobadas</p>
             </motion.div>
 
             <motion.div
@@ -913,8 +938,14 @@ export default function FacturasRegistradasPage() {
                 <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Este Mes</span>
                 <Calendar className="w-5 h-5 text-blue-500" />
               </div>
-              <p className="text-3xl font-bold text-gray-900 dark:text-white">{mockStats.facturasEsteMes}</p>
-              <p className="text-xs text-green-600 dark:text-green-400 mt-1">+12% vs mes anterior</p>
+              <p className="text-3xl font-bold text-gray-900 dark:text-white">
+                {facturasAprobadas.filter(f => {
+                  const fecha = new Date(f.fecha)
+                  const hoy = new Date()
+                  return fecha.getMonth() === hoy.getMonth() && fecha.getFullYear() === hoy.getFullYear()
+                }).length}
+              </p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Facturas aprobadas</p>
             </motion.div>
 
             <motion.div
@@ -927,8 +958,10 @@ export default function FacturasRegistradasPage() {
                 <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Monto Total</span>
                 <FileBarChart className="w-5 h-5 text-green-500" />
               </div>
-              <p className="text-3xl font-bold text-gray-900 dark:text-white">S/ {mockStats.montoTotal.toLocaleString('es-PE', { minimumFractionDigits: 2 })}</p>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Todos los tiempos</p>
+              <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                S/ {facturasAprobadas.filter(f => f.moneda === 'PEN' || !f.moneda).reduce((acc, f) => acc + f.total, 0).toLocaleString('es-PE', { minimumFractionDigits: 2 })}
+              </p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Soles</p>
             </motion.div>
 
             <motion.div
@@ -938,17 +971,19 @@ export default function FacturasRegistradasPage() {
               className="bg-gradient-to-br from-white to-gray-50 dark:from-[#252525] dark:to-[#252525] border-2 border-gray-200 dark:border-gray-700 rounded-xl p-6"
             >
               <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Monto Este Mes</span>
+                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Monto Total</span>
                 <CheckCircle className="w-5 h-5 text-purple-500" />
               </div>
-              <p className="text-3xl font-bold text-gray-900 dark:text-white">S/ {mockStats.montoEsteMes.toLocaleString('es-PE', { minimumFractionDigits: 2 })}</p>
-              <p className="text-xs text-green-600 dark:text-green-400 mt-1">+8% vs mes anterior</p>
+              <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                $ {facturasAprobadas.filter(f => f.moneda === 'USD').reduce((acc, f) => acc + f.total, 0).toLocaleString('en-US', { minimumFractionDigits: 2 })}
+              </p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Dólares</p>
             </motion.div>
           </div>
 
           {/* Filters */}
           <div className="bg-white dark:bg-[#252525] border border-gray-200 dark:border-gray-700 rounded-xl p-6 mb-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Buscar
@@ -967,23 +1002,7 @@ export default function FacturasRegistradasPage() {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Estado
-                </label>
-                <select
-                  value={selectedEstado}
-                  onChange={(e) => setSelectedEstado(e.target.value)}
-                  className="w-full px-4 py-2 bg-gray-50 dark:bg-neutral-800 border border-gray-300 dark:border-gray-600 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
-                  <option>Todas</option>
-                  <option>Registrada</option>
-                  <option>Procesando</option>
-                  <option>Pendiente</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Categoría
+                  Moneda
                 </label>
                 <select
                   value={selectedCategoria}
@@ -991,14 +1010,8 @@ export default function FacturasRegistradasPage() {
                   className="w-full px-4 py-2 bg-gray-50 dark:bg-neutral-800 border border-gray-300 dark:border-gray-600 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   <option>Todas</option>
-                  <option>Mercadería</option>
-                  <option>Servicios</option>
-                  <option>Transporte</option>
-                  <option>Suministros</option>
-                  <option>Marketing</option>
-                  <option>Consultoría</option>
-                  <option>Mantenimiento</option>
-                  <option>Alquiler</option>
+                  <option>PEN</option>
+                  <option>USD</option>
                 </select>
               </div>
             </div>
@@ -1006,22 +1019,56 @@ export default function FacturasRegistradasPage() {
 
           {/* Facturas Table */}
           <div className="bg-white dark:bg-[#252525] border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full">
+            <div className="overflow-x-auto -mx-4 sm:mx-0">
+              <table className="w-full min-w-[800px]">
                 <thead className="bg-gray-50 dark:bg-neutral-800 border-b border-gray-200 dark:border-gray-700">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Factura</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Proveedor</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Fecha</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Categoría</th>
-                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Monto</th>
-                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Total</th>
-                    <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Estado</th>
-                    <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Acciones</th>
+                    <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                      Proveedor
+                    </th>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                      RUC
+                    </th>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                      Fecha
+                    </th>
+                    <th className="px-6 py-4 text-right text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                      Subtotal
+                    </th>
+                    <th className="px-6 py-4 text-right text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                      IGV
+                    </th>
+                    <th className="px-6 py-4 text-right text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                      Total
+                    </th>
+                    <th className="px-6 py-4 text-center text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                      Estado CPE
+                    </th>
+                    <th className="px-6 py-4 text-center text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                      Estado RUC
+                    </th>
+                    <th className="px-6 py-4 text-center text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                      Acciones
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                  {filteredFacturas.map((factura, index) => (
+                  {(() => {
+                    // Filtrar facturas
+                    const filteredFacturas = facturasAprobadas.filter(factura => {
+                      const matchSearch = factura.proveedor.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                         factura.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                         factura.ruc.includes(searchTerm)
+                      const matchMoneda = selectedCategoria === 'Todas' || factura.moneda === selectedCategoria || (!factura.moneda && selectedCategoria === 'PEN')
+                      return matchSearch && matchMoneda
+                    })
+
+                    // Calcular paginación
+                    const indexOfLastItem = currentPage * itemsPerPage
+                    const indexOfFirstItem = indexOfLastItem - itemsPerPage
+                    const currentFacturas = filteredFacturas.slice(indexOfFirstItem, indexOfLastItem)
+
+                    return currentFacturas.map((factura, index) => (
                     <motion.tr
                       key={factura.id}
                       initial={{ opacity: 0 }}
@@ -1029,49 +1076,58 @@ export default function FacturasRegistradasPage() {
                       transition={{ delay: index * 0.05 }}
                       className="hover:bg-gray-50 dark:hover:bg-neutral-800/50 transition-colors"
                     >
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="flex items-center">
-                          <FileText className="w-4 h-4 text-indigo-500 mr-2" />
-                          <div>
-                            <div className="text-sm font-medium text-gray-900 dark:text-white">{factura.id}</div>
-                            <div className="text-xs text-gray-500 dark:text-gray-400">{factura.ruc}</div>
-                          </div>
+                      <td className="px-6 py-4">
+                        <div>
+                          <div className="text-sm font-semibold text-gray-900 dark:text-white">{factura.proveedor}</div>
+                          <div className="text-xs text-gray-500 dark:text-gray-400">{factura.id}</div>
                         </div>
                       </td>
                       <td className="px-6 py-4">
-                        <div className="text-sm text-gray-900 dark:text-white font-medium">{factura.proveedor}</div>
-                        <div className="text-xs text-gray-500 dark:text-gray-400">{factura.formaPago}</div>
+                        <div className="text-sm text-gray-900 dark:text-white font-mono">{factura.ruc}</div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-6 py-4">
                         <div className="text-sm text-gray-900 dark:text-white">{factura.fecha}</div>
-                        {factura.fechaVencimiento !== '-' && (
-                          <div className="text-xs text-gray-500 dark:text-gray-400">Vence: {factura.fechaVencimiento}</div>
-                        )}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <span className="inline-flex px-2 py-1 text-xs font-medium rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300">
-                          {factura.categoria}
+                      <td className="px-6 py-4 text-right">
+                        <div className="text-sm font-medium text-gray-900 dark:text-white">
+                          {factura.moneda === 'USD' ? '$' : 'S/'} {factura.monto.toLocaleString(factura.moneda === 'USD' ? 'en-US' : 'es-PE', { minimumFractionDigits: 2 })}
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 text-right">
+                        <div className="text-sm font-medium text-gray-900 dark:text-white">
+                          {factura.moneda === 'USD' ? '$' : 'S/'} {factura.impuesto.toLocaleString(factura.moneda === 'USD' ? 'en-US' : 'es-PE', { minimumFractionDigits: 2 })}
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 text-right">
+                        <div className="text-base font-bold text-gray-900 dark:text-white">
+                          {factura.moneda === 'USD' ? '$' : 'S/'} {factura.total.toLocaleString(factura.moneda === 'USD' ? 'en-US' : 'es-PE', { minimumFractionDigits: 2 })}
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 text-center">
+                        <span className={`inline-flex px-2.5 py-1 text-xs font-medium rounded-full ${
+                          factura.estadoSunat === 'VALIDO'
+                            ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400'
+                            : factura.estadoSunat === 'INVALIDO'
+                            ? 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400'
+                            : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'
+                        }`}>
+                          {factura.estadoSunat || 'N/A'}
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-right">
-                        <div className="text-sm font-medium text-gray-900 dark:text-white">
-                          S/ {factura.monto.toLocaleString('es-PE', { minimumFractionDigits: 2 })}
-                        </div>
-                        <div className="text-xs text-gray-500 dark:text-gray-400">
-                          + S/ {factura.impuesto.toLocaleString('es-PE', { minimumFractionDigits: 2 })} IGV
-                        </div>
+                      <td className="px-6 py-4 text-center">
+                        <span className={`inline-flex px-2.5 py-1 text-xs font-medium rounded-full ${
+                          factura.estadoRuc === 'ACTIVO'
+                            ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400'
+                            : factura.estadoRuc === 'INACTIVO' || factura.estadoRuc === 'SUSPENDIDO'
+                            ? 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400'
+                            : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'
+                        }`}>
+                          {factura.estadoRuc || 'N/A'}
+                        </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-right">
-                        <div className="text-sm font-bold text-gray-900 dark:text-white">
-                          S/ {factura.total.toLocaleString('es-PE', { minimumFractionDigits: 2 })}
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-center">
-                        {getEstadoBadge(factura.estado)}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-center">
+                      <td className="px-6 py-4">
                         <div className="flex items-center justify-center gap-2">
-                          <button className="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
+                          <button className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors" title="Ver detalles">
                             <Eye className="w-4 h-4 text-gray-600 dark:text-gray-400" />
                           </button>
                           <button className="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
@@ -1080,32 +1136,115 @@ export default function FacturasRegistradasPage() {
                         </div>
                       </td>
                     </motion.tr>
-                  ))}
+                    ))
+                  })()}
                 </tbody>
               </table>
             </div>
 
             {/* Pagination */}
-            <div className="bg-gray-50 dark:bg-neutral-800 px-6 py-4 border-t border-gray-200 dark:border-gray-700 flex items-center justify-between">
-              <div className="text-sm text-gray-700 dark:text-gray-300">
-                Mostrando <span className="font-medium">{filteredFacturas.length}</span> de <span className="font-medium">{mockFacturas.length}</span> facturas
-              </div>
-              <div className="flex gap-2">
-                <button className="px-3 py-1 text-sm bg-white dark:bg-neutral-700 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-neutral-600 transition-colors">
-                  Anterior
-                </button>
-                <button className="px-3 py-1 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                  1
-                </button>
-                <button className="px-3 py-1 text-sm bg-white dark:bg-neutral-700 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-neutral-600 transition-colors">
-                  2
-                </button>
-                <button className="px-3 py-1 text-sm bg-white dark:bg-neutral-700 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-neutral-600 transition-colors">
-                  Siguiente
-                </button>
-              </div>
-            </div>
+            {(() => {
+              // Calcular información de paginación
+              const filteredFacturas = facturasAprobadas.filter(factura => {
+                const matchSearch = factura.proveedor.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                   factura.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                   factura.ruc.includes(searchTerm)
+                const matchMoneda = selectedCategoria === 'Todas' || factura.moneda === selectedCategoria || (!factura.moneda && selectedCategoria === 'PEN')
+                return matchSearch && matchMoneda
+              })
+
+              const totalPages = Math.ceil(filteredFacturas.length / itemsPerPage)
+              const indexOfLastItem = currentPage * itemsPerPage
+              const indexOfFirstItem = indexOfLastItem - itemsPerPage
+              const currentCount = Math.min(indexOfLastItem, filteredFacturas.length)
+
+              // Generar números de página a mostrar
+              const getPageNumbers = () => {
+                const pages = []
+                const maxPagesToShow = 5
+
+                if (totalPages <= maxPagesToShow) {
+                  for (let i = 1; i <= totalPages; i++) {
+                    pages.push(i)
+                  }
+                } else {
+                  if (currentPage <= 3) {
+                    for (let i = 1; i <= 4; i++) {
+                      pages.push(i)
+                    }
+                    pages.push('...')
+                    pages.push(totalPages)
+                  } else if (currentPage >= totalPages - 2) {
+                    pages.push(1)
+                    pages.push('...')
+                    for (let i = totalPages - 3; i <= totalPages; i++) {
+                      pages.push(i)
+                    }
+                  } else {
+                    pages.push(1)
+                    pages.push('...')
+                    for (let i = currentPage - 1; i <= currentPage + 1; i++) {
+                      pages.push(i)
+                    }
+                    pages.push('...')
+                    pages.push(totalPages)
+                  }
+                }
+
+                return pages
+              }
+
+              return (
+                <div className="bg-gray-50 dark:bg-neutral-800 px-6 py-4 border-t border-gray-200 dark:border-gray-700 flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <div className="text-sm text-gray-700 dark:text-gray-300">
+                    Mostrando <span className="font-medium">{filteredFacturas.length === 0 ? 0 : indexOfFirstItem + 1}</span> a <span className="font-medium">{currentCount}</span> de <span className="font-medium">{filteredFacturas.length}</span> facturas
+                  </div>
+
+                  {totalPages > 1 && (
+                    <div className="flex gap-2 flex-wrap justify-center">
+                      <button
+                        onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                        disabled={currentPage === 1}
+                        className="px-3 py-1 text-sm bg-white dark:bg-neutral-700 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-neutral-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        Anterior
+                      </button>
+
+                      {getPageNumbers().map((pageNum, idx) => (
+                        pageNum === '...' ? (
+                          <span key={`ellipsis-${idx}`} className="px-3 py-1 text-sm text-gray-500">
+                            ...
+                          </span>
+                        ) : (
+                          <button
+                            key={pageNum}
+                            onClick={() => setCurrentPage(pageNum as number)}
+                            className={`px-3 py-1 text-sm rounded-lg transition-colors ${
+                              currentPage === pageNum
+                                ? 'bg-blue-600 text-white'
+                                : 'bg-white dark:bg-neutral-700 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-neutral-600'
+                            }`}
+                          >
+                            {pageNum}
+                          </button>
+                        )
+                      ))}
+
+                      <button
+                        onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                        disabled={currentPage === totalPages}
+                        className="px-3 py-1 text-sm bg-white dark:bg-neutral-700 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-neutral-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        Siguiente
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )
+            })()}
           </div>
+                </>
+              )}
             </div>
           )}
 

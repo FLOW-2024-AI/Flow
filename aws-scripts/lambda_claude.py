@@ -488,7 +488,8 @@ ESTRUCTURA JSON REQUERIDA (retorna SOLO este JSON, sin texto adicional):
   "condiciones": {
     "formaPago": "CONTADO",
     "medioPago": "TRANSFERENCIA",
-    "plazoCredito": null,
+    "plazoCredito": 30,
+    "fechaVencimiento": "2025-10-22",
     "cuotas": null,
     "vendedor": "CHRISTIAN",
     "numeroPedido": "0006-2849",
@@ -578,11 +579,26 @@ INSTRUCCIONES CRÍTICAS:
    - Validar que correlativo sea numérico
    - Identificar si es agente de retención/percepción
 
-6. WARNINGS Y ERRORES:
+6. PLAZO DE CRÉDITO Y FECHA DE VENCIMIENTO (CRÍTICO):
+   - plazoCredito: DEBE ser un NÚMERO ENTERO (días), NO texto como "30 dias" o "15 días"
+   - fechaVencimiento: DEBE ser formato YYYY-MM-DD
+   - LÓGICA A SEGUIR:
+     * Si encuentras AMBOS (plazo y fecha): extraer ambos como están
+     * Si solo encuentras plazo (ej: "crédito 30 días"): extraer SOLO el número (30) en plazoCredito, fechaVencimiento = null
+     * Si solo encuentras fecha de vencimiento: extraerla en fechaVencimiento, plazoCredito = null
+     * Si es CONTADO: plazoCredito = null, fechaVencimiento = null
+   - EJEMPLOS:
+     * "Crédito 30 días" → plazoCredito: 30, fechaVencimiento: null
+     * "Vencimiento: 2025-10-30" → plazoCredito: null, fechaVencimiento: "2025-10-30"
+     * "Contado" → plazoCredito: null, fechaVencimiento: null
+     * "15 dias" → plazoCredito: 15, fechaVencimiento: null
+   - NUNCA pongas texto en plazoCredito, SOLO números enteros o null
+
+7. WARNINGS Y ERRORES:
    - En validaciones.warnings: inconsistencias menores (ej: IGV difiere por redondeo)
    - En validaciones.errores: problemas graves (ej: RUC inválido, total no cuadra)
 
-7. RESPUESTA:
+8. RESPUESTA:
    - Retornar ÚNICAMENTE el JSON
    - NO agregar texto explicativo antes o después
    - NO usar markdown (```json)
