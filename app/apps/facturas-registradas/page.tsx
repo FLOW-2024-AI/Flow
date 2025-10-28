@@ -122,6 +122,9 @@ export default function FacturasRegistradasPage() {
     montoPendienteUsd: 0,
     procesadasHoy: 0
   })
+  const [showDetalleModal, setShowDetalleModal] = useState(false)
+  const [selectedFacturaDetalle, setSelectedFacturaDetalle] = useState<any>(null)
+  const [loadingDetalle, setLoadingDetalle] = useState(false)
 
   // Función para calcular tiempo relativo desde/hasta la fecha de vencimiento
   const getRelativeTime = (fechaVencimiento: string | null) => {
@@ -375,6 +378,35 @@ export default function FacturasRegistradasPage() {
     } finally {
       setLoadingAprobadas(false)
     }
+  }
+
+  const verDetalleFactura = async (invoiceId: string) => {
+    try {
+      setLoadingDetalle(true)
+      setShowDetalleModal(true)
+
+      const response = await fetch(`/api/factura-detalle?id=${encodeURIComponent(invoiceId)}`)
+      const result = await response.json()
+
+      if (result.success) {
+        setSelectedFacturaDetalle(result.data)
+      } else {
+        console.error('Error al cargar detalle:', result.error)
+        alert('Error al cargar el detalle de la factura')
+        setShowDetalleModal(false)
+      }
+    } catch (err) {
+      console.error('Error fetching detalle:', err)
+      alert('Error de conexión al cargar el detalle')
+      setShowDetalleModal(false)
+    } finally {
+      setLoadingDetalle(false)
+    }
+  }
+
+  const cerrarDetalleModal = () => {
+    setShowDetalleModal(false)
+    setSelectedFacturaDetalle(null)
   }
 
   const toggleFacturaSelection = (id: string) => {
@@ -1004,7 +1036,11 @@ export default function FacturasRegistradasPage() {
                                   >
                                     <Edit3 className="w-4 h-4" />
                                   </button>
-                                  <button className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors" title="Ver detalles">
+                                  <button
+                                    onClick={() => verDetalleFactura(factura.id)}
+                                    className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                                    title="Ver detalles"
+                                  >
                                     <Eye className="w-4 h-4 text-gray-600 dark:text-gray-400" />
                                   </button>
                                 </>
@@ -1013,7 +1049,7 @@ export default function FacturasRegistradasPage() {
                           </td>
                           <td className="px-6 py-4">
                             <div className="flex items-center justify-center">
-                              <button 
+                              <button
                                 onClick={() => enviarFactura(factura.id)}
                                 disabled={editingId === factura.id}
                                 className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white rounded-lg transition-colors font-medium text-sm"
@@ -1437,7 +1473,11 @@ export default function FacturasRegistradasPage() {
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex items-center justify-center gap-2">
-                          <button className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors" title="Ver detalles">
+                          <button
+                            onClick={() => verDetalleFactura(factura.id)}
+                            className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                            title="Ver detalles"
+                          >
                             <Eye className="w-4 h-4 text-gray-600 dark:text-gray-400" />
                           </button>
                           <button className="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
@@ -1727,6 +1767,311 @@ export default function FacturasRegistradasPage() {
 
         </div>
       </div>
+
+      {/* Modal de Detalle de Factura */}
+      {showDetalleModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl max-w-6xl w-full max-h-[90vh] overflow-y-auto"
+          >
+            {/* Header del Modal */}
+            <div className="sticky top-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 py-4 flex items-center justify-between z-10">
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+                Detalle de Factura
+              </h2>
+              <button
+                onClick={cerrarDetalleModal}
+                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+              >
+                <X className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+              </button>
+            </div>
+
+            {/* Contenido del Modal */}
+            <div className="p-6">
+              {loadingDetalle ? (
+                <div className="flex items-center justify-center py-12">
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+                </div>
+              ) : selectedFacturaDetalle ? (
+                <div className="space-y-6">
+                  {/* Sección: Información de la Factura */}
+                  <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                      <FileText className="w-5 h-5" />
+                      Información de la Factura
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                      <div>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">Número de Factura</p>
+                        <p className="text-base font-semibold text-gray-900 dark:text-white">
+                          {selectedFacturaDetalle.factura.numero_factura || selectedFacturaDetalle.factura.invoice_id}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">Tipo de Documento</p>
+                        <p className="text-base font-semibold text-gray-900 dark:text-white">
+                          {selectedFacturaDetalle.factura.tipo_documento}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">Fecha de Emisión</p>
+                        <p className="text-base font-semibold text-gray-900 dark:text-white">
+                          {selectedFacturaDetalle.factura.fecha_emision}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">Fecha de Vencimiento</p>
+                        <p className="text-base font-semibold text-gray-900 dark:text-white">
+                          {selectedFacturaDetalle.factura.fecha_vencimiento || 'No especificada'}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">Moneda</p>
+                        <p className="text-base font-semibold text-gray-900 dark:text-white">
+                          {selectedFacturaDetalle.factura.moneda}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">Condición de Pago</p>
+                        <p className="text-base font-semibold text-gray-900 dark:text-white">
+                          {selectedFacturaDetalle.factura.condicion_pago || 'No especificada'}
+                        </p>
+                      </div>
+                      {selectedFacturaDetalle.factura.medio_pago && (
+                        <div>
+                          <p className="text-sm text-gray-500 dark:text-gray-400">Medio de Pago</p>
+                          <p className="text-base font-semibold text-gray-900 dark:text-white">
+                            {selectedFacturaDetalle.factura.medio_pago}
+                          </p>
+                        </div>
+                      )}
+                      {selectedFacturaDetalle.factura.vendedor && (
+                        <div>
+                          <p className="text-sm text-gray-500 dark:text-gray-400">Vendedor</p>
+                          <p className="text-base font-semibold text-gray-900 dark:text-white">
+                            {selectedFacturaDetalle.factura.vendedor}
+                          </p>
+                        </div>
+                      )}
+                      {selectedFacturaDetalle.factura.oc_asociada && (
+                        <div>
+                          <p className="text-sm text-gray-500 dark:text-gray-400">Orden de Compra</p>
+                          <p className="text-base font-semibold text-gray-900 dark:text-white">
+                            {selectedFacturaDetalle.factura.oc_asociada}
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Sección: Información del Proveedor */}
+                  <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                      <Database className="w-5 h-5" />
+                      Información del Proveedor
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                      <div>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">RUC</p>
+                        <p className="text-base font-semibold text-gray-900 dark:text-white">
+                          {selectedFacturaDetalle.proveedor.ruc}
+                        </p>
+                      </div>
+                      <div className="md:col-span-2">
+                        <p className="text-sm text-gray-500 dark:text-gray-400">Razón Social</p>
+                        <p className="text-base font-semibold text-gray-900 dark:text-white">
+                          {selectedFacturaDetalle.proveedor.razon_social}
+                        </p>
+                      </div>
+                      {selectedFacturaDetalle.proveedor.nombre_comercial && (
+                        <div className="md:col-span-2">
+                          <p className="text-sm text-gray-500 dark:text-gray-400">Nombre Comercial</p>
+                          <p className="text-base font-semibold text-gray-900 dark:text-white">
+                            {selectedFacturaDetalle.proveedor.nombre_comercial}
+                          </p>
+                        </div>
+                      )}
+                      {selectedFacturaDetalle.proveedor.direccion && (
+                        <div className="md:col-span-3">
+                          <p className="text-sm text-gray-500 dark:text-gray-400">Dirección</p>
+                          <p className="text-base font-semibold text-gray-900 dark:text-white">
+                            {selectedFacturaDetalle.proveedor.direccion}
+                          </p>
+                        </div>
+                      )}
+                      {(selectedFacturaDetalle.proveedor.distrito || selectedFacturaDetalle.proveedor.provincia || selectedFacturaDetalle.proveedor.departamento) && (
+                        <div>
+                          <p className="text-sm text-gray-500 dark:text-gray-400">Ubicación</p>
+                          <p className="text-base font-semibold text-gray-900 dark:text-white">
+                            {[
+                              selectedFacturaDetalle.proveedor.distrito,
+                              selectedFacturaDetalle.proveedor.provincia,
+                              selectedFacturaDetalle.proveedor.departamento
+                            ].filter(Boolean).join(', ')}
+                          </p>
+                        </div>
+                      )}
+                      {selectedFacturaDetalle.proveedor.telefono && (
+                        <div>
+                          <p className="text-sm text-gray-500 dark:text-gray-400">Teléfono</p>
+                          <p className="text-base font-semibold text-gray-900 dark:text-white">
+                            {selectedFacturaDetalle.proveedor.telefono}
+                          </p>
+                        </div>
+                      )}
+                      {selectedFacturaDetalle.proveedor.email && (
+                        <div>
+                          <p className="text-sm text-gray-500 dark:text-gray-400">Email</p>
+                          <p className="text-base font-semibold text-gray-900 dark:text-white">
+                            {selectedFacturaDetalle.proveedor.email}
+                          </p>
+                        </div>
+                      )}
+                      {selectedFacturaDetalle.proveedor.estado_ruc && (
+                        <div>
+                          <p className="text-sm text-gray-500 dark:text-gray-400">Estado RUC</p>
+                          <p className="text-base font-semibold text-gray-900 dark:text-white">
+                            {selectedFacturaDetalle.proveedor.estado_ruc}
+                          </p>
+                        </div>
+                      )}
+                      {selectedFacturaDetalle.proveedor.condicion_domicilio && (
+                        <div>
+                          <p className="text-sm text-gray-500 dark:text-gray-400">Condición Domicilio</p>
+                          <p className="text-base font-semibold text-gray-900 dark:text-white">
+                            {selectedFacturaDetalle.proveedor.condicion_domicilio}
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Sección: Detalle de Productos/Items */}
+                  <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                      <List className="w-5 h-5" />
+                      Detalle de Productos ({selectedFacturaDetalle.items.length} items)
+                    </h3>
+                    <div className="overflow-x-auto">
+                      <table className="w-full text-sm">
+                        <thead className="bg-gray-200 dark:bg-gray-800">
+                          <tr>
+                            <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 dark:text-gray-300">Ítem</th>
+                            <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 dark:text-gray-300">Código</th>
+                            <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 dark:text-gray-300">Descripción</th>
+                            <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 dark:text-gray-300">Cantidad</th>
+                            <th className="px-4 py-3 text-center text-xs font-semibold text-gray-700 dark:text-gray-300">Unidad</th>
+                            <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 dark:text-gray-300">P. Unit.</th>
+                            <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 dark:text-gray-300">Descuento</th>
+                            <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 dark:text-gray-300">Subtotal</th>
+                            <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 dark:text-gray-300">IGV</th>
+                            <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 dark:text-gray-300">Total</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                          {selectedFacturaDetalle.items.length > 0 ? (
+                            selectedFacturaDetalle.items.map((item: any, index: number) => {
+                              // Mapear valores desde la DB
+                              const cantidad = parseFloat(item.cantidad || 0);
+                              const precioUnitario = parseFloat(item.precio_unitario || 0); // precio CON IGV
+                              const descuento = parseFloat(item.descuento || 0);
+                              const subtotal = parseFloat(item.subtotal || item.valor_venta || 0); // valor antes de IGV
+                              const igv = parseFloat(item.igv || 0);
+                              const total = parseFloat(item.total || 0);
+
+                              return (
+                                <tr key={index} className="hover:bg-gray-100 dark:hover:bg-gray-800">
+                                  <td className="px-4 py-3 text-gray-900 dark:text-white">{item.numero_item}</td>
+                                  <td className="px-4 py-3 text-gray-700 dark:text-gray-300">{item.codigo_producto || '-'}</td>
+                                  <td className="px-4 py-3 text-gray-900 dark:text-white max-w-xs">{item.descripcion}</td>
+                                  <td className="px-4 py-3 text-right text-gray-900 dark:text-white">{cantidad}</td>
+                                  <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">{item.unidad_medida}</td>
+                                  <td className="px-4 py-3 text-right text-gray-900 dark:text-white">
+                                    {selectedFacturaDetalle.factura.moneda === 'USD' ? '$' : 'S/'} {precioUnitario.toFixed(2)}
+                                  </td>
+                                  <td className="px-4 py-3 text-right text-gray-900 dark:text-white">
+                                    {selectedFacturaDetalle.factura.moneda === 'USD' ? '$' : 'S/'} {descuento.toFixed(2)}
+                                  </td>
+                                  <td className="px-4 py-3 text-right text-gray-900 dark:text-white">
+                                    {selectedFacturaDetalle.factura.moneda === 'USD' ? '$' : 'S/'} {subtotal.toFixed(2)}
+                                  </td>
+                                  <td className="px-4 py-3 text-right text-gray-900 dark:text-white">
+                                    {selectedFacturaDetalle.factura.moneda === 'USD' ? '$' : 'S/'} {igv.toFixed(2)}
+                                  </td>
+                                  <td className="px-4 py-3 text-right font-semibold text-gray-900 dark:text-white">
+                                    {selectedFacturaDetalle.factura.moneda === 'USD' ? '$' : 'S/'} {total.toFixed(2)}
+                                  </td>
+                                </tr>
+                              );
+                            })
+                          ) : (
+                            <tr>
+                              <td colSpan={10} className="px-4 py-8 text-center text-gray-500 dark:text-gray-400">
+                                No hay productos en esta factura
+                              </td>
+                            </tr>
+                          )}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  {/* Sección: Totales */}
+                  <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Totales</h3>
+                    <div className="space-y-3">
+                      <div className="flex justify-between items-center">
+                        <span className="text-gray-700 dark:text-gray-300">Subtotal:</span>
+                        <span className="text-lg font-semibold text-gray-900 dark:text-white">
+                          {selectedFacturaDetalle.factura.moneda === 'USD' ? '$' : 'S/'} {selectedFacturaDetalle.factura.subtotal.toFixed(2)}
+                        </span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-gray-700 dark:text-gray-300">IGV (18%):</span>
+                        <span className="text-lg font-semibold text-gray-900 dark:text-white">
+                          {selectedFacturaDetalle.factura.moneda === 'USD' ? '$' : 'S/'} {selectedFacturaDetalle.factura.igv.toFixed(2)}
+                        </span>
+                      </div>
+                      <div className="border-t-2 border-blue-200 dark:border-blue-700 pt-3">
+                        <div className="flex justify-between items-center">
+                          <span className="text-xl font-bold text-gray-900 dark:text-white">Total:</span>
+                          <span className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                            {selectedFacturaDetalle.factura.moneda === 'USD' ? '$' : 'S/'} {selectedFacturaDetalle.factura.total.toFixed(2)}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Botón de cerrar al final */}
+                  <div className="flex justify-end gap-3">
+                    {selectedFacturaDetalle.factura.s3_url && (
+                      <a
+                        href={selectedFacturaDetalle.factura.s3_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors flex items-center gap-2"
+                      >
+                        <Download className="w-4 h-4" />
+                        Ver PDF Original
+                      </a>
+                    )}
+                    <button
+                      onClick={cerrarDetalleModal}
+                      className="px-6 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+                    >
+                      Cerrar
+                    </button>
+                  </div>
+                </div>
+              ) : null}
+            </div>
+          </motion.div>
+        </div>
+      )}
     </div>
   )
 }
