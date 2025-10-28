@@ -4,10 +4,10 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import ThemeToggle from '@/components/ThemeToggle'
-import { 
-  FileBarChart, 
-  List, 
-  Calendar, 
+import {
+  FileBarChart,
+  List,
+  Calendar,
   Filter,
   Search,
   Download,
@@ -29,8 +29,12 @@ import {
   Send,
   TrendingUp,
   PieChart,
-  X
+  X,
+  FileSpreadsheet
 } from 'lucide-react'
+import * as XLSX from 'xlsx'
+import jsPDF from 'jspdf'
+import autoTable from 'jspdf-autotable'
 
 
 
@@ -100,6 +104,7 @@ export default function FacturasRegistradasPage() {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCategoria, setSelectedCategoria] = useState('Todas')
   const [selectedFacturas, setSelectedFacturas] = useState<string[]>([])
+  const [selectedFacturasAprobadas, setSelectedFacturasAprobadas] = useState<string[]>([])
   const [editingId, setEditingId] = useState<string | null>(null)
   const [editedData, setEditedData] = useState<any>({})
   const [facturasPendientes, setFacturasPendientes] = useState(mockFacturasPendientes)
@@ -110,6 +115,7 @@ export default function FacturasRegistradasPage() {
   const [errorAprobadas, setErrorAprobadas] = useState<string | null>(null)
   const [currentPage, setCurrentPage] = useState(1)
   const [itemsPerPage] = useState(10)
+  const [showExportMenu, setShowExportMenu] = useState(false)
   const [stats, setStats] = useState({
     pendientes: 0,
     montoPendientePen: 0,
@@ -149,6 +155,140 @@ export default function FacturasRegistradasPage() {
     }
   }
 
+  // Funciones de selección para facturas aprobadas
+  const toggleFacturaAprobadaSelection = (id: string) => {
+    setSelectedFacturasAprobadas(prev =>
+      prev.includes(id) ? prev.filter(f => f !== id) : [...prev, id]
+    )
+  }
+
+  const toggleSelectAllAprobadas = (facturasVisibles: any[]) => {
+    const idsVisibles = facturasVisibles.map(f => f.id)
+    if (selectedFacturasAprobadas.length === idsVisibles.length &&
+        idsVisibles.every(id => selectedFacturasAprobadas.includes(id))) {
+      setSelectedFacturasAprobadas([])
+    } else {
+      setSelectedFacturasAprobadas(idsVisibles)
+    }
+  }
+
+  const getFacturasParaExportar = () => {
+    if (selectedFacturasAprobadas.length === 0) {
+      // Si no hay selección, exportar todas las visibles (filtradas)
+      return facturasAprobadas.filter(factura => {
+        const matchSearch = factura.proveedor.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                           factura.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                           factura.ruc.includes(searchTerm)
+        const matchMoneda = selectedCategoria === 'Todas' || factura.moneda === selectedCategoria || (!factura.moneda && selectedCategoria === 'PEN')
+        return matchSearch && matchMoneda
+      })
+    } else {
+      // Exportar solo las seleccionadas
+      return facturasAprobadas.filter(f => selectedFacturasAprobadas.includes(f.id))
+    }
+  }
+
+  // Funciones de exportación
+  const exportToCSV = (facturas: any[]) => {
+    const csvData = facturas.map(f => ({
+      'Proveedor': f.proveedor,
+      'RUC': f.ruc,
+      'Número Factura': f.id,
+      'Fecha': f.fecha,
+      'Estado Pago': getRelativeTime(f.fechaVencimiento).text,
+      'Subtotal': f.monto,
+      'IGV': f.impuesto,
+      'Total': f.total,
+      'Moneda': f.moneda || 'PEN',
+      'Estado CPE': f.estadoSunat || 'N/A',
+      'Estado RUC': f.estadoRuc || 'N/A'
+    }))
+
+    const headers = Object.keys(csvData[0])
+    const csvContent = [
+      headers.join(','),
+      ...csvData.map(row => headers.map(h => `"${row[h as keyof typeof row]}"`).join(','))
+    ].join('\n')
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' })
+    const link = document.createElement('a')
+    link.href = URL.createObjectURL(blob)
+    link.download = `facturas_${new Date().toISOString().split('T')[0]}.csv`
+    link.click()
+  }
+
+  const exportToExcel = (facturas: any[]) => {
+    const excelData = facturas.map(f => ({
+      'Proveedor': f.proveedor,
+      'RUC': f.ruc,
+      'Número Factura': f.id,
+      'Fecha': f.fecha,
+      'Estado de Pago': getRelativeTime(f.fechaVencimiento).text,
+      'Subtotal': f.monto,
+      'IGV': f.impuesto,
+      'Total': f.total,
+      'Moneda': f.moneda || 'PEN',
+      'Estado CPE': f.estadoSunat || 'N/A',
+      'Estado RUC': f.estadoRuc || 'N/A'
+    }))
+
+    const ws = XLSX.utils.json_to_sheet(excelData)
+    const wb = XLSX.utils.book_new()
+    XLSX.utils.book_append_sheet(wb, ws, 'Facturas')
+
+    // Ajustar ancho de columnas
+    const colWidths = [
+      { wch: 40 }, // Proveedor
+      { wch: 15 }, // RUC
+      { wch: 25 }, // Número
+      { wch: 12 }, // Fecha
+      { wch: 18 }, // Estado Pago
+      { wch: 12 }, // Subtotal
+      { wch: 12 }, // IGV
+      { wch: 12 }, // Total
+      { wch: 10 }, // Moneda
+      { wch: 12 }, // Estado CPE
+      { wch: 12 }  // Estado RUC
+    ]
+    ws['!cols'] = colWidths
+
+    XLSX.writeFile(wb, `facturas_${new Date().toISOString().split('T')[0]}.xlsx`)
+  }
+
+  const exportToPDF = (facturas: any[]) => {
+    const doc = new jsPDF('landscape')
+
+    // Título
+    doc.setFontSize(16)
+    doc.text('Facturas Registradas', 14, 15)
+    doc.setFontSize(10)
+    doc.text(`Generado: ${new Date().toLocaleString('es-PE')}`, 14, 22)
+
+    // Tabla
+    const tableData = facturas.map(f => [
+      f.proveedor,
+      f.ruc,
+      f.id,
+      f.fecha,
+      getRelativeTime(f.fechaVencimiento).text,
+      `${f.moneda === 'USD' ? '$' : 'S/'} ${f.monto.toFixed(2)}`,
+      `${f.moneda === 'USD' ? '$' : 'S/'} ${f.impuesto.toFixed(2)}`,
+      `${f.moneda === 'USD' ? '$' : 'S/'} ${f.total.toFixed(2)}`,
+      f.estadoSunat || 'N/A',
+      f.estadoRuc || 'N/A'
+    ])
+
+    autoTable(doc, {
+      head: [['Proveedor', 'RUC', 'Número', 'Fecha', 'Estado Pago', 'Subtotal', 'IGV', 'Total', 'CPE', 'RUC']],
+      body: tableData,
+      startY: 28,
+      styles: { fontSize: 8 },
+      headStyles: { fillColor: [37, 99, 235] }
+    })
+
+    doc.save(`facturas_${new Date().toISOString().split('T')[0]}.pdf`)
+  }
+
   // Cargar facturas pendientes y estadísticas desde la API
   useEffect(() => {
     fetchFacturasPendientes()
@@ -166,6 +306,19 @@ export default function FacturasRegistradasPage() {
   useEffect(() => {
     setCurrentPage(1)
   }, [searchTerm, selectedCategoria])
+
+  // Cerrar menú de exportación al hacer clic fuera
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement
+      if (showExportMenu && !target.closest('.export-menu-container')) {
+        setShowExportMenu(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [showExportMenu])
 
   const fetchFacturasPendientes = async () => {
     try {
@@ -1013,9 +1166,9 @@ export default function FacturasRegistradasPage() {
             </motion.div>
           </div>
 
-          {/* Filters */}
+          {/* Filters and Export */}
           <div className="bg-white dark:bg-[#252525] border border-gray-200 dark:border-gray-700 rounded-xl p-6 mb-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Buscar
@@ -1047,6 +1200,81 @@ export default function FacturasRegistradasPage() {
                 </select>
               </div>
             </div>
+
+            {/* Export Dropdown */}
+            <div className="flex flex-wrap gap-2 pt-4 border-t border-gray-200 dark:border-gray-700 items-center">
+              {selectedFacturasAprobadas.length > 0 && (
+                <div className="flex items-center gap-2 px-3 py-1.5 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+                  <CheckCircle className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                  <span className="text-sm font-medium text-blue-900 dark:text-blue-100">
+                    {selectedFacturasAprobadas.length} seleccionada{selectedFacturasAprobadas.length > 1 ? 's' : ''}
+                  </span>
+                  <button
+                    onClick={() => setSelectedFacturasAprobadas([])}
+                    className="ml-1 p-0.5 hover:bg-blue-200 dark:hover:bg-blue-800 rounded transition-colors"
+                  >
+                    <X className="w-3 h-3 text-blue-600 dark:text-blue-400" />
+                  </button>
+                </div>
+              )}
+
+              <div className="relative export-menu-container">
+                <button
+                  onClick={() => setShowExportMenu(!showExportMenu)}
+                  className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors text-sm font-medium"
+                >
+                  <Download className="w-4 h-4" />
+                  Exportar {selectedFacturasAprobadas.length > 0 ? 'Seleccionadas' : 'Todo'}
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+
+                {showExportMenu && (
+                  <div className="absolute z-50 mt-2 w-48 bg-white dark:bg-neutral-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg">
+                    <button
+                      onClick={() => {
+                        exportToExcel(getFacturasParaExportar())
+                        setShowExportMenu(false)
+                      }}
+                      className="w-full flex items-center gap-2 px-4 py-2 hover:bg-gray-100 dark:hover:bg-neutral-700 transition-colors text-left text-sm"
+                    >
+                      <FileSpreadsheet className="w-4 h-4 text-green-600" />
+                      <span>Excel (.xlsx)</span>
+                    </button>
+                    <button
+                      onClick={() => {
+                        exportToCSV(getFacturasParaExportar())
+                        setShowExportMenu(false)
+                      }}
+                      className="w-full flex items-center gap-2 px-4 py-2 hover:bg-gray-100 dark:hover:bg-neutral-700 transition-colors text-left text-sm"
+                    >
+                      <Download className="w-4 h-4 text-blue-600" />
+                      <span>CSV (.csv)</span>
+                    </button>
+                    <button
+                      onClick={() => {
+                        exportToPDF(getFacturasParaExportar())
+                        setShowExportMenu(false)
+                      }}
+                      className="w-full flex items-center gap-2 px-4 py-2 hover:bg-gray-100 dark:hover:bg-neutral-700 transition-colors text-left text-sm rounded-b-lg"
+                    >
+                      <FileText className="w-4 h-4 text-red-600" />
+                      <span>PDF (.pdf)</span>
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              <div className="flex-1"></div>
+
+              <span className="text-sm text-gray-600 dark:text-gray-400">
+                {selectedFacturasAprobadas.length > 0
+                  ? `${selectedFacturasAprobadas.length} de ${facturasAprobadas.length}`
+                  : `${getFacturasParaExportar().length} facturas`
+                }
+              </span>
+            </div>
           </div>
 
           {/* Facturas Table */}
@@ -1055,6 +1283,33 @@ export default function FacturasRegistradasPage() {
               <table className="w-full min-w-[800px]">
                 <thead className="bg-gray-50 dark:bg-neutral-800 border-b border-gray-200 dark:border-gray-700">
                   <tr>
+                    <th className="px-3 sm:px-6 py-3 sm:py-4 text-left">
+                      <input
+                        type="checkbox"
+                        checked={(() => {
+                          const facturasVisibles = facturasAprobadas.filter(factura => {
+                            const matchSearch = factura.proveedor.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                               factura.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                               factura.ruc.includes(searchTerm)
+                            const matchMoneda = selectedCategoria === 'Todas' || factura.moneda === selectedCategoria || (!factura.moneda && selectedCategoria === 'PEN')
+                            return matchSearch && matchMoneda
+                          })
+                          const idsVisibles = facturasVisibles.map(f => f.id)
+                          return idsVisibles.length > 0 && idsVisibles.every(id => selectedFacturasAprobadas.includes(id))
+                        })()}
+                        onChange={() => {
+                          const facturasVisibles = facturasAprobadas.filter(factura => {
+                            const matchSearch = factura.proveedor.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                               factura.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                               factura.ruc.includes(searchTerm)
+                            const matchMoneda = selectedCategoria === 'Todas' || factura.moneda === selectedCategoria || (!factura.moneda && selectedCategoria === 'PEN')
+                            return matchSearch && matchMoneda
+                          })
+                          toggleSelectAllAprobadas(facturasVisibles)
+                        }}
+                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
+                    </th>
                     <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
                       Proveedor
                     </th>
@@ -1109,8 +1364,18 @@ export default function FacturasRegistradasPage() {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: index * 0.05 }}
-                      className="hover:bg-gray-50 dark:hover:bg-neutral-800/50 transition-colors"
+                      className={`hover:bg-gray-50 dark:hover:bg-neutral-800/50 transition-colors ${
+                        selectedFacturasAprobadas.includes(factura.id) ? 'bg-blue-50 dark:bg-blue-900/10' : ''
+                      }`}
                     >
+                      <td className="px-6 py-4">
+                        <input
+                          type="checkbox"
+                          checked={selectedFacturasAprobadas.includes(factura.id)}
+                          onChange={() => toggleFacturaAprobadaSelection(factura.id)}
+                          className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                        />
+                      </td>
                       <td className="px-6 py-4">
                         <div>
                           <div className="text-sm font-semibold text-gray-900 dark:text-white">{factura.proveedor}</div>
