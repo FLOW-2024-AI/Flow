@@ -1,4 +1,4 @@
-import os, re, time, uuid, boto3
+import os, re, time, boto3
 from datetime import datetime, timedelta, timezone
 from email import policy
 from email.parser import BytesParser
@@ -120,7 +120,7 @@ def handler(event, context):
             skipped.append({"file": fname, "reason": "no pasa validación simple"})
             continue
 
-        key = f"{day_prefix}/{uuid.uuid4().hex}_{_sanitize(fname)}"
+        key = f"{day_prefix}/{_sanitize(fname)}"
         s3.put_object(Bucket=DEST_BUCKET, Key=key, Body=content, ContentType="application/pdf")
         uploaded.append(key)
         print(f"OK -> s3://{DEST_BUCKET}/{key}")
