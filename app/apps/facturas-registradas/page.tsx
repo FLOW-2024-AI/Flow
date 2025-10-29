@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import ThemeToggle from '@/components/ThemeToggle'
+import QuickSightEmbed from '@/components/QuickSightEmbed'
 import {
   FileBarChart,
   List,
@@ -18,22 +19,20 @@ import {
   FileText,
   CheckCircle,
   AlertCircle,
-  Clock,
   Eye,
   MoreVertical,
   Database,
   Bot,
-  BarChart3,
   Edit3,
   CheckSquare,
   Send,
   TrendingUp,
-  PieChart,
   X,
   FileSpreadsheet,
   ChevronDown,
   ChevronUp,
   User,
+  BarChart3,
   Loader2
 } from 'lucide-react'
 import * as XLSX from 'xlsx'
@@ -82,26 +81,26 @@ const mockFacturasPendientes = [
   }
 ]
 
-// Analytics data
-const analyticsData = {
-  procesadasHoy: 23,
-  tasaAutomatizacion: 94,
-  tiempoPromedio: 8,
-  errorRate: 2.3,
-  facturasPorMes: [
-    { mes: 'May', cantidad: 98 },
-    { mes: 'Jun', cantidad: 112 },
-    { mes: 'Jul', cantidad: 134 },
-    { mes: 'Ago', cantidad: 145 },
-    { mes: 'Sep', cantidad: 156 },
-    { mes: 'Oct', cantidad: 156 }
-  ],
-  topProveedores: [
-    { nombre: 'Distribuidora ABC', cantidad: 45, monto: 125000 },
-    { nombre: 'Servicios XYZ', cantidad: 38, monto: 98000 },
-    { nombre: 'Logística Express', cantidad: 32, monto: 87000 }
-  ]
-}
+// Analytics data - Ya no se usa, ahora usamos QuickSight
+// const analyticsData = {
+//   procesadasHoy: 23,
+//   tasaAutomatizacion: 94,
+//   tiempoPromedio: 8,
+//   errorRate: 2.3,
+//   facturasPorMes: [
+//     { mes: 'May', cantidad: 98 },
+//     { mes: 'Jun', cantidad: 112 },
+//     { mes: 'Jul', cantidad: 134 },
+//     { mes: 'Ago', cantidad: 145 },
+//     { mes: 'Sep', cantidad: 156 },
+//     { mes: 'Oct', cantidad: 156 }
+//   ],
+//   topProveedores: [
+//     { nombre: 'Distribuidora ABC', cantidad: 45, monto: 125000 },
+//     { nombre: 'Servicios XYZ', cantidad: 38, monto: 98000 },
+//     { nombre: 'Logística Express', cantidad: 32, monto: 87000 }
+//   ]
+// }
 
 export default function FacturasRegistradasPage() {
   const [activeTab, setActiveTab] = useState<'validacion' | 'edicion' | 'bd' | 'agente' | 'analytics'>('validacion')
@@ -1776,112 +1775,19 @@ export default function FacturasRegistradasPage() {
                 <p className="text-sm text-gray-600 dark:text-gray-400">Visualiza tendencias y patrones</p>
               </div>
 
-              {/* KPIs */}
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="bg-gradient-to-br from-white to-gray-50 dark:from-[#252525] dark:to-[#252525] border-2 border-gray-200 dark:border-gray-700 rounded-xl p-6"
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Procesadas Hoy</span>
-                    <CheckCircle className="w-5 h-5 text-green-500" />
-                  </div>
-                  <p className="text-3xl font-bold text-gray-900 dark:text-white">{analyticsData.procesadasHoy}</p>
-                  <p className="text-xs text-green-600 dark:text-green-400 mt-1">+15% vs ayer</p>
-                </motion.div>
+              {/* QuickSight Embed */}
+              <QuickSightEmbed
+                dashboardUrl="https://us-east-1.quicksight.aws.amazon.com/sn/embed/share/accounts/886436955626/dashboards/0bcf94e1-d432-4d4d-a08a-fc5db87de97f?directory_alias=nathanvr98"
+                title="QuickSight Dashboard - Facturas"
+              />
 
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 }}
-                  className="bg-gradient-to-br from-white to-gray-50 dark:from-[#252525] dark:to-[#252525] border-2 border-gray-200 dark:border-gray-700 rounded-xl p-6"
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Tasa Automatización</span>
-                    <TrendingUp className="w-5 h-5 text-blue-500" />
-                  </div>
-                  <p className="text-3xl font-bold text-gray-900 dark:text-white">{analyticsData.tasaAutomatizacion}%</p>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Procesamiento IA</p>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
-                  className="bg-gradient-to-br from-white to-gray-50 dark:from-[#252525] dark:to-[#252525] border-2 border-gray-200 dark:border-gray-700 rounded-xl p-6"
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Tiempo Promedio</span>
-                    <Clock className="w-5 h-5 text-purple-500" />
-                  </div>
-                  <p className="text-3xl font-bold text-gray-900 dark:text-white">{analyticsData.tiempoPromedio} min</p>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Por factura</p>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
-                  className="bg-gradient-to-br from-white to-gray-50 dark:from-[#252525] dark:to-[#252525] border-2 border-gray-200 dark:border-gray-700 rounded-xl p-6"
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Tasa de Errores</span>
-                    <AlertCircle className="w-5 h-5 text-orange-500" />
-                  </div>
-                  <p className="text-3xl font-bold text-gray-900 dark:text-white">{analyticsData.errorRate}%</p>
-                  <p className="text-xs text-green-600 dark:text-green-400 mt-1">-0.5% vs mes anterior</p>
-                </motion.div>
-              </div>
-
-              {/* Charts */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {/* Facturas por mes */}
-                <div className="bg-white dark:bg-[#252525] border border-gray-200 dark:border-gray-700 rounded-xl p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                    <BarChart3 className="w-5 h-5" />
-                    Facturas Procesadas por Mes
-                  </h3>
-                  <div className="space-y-3">
-                    {analyticsData.facturasPorMes.map((item, index) => (
-                      <div key={index}>
-                        <div className="flex items-center justify-between text-sm mb-1">
-                          <span className="text-gray-600 dark:text-gray-400">{item.mes}</span>
-                          <span className="font-medium text-gray-900 dark:text-white">{item.cantidad} facturas</span>
-                        </div>
-                        <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                          <div 
-                            className="h-full bg-blue-600"
-                            style={{ width: `${(item.cantidad / 160) * 100}%` }}
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Top proveedores */}
-                <div className="bg-white dark:bg-[#252525] border border-gray-200 dark:border-gray-700 rounded-xl p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                    <PieChart className="w-5 h-5" />
-                    Top Proveedores
-                  </h3>
-                  <div className="space-y-4">
-                    {analyticsData.topProveedores.map((prov, index) => (
-                      <div key={index} className="flex items-center justify-between">
-                        <div className="flex-1">
-                          <p className="text-sm font-medium text-gray-900 dark:text-white">{prov.nombre}</p>
-                          <p className="text-xs text-gray-500 dark:text-gray-400">{prov.cantidad} facturas</p>
-                        </div>
-                        <div className="text-right">
-                          <p className="text-sm font-bold text-gray-900 dark:text-white">
-                            S/ {prov.monto.toLocaleString('es-PE')}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+              {/* Info Footer */}
+              <div className="mt-4 text-center text-sm text-gray-500 dark:text-gray-400">
+                <p>
+                  Dashboard powered by{' '}
+                  <span className="font-semibold text-blue-600 dark:text-blue-400">AWS QuickSight</span>
+                  {' '}• Datos sincronizados con Aurora PostgreSQL
+                </p>
               </div>
             </div>
           )}

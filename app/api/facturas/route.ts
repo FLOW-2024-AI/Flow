@@ -45,7 +45,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Filtros específicos por campo
-    for (const [key, value] of searchParams.entries()) {
+    for (const [key, value] of Array.from(searchParams.entries())) {
       if (key.startsWith('filter_') && value) {
         const field = key.replace('filter_', '');
         filters.push(`${field} ILIKE $${paramIndex}`);
