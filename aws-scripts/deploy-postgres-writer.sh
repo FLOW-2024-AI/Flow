@@ -5,10 +5,13 @@
 
 set -e
 
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+cd "$SCRIPT_DIR"
+
 echo "🚀 Desplegando FacturasPostgresWriter-poc Lambda..."
 
 # Variables
-AWS_ACCOUNT_ID="886436955626"
+AWS_ACCOUNT_ID="069662085753"
 AWS_REGION="us-east-1"
 ECR_REPO="facturas-postgres-writer"
 IMAGE_TAG="latest"
