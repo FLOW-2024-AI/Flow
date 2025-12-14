@@ -11,12 +11,11 @@ SELECT
     f.id as factura_id,
     f.invoice_id,
     f.numero_factura,
-    f.serie_numero,
     f.nombre_proveedor,
     f.ruc_emisor,
     f.fecha_emision,
     f.fecha_vencimiento,
-    f.plazo_pago,
+    f.plazo_credito,
     f.moneda,
     f.monto_subtotal as factura_subtotal,
     f.monto_igv as factura_igv,
@@ -62,7 +61,6 @@ SELECT
     f.id as factura_id,
     f.invoice_id,
     f.numero_factura,
-    f.serie_numero,
     f.nombre_proveedor,
     f.ruc_emisor,
     f.fecha_emision,
@@ -79,7 +77,7 @@ SELECT
             THEN jsonb_array_length(f.data_completa->'detalle')
         ELSE 0
     END as cantidad_items,
-    f.created_at
+    f.creado_en
 FROM facturas f
 WHERE f.aprobado_por_cliente = TRUE
   AND f.data_completa IS NOT NULL

@@ -266,7 +266,7 @@ SELECT
     nombre_proveedor,
     fecha_emision,
     monto_total,
-    serie_numero,
+    numero_factura,
     sunat_estado_comprobante_descripcion,
     sunat_timestamp_validacion
 FROM facturas
