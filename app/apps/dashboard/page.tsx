@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowLeft, RefreshCw, Download, Calendar, Filter } from 'lucide-react'
 import Link from 'next/link'
+import QuickSightEmbed from '@/components/QuickSightEmbed'
 
 export default function DashboardPage() {
   const [loading, setLoading] = useState(true)
@@ -13,6 +14,9 @@ export default function DashboardPage() {
     setLoading(true)
     setIframeKey(prev => prev + 1)
   }
+
+  const QUICK_SIGHT_DASHBOARD_URL =
+    'https://us-east-1.quicksight.aws.amazon.com/sn/embed/share/accounts/069662085753/dashboards/1e0ef739-1124-4aee-b65d-d89f57ba1405?directory_alias=Flowcfo1'
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800">
@@ -68,38 +72,11 @@ export default function DashboardPage() {
           transition={{ duration: 0.5 }}
           className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl overflow-hidden border border-slate-200 dark:border-slate-800"
         >
-          {/* Loading Overlay */}
-          {loading && (
-            <div className="absolute inset-0 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm z-10 flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-16 h-16 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mx-auto mb-4"></div>
-                <p className="text-slate-600 dark:text-slate-400 font-medium">
-                  Cargando dashboard...
-                </p>
-                <p className="text-slate-500 dark:text-slate-500 text-sm mt-2">
-                  Esto puede tomar unos segundos
-                </p>
-              </div>
-            </div>
-          )}
-
-          {/* QuickSight Embed */}
-          <div className="relative" style={{ minHeight: '800px' }}>
-            <iframe
-              key={iframeKey}
-              src="https://us-east-1.quicksight.aws.amazon.com/sn/embed/share/accounts/886436955626/dashboards/0bcf94e1-d432-4d4d-a08a-fc5db87de97f?directory_alias=nathanvr98"
-              className="w-full transition-opacity duration-300"
-              style={{
-                height: 'calc(100vh - 200px)',
-                minHeight: '800px',
-                border: 'none',
-                opacity: loading ? 0 : 1
-              }}
-              onLoad={() => setLoading(false)}
-              allowFullScreen
-              title="QuickSight Dashboard"
-            />
-          </div>
+          <QuickSightEmbed
+            key={iframeKey}
+            dashboardUrl={QUICK_SIGHT_DASHBOARD_URL}
+            onLoad={() => setLoading(false)}
+          />
         </motion.div>
 
         {/* Info Cards debajo */}
@@ -164,6 +141,31 @@ export default function DashboardPage() {
               </div>
             </div>
           </motion.div>
+        </div>
+
+        {/* QuickSight IA embed */}
+        <div className="mt-6 rounded-2xl border border-dashed border-indigo-200 dark:border-indigo-600 bg-gradient-to-br from-indigo-50 via-white to-white/70 dark:from-indigo-950 dark:via-slate-900 dark:to-slate-900 p-6">
+          <div className="flex flex-col gap-4">
+            <div>
+              <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-1">
+                Agente conversacional de QuickSight
+              </h3>
+              <p className="text-sm text-slate-600 dark:text-slate-400">
+                Chatea con el asistente para preguntar por facturas, clientes o montos totales sin salir de la vista de apps.
+              </p>
+            </div>
+            <div className="w-full h-auto min-h-[600px] rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700">
+              <iframe
+                width="100%"
+                height="700"
+                allow="clipboard-read https://us-east-1.quicksight.aws.amazon.com; clipboard-write https://us-east-1.quicksight.aws.amazon.com"
+                src="https://us-east-1.quicksight.aws.amazon.com/sn/embed/share/accounts/069662085753/chatagents/ffb693be-6979-4a0c-9e62-cfa129cb440a?directory_alias=Flowcfo1"
+                title="Agente Conversacional QuickSight"
+                className="w-full h-full"
+                loading="lazy"
+              />
+            </div>
+          </div>
         </div>
 
         {/* Footer info */}

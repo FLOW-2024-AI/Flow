@@ -1,6 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+const FACTURAS_API_PATH =
+  process.env.NEXT_PUBLIC_FACTURAS_MODE?.toLowerCase() === 'mock'
+    ? '/api/facturas-public'
+    : '/api/facturas';
 import { motion } from 'framer-motion';
 
 interface Factura {
@@ -78,7 +82,7 @@ export default function FacturasTable() {
         }
       })
       
-      const response = await fetch(`/api/facturas?${params}`)
+      const response = await fetch(`${FACTURAS_API_PATH}?${params}`)
       
       if (!response.ok) {
         throw new Error(`Error ${response.status}: ${response.statusText}`)

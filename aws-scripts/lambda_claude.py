@@ -11,11 +11,8 @@ import boto3
 import os
 import base64
 import urllib3
-import time
-from urllib.parse import unquote_plus
 from datetime import datetime
-from decimal import Decimal
-from botocore.exceptions import ClientError
+from decimal import Decimal, InvalidOperation
 
 # AWS Clients
 s3_client = boto3.client('s3')
@@ -31,9 +28,9 @@ SUNAT_CLIENT_ID = os.environ.get('SUNAT_CLIENT_ID')
 SUNAT_CLIENT_SECRET = os.environ.get('SUNAT_CLIENT_SECRET')
 SUNAT_RUC = os.environ.get('SUNAT_RUC')  # RUC del consultante
 
-# Bedrock model - Claude 3.5 Sonnet (estable y probado)
-# TODO: Cambiar a Claude 4.5 cuando tengamos acceso aprobado
-MODEL_ID = "anthropic.claude-3-5-sonnet-20240620-v1:0"
+# Bedrock model - Claude 3.5 Sonnet v2 (mejor para facturación)
+# Usar inference profile en lugar de model ID directo
+MODEL_ID = "us.anthropic.claude-3-5-sonnet-20241022-v2:0"
 
 # HTTP client for SUNAT API
 http = urllib3.PoolManager()
@@ -53,9 +50,9 @@ def lambda_handler(event, context):
         # 1. Get S3 event info
         record = event['Records'][0]
         bucket = record['s3']['bucket']['name']
-        key = unquote_plus(record['s3']['object']['key'])  # Decode URL-encoded characters
+        key = record['s3']['object']['key']
         file_size = record['s3']['object']['size']
-
+        
         print(f"📄 Processing: s3://{bucket}/{key}")
         print(f"📦 Size: {file_size} bytes")
         
@@ -112,7 +109,7 @@ def lambda_handler(event, context):
         print(f"❌ ERROR: {str(e)}")
         import traceback
         traceback.print_exc()
-
+        
         return {
             'statusCode': 500,
             'body': json.dumps({
@@ -189,36 +186,8 @@ def get_sunat_token():
 def validate_invoice_with_sunat(invoice_data):
     """
     Valida la factura contra la API de SUNAT
-    Retorna el estado de validación y detalles completos
-    Incluye descripciones oficiales de cada código según documentación SUNAT
+    Retorna el estado de validación y detalles
     """
-
-    # Catálogo de códigos según documentación oficial SUNAT
-    ESTADOS_COMPROBANTE = {
-        '0': 'NO EXISTE - Comprobante no informado',
-        '1': 'ACEPTADO - Comprobante aceptado',
-        '2': 'ANULADO - Comunicado en una baja',
-        '3': 'AUTORIZADO - Con autorización de imprenta',
-        '4': 'NO AUTORIZADO - No autorizado por imprenta'
-    }
-
-    ESTADOS_RUC = {
-        '00': 'ACTIVO',
-        '01': 'BAJA PROVISIONAL',
-        '02': 'BAJA PROV. POR OFICIO',
-        '03': 'SUSPENSION TEMPORAL',
-        '10': 'BAJA DEFINITIVA',
-        '11': 'BAJA DE OFICIO',
-        '22': 'INHABILITADO-VENT.UNICA'
-    }
-
-    CONDICIONES_DOMICILIO = {
-        '00': 'HABIDO',
-        '09': 'PENDIENTE',
-        '11': 'POR VERIFICAR',
-        '12': 'NO HABIDO',
-        '20': 'NO HALLADO'
-    }
 
     # Verificar si hay RUC consultante configurado
     if not SUNAT_RUC:
@@ -275,25 +244,14 @@ def validate_invoice_with_sunat(invoice_data):
             'Content-Type': 'application/json'
         }
 
-        # Convertir fecha de YYYY-MM-DD a DD/MM/YYYY (formato SUNAT)
-        if fecha_emision and '-' in fecha_emision:
-            # fecha_emision viene como "2025-10-07"
-            parts = fecha_emision.split('-')
-            if len(parts) == 3:
-                fecha_sunat = f"{parts[2]}/{parts[1]}/{parts[0]}"  # DD/MM/YYYY
-            else:
-                fecha_sunat = fecha_emision
-        else:
-            fecha_sunat = fecha_emision
-
         # Cuerpo de la solicitud según documentación SUNAT
         body = json.dumps({
             'numRuc': ruc_emisor,
             'codComp': codigo_comprobante,
             'numeroSerie': serie,
-            'numero': int(correlativo) if correlativo else 0,  # numero debe ser int
-            'fechaEmision': fecha_sunat,  # Formato DD/MM/YYYY
-            'monto': float(monto_total)
+            'numero': correlativo,
+            'fechaEmision': fecha_emision.replace('-', ''),  # Formato YYYYMMDD
+            'monto': monto_total
         })
 
         response = http.request(
@@ -306,57 +264,28 @@ def validate_invoice_with_sunat(invoice_data):
         if response.status == 200:
             data = json.loads(response.data.decode('utf-8'))
 
-            # Verificar si la respuesta fue exitosa
-            if not data.get('success'):
-                # API respondió 200 pero con success=false
-                return {
-                    'validado': False,
-                    'estado': 'ERROR_API',
-                    'motivo': data.get('message', 'Error desconocido de SUNAT'),
-                    'estadoSunat': None,
-                    'timestampValidacion': datetime.now().isoformat() + 'Z',
-                    'errorDetalle': json.dumps(data)
-                }
+            # Interpretar respuesta de SUNAT
+            estado_cp = data.get('estadoCp')  # Estado del comprobante
+            estado_ruc = data.get('estadoRuc')  # Estado del RUC emisor
+            condicion_domicilio = data.get('condDomiRuc')  # Condición domicilio
 
-            # Extraer datos de la respuesta
-            response_data = data.get('data', {})
-            estado_cp = response_data.get('estadoCp', '')
-            estado_ruc = response_data.get('estadoRuc', '')
-            condicion_domicilio = response_data.get('condDomiRuc', '')
-            observaciones = response_data.get('observaciones', [])
-
-            # Obtener descripciones oficiales
-            desc_comprobante = ESTADOS_COMPROBANTE.get(estado_cp, f'Código desconocido: {estado_cp}')
-            desc_ruc = ESTADOS_RUC.get(estado_ruc, f'Código desconocido: {estado_ruc}')
-            desc_domicilio = CONDICIONES_DOMICILIO.get(condicion_domicilio, f'Código desconocido: {condicion_domicilio}')
-
-            # Determinar si es válido (mantener la lógica original)
+            # Determinar si es válido
             es_valido = (
                 estado_cp in ['1', '0'] and  # 1=Aceptado, 0=Anulado (pero existió)
                 estado_ruc == '00'  # 00=Activo
             )
 
-            print(f"✅ SUNAT validation completed: {estado_cp} - {desc_comprobante}")
+            print(f"✅ SUNAT validation completed: {estado_cp}")
 
             return {
                 'validado': True,
-                'esValido': es_valido,
                 'estado': 'VALIDO' if es_valido else 'INVALIDO',
                 'motivo': 'Comprobante validado exitosamente' if es_valido else 'Comprobante no válido en SUNAT',
                 'estadoSunat': {
-                    'estadoComprobante': {
-                        'codigo': estado_cp,
-                        'descripcion': desc_comprobante
-                    },
-                    'estadoRuc': {
-                        'codigo': estado_ruc,
-                        'descripcion': desc_ruc
-                    },
-                    'condicionDomicilio': {
-                        'codigo': condicion_domicilio,
-                        'descripcion': desc_domicilio
-                    },
-                    'observaciones': observaciones
+                    'estadoComprobante': estado_cp,
+                    'estadoRuc': estado_ruc,
+                    'condicionDomicilio': condicion_domicilio,
+                    'observaciones': data.get('observaciones', [])
                 },
                 'timestampValidacion': datetime.now().isoformat() + 'Z'
             }
@@ -488,8 +417,7 @@ ESTRUCTURA JSON REQUERIDA (retorna SOLO este JSON, sin texto adicional):
   "condiciones": {
     "formaPago": "CONTADO",
     "medioPago": "TRANSFERENCIA",
-    "plazoCredito": 30,
-    "fechaVencimiento": "2025-10-22",
+    "plazoCredito": null,
     "cuotas": null,
     "vendedor": "CHRISTIAN",
     "numeroPedido": "0006-2849",
@@ -579,26 +507,11 @@ INSTRUCCIONES CRÍTICAS:
    - Validar que correlativo sea numérico
    - Identificar si es agente de retención/percepción
 
-6. PLAZO DE CRÉDITO Y FECHA DE VENCIMIENTO (CRÍTICO):
-   - plazoCredito: DEBE ser un NÚMERO ENTERO (días), NO texto como "30 dias" o "15 días"
-   - fechaVencimiento: DEBE ser formato YYYY-MM-DD
-   - LÓGICA A SEGUIR:
-     * Si encuentras AMBOS (plazo y fecha): extraer ambos como están
-     * Si solo encuentras plazo (ej: "crédito 30 días"): extraer SOLO el número (30) en plazoCredito, fechaVencimiento = null
-     * Si solo encuentras fecha de vencimiento: extraerla en fechaVencimiento, plazoCredito = null
-     * Si es CONTADO: plazoCredito = null, fechaVencimiento = null
-   - EJEMPLOS:
-     * "Crédito 30 días" → plazoCredito: 30, fechaVencimiento: null
-     * "Vencimiento: 2025-10-30" → plazoCredito: null, fechaVencimiento: "2025-10-30"
-     * "Contado" → plazoCredito: null, fechaVencimiento: null
-     * "15 dias" → plazoCredito: 15, fechaVencimiento: null
-   - NUNCA pongas texto en plazoCredito, SOLO números enteros o null
-
-7. WARNINGS Y ERRORES:
+6. WARNINGS Y ERRORES:
    - En validaciones.warnings: inconsistencias menores (ej: IGV difiere por redondeo)
    - En validaciones.errores: problemas graves (ej: RUC inválido, total no cuadra)
 
-8. RESPUESTA:
+7. RESPUESTA:
    - Retornar ÚNICAMENTE el JSON
    - NO agregar texto explicativo antes o después
    - NO usar markdown (```json)
@@ -634,44 +547,14 @@ Analiza la factura con máximo rigor profesional y precisión contable.
         ]
     }
     
-    # Reintentos con backoff exponencial para manejar throttling
-    max_retries = 5
-    base_delay = 2  # segundos
-
-    for attempt in range(max_retries):
-        try:
-            # Call Bedrock
-            if attempt > 0:
-                print(f"🔄 Retry {attempt}/{max_retries} - Invoking Bedrock model: {MODEL_ID}")
-            else:
-                print(f"🔄 Invoking Bedrock model: {MODEL_ID}")
-
-            response = bedrock_runtime.invoke_model(
-                modelId=MODEL_ID,
-                body=json.dumps(request_body)
-            )
-
-            # Si llegamos aquí, la llamada fue exitosa
-            break
-
-        except ClientError as e:
-            error_code = e.response['Error']['Code']
-
-            if error_code == 'ThrottlingException':
-                if attempt < max_retries - 1:
-                    # Backoff exponencial: 2s, 4s, 8s, 16s, 32s
-                    delay = base_delay * (2 ** attempt)
-                    print(f"⚠️ Throttling detected. Waiting {delay}s before retry...")
-                    time.sleep(delay)
-                    continue
-                else:
-                    print(f"❌ Max retries reached after throttling")
-                    raise
-            else:
-                # Otro tipo de error, no reintentar
-                raise
-
     try:
+        # Call Bedrock
+        print(f"🔄 Invoking Bedrock model: {MODEL_ID}")
+        
+        response = bedrock_runtime.invoke_model(
+            modelId=MODEL_ID,
+            body=json.dumps(request_body)
+        )
         
         # Parse response
         response_body = json.loads(response['body'].read())
@@ -746,8 +629,25 @@ def build_item(client_id, invoice_data, bucket, key, file_size, sunat_validation
         elif isinstance(obj, float):
             return Decimal(str(obj))
         return obj
-    
+
+    def safe_decimal(value, default=Decimal("0")):
+        """
+        Normaliza valores a Decimal y evita errores cuando faltan montos
+        """
+        if value is None:
+            return default
+        if isinstance(value, Decimal):
+            return value
+        try:
+            return Decimal(str(value))
+        except (InvalidOperation, ValueError, TypeError) as exc:
+            print(f"⚠️ Decimal conversion fallback for {value}: {exc}")
+            return default
+
     invoice_data_decimal = convert_to_decimal(invoice_data)
+
+    montos = invoice_data.get('montos', {})
+    total_value = safe_decimal(montos.get('total'))
     
     # Build DynamoDB item
     item = {
@@ -767,7 +667,7 @@ def build_item(client_id, invoice_data, bucket, key, file_size, sunat_validation
         'emisorRazonSocial': invoice_data.get('emisor', {}).get('razonSocial'),
         'receptorRUC': invoice_data.get('receptor', {}).get('numeroDocumento'),
         'receptorRazonSocial': invoice_data.get('receptor', {}).get('razonSocial'),
-        'total': Decimal(str(invoice_data.get('montos', {}).get('total', 0))),
+        'total': total_value,
         'moneda': invoice_data.get('montos', {}).get('moneda', 'PEN'),
         
         # Complete structured data from Claude (with Decimals)
@@ -787,7 +687,7 @@ def build_item(client_id, invoice_data, bucket, key, file_size, sunat_validation
             'status': 'processed',
             'motor': 'bedrock-claude',
             'modelId': MODEL_ID,
-            'modelName': 'Claude 3.5 Sonnet',
+            'modelName': 'Claude 3.5 Sonnet v2',
             'confidence': 'high',
             'timestampProcesado': datetime.utcnow().isoformat() + 'Z',
             'warnings': invoice_data.get('validaciones', {}).get('warnings', []),

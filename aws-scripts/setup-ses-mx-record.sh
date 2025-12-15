@@ -1,11 +1,12 @@
 #!/bin/bash
 
 # Script para agregar el registro MX necesario para recibir emails en SES
-# Dominio: flow-cfo-facturas.com
+# Dominio: flow-cfo.com
 # Región: us-east-1
 
-HOSTED_ZONE_ID="Z0016351VEOM0OQ9HSX1"
-DOMAIN="flow-cfo-facturas.com"
+# Hosted zone created for flow-cfo.com
+HOSTED_ZONE_ID="Z00045293VFM4AYD5PO7E"
+DOMAIN="flow-cfo.com"
 MX_ENDPOINT="inbound-smtp.us-east-1.amazonaws.com"
 
 echo "Agregando registro MX para $DOMAIN..."

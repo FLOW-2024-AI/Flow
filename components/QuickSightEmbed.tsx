@@ -7,9 +7,14 @@ import { Loader2 } from 'lucide-react'
 interface QuickSightEmbedProps {
   dashboardUrl: string
   title?: string
+  onLoad?: () => void
 }
 
-export default function QuickSightEmbed({ dashboardUrl, title = 'QuickSight Dashboard' }: QuickSightEmbedProps) {
+export default function QuickSightEmbed({
+  dashboardUrl,
+  title = 'QuickSight Dashboard',
+  onLoad
+}: QuickSightEmbedProps) {
   const [loading, setLoading] = useState(true)
 
   return (
@@ -35,19 +40,22 @@ export default function QuickSightEmbed({ dashboardUrl, title = 'QuickSight Dash
       )}
 
       {/* QuickSight iFrame */}
-      <iframe
-        src={dashboardUrl}
-        className="w-full transition-opacity duration-300"
-        style={{
-          height: 'calc(100vh - 300px)',
-          minHeight: '800px',
-          border: 'none',
-          opacity: loading ? 0 : 1
-        }}
-        onLoad={() => setLoading(false)}
-        allowFullScreen
-        title={title}
-      />
+        <iframe
+          src={dashboardUrl}
+          className="w-full transition-opacity duration-300"
+          style={{
+            height: 'calc(100vh - 300px)',
+            minHeight: '800px',
+            border: 'none',
+            opacity: loading ? 0 : 1
+          }}
+          onLoad={() => {
+            setLoading(false)
+            onLoad?.()
+          }}
+          allowFullScreen
+          title={title}
+        />
     </motion.div>
   )
 }

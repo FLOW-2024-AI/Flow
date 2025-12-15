@@ -8,9 +8,8 @@ aws s3api put-bucket-notification-configuration \
     "LambdaFunctionConfigurations": [
       {
         "Id": "invoke-invoiceprocessor-on-create",
-        "LambdaFunctionArn": "arn:aws:lambda:us-east-1:886436955626:function:InvoiceProcessor-dev",
+        "LambdaFunctionArn": "arn:aws:lambda:us-east-1:069662085753:function:InvoiceProcessor-dev",
         "Events": ["s3:ObjectCreated:*"]
       }
     ]
   }'
-

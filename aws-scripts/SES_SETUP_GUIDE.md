@@ -9,18 +9,18 @@ Este sistema permite recibir facturas por email y procesarlas automáticamente:
 ## 🎯 Componentes del Sistema
 
 ### 1. **Route 53** (DNS)
-- **Dominio**: `flow-cfo-facturas.com`
-- **Hosted Zone ID**: `Z0016351VEOM0OQ9HSX1`
-- **Email receptor**: `facturas@flow-cfo-facturas.com`
+- **Dominio**: `flow-cfo.com`
+- **Hosted Zone ID**: `Z00045293VFM4AYD5PO7E`
+- **Email receptor**: `demo@flow-cfo.com`
 
 ### 2. **AWS SES** (Simple Email Service)
 - **Región**: `us-east-1`
-- **Identidad verificada**: `flow-cfo-facturas.com`
+- **Identidad verificada**: `flow-cfo.com`
 - **Estado**: ✅ Success
 
 ### 3. **SNS Topic**
 - **Nombre**: `facturas-lambda`
-- **ARN**: `arn:aws:sns:us-east-1:886436955626:facturas-lambda`
+- **ARN**: `arn:aws:sns:us-east-1:069662085753:facturas-lambda`
 
 ### 4. **Lambda Function**
 - **Nombre**: `extract-pdf-to-s3`
@@ -48,35 +48,37 @@ chmod +x setup-ses-mx-record.sh
 ```
 
 **Resultado esperado**:
-- Registro MX: `flow-cfo-facturas.com` → `10 inbound-smtp.us-east-1.amazonaws.com`
+- Registro MX: `flow-cfo.com` → `10 inbound-smtp.us-east-1.amazonaws.com`
 - TTL: 300 segundos
 
 **Verificar**:
 ```bash
 aws route53 list-resource-record-sets \
-  --hosted-zone-id Z0016351VEOM0OQ9HSX1 \
+  --hosted-zone-id Z00045293VFM4AYD5PO7E \
   --query "ResourceRecordSets[?Type=='MX']" \
   --output table
 ```
 
 ---
 
-### PASO 2: Crear S3 Bucket para Facturas
+### PASO 2: Crear S3 Bucket para facturas entrantes
 
-**Nombre sugerido**: `flow-cfo-facturas-invoices`
+**Nombre oficial**: `flow-facturas-prod` (ya lo creamos con Terraform)
 
 ```bash
-# Crear bucket
-aws s3 mb s3://flow-cfo-facturas-invoices --region us-east-1
+# Crear bucket si aún no existe
+aws s3 mb s3://flow-facturas-prod --region us-east-1
 
-# Configurar versionado (opcional pero recomendado)
+# Activar versionado para conservar historiales
 aws s3api put-bucket-versioning \
-  --bucket flow-cfo-facturas-invoices \
+  --bucket flow-facturas-prod \
   --versioning-configuration Status=Enabled
 
-# Configurar política de ciclo de vida (opcional)
-# Por ejemplo, mover a Glacier después de 90 días
+# Crear carpeta base (el script de SES usa incoming-emails/)
+aws s3api put-object --bucket flow-facturas-prod --key incoming-emails/
 ```
+
+Luego se deberá aplicar la política que permite a SES escribir en la ruta `incoming-emails/` (el script `configure-ses-s3-permissions.sh` lo hace automáticamente).
 
 ---
 
@@ -90,7 +92,7 @@ aws sns list-topics
 aws sns create-topic --name facturas-lambda
 ```
 
-**ARN esperado**: `arn:aws:sns:us-east-1:886436955626:facturas-lambda`
+**ARN esperado**: `arn:aws:sns:us-east-1:069662085753:facturas-lambda`
 
 ---
 
@@ -111,7 +113,7 @@ aws sns create-topic --name facturas-lambda
       "s3:GetObject",
       "s3:HeadObject"
     ],
-    "Resource": "arn:aws:s3:::flow-cfo-facturas-invoices/*"
+    "Resource": "arn:aws:s3:::flow-facturas-prod/*"
   }]
 }
 ```
@@ -147,7 +149,7 @@ aws sns create-topic --name facturas-lambda
 
 **Variables de entorno**:
 ```bash
-DEST_BUCKET=flow-cfo-facturas-invoices
+DEST_BUCKET=flow-facturas-prod
 BASE_PREFIX=facturas
 DELAY_SECONDS=15
 DATE_TZ_OFFSET_MINUTES=-300
@@ -165,13 +167,13 @@ zip lambda-package.zip extract-pdf-to-s3.py
 aws lambda create-function \
   --function-name extract-pdf-to-s3 \
   --runtime python3.11 \
-  --role arn:aws:iam::886436955626:role/lambda-ses-facturas-role \
+  --role arn:aws:iam::069662085753:role/lambda-ses-facturas-role \
   --handler extract-pdf-to-s3.handler \
   --zip-file fileb://lambda-package.zip \
   --timeout 300 \
   --memory-size 512 \
   --environment Variables='{
-    "DEST_BUCKET":"flow-cfo-facturas-invoices",
+    "DEST_BUCKET":"flow-facturas-prod",
     "BASE_PREFIX":"facturas",
     "DELAY_SECONDS":"15",
     "DATE_TZ_OFFSET_MINUTES":"-300",
@@ -186,17 +188,16 @@ aws lambda create-function \
 ```bash
 # Suscribir Lambda al topic SNS
 aws sns subscribe \
-  --topic-arn arn:aws:sns:us-east-1:886436955626:facturas-lambda \
+  --topic-arn arn:aws:sns:us-east-1:069662085753:facturas-lambda \
   --protocol lambda \
-  --notification-endpoint arn:aws:lambda:us-east-1:886436955626:function:extract-pdf-to-s3
+  --notification-endpoint arn:aws:lambda:us-east-1:069662085753:function:extract-pdf-to-s3
 
-# Dar permiso a SNS para invocar el Lambda
 aws lambda add-permission \
   --function-name extract-pdf-to-s3 \
   --statement-id AllowSNSInvoke \
   --action lambda:InvokeFunction \
   --principal sns.amazonaws.com \
-  --source-arn arn:aws:sns:us-east-1:886436955626:facturas-lambda
+  --source-arn arn:aws:sns:us-east-1:069662085753:facturas-lambda
 ```
 
 ---
@@ -207,38 +208,46 @@ aws lambda add-permission \
 
 ```bash
 # Crear rule set
-aws ses create-receipt-rule-set --rule-set-name facturas-rule-set
+aws ses create-receipt-rule-set --rule-set-name inbound-email-rule-set
 
 # Activar rule set
-aws ses set-active-receipt-rule-set --rule-set-name facturas-rule-set
+aws ses set-active-receipt-rule-set --rule-set-name inbound-email-rule-set
 ```
 
 #### 7.2. Crear Receipt Rule
 
 **Configuración de la regla**:
-- **Rule Name**: `lambdaSES`
-- **Recipients**: `facturas@flow-cfo-facturas.com`
-- **Actions**: Publish to SNS topic
+- **Rule Name**: `inbound-email-rule`
+- **Recipients**: `demo@flow-cfo.com`
+- **Actions**: Guardar el mensaje en S3 y publicar en SNS
 
 ```bash
-# Crear la regla
+# Crear la regla si no existe todavía
 aws ses create-receipt-rule \
-  --rule-set-name facturas-rule-set \
+  --rule-set-name inbound-email-rule-set \
   --rule '{
-    "Name": "lambdaSES",
+    "Name": "inbound-email-rule",
     "Enabled": true,
-    "Recipients": ["facturas@flow-cfo-facturas.com"],
-    "Actions": [{
-      "SNSAction": {
-        "TopicArn": "arn:aws:sns:us-east-1:886436955626:facturas-lambda",
-        "Encoding": "UTF-8"
+    "Recipients": ["demo@flow-cfo.com"],
+    "Actions": [
+      {
+        "S3Action": {
+          "BucketName": "flow-facturas-prod",
+          "ObjectKeyPrefix": "incoming-emails/"
+        }
+      },
+      {
+        "SNSAction": {
+          "TopicArn": "arn:aws:sns:us-east-1:069662085753:facturas-lambda",
+          "Encoding": "UTF-8"
+        }
       }
-    }],
+    ],
     "ScanEnabled": true
   }'
 ```
 
-**Nota**: También puedes configurar esto desde la consola web (como estabas haciendo).
+**Nota**: El script `configure-ses-s3-permissions.sh` también deja esta regla con la configuración correcta después de aplicar la política al bucket.
 
 ---
 
@@ -247,7 +256,7 @@ aws ses create-receipt-rule \
 ```bash
 # Crear política de acceso en el SNS topic
 aws sns set-topic-attributes \
-  --topic-arn arn:aws:sns:us-east-1:886436955626:facturas-lambda \
+  --topic-arn arn:aws:sns:us-east-1:069662085753:facturas-lambda \
   --attribute-name Policy \
   --attribute-value '{
     "Version": "2012-10-17",
@@ -257,10 +266,10 @@ aws sns set-topic-attributes \
         "Service": "ses.amazonaws.com"
       },
       "Action": "SNS:Publish",
-      "Resource": "arn:aws:sns:us-east-1:886436955626:facturas-lambda",
+      "Resource": "arn:aws:sns:us-east-1:069662085753:facturas-lambda",
       "Condition": {
         "StringEquals": {
-          "AWS:SourceAccount": "886436955626"
+          "AWS:SourceAccount": "069662085753"
         }
       }
     }]
@@ -268,14 +277,13 @@ aws sns set-topic-attributes \
 ```
 
 ---
-
 ## 🧪 Pruebas
 
 ### Prueba 1: Enviar Email de Prueba
 
 ```bash
 # Enviar un email de prueba con un PDF adjunto a:
-# facturas@flow-cfo-facturas.com
+# demo@flow-cfo.com
 ```
 
 ### Prueba 2: Monitorear Lambda Logs
@@ -289,7 +297,7 @@ aws logs tail /aws/lambda/extract-pdf-to-s3 --follow
 
 ```bash
 # Listar archivos subidos
-aws s3 ls s3://flow-cfo-facturas-invoices/facturas/ --recursive
+aws s3 ls s3://flow-facturas-prod/incoming-emails/ --recursive
 ```
 
 ---
@@ -316,7 +324,7 @@ aws ses list-identities
 
 ### Ver estado de verificación
 ```bash
-aws ses get-identity-verification-attributes --identities flow-cfo-facturas.com
+aws ses get-identity-verification-attributes --identities flow-cfo.com
 ```
 
 ### Ver rule sets activos
@@ -326,13 +334,13 @@ aws ses describe-active-receipt-rule-set
 
 ### Ver todas las reglas
 ```bash
-aws ses describe-receipt-rule-set --rule-set-name facturas-rule-set
+aws ses describe-receipt-rule-set --rule-set-name inbound-email-rule-set
 ```
 
 ### Ver suscripciones SNS
 ```bash
 aws sns list-subscriptions-by-topic \
-  --topic-arn arn:aws:sns:us-east-1:886436955626:facturas-lambda
+  --topic-arn arn:aws:sns:us-east-1:069662085753:facturas-lambda
 ```
 
 ### Ver logs del Lambda
@@ -360,7 +368,7 @@ aws logs tail /aws/lambda/extract-pdf-to-s3 --follow
 
 ### Error: "No active receipt rule set"
 ```bash
-aws ses set-active-receipt-rule-set --rule-set-name facturas-rule-set
+aws ses set-active-receipt-rule-set --rule-set-name inbound-email-rule-set
 ```
 
 ### Error: Lambda no se ejecuta
@@ -374,9 +382,9 @@ aws ses set-active-receipt-rule-set --rule-set-name facturas-rule-set
 3. Verificar el bucket existe
 
 ### Email no llega
-1. Verificar registro MX con `dig flow-cfo-facturas.com MX`
-2. Verificar Receipt Rule está activa
-3. Verificar destinatario exacto: `facturas@flow-cfo-facturas.com`
+1. Verificar registro MX con `dig flow-cfo.com MX`
+2. Verificar Receipt Rule está activa (inbound-email-rule-set)
+3. Verificar que el destinatario sea `demo@flow-cfo.com`
 
 ---
 
@@ -403,5 +411,5 @@ aws ses set-active-receipt-rule-set --rule-set-name facturas-rule-set
 ---
 
 **Última actualización**: 2025-10-28
-**Cuenta AWS**: 886436955626
+**Cuenta AWS**: 069662085753
 **Usuario**: SES-FLOW
