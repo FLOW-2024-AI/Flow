@@ -129,6 +129,20 @@ export default function FacturasRegistradasPage() {
   const [pdfSignedUrl, setPdfSignedUrl] = useState<string | null>(null)
   const [loadingPdf, setLoadingPdf] = useState(false)
   const [pdfSectionExpanded, setPdfSectionExpanded] = useState(true)
+  const [userLabel, setUserLabel] = useState('Cliente')
+
+  const buildUserLabel = (tenantId: string, email?: string | null, username?: string | null) => {
+    const fallback = 'Usuario'
+    const localPart = email?.split('@')[0]?.trim() || username?.trim() || fallback
+    const normalizedTenant = tenantId?.trim() || ''
+
+    let subuser = localPart
+    if (normalizedTenant && localPart.endsWith(`.${normalizedTenant}`)) {
+      subuser = localPart.slice(0, -(normalizedTenant.length + 1))
+    }
+
+    return normalizedTenant ? `${subuser} · ${normalizedTenant}` : subuser
+  }
 
   // Función para calcular tiempo relativo desde/hasta la fecha de vencimiento
   const getRelativeTime = (fechaVencimiento: string | null) => {
@@ -300,6 +314,26 @@ export default function FacturasRegistradasPage() {
   useEffect(() => {
     fetchFacturasPendientes()
     fetchStats()
+  }, [])
+
+  // Cargar info del subusuario/tenant para el header
+  useEffect(() => {
+    const loadUserLabel = async () => {
+      try {
+        const response = await fetch('/api/auth/me')
+        if (!response.ok) {
+          return
+        }
+        const result = await response.json()
+        if (result?.success && result?.tenantId) {
+          setUserLabel(buildUserLabel(result.tenantId, result.email, result.username))
+        }
+      } catch (error) {
+        console.error('Error cargando usuario:', error)
+      }
+    }
+
+    loadUserLabel()
   }, [])
 
   // Cargar facturas aprobadas cuando se selecciona la pestaña BD
@@ -636,7 +670,7 @@ export default function FacturasRegistradasPage() {
               <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg flex items-center justify-center">
                 <FileBarChart className="w-6 h-6 text-white" />
               </div>
-              <span className="text-lg font-bold">Cliente Demo</span>
+              <span className="text-lg font-bold">{userLabel}</span>
             </div>
 
             {/* Navigation */}

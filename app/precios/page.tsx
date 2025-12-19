@@ -33,16 +33,12 @@ const plans = [
     tagline: "Para Iniciar",
     limit: "Hasta 350 facturas/mes",
     features: [
-      "✨ IA para procesamiento automático de facturas por correo",
-      "📊 Dashboard financiero intuitivo",
-      "✅ Validación automática con SUNAT",
-      "📥 Extracción de datos con IA",
-      "📧 Monitoreo de correos 24/7",
-      "🔔 Alertas de nuevas facturas",
-      "💾 Almacenamiento en la nube",
-      "📱 Acceso móvil",
-      "🎯 Reportes básicos",
-      "📞 Soporte por email (48h)"
+      "Procesamiento automático de facturas por correo",
+      "Dashboard financiero básico",
+      "Validación con SUNAT",
+      "Extracción de datos con IA",
+      "Alertas de nuevas facturas",
+      "Soporte por email (48h)"
     ],
     popular: false,
     color: "blue",
@@ -54,19 +50,15 @@ const plans = [
     price: "$150",
     period: "/mes",
     description: "Automatización completa. Para PYMEs digitalizadas que buscan eficiencia máxima.",
-    tagline: "⭐ Más Popular",
+    tagline: "Más popular",
     limit: "Hasta 600 facturas/mes",
     features: [
-      "✅ Todo lo de Essential +",
-      "🔗 Integración directa con tu ERP",
-      "🤖 Agente IA contextual para consultas",
-      "⚡ Sincronización automática en tiempo real",
-      "📊 Analytics avanzados",
-      "🎨 Personalización de flujos de trabajo",
-      "🔄 API para integraciones custom",
-      "📈 Predicciones con Machine Learning",
-      "👥 Multi-usuario (hasta 5)",
-      "💬 Soporte prioritario (24h)"
+      "Incluye todo lo de Essential",
+      "Integración directa con tu ERP",
+      "Agente IA contextual para consultas",
+      "Sincronización automática en tiempo real",
+      "Analytics avanzados",
+      "Multi-usuario (hasta 5)"
     ],
     popular: true,
     color: "green",
@@ -81,18 +73,12 @@ const plans = [
     tagline: "Solución Completa",
     limit: "Facturas ilimitadas",
     features: [
-      "✅ Todo lo de Flow +",
-      "♾️ Facturas ilimitadas",
-      "🏢 Multi-empresa",
-      "👥 Usuarios ilimitados",
-      "🎯 Onboarding personalizado",
-      "🔧 Integraciones custom ilimitadas",
-      "📊 Dashboards personalizados",
-      "🤝 Account Manager dedicado",
-      "⚙️ SLA garantizado 99.9%",
-      "🚀 Implementación prioritaria",
-      "📞 Soporte 24/7 + WhatsApp directo",
-      "🎓 Capacitación ilimitada para tu equipo"
+      "Incluye todo lo de Flow",
+      "Facturas ilimitadas",
+      "Multi-empresa",
+      "Usuarios ilimitados",
+      "Integraciones custom ilimitadas",
+      "Soporte dedicado 24/7"
     ],
     popular: false,
     color: "blue",
@@ -104,19 +90,15 @@ const plans = [
     price: "$350",
     period: "/mes",
     description: "El futuro de la gestión financiera. Suite completa de apps para el CFO moderno.",
-    tagline: "🚀 Próximamente",
+    tagline: "Próximamente",
     limit: "Todo Flow +",
     features: [
-      "📊 Analytics Avanzado",
-      "📈 Predicciones con IA",
-      "💰 Planificación Estratégica",
-      "🎯 Presupuesto Inteligente",
-      "📉 Flujo de Caja Proyectado",
-      "⚠️ Gestión de Riesgos",
-      "💼 Salud Financiera (Score)",
-      "🤖 Automatizaciones RPA",
-      "🏦 Ecosistema Financiero",
-      "💳 Productos Bancarios"
+      "Analytics avanzado",
+      "Predicciones con IA",
+      "Planificación estratégica",
+      "Presupuesto inteligente",
+      "Flujo de caja proyectado",
+      "Gestión de riesgos"
     ],
     popular: false,
     color: "purple",
@@ -176,7 +158,7 @@ export default function PreciosPage() {
                   {plan.popular && (
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                       <span className="bg-green-600 text-gray-900 dark:text-white px-4 py-1.5 rounded-full text-xs font-bold shadow-xl">
-                        ⭐ {plan.tagline}
+                        {plan.tagline}
                       </span>
                     </div>
                   )}
