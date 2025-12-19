@@ -5,9 +5,6 @@
 
 set -e
 
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-cd "$SCRIPT_DIR"
-
 echo "🚀 Desplegando FacturasPostgresWriter-poc Lambda..."
 
 # Variables
@@ -20,8 +17,9 @@ LAMBDA_FUNCTION_NAME="FacturasPostgresWriter-poc"
 # Full image name
 ECR_IMAGE="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${ECR_REPO}:${IMAGE_TAG}"
 
-echo "📦 Construyendo imagen Docker para linux/amd64..."
-docker buildx build --platform linux/amd64 -t ${ECR_REPO}:${IMAGE_TAG} -f Dockerfile.postgres-writer --load .
+echo "📦 Construyendo imagen Docker (linux/amd64)..."
+docker buildx build --platform linux/amd64 --provenance=false --load \
+  -t ${ECR_REPO}:${IMAGE_TAG} -f Dockerfile.postgres-writer .
 
 echo "🔐 Autenticando con ECR..."
 aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com
@@ -32,40 +30,10 @@ docker tag ${ECR_REPO}:${IMAGE_TAG} ${ECR_IMAGE}
 echo "⬆️  Subiendo imagen a ECR..."
 docker push ${ECR_IMAGE}
 
-IMAGE_MANIFEST_JSON=$(aws ecr batch-get-image \
-    --region ${AWS_REGION} \
-    --repository-name ${ECR_REPO} \
-    --image-ids imageTag=${IMAGE_TAG} \
-    --query 'images[0].imageManifest' \
-    --output text)
-
-IMAGE_DIGEST=$(IMAGE_MANIFEST_JSON="${IMAGE_MANIFEST_JSON}" python3 - <<'PY'
-import json, os, sys
-manifest_json = os.environ.get("IMAGE_MANIFEST_JSON", "")
-if not manifest_json:
-    sys.exit(1)
-manifest = json.loads(manifest_json)
-for entry in manifest.get("manifests", []):
-    platform = entry.get("platform", {})
-    if platform.get("os") == "linux" and platform.get("architecture") == "amd64":
-        print(entry["digest"])
-        sys.exit(0)
-if manifest.get("manifests"):
-    print(manifest["manifests"][0].get("digest", ""))
-PY
-)
-
-if [ -z "${IMAGE_DIGEST}" ]; then
-  echo "❌ No se pudo determinar el digest linux/amd64 desde el manifest."
-  exit 1
-fi
-
-IMAGE_URI_WITH_DIGEST="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${ECR_REPO}@${IMAGE_DIGEST}"
-
 echo "🔄 Actualizando función Lambda..."
 aws lambda update-function-code \
     --function-name ${LAMBDA_FUNCTION_NAME} \
-    --image-uri ${IMAGE_URI_WITH_DIGEST}
+    --image-uri ${ECR_IMAGE}
 
 echo "⏳ Esperando que la actualización se complete..."
 aws lambda wait function-updated --function-name ${LAMBDA_FUNCTION_NAME}

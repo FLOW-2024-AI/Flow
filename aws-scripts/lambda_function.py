@@ -20,6 +20,14 @@ dynamodb = boto3.resource('dynamodb')
 # Environment variables
 TABLE_NAME = os.environ.get('DYNAMODB_TABLE', 'Facturas-dev')
 table = dynamodb.Table(TABLE_NAME)
+BASE_PREFIX = os.environ.get('BASE_PREFIX', '').strip().strip('/')
+
+
+def extract_client_id(s3_key: str) -> str:
+    parts = (s3_key or '').split('/')
+    if BASE_PREFIX and parts and parts[0] == BASE_PREFIX:
+        parts = parts[1:]
+    return parts[0] if parts else 'unknown'
 
 
 def lambda_handler(event, context):
@@ -37,9 +45,7 @@ def lambda_handler(event, context):
         print(f"📦 Size: {file_size} bytes")
         
         # 2. Extract client_id from path
-        # Path format: cliente-test/20251017/factura.pdf
-        parts = key.split('/')
-        client_id = parts[0] if len(parts) > 0 else 'unknown'
+        client_id = extract_client_id(key)
         
         print(f"👤 Client ID: {client_id}")
         
@@ -76,6 +82,7 @@ def lambda_handler(event, context):
                 'message': 'Invoice processed successfully',
                 'invoiceId': dynamo_item['invoiceId'],
                 'clientId': client_id,
+                'tenantId': client_id,
                 'total': float(invoice_data.get('total', 0))
             })
         }
@@ -225,6 +232,7 @@ def build_item(client_id, invoice_data, bucket, key, file_size):
         
         # IDs
         'clientId': client_id,
+        'tenantId': client_id,
         'invoiceId': invoice_id,
         'numeroFactura': numero,
         

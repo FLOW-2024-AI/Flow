@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Navbar from '@/components/Navbar'
 
 const containerVariants = {
@@ -33,6 +33,8 @@ interface LoginFormData {
 
 export default function LoginPage() {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const nextParam = searchParams.get('next')
   const [formData, setFormData] = useState<LoginFormData>({
     email: '',
     password: ''
@@ -57,22 +59,25 @@ export default function LoginPage() {
     setError('')
 
     try {
-      // Simulate login API call
-      await new Promise(resolve => setTimeout(resolve, 1500))
-      
-      // For demo purposes - you would implement real authentication here
-      if (formData.email === 'admin@flow.finance' && formData.password === 'demo123') {
-        // Store demo session
-        if (typeof window !== 'undefined') {
-          localStorage.setItem('demo_session', 'true')
-          localStorage.setItem('demo_user', JSON.stringify({ name: 'Admin', email: formData.email }))
-        }
-        // Redirect to apps - use window.location for static export
-        console.log('Login successful!')
-        // Use router.push for better compatibility
-        router.push('/apps')
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password
+        })
+      })
+      const result = await response.json()
+
+      if (!response.ok || !result.success) {
+        setError(result.error || 'Credenciales incorrectas. Intenta nuevamente.')
+        return
+      }
+
+      if (nextParam && nextParam.startsWith('/apps')) {
+        router.push(nextParam)
       } else {
-        setError('Credenciales incorrectas. Intenta nuevamente.')
+        router.push('/apps')
       }
     } catch (err) {
       setError('Error al iniciar sesión. Intenta nuevamente.')
@@ -114,7 +119,7 @@ export default function LoginPage() {
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 bg-gray-50 dark:bg-[#191919] border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
-                  placeholder="tu@flow.finance"
+                  placeholder="tu@flow-cfo.com"
                   disabled={isLoading}
                 />
               </motion.div>

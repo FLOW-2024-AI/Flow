@@ -1,15 +1,21 @@
 #!/bin/bash
 set -e
 
-# Elimina la política si ya existe (ignora error si no existe)
+# Configuración (sobrescribe con variables de entorno si corresponde)
+BUCKET="${BUCKET:-flow-cfo-facturas-invoices}"
+LAMBDA_ARN="${LAMBDA_ARN:-arn:aws:lambda:us-east-1:886436955626:function:InvoiceProcessor-dev}"
+
+# Aplica notificación S3 → Lambda para nuevos objetos (ObjectCreated)
 aws s3api put-bucket-notification-configuration \
-  --bucket flow-facturas \
+  --bucket "$BUCKET" \
   --notification-configuration '{
     "LambdaFunctionConfigurations": [
       {
         "Id": "invoke-invoiceprocessor-on-create",
-        "LambdaFunctionArn": "arn:aws:lambda:us-east-1:069662085753:function:InvoiceProcessor-dev",
+        "LambdaFunctionArn": "'"$LAMBDA_ARN"'",
         "Events": ["s3:ObjectCreated:*"]
       }
     ]
   }'
+
+echo "✓ Notificación S3 configurada en bucket $BUCKET hacia $LAMBDA_ARN"

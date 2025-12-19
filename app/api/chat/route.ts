@@ -1,24 +1,10 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { ChatBedrockConverse } from '@langchain/aws'
 import { PromptTemplate } from '@langchain/core/prompts'
 import { StringOutputParser } from '@langchain/core/output_parsers'
 import { RunnableSequence } from '@langchain/core/runnables'
-import { Pool } from 'pg'
-
-// Configuración de conexión a PostgreSQL
-const pool = new Pool({
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  port: parseInt(process.env.DB_PORT || '5432'),
-  ssl: {
-    rejectUnauthorized: false
-  },
-  max: 20,
-  idleTimeoutMillis: 30000,
-  connectionTimeoutMillis: 2000,
-})
+import { AuthError, requireTenantContext } from '@/lib/auth'
+import { withTenantClient } from '@/lib/db'
 
 // Configurar Bedrock con LangChain
 const bedrockConfig: any = {
@@ -36,7 +22,7 @@ if (process.env.AWS_ACCESS_KEY_ID && process.env.AWS_SECRET_ACCESS_KEY) {
 }
 
 // Obtener contexto de facturas
-async function getFacturasContext() {
+async function getFacturasContext(tenantId: string) {
   try {
     // Obtener estadísticas generales
     const statsQuery = `
@@ -50,7 +36,7 @@ async function getFacturasContext() {
       FROM facturas
     `
 
-    const statsResult = await pool.query(statsQuery)
+    const statsResult = await withTenantClient(tenantId, async (client) => client.query(statsQuery))
     const stats = statsResult.rows[0]
 
     // Obtener facturas recientes
@@ -70,7 +56,7 @@ async function getFacturasContext() {
       LIMIT 50
     `
 
-    const facturasResult = await pool.query(facturasQuery)
+    const facturasResult = await withTenantClient(tenantId, async (client) => client.query(facturasQuery))
 
     // Obtener algunos detalles de productos de las últimas facturas
     const detallesQuery = `
@@ -95,7 +81,7 @@ async function getFacturasContext() {
       LIMIT 100
     `
 
-    const detallesResult = await pool.query(detallesQuery)
+    const detallesResult = await withTenantClient(tenantId, async (client) => client.query(detallesQuery))
 
     return {
       stats,
@@ -143,8 +129,9 @@ PREGUNTA DEL USUARIO:
 RESPUESTA:
 `)
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
+    const { tenantId } = await requireTenantContext(request)
     const body = await request.json()
     const { message } = body
 
@@ -156,7 +143,7 @@ export async function POST(request: Request) {
     }
 
     // Obtener contexto de facturas
-    const context = await getFacturasContext()
+    const context = await getFacturasContext(tenantId)
 
     // Formatear facturas para el contexto
     const facturasFormateadas = context.facturas.map((f: any, i: number) => `
@@ -213,6 +200,12 @@ ${i + 1}. Factura: ${d.numero_factura} - Proveedor: ${d.nombre_proveedor}
 
   } catch (error) {
     console.error('Error en chat:', error)
+    if (error instanceof AuthError) {
+      return NextResponse.json({
+        success: false,
+        error: error.message
+      }, { status: error.status })
+    }
 
     return NextResponse.json({
       success: false,

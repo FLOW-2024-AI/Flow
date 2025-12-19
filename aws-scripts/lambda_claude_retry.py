@@ -8,6 +8,7 @@ import json
 import boto3
 import base64
 import time
+import os
 from datetime import datetime
 from decimal import Decimal
 from botocore.exceptions import ClientError
@@ -23,6 +24,7 @@ TABLE_NAME = 'Facturas-dev'
 MODEL_ID = 'anthropic.claude-3-5-sonnet-20240620-v1:0'
 MAX_RETRIES = 5
 INITIAL_BACKOFF = 1  # segundos
+BASE_PREFIX = os.environ.get('BASE_PREFIX', '').strip().strip('/')
 
 # DynamoDB table
 table = dynamodb.Table(TABLE_NAME)
@@ -274,8 +276,10 @@ def extract_client_id(s3_key):
     Extrae client_id del path S3
     Formato esperado: client-id/archivo.pdf
     """
-    parts = s3_key.split('/')
-    if len(parts) >= 2:
+    parts = (s3_key or '').split('/')
+    if BASE_PREFIX and parts and parts[0] == BASE_PREFIX:
+        parts = parts[1:]
+    if len(parts) >= 1 and parts[0]:
         return parts[0]
     return 'unknown-client'
 
@@ -306,6 +310,7 @@ def save_to_dynamodb(client_id, invoice_data, bucket, key):
         'GSI1PK': f'EMISOR#{ruc}',
         'GSI1SK': fecha,
         'clientId': client_id,
+        'tenantId': client_id,
         'invoiceId': invoice_id,
         'numeroFactura': numero_factura,
         'tipoComprobante': 'FACTURA',

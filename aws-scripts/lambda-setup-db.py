@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS facturas (
     -- IDs y Referencias
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     client_id VARCHAR(100) NOT NULL,
+    tenant_id VARCHAR(100) NOT NULL,
     invoice_id VARCHAR(200) NOT NULL,
 
     -- Archivo S3
@@ -130,20 +131,20 @@ CREATE TABLE IF NOT EXISTS facturas (
     version_documento INTEGER DEFAULT 1,
 
     -- Constraints
-    CONSTRAINT facturas_unique_invoice UNIQUE (client_id, invoice_id),
+    CONSTRAINT facturas_unique_invoice UNIQUE (tenant_id, invoice_id),
     CONSTRAINT facturas_ruc_emisor_length CHECK (LENGTH(ruc_emisor) = 11),
     CONSTRAINT facturas_receptor_ruc_length CHECK (LENGTH(receptor_ruc) = 11 OR receptor_ruc IS NULL),
     CONSTRAINT facturas_monto_positivo CHECK (monto_total > 0)
 );
 
 -- INDICES
-CREATE INDEX IF NOT EXISTS idx_facturas_client_fecha ON facturas(client_id, fecha_emision DESC);
+CREATE INDEX IF NOT EXISTS idx_facturas_tenant_fecha ON facturas(tenant_id, fecha_emision DESC);
 CREATE INDEX IF NOT EXISTS idx_facturas_ruc_emisor ON facturas(ruc_emisor, fecha_emision DESC);
 CREATE INDEX IF NOT EXISTS idx_facturas_sunat_estado ON facturas(sunat_estado, sunat_validado);
 CREATE INDEX IF NOT EXISTS idx_facturas_serie_correlativo ON facturas(serie, correlativo);
 CREATE INDEX IF NOT EXISTS idx_facturas_numero_factura ON facturas(numero_factura);
 CREATE INDEX IF NOT EXISTS idx_facturas_receptor_ruc ON facturas(receptor_ruc);
-CREATE INDEX IF NOT EXISTS idx_facturas_aprobacion ON facturas(aprobado_por_cliente, client_id, fecha_emision DESC);
+CREATE INDEX IF NOT EXISTS idx_facturas_aprobacion ON facturas(aprobado_por_cliente, tenant_id, fecha_emision DESC);
 CREATE INDEX IF NOT EXISTS idx_facturas_data_jsonb ON facturas USING GIN (data_completa);
 CREATE INDEX IF NOT EXISTS idx_facturas_fecha_emision ON facturas(fecha_emision DESC);
 CREATE INDEX IF NOT EXISTS idx_facturas_monto ON facturas(monto_total DESC);
@@ -164,9 +165,16 @@ CREATE TRIGGER trigger_facturas_actualizado
     FOR EACH ROW
     EXECUTE FUNCTION update_actualizado_en();
 
+-- MULTI-TENANT (RLS)
+ALTER TABLE facturas ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS facturas_tenant_isolation ON facturas;
+CREATE POLICY facturas_tenant_isolation ON facturas
+    USING (tenant_id = current_setting('app.tenant_id', true))
+    WITH CHECK (tenant_id = current_setting('app.tenant_id', true));
+
 -- VISTAS
 CREATE OR REPLACE VIEW facturas_pendientes_aprobacion AS
-SELECT id, client_id, invoice_id, numero_factura, ruc_emisor, nombre_proveedor,
+SELECT id, tenant_id, client_id, invoice_id, numero_factura, ruc_emisor, nombre_proveedor,
        receptor_ruc, receptor_razon_social, fecha_emision, monto_total, moneda,
        sunat_validado, sunat_es_valido, aprobado_por_cliente, creado_en
 FROM facturas
@@ -174,14 +182,14 @@ WHERE aprobado_por_cliente IS NULL
 ORDER BY fecha_emision DESC;
 
 CREATE OR REPLACE VIEW facturas_aprobadas AS
-SELECT id, client_id, invoice_id, numero_factura, ruc_emisor, nombre_proveedor,
+SELECT id, tenant_id, client_id, invoice_id, numero_factura, ruc_emisor, nombre_proveedor,
        fecha_emision, monto_total, aprobado_por_usuario, aprobado_fecha, aprobado_comentario
 FROM facturas
 WHERE aprobado_por_cliente = TRUE
 ORDER BY aprobado_fecha DESC;
 
 CREATE OR REPLACE VIEW facturas_rechazadas AS
-SELECT id, client_id, invoice_id, numero_factura, ruc_emisor, nombre_proveedor,
+SELECT id, tenant_id, client_id, invoice_id, numero_factura, ruc_emisor, nombre_proveedor,
        fecha_emision, monto_total, aprobado_por_usuario, aprobado_fecha, aprobado_comentario
 FROM facturas
 WHERE aprobado_por_cliente = FALSE

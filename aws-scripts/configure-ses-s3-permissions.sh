@@ -1,9 +1,10 @@
 #!/bin/bash
 
-# Configuration
-BUCKET_NAME="flow-facturas-prod"
-AWS_ACCOUNT_ID="069662085753"
-REGION="us-east-1"
+# Configuration (override with env vars if needed)
+BUCKET_NAME="${BUCKET_NAME:-flow-cfo-facturas-invoices}"
+AWS_ACCOUNT_ID="${AWS_ACCOUNT_ID:-886436955626}"
+REGION="${REGION:-us-east-1}"
+RECIPIENT="${RECIPIENT:-facturas@flow-cfo-facturas.com}"
 
 # Create bucket policy to allow SES to write emails
 cat > /tmp/ses-bucket-policy.json <<EOF
@@ -45,7 +46,7 @@ if [ $? -eq 0 ]; then
       --rule '{
         "Name": "inbound-email-rule",
         "Enabled": true,
-        "Recipients": ["demo@flow-cfo.com"],
+        "Recipients": ["'"$RECIPIENT"'"],
         "Actions": [
           {
             "S3Action": {
@@ -79,4 +80,4 @@ rm /tmp/ses-bucket-policy.json
 
 echo ""
 echo "Configuration complete!"
-echo "Now emails to demo@flow-cfo.com will be saved to s3://$BUCKET_NAME/incoming-emails/"
+echo "Now emails to $RECIPIENT will be saved to s3://$BUCKET_NAME/incoming-emails/"

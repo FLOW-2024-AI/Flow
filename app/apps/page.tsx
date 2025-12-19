@@ -21,7 +21,8 @@ import {
   LineChart,
   AlertTriangle,
   Building2,
-  Landmark
+  Landmark,
+  Database
 } from 'lucide-react'
 
 interface App {
@@ -90,6 +91,15 @@ const apps: App[] = [
     href: '/apps/facturas-registradas', 
     color: 'bg-indigo-600',
     gradient: 'from-indigo-600 to-indigo-700',
+    category: 'Operaciones'
+  },
+  { 
+    name: 'Visor Dynamo', 
+    description: 'Monitor en tiempo real (DynamoDB)',
+    icon: Database, 
+    href: '/apps/visor-dynamo', 
+    color: 'bg-slate-600',
+    gradient: 'from-slate-600 to-slate-700',
     category: 'Operaciones'
   },
   

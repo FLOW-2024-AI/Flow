@@ -25,6 +25,18 @@ DB_USER = os.environ.get('DB_USER')
 DB_PASSWORD = os.environ.get('DB_PASSWORD')
 
 
+def normalizar_ruc(valor, permitir_null_si_invalido=True):
+    """
+    Retorna el RUC si tiene 11 dígitos, de lo contrario None (para no romper constraints).
+    """
+    if not valor:
+        return None
+    valor_str = str(valor)
+    if len(valor_str) == 11:
+        return valor_str
+    return None if permitir_null_si_invalido else valor_str
+
+
 def calcular_plazo_y_vencimiento(fecha_emision_str, plazo_credito_raw, fecha_vencimiento_raw):
     """
     Calcula plazo_credito (días) y fecha_vencimiento basándose en los datos disponibles.
@@ -116,7 +128,19 @@ def lambda_handler(event, context):
 
             # Convertir de formato DynamoDB a Python
             client_id = dynamo_item.get('clientId', {}).get('S')
+            tenant_id = from_dynamodb(dynamo_item.get('tenantId', {})) if dynamo_item.get('tenantId') else None
+            tenant_id = tenant_id or client_id
             invoice_data = from_dynamodb(dynamo_item.get('data', {}).get('M', {}))
+            top_level = {
+                'invoiceId': from_dynamodb(dynamo_item.get('invoiceId', {})),
+                'numeroFactura': from_dynamodb(dynamo_item.get('numeroFactura', {})),
+                'fechaEmision': from_dynamodb(dynamo_item.get('fechaEmision', {})),
+                'emisorRUC': from_dynamodb(dynamo_item.get('emisorRUC', {})),
+                'emisorRazonSocial': from_dynamodb(dynamo_item.get('emisorRazonSocial', {})),
+                'total': from_dynamodb(dynamo_item.get('total', {})),
+                'moneda': from_dynamodb(dynamo_item.get('moneda', {}))
+            }
+            invoice_data = normalize_invoice_data(invoice_data, top_level)
 
             # Extraer archivo info
             archivo = from_dynamodb(dynamo_item.get('archivo', {}).get('M', {}))
@@ -136,13 +160,14 @@ def lambda_handler(event, context):
             # Formato manual/directo
             print("📝 Processing manual invocation")
             client_id = event.get('clientId')
-            invoice_data = event.get('invoiceData', {})
+            tenant_id = event.get('tenantId') or client_id
+            invoice_data = normalize_invoice_data(event.get('invoiceData', {}))
             s3_data = event.get('s3Data', {})
             sunat_validation = event.get('sunatValidation', {})
             processing = event.get('processing', {})
 
-        if not client_id or not invoice_data:
-            raise ValueError("Missing required fields: clientId or invoiceData")
+        if not client_id or not tenant_id or not invoice_data:
+            raise ValueError("Missing required fields: clientId, tenantId or invoiceData")
 
         print(f"👤 Client: {client_id}")
         print(f"📄 Invoice: {invoice_data.get('numeroFactura')}")
@@ -159,15 +184,31 @@ def lambda_handler(event, context):
         )
 
         print("✅ Connected to PostgreSQL")
+        with conn.cursor() as cursor:
+            cursor.execute("SET row_security = on")
+            cursor.execute("SET app.tenant_id = %s", (tenant_id,))
 
         # 4. Preparar datos para inserción
         factura_record = prepare_factura_record(
             client_id=client_id,
+            tenant_id=tenant_id,
             invoice_data=invoice_data,
             s3_data=s3_data,
             sunat_validation=sunat_validation,
             processing=processing
         )
+
+        monto_total = factura_record.get('monto_total')
+        if monto_total is None or monto_total <= 0:
+            print(f"⏭️ Skipping insert: monto_total inválido ({monto_total})")
+            return {
+                'statusCode': 200,
+                'body': json.dumps({
+                    'message': 'Skipped invalid monto_total',
+                    'invoiceId': factura_record.get('invoice_id'),
+                    'clientId': client_id
+                })
+            }
 
         # 5. Insertar en la base de datos
         print("💾 Inserting into facturas table...")
@@ -199,16 +240,11 @@ def lambda_handler(event, context):
             if 'conn' in locals() and conn:
                 conn.rollback()
                 conn.close()
-        except:
+        except Exception:
             pass
 
-        return {
-            'statusCode': 500,
-            'body': json.dumps({
-                'error': str(e),
-                'type': type(e).__name__
-            })
-        }
+        # Re-lanzar para que DynamoDB Stream haga retry y no marque éxito silencioso
+        raise
 
 
 def from_dynamodb(obj):
@@ -240,7 +276,94 @@ def from_dynamodb(obj):
     return {k: from_dynamodb(v) for k, v in obj.items()}
 
 
-def prepare_factura_record(client_id, invoice_data, s3_data, sunat_validation, processing):
+def normalize_invoice_data(invoice_data, top_level=None):
+    """
+    Normaliza el payload para soportar formatos de Textract y Bedrock.
+    """
+    top_level = top_level or {}
+    normalized = dict(invoice_data) if isinstance(invoice_data, dict) else {}
+
+    invoice_id = top_level.get('invoiceId') or normalized.get('invoiceId')
+
+    numero_factura = (
+        normalized.get('numeroFactura')
+        or normalized.get('numero_factura')
+        or top_level.get('numeroFactura')
+    )
+    if not numero_factura and invoice_id and '-' in invoice_id:
+        numero_factura = invoice_id.split('-', 1)[1]
+    if numero_factura:
+        normalized['numeroFactura'] = numero_factura
+
+    fecha_emision = (
+        normalized.get('fechaEmision')
+        or normalized.get('fecha')
+        or normalized.get('fecha_emision')
+        or top_level.get('fechaEmision')
+    )
+    if fecha_emision:
+        normalized['fechaEmision'] = fecha_emision
+
+    montos = normalized.get('montos') if isinstance(normalized.get('montos'), dict) else {}
+    total = montos.get('total')
+    subtotal = montos.get('subtotal')
+    igv = montos.get('igv')
+
+    if total is None:
+        total = normalized.get('total')
+    if total is None:
+        total = top_level.get('total')
+
+    if subtotal is None:
+        subtotal = normalized.get('subtotal')
+    if subtotal is None:
+        subtotal = top_level.get('subtotal')
+
+    if igv is None:
+        igv = normalized.get('igv')
+    if igv is None:
+        igv = top_level.get('igv')
+
+    if total is None and (subtotal is not None or igv is not None):
+        total = (subtotal or 0) + (igv or 0)
+
+    montos.update({
+        'total': total,
+        'subtotal': subtotal,
+        'igv': igv
+    })
+    if not montos.get('moneda'):
+        montos['moneda'] = normalized.get('moneda') or top_level.get('moneda') or 'PEN'
+    normalized['montos'] = montos
+
+    emisor = normalized.get('emisor') if isinstance(normalized.get('emisor'), dict) else {}
+    ruc_emisor = (
+        emisor.get('numeroDocumento')
+        or emisor.get('ruc')
+        or normalized.get('ruc')
+        or top_level.get('emisorRUC')
+    )
+    if not ruc_emisor and invoice_id and '-' in invoice_id:
+        ruc_emisor = invoice_id.split('-', 1)[0]
+    if ruc_emisor and not emisor.get('numeroDocumento'):
+        emisor['numeroDocumento'] = ruc_emisor
+
+    razon_social = (
+        emisor.get('razonSocial')
+        or normalized.get('razon_social')
+        or top_level.get('emisorRazonSocial')
+    )
+    if razon_social and not emisor.get('razonSocial'):
+        emisor['razonSocial'] = razon_social
+    normalized['emisor'] = emisor
+
+    if invoice_id and not normalized.get('invoiceId'):
+        normalized['invoiceId'] = invoice_id
+
+    return normalized
+
+
+def prepare_factura_record(client_id, tenant_id, invoice_data, s3_data, sunat_validation, processing):
     """
     Prepara el registro de factura para inserción en PostgreSQL
     Mapea los campos del JSON de Claude a la estructura de la tabla
@@ -254,9 +377,12 @@ def prepare_factura_record(client_id, invoice_data, s3_data, sunat_validation, p
     sunat = invoice_data.get('sunat', {})
 
     # Construir invoice_id
-    ruc_emisor = emisor.get('numeroDocumento', 'UNKNOWN')
+    ruc_emisor = normalizar_ruc(emisor.get('numeroDocumento'), permitir_null_si_invalido=False)
+    if not ruc_emisor:
+        raise ValueError("RUC emisor inválido: se esperan 11 dígitos")
     numero_factura = invoice_data.get('numeroFactura', 'UNKNOWN')
     invoice_id = f"{ruc_emisor}-{numero_factura}"
+    receptor_ruc = normalizar_ruc(receptor.get('numeroDocumento'))
 
     # Extraer validación SUNAT
     sunat_estado_sunat = sunat_validation.get('estadoSunat', {})
@@ -266,6 +392,8 @@ def prepare_factura_record(client_id, invoice_data, s3_data, sunat_validation, p
 
     # Convertir fecha de emisión (YYYY-MM-DD)
     fecha_emision = invoice_data.get('fechaEmision')
+    if not fecha_emision:
+        fecha_emision = datetime.utcnow().strftime('%Y-%m-%d')
 
     # Calcular plazo_credito y fecha_vencimiento
     plazo_credito_raw = condiciones.get('plazoCredito')
@@ -282,6 +410,7 @@ def prepare_factura_record(client_id, invoice_data, s3_data, sunat_validation, p
     record = {
         # IDs y referencias
         'client_id': client_id,
+        'tenant_id': tenant_id,
         'invoice_id': invoice_id,
 
         # Archivo S3
@@ -313,7 +442,7 @@ def prepare_factura_record(client_id, invoice_data, s3_data, sunat_validation, p
         'emisor_email': emisor.get('email'),
 
         # Datos del Receptor
-        'receptor_ruc': receptor.get('numeroDocumento'),
+        'receptor_ruc': receptor_ruc,
         'receptor_razon_social': receptor.get('razonSocial'),
         'receptor_direccion': receptor.get('direccion'),
         'receptor_departamento': receptor.get('departamento'),
@@ -384,7 +513,7 @@ def insert_factura(conn, record):
 
     sql = """
         INSERT INTO facturas (
-            client_id, invoice_id,
+            client_id, tenant_id, invoice_id,
             s3_bucket, s3_key, s3_url, nombre_archivo, tamano_bytes,
             numero_factura, tipo_documento, serie, correlativo,
             fecha_emision, hora_emision, fecha_vencimiento, moneda,
@@ -408,7 +537,7 @@ def insert_factura(conn, record):
             validacion_requiere_revision,
             creado_por, version_documento
         ) VALUES (
-            %(client_id)s, %(invoice_id)s,
+            %(client_id)s, %(tenant_id)s, %(invoice_id)s,
             %(s3_bucket)s, %(s3_key)s, %(s3_url)s, %(nombre_archivo)s, %(tamano_bytes)s,
             %(numero_factura)s, %(tipo_documento)s, %(serie)s, %(correlativo)s,
             %(fecha_emision)s, %(hora_emision)s, %(fecha_vencimiento)s, %(moneda)s,
@@ -432,7 +561,7 @@ def insert_factura(conn, record):
             %(validacion_requiere_revision)s,
             %(creado_por)s, %(version_documento)s
         )
-        ON CONFLICT (client_id, invoice_id) DO UPDATE SET
+        ON CONFLICT (tenant_id, invoice_id) DO UPDATE SET
             -- En caso de duplicado, actualizar campos relevantes
             monto_total = EXCLUDED.monto_total,
             sunat_validado = EXCLUDED.sunat_validado,

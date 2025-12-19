@@ -1,8 +1,10 @@
-import { NextResponse } from 'next/server';
-import { Pool } from 'pg';
+import { NextRequest, NextResponse } from 'next/server';
+import { AuthError, requireTenantContext } from '@/lib/auth';
+import { withTenantClient } from '@/lib/db';
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
+    const { tenantId } = await requireTenantContext(request);
     // Mostrar configuración (sin password)
     const config = {
       host: process.env.DB_HOST,
@@ -13,21 +15,9 @@ export async function GET() {
       passwordLength: process.env.DB_PASSWORD?.length || 0
     };
 
-    // Intentar conexión
-    const pool = new Pool({
-      host: process.env.DB_HOST,
-      database: process.env.DB_NAME,
-      user: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
-      port: parseInt(process.env.DB_PORT || '5432'),
-      ssl: {
-        rejectUnauthorized: false
-      },
-      connectionTimeoutMillis: 5000,
-    });
-
-    const result = await pool.query('SELECT NOW() as current_time, current_database() as db_name');
-    await pool.end();
+    const result = await withTenantClient(tenantId, async (client) =>
+      client.query('SELECT NOW() as current_time, current_database() as db_name')
+    );
 
     return NextResponse.json({
       success: true,
@@ -37,6 +27,12 @@ export async function GET() {
     });
 
   } catch (error) {
+    if (error instanceof AuthError) {
+      return NextResponse.json({
+        success: false,
+        error: error.message
+      }, { status: error.status });
+    }
     return NextResponse.json({
       success: false,
       message: 'Error al conectar a la base de datos',
