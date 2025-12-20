@@ -11,6 +11,24 @@ const docClient = DynamoDBDocumentClient.from(client, {
   marshallOptions: { removeUndefinedValues: true }
 });
 
+const tenantPk = (tenantId: string) => `CLIENT#${tenantId}`;
+
+const isSchemaMismatch = (error: unknown) => {
+  if (!error || typeof error !== 'object') {
+    return false;
+  }
+  const err = error as { name?: string; message?: string };
+  if (err.name !== 'ValidationException') {
+    return false;
+  }
+  const message = err.message || '';
+  return (
+    message.includes('key schema') ||
+    message.includes('key element') ||
+    message.includes('Query condition missed key schema element')
+  );
+};
+
 type DynamoInvoice = {
   clientId?: string;
   invoiceId?: string;
@@ -104,6 +122,12 @@ const parseCursor = (cursor: string | null) => {
   }
 };
 
+const hasLegacyKey = (cursor: Record<string, unknown> | undefined) =>
+  !!cursor && Object.prototype.hasOwnProperty.call(cursor, 'clientId');
+
+const hasPkKey = (cursor: Record<string, unknown> | undefined) =>
+  !!cursor && Object.prototype.hasOwnProperty.call(cursor, 'PK');
+
 export async function GET(request: NextRequest) {
   try {
     const { tenantId } = await requireTenantContext(request);
@@ -111,30 +135,66 @@ export async function GET(request: NextRequest) {
     const limit = Math.min(parseInt(searchParams.get('limit') || '50', 10), 200);
     const search = (searchParams.get('search') || '').trim();
     const cursor = parseCursor(searchParams.get('cursor'));
+    const legacyCursor = hasLegacyKey(cursor) ? cursor : undefined;
+    const pkCursor = hasPkKey(cursor) ? cursor : undefined;
 
-    const commandInput: any = {
-      TableName: TABLE_NAME,
-      KeyConditionExpression: 'clientId = :tenant',
-      ExpressionAttributeValues: {
-        ':tenant': tenantId
-      },
-      Limit: limit
+    const buildLegacyInput = () => {
+      const commandInput: any = {
+        TableName: TABLE_NAME,
+        KeyConditionExpression: 'clientId = :tenant',
+        ExpressionAttributeValues: {
+          ':tenant': tenantId
+        },
+        Limit: limit
+      };
+      if (legacyCursor) {
+        commandInput.ExclusiveStartKey = legacyCursor;
+      }
+      if (search) {
+        commandInput.FilterExpression = [
+          'contains(invoiceId, :q)',
+          'contains(numeroFactura, :q)',
+          'contains(emisorRazonSocial, :q)'
+        ].join(' OR ');
+        commandInput.ExpressionAttributeValues[':q'] = search;
+      }
+      return commandInput;
     };
 
-    if (cursor) {
-      commandInput.ExclusiveStartKey = cursor;
+    const buildPkInput = () => {
+      const commandInput: any = {
+        TableName: TABLE_NAME,
+        KeyConditionExpression: 'PK = :pk AND begins_with(SK, :sk)',
+        ExpressionAttributeValues: {
+          ':pk': tenantPk(tenantId),
+          ':sk': 'INVOICE#'
+        },
+        Limit: limit
+      };
+      if (pkCursor) {
+        commandInput.ExclusiveStartKey = pkCursor;
+      }
+      if (search) {
+        commandInput.FilterExpression = [
+          'contains(invoiceId, :q)',
+          'contains(numeroFactura, :q)',
+          'contains(emisorRazonSocial, :q)'
+        ].join(' OR ');
+        commandInput.ExpressionAttributeValues[':q'] = search;
+      }
+      return commandInput;
+    };
+
+    let result: any;
+    try {
+      result = await docClient.send(new QueryCommand(buildLegacyInput()));
+    } catch (error) {
+      if (!isSchemaMismatch(error)) {
+        throw error;
+      }
+      result = await docClient.send(new QueryCommand(buildPkInput()));
     }
 
-    if (search) {
-      commandInput.FilterExpression = [
-        'contains(invoiceId, :q)',
-        'contains(numeroFactura, :q)',
-        'contains(emisorRazonSocial, :q)'
-      ].join(' OR ');
-      commandInput.ExpressionAttributeValues[':q'] = search;
-    }
-
-    const result = await docClient.send(new QueryCommand(commandInput));
     const rawItems = (result.Items || []) as DynamoInvoice[];
 
     const items = rawItems

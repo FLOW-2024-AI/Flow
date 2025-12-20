@@ -1,17 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
-import { DynamoDBDocumentClient, GetCommand } from '@aws-sdk/lib-dynamodb';
 import { S3Client, GetObjectCommand } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import { AuthError, requireTenantContext } from '@/lib/auth';
+import { fetchDynamoInvoiceById } from '@/lib/dynamo-facturas';
 
-const TABLE_NAME = process.env.DYNAMODB_TABLE || 'Facturas-dev';
 const REGION = process.env.AWS_REGION || 'us-east-1';
 
-const dynamoClient = new DynamoDBClient({ region: REGION });
-const docClient = DynamoDBDocumentClient.from(dynamoClient, {
-  marshallOptions: { removeUndefinedValues: true }
-});
 const s3Client = new S3Client({ region: REGION });
 
 export async function GET(request: NextRequest) {
@@ -27,14 +21,7 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const result = await docClient.send(
-      new GetCommand({
-        TableName: TABLE_NAME,
-        Key: { clientId: tenantId, invoiceId }
-      })
-    );
-
-    const item: any = result.Item;
+    const item: any = await fetchDynamoInvoiceById(tenantId, invoiceId);
     const archivo = item?.archivo || {};
     const bucket = archivo.s3Bucket;
     const key = archivo.s3Key;
