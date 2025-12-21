@@ -21,7 +21,8 @@ import {
   LineChart,
   AlertTriangle,
   Building2,
-  Landmark
+  Landmark,
+  Database
 } from 'lucide-react'
 
 interface App {
@@ -92,6 +93,15 @@ const apps: App[] = [
     gradient: 'from-indigo-600 to-indigo-700',
     category: 'Operaciones'
   },
+  { 
+    name: 'Visor Dynamo', 
+    description: 'Monitor en tiempo real (DynamoDB)',
+    icon: Database, 
+    href: '/apps/visor-dynamo', 
+    color: 'bg-slate-600',
+    gradient: 'from-slate-600 to-slate-700',
+    category: 'Operaciones'
+  },
   
   // TESORERÍA
   { 
@@ -143,11 +153,11 @@ const apps: App[] = [
   },
   
   // COPILOTO IA
-  { 
-    name: 'Chat IA', 
-    description: 'Asistente inteligente',
-    icon: MessageSquare, 
-    href: '/apps/chat-ia', 
+  {
+    name: 'Agente IA',
+    description: 'Consulta tus facturas en lenguaje natural',
+    icon: MessageSquare,
+    href: '/chat',
     color: 'bg-blue-500',
     gradient: 'from-blue-500 to-blue-600',
     category: 'Copiloto IA'

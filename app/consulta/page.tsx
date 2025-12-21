@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Navbar from '@/components/Navbar'
-import { supabase } from '@/lib/supabaseClient'
 import { BarChart3, Presentation, Map } from 'lucide-react'
 
 const containerVariants = {
@@ -66,7 +65,7 @@ export default function ConsultaPage() {
     setIsLoading(true)
 
     try {
-      // 1. Insertar en Supabase
+      // Enviar datos al API
       const consultaData = {
         email: formData.email,
         company: formData.empresa,
@@ -80,27 +79,19 @@ export default function ConsultaPage() {
         tipo: 'consulta'
       }
 
-      const { data, error: supabaseError } = await supabase
-        .from('leads')
-        .insert([consultaData])
-        .select()
-
-      if (supabaseError) {
-        throw new Error(supabaseError.message)
-      }
-
-      // 2. Notificar a n8n
-      const createdLead = data[0]
-      await fetch('/api/notify', {
+      const response = await fetch('/api/consultas', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          ...createdLead,
-          tipo: 'consulta_agendada'
-        }),
+        body: JSON.stringify(consultaData),
       })
+
+      const result = await response.json()
+
+      if (!result.success) {
+        throw new Error(result.error || 'Error al procesar la consulta')
+      }
 
       setIsSuccess(true)
       setFormData({

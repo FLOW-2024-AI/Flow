@@ -1,6 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+const FACTURAS_API_PATH =
+  process.env.NEXT_PUBLIC_FACTURAS_MODE?.toLowerCase() === 'mock'
+    ? '/api/facturas-public'
+    : '/api/facturas';
 import { motion } from 'framer-motion';
 
 interface Factura {
@@ -78,7 +82,7 @@ export default function FacturasTable() {
         }
       })
       
-      const response = await fetch(`/api/facturas?${params}`)
+      const response = await fetch(`${FACTURAS_API_PATH}?${params}`)
       
       if (!response.ok) {
         throw new Error(`Error ${response.status}: ${response.statusText}`)
@@ -184,14 +188,14 @@ export default function FacturasTable() {
           <div className="bg-red-800/30 p-4 rounded-lg text-left max-w-md mx-auto">
             <p className="text-sm text-red-200 mb-2">Posibles soluciones:</p>
             <ul className="text-sm text-red-300 space-y-1">
-              <li>• Verifica que Supabase esté configurado en .env.local</li>
+              <li>• Verifica que la base de datos esté configurada correctamente</li>
               <li>• Confirma que la tabla 'facturas' existe</li>
-              <li>• Revisa que las credenciales sean correctas</li>
+              <li>• Revisa la conexión a la base de datos</li>
             </ul>
           </div>
           <button 
             onClick={fetchFacturas}
-            className="mt-4 bg-red-600 hover:bg-red-700 text-gray-900 dark:text-white px-4 py-2 rounded-lg transition-colors"
+            className="mt-4 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-colors"
           >
             Reintentar
           </button>
@@ -266,7 +270,7 @@ export default function FacturasTable() {
           <div className="flex space-x-2">
             <button 
               onClick={fetchFacturas}
-              className="bg-blue-600 hover:bg-blue-700 text-gray-900 dark:text-white px-4 py-2 rounded-lg text-sm transition-colors"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm transition-colors"
             >
               Actualizar
             </button>
@@ -284,7 +288,7 @@ export default function FacturasTable() {
               <input
                 type="text"
                 placeholder="Buscar en todas las columnas..."
-                className="w-full pl-10 pr-4 py-3 bg-neutral-800 border border-neutral-700 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full pl-10 pr-4 py-3 bg-neutral-800 border border-neutral-700 rounded-lg text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -292,22 +296,22 @@ export default function FacturasTable() {
             
             {/* Selector de Registros por Página */}
             <div className="flex items-center space-x-2">
-              <label className="text-sm text-gray-600 dark:text-gray-300">Mostrar:</label>
+              <label className="text-sm text-white/70">Mostrar:</label>
               <select
                 value={itemsPerPage}
                 onChange={(e) => setItemsPerPage(Number(e.target.value))}
-                className="bg-neutral-800 border border-neutral-700 rounded-lg px-3 py-2 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="bg-neutral-800 border border-neutral-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value={10}>10</option>
                 <option value={50}>50</option>
                 <option value={100}>100</option>
               </select>
-              <span className="text-sm text-gray-600 dark:text-gray-300">registros</span>
+              <span className="text-sm text-white/70">registros</span>
             </div>
 
             {/* Selector de Tamaño de Tabla */}
             <div className="flex items-center space-x-2">
-              <label className="text-sm text-gray-600 dark:text-gray-300">Tamaño:</label>
+              <label className="text-sm text-white/70">Tamaño:</label>
               <div className="flex bg-neutral-800 rounded-lg border border-neutral-700">
                 {(['small', 'medium', 'large'] as const).map((size) => (
                   <button
@@ -316,7 +320,7 @@ export default function FacturasTable() {
                     className={`px-3 py-2 text-xs font-medium transition-colors ${
                       tableSize === size
                         ? 'bg-blue-600 text-white'
-                        : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:text-white hover:bg-neutral-700'
+                        : 'text-white/70 hover:text-white hover:bg-neutral-700'
                     } ${size === 'small' ? 'rounded-l-lg' : size === 'large' ? 'rounded-r-lg' : ''}`}
                   >
                     {size === 'small' ? 'S' : size === 'medium' ? 'M' : 'L'}
@@ -340,14 +344,14 @@ export default function FacturasTable() {
                 <input
                   type="text"
                   placeholder={`Filtrar ${field.label}`}
-                  className="w-full px-3 py-2 text-sm bg-neutral-800/50 border border-neutral-700 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 text-sm bg-neutral-800/50 border border-neutral-700 rounded-lg text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent"
                   value={filters[field.key] || ''}
                   onChange={(e) => setFilters(prev => ({ ...prev, [field.key]: e.target.value }))}
                 />
                 {filters[field.key] && (
                   <button
                     onClick={() => setFilters(prev => ({ ...prev, [field.key]: '' }))}
-                    className="absolute right-2 top-1/2 transform -translate-y-1/2 text-neutral-400 hover:text-gray-900 dark:text-white"
+                    className="absolute right-2 top-1/2 transform -translate-y-1/2 text-neutral-400 hover:text-white"
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -366,7 +370,7 @@ export default function FacturasTable() {
                   setFilters({})
                   setSearchTerm('')
                 }}
-                className="px-4 py-2 text-sm bg-neutral-800 hover:bg-neutral-700 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:text-white rounded-lg transition-colors"
+                className="px-4 py-2 text-sm bg-neutral-800 hover:bg-neutral-700 text-white/70 hover:text-white rounded-lg transition-colors"
               >
                 Limpiar todos los filtros
               </button>
@@ -380,7 +384,7 @@ export default function FacturasTable() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
             <h4 className="text-lg font-semibold mb-2">No hay facturas</h4>
-            <p className="text-neutral-400">Aún no se han procesado facturas desde n8n</p>
+            <p className="text-neutral-400">Aún no se han procesado facturas</p>
           </div>
         ) : (
           <div className={`
@@ -413,7 +417,7 @@ export default function FacturasTable() {
                     <th 
                       key={column.key}
                       className={`
-                        py-3 px-4 text-left text-xs font-medium text-gray-600 dark:text-gray-300 uppercase tracking-wider
+                        py-3 px-4 text-left text-xs font-medium text-white/70 uppercase tracking-wider
                         cursor-pointer hover:bg-neutral-700 transition-colors select-none
                         ${tableSize === 'small' ? 'py-2 px-2' : tableSize === 'large' ? 'py-4 px-6' : 'py-3 px-4'}
                       `}
@@ -455,15 +459,15 @@ export default function FacturasTable() {
                     className="border-t border-gray-200 dark:border-gray-700 hover:bg-neutral-800/30 transition-colors"
                   >
                     {[
-                      { value: factura.numero_factura || 'N/A', className: 'text-gray-600 dark:text-gray-300 font-mono' },
-                      { value: factura.ruc_emisor || 'N/A', className: 'text-gray-600 dark:text-gray-300 font-mono' },
-                      { value: factura.razon_social || 'N/A', className: 'text-gray-900 dark:text-white font-medium max-w-xs truncate' },
+                      { value: factura.numero_factura || 'N/A', className: 'text-white/70 font-mono' },
+                      { value: factura.ruc_emisor || 'N/A', className: 'text-white/70 font-mono' },
+                      { value: factura.razon_social || 'N/A', className: 'text-white font-medium max-w-xs truncate' },
                       { value: factura.direccion_emisor || 'N/A', className: 'text-neutral-400 max-w-xs truncate' },
-                      { value: formatDate(factura.fecha_emision), className: 'text-gray-600 dark:text-gray-300' },
-                      { value: factura.proveedor || 'N/A', className: 'text-gray-600 dark:text-gray-300 max-w-xs truncate' },
-                      { value: factura.codigo_producto || 'N/A', className: 'text-gray-600 dark:text-gray-300 font-mono' },
-                      { value: factura.descripcion || 'N/A', className: 'text-gray-600 dark:text-gray-300 max-w-xs truncate' },
-                      { value: factura.cantidad || 0, className: 'text-gray-600 dark:text-gray-300 text-center' },
+                      { value: formatDate(factura.fecha_emision), className: 'text-white/70' },
+                      { value: factura.proveedor || 'N/A', className: 'text-white/70 max-w-xs truncate' },
+                      { value: factura.codigo_producto || 'N/A', className: 'text-white/70 font-mono' },
+                      { value: factura.descripcion || 'N/A', className: 'text-white/70 max-w-xs truncate' },
+                      { value: factura.cantidad || 0, className: 'text-white/70 text-center' },
                       { value: `S/ ${factura.precio_unitario?.toLocaleString('es-PE', {minimumFractionDigits: 2}) || '0.00'}`, className: 'text-green-400 font-medium' },
                       { value: `S/ ${factura.valor_venta?.toLocaleString('es-PE', {minimumFractionDigits: 2}) || '0.00'}`, className: 'text-green-400 font-medium' },
                       { value: `S/ ${factura.igv?.toLocaleString('es-PE', {minimumFractionDigits: 2}) || '0.00'}`, className: 'text-yellow-400 font-medium' },
@@ -547,7 +551,7 @@ export default function FacturasTable() {
                       className={`px-3 py-2 text-sm rounded-lg transition-colors ${
                         currentPage === pageNum
                           ? 'bg-blue-600 text-white'
-                          : 'bg-neutral-800 hover:bg-neutral-700 text-gray-600 dark:text-gray-300 hover:text-white'
+                          : 'bg-neutral-800 hover:bg-neutral-700 text-white/70 hover:text-white'
                       }`}
                     >
                       {pageNum}

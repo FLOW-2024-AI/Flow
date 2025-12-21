@@ -178,6 +178,16 @@ finka-finance/
 - Contraste adecuado (WCAG AA)
 - Texto alternativo en imágenes
 
+## Acceso a facturas reales
+
+1. **Proxy AWS**: desplega una Lambda/API Gateway dentro de la VPC de Aurora siguiendo los pasos de `docs/facturas-proxy.md`. La Lambda expone rutas como `/facturas`, `/factura-detalle`, `/facturas-pendientes`, `/facturas-aprobadas` y `/facturas-stats`.
+2. **Variables de entorno**:
+   - `FACTURAS_API_URL=https://api.flowcfo.com` (apunta al proxy público).
+   - `NEXT_PUBLIC_FACTURAS_API` (opcional, sirve como respaldo si solo puedes editar variables públicas).
+   - `NEXT_PUBLIC_FACTURAS_MODE=real` para usar el proxy real, `mock` para forzar `/api/facturas-public`.
+3. **Fallback**: si trabajas en DreamHost o no tienes el proxy disponible, NEXT_PUBLIC_FACTURAS_MODE=`mock` hace que `components/FacturasTable` consulte `app/api/facturas-public`. La lógica real sigue viva en `lib/facturasProxy.ts`.
+4. Después de acomodar las variables, corre `npm run dev` y confirma que `/api/facturas*` responde sin errores de timeout.
+
 ## Soporte
 
 Para preguntas o problemas, contacta al equipo de desarrollo.

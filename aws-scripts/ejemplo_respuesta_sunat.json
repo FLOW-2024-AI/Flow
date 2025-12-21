@@ -1,0 +1,140 @@
+{
+  "descripcion": "Este archivo muestra qué recibimos de SUNAT y qué guardamos en DynamoDB",
+
+  "1_REQUEST_A_SUNAT": {
+    "url": "https://api.sunat.gob.pe/v1/contribuyente/contribuyentes/10730152898/validarcomprobante",
+    "headers": {
+      "Authorization": "Bearer eyJraWQiOiJhcGkuc3VuYXQ...",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "numRuc": "20207845044",
+      "codComp": "01",
+      "numeroSerie": "F004",
+      "numero": 100672,
+      "fechaEmision": "07/10/2025",
+      "monto": 70.00
+    }
+  },
+
+  "2_RESPUESTA_DE_SUNAT": {
+    "success": true,
+    "message": "Operation Success! ",
+    "data": {
+      "estadoCp": "1",
+      "estadoRuc": "00",
+      "condDomiRuc": "00",
+      "observaciones": [
+        "- El comprobante de pago consultado ha sido emitido a otro contribuyente."
+      ]
+    }
+  },
+
+  "3_LO_QUE_GUARDAMOS_EN_DYNAMODB": {
+    "PK": "CLIENT#cliente123",
+    "SK": "INVOICE#2025-10-07#20207845044-F004-100672",
+    "invoiceId": "20207845044-F004-100672",
+    "numeroFactura": "F004-100672",
+    "emisorRUC": "20207845044",
+    "total": 70.00,
+
+    "validacionSunat": {
+      "validado": true,
+      "esValido": true,
+      "estado": "VALIDO",
+      "motivo": "Comprobante validado exitosamente",
+
+      "estadoSunat": {
+        "estadoComprobante": {
+          "codigo": "1",
+          "descripcion": "ACEPTADO - Comprobante aceptado"
+        },
+        "estadoRuc": {
+          "codigo": "00",
+          "descripcion": "ACTIVO"
+        },
+        "condicionDomicilio": {
+          "codigo": "00",
+          "descripcion": "HABIDO"
+        },
+        "observaciones": [
+          "- El comprobante de pago consultado ha sido emitido a otro contribuyente."
+        ]
+      },
+
+      "timestampValidacion": "2025-10-18T17:15:00Z"
+    }
+  },
+
+  "4_INTERPRETACION": {
+    "estadoComprobante_1": "Factura ACEPTADA y válida en SUNAT ✅",
+    "estadoRuc_00": "RUC del emisor está ACTIVO ✅",
+    "condicionDomicilio_00": "Domicilio HABIDO (encontrado) ✅",
+    "observacion": "La factura es válida pero fue emitida a otro RUC (normal cuando consultas facturas de terceros)",
+    "resultado_final": "FACTURA VÁLIDA ✅"
+  },
+
+  "5_EJEMPLO_FACTURA_INVALIDA": {
+    "respuesta_sunat": {
+      "success": true,
+      "data": {
+        "estadoCp": "99",
+        "estadoRuc": "10",
+        "condDomiRuc": "20"
+      }
+    },
+    "lo_que_guardamos": {
+      "validacionSunat": {
+        "validado": true,
+        "estado": "INVALIDO",
+        "motivo": "Comprobante no válido en SUNAT",
+        "estadoSunat": {
+          "estadoComprobante": "99",
+          "estadoRuc": "10",
+          "condicionDomicilio": "20"
+        }
+      }
+    },
+    "interpretacion": {
+      "estadoComprobante_99": "Comprobante NO EXISTE ❌",
+      "estadoRuc_10": "RUC NO EXISTE ❌",
+      "condicionDomicilio_20": "Domicilio NO HABIDO ❌",
+      "resultado_final": "FACTURA INVÁLIDA ❌"
+    }
+  },
+
+  "6_EJEMPLO_ERROR_API": {
+    "respuesta_sunat": {
+      "success": false,
+      "message": "Error en los criterios de consulta enviados(Fecha de emisión es incorrecta)",
+      "errorCode": "99"
+    },
+    "http_status": 422,
+    "lo_que_guardamos": {
+      "validacionSunat": {
+        "validado": false,
+        "estado": "ERROR_API",
+        "motivo": "Error al consultar SUNAT: HTTP 422",
+        "estadoSunat": null,
+        "timestampValidacion": "2025-10-18T17:15:00Z",
+        "errorDetalle": "{\"success\":false,\"message\":\"Fecha incorrecta\"}"
+      }
+    }
+  },
+
+  "7_RESUMEN": {
+    "campos_de_sunat": [
+      "estadoCp - Estado del comprobante",
+      "estadoRuc - Estado del RUC emisor",
+      "condDomiRuc - Condición del domicilio",
+      "observaciones - Lista de observaciones"
+    ],
+    "campos_calculados_por_nosotros": [
+      "validado - true/false si la API respondió",
+      "estado - VALIDO/INVALIDO/ERROR_API/etc",
+      "motivo - Descripción en español",
+      "timestampValidacion - Cuándo se validó"
+    ],
+    "total_guardado": "Respuesta completa de SUNAT + metadata adicional"
+  }
+}
