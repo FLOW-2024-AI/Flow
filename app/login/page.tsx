@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
@@ -31,7 +31,7 @@ interface LoginFormData {
   password: string
 }
 
-export default function LoginPage() {
+function LoginForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const nextParam = searchParams.get('next')
@@ -87,11 +87,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#191919] text-gray-900 dark:text-gray-100 transition-colors duration-200">
-      <Navbar />
-
-      {/* Login Form */}
-      <div className="flex items-center justify-center min-h-[calc(100vh-80px)] px-4">
+    <div className="flex items-center justify-center min-h-[calc(100vh-80px)] px-4">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -226,6 +222,20 @@ export default function LoginPage() {
           </div>
         </motion.div>
       </div>
+  )
+}
+
+export default function LoginPage() {
+  return (
+    <div className="min-h-screen bg-white dark:bg-[#191919] text-gray-900 dark:text-gray-100 transition-colors duration-200">
+      <Navbar />
+      <Suspense fallback={
+        <div className="flex items-center justify-center min-h-[calc(100vh-80px)]">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-500"></div>
+        </div>
+      }>
+        <LoginForm />
+      </Suspense>
     </div>
   )
 }
