@@ -1,16 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { AuthError, requireTenantContext } from '@/lib/auth'
 import { withTenantClient } from '@/lib/db'
-import {
-  fetchDynamoInvoices,
-  mapDynamoAprobadas,
-  shouldUseDynamoFallback
-} from '@/lib/dynamo-facturas'
 
 export async function GET(request: NextRequest) {
-  let tenantId = ''
   try {
-    tenantId = (await requireTenantContext(request)).tenantId
+    const { tenantId } = await requireTenantContext(request)
+
     // Query simple y segura - solo campos esenciales
     const query = `
       SELECT *
@@ -62,26 +57,12 @@ export async function GET(request: NextRequest) {
 
   } catch (error) {
     console.error('Error fetching facturas aprobadas:', error)
+
     if (error instanceof AuthError) {
       return NextResponse.json({
         success: false,
         error: error.message
       }, { status: error.status })
-    }
-
-    if (shouldUseDynamoFallback() && tenantId) {
-      try {
-        const items = await fetchDynamoInvoices(tenantId)
-        const facturas = mapDynamoAprobadas(items)
-        return NextResponse.json({
-          success: true,
-          data: facturas,
-          count: facturas.length,
-          fallback: 'dynamo'
-        })
-      } catch (dynamoError) {
-        console.error('Error fetching Dynamo aprobadas:', dynamoError)
-      }
     }
 
     return NextResponse.json({

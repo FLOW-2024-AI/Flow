@@ -1,16 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { AuthError, requireTenantContext } from '@/lib/auth'
 import { withTenantClient } from '@/lib/db'
-import {
-  buildDynamoStats,
-  fetchDynamoInvoices,
-  shouldUseDynamoFallback
-} from '@/lib/dynamo-facturas'
 
 export async function GET(request: NextRequest) {
-  let tenantId = ''
   try {
-    tenantId = (await requireTenantContext(request)).tenantId
+    console.log('[API-STATS] Fetching stats...')
+    const { tenantId } = await requireTenantContext(request)
+    console.log('[API-STATS] Tenant:', tenantId)
+
     // Query para obtener estadísticas
     const query = `
       SELECT
@@ -34,6 +31,8 @@ export async function GET(request: NextRequest) {
     const result = await withTenantClient(tenantId, async (client) => client.query(query))
     const stats = result.rows[0]
 
+    console.log('[API-STATS] Stats:', stats)
+
     return NextResponse.json({
       success: true,
       data: {
@@ -46,25 +45,12 @@ export async function GET(request: NextRequest) {
 
   } catch (error) {
     console.error('Error fetching stats:', error)
+
     if (error instanceof AuthError) {
       return NextResponse.json({
         success: false,
         error: error.message
       }, { status: error.status })
-    }
-
-    if (shouldUseDynamoFallback() && tenantId) {
-      try {
-        const items = await fetchDynamoInvoices(tenantId)
-        const stats = buildDynamoStats(items)
-        return NextResponse.json({
-          success: true,
-          data: stats,
-          fallback: 'dynamo'
-        })
-      } catch (dynamoError) {
-        console.error('Error fetching Dynamo stats:', dynamoError)
-      }
     }
 
     return NextResponse.json({

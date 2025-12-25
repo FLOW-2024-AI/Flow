@@ -1,19 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { AuthError, requireTenantContext } from '@/lib/auth'
 import { withTenantClient } from '@/lib/db'
-import {
-  fetchDynamoInvoiceById,
-  mapDynamoDetalle,
-  shouldUseDynamoFallback
-} from '@/lib/dynamo-facturas'
 
 export async function GET(request: NextRequest) {
-  let tenantId = ''
-  let id = ''
   try {
-    tenantId = (await requireTenantContext(request)).tenantId
+    const { tenantId } = await requireTenantContext(request)
     const { searchParams } = new URL(request.url)
-    id = searchParams.get('id') || ''
+    const id = searchParams.get('id') || ''
 
     if (!id) {
       return NextResponse.json({
@@ -207,25 +200,6 @@ export async function GET(request: NextRequest) {
         success: false,
         error: error.message
       }, { status: error.status })
-    }
-
-    if (shouldUseDynamoFallback() && tenantId && id) {
-      try {
-        const item = await fetchDynamoInvoiceById(tenantId, id)
-        if (!item) {
-          return NextResponse.json({
-            success: false,
-            error: 'Factura no encontrada'
-          }, { status: 404 })
-        }
-        return NextResponse.json({
-          success: true,
-          data: mapDynamoDetalle(item),
-          fallback: 'dynamo'
-        })
-      } catch (dynamoError) {
-        console.error('Error fetching Dynamo detalle:', dynamoError)
-      }
     }
 
     return NextResponse.json({

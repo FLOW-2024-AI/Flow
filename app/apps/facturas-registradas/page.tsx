@@ -366,11 +366,18 @@ export default function FacturasRegistradasPage() {
       setLoading(true)
       setError(null)
 
-      const response = await fetch('/api/facturas-pendientes')
+      console.log('[DEBUG] Fetching facturas pendientes...')
+      const response = await fetch('/api/facturas-pendientes', {
+        credentials: 'include'
+      })
+      console.log('[DEBUG] Response status:', response.status)
+
       const result = await response.json()
+      console.log('[DEBUG] Response result:', result)
 
       if (result.success) {
         setFacturasPendientes(result.data)
+        console.log('[DEBUG] Facturas loaded:', result.data.length)
       } else {
         setError(result.error || 'Error al cargar facturas')
         console.error('Error:', result.error)
@@ -385,7 +392,10 @@ export default function FacturasRegistradasPage() {
 
   const fetchStats = async () => {
     try {
-      const response = await fetch('/api/facturas-stats')
+      const response = await fetch('/api/facturas-stats', {
+        credentials: 'include',
+        cache: 'no-store'
+      })
       const result = await response.json()
 
       if (result.success) {
