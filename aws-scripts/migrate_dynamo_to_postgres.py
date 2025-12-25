@@ -100,7 +100,8 @@ def convert_dynamodb_item_to_event(item):
 
     # Extraer client_id y tenant_id
     client_id = item.get('clientId')
-    tenant_id = item.get('tenantId', client_id)
+    # FORZAR tenant_id a 'grupomast' para que coincida con usuarios de Cognito
+    tenant_id = 'grupomast'
 
     # Extraer datos de la factura
     invoice_data = item.get('data', {})
