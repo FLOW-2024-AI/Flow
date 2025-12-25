@@ -411,7 +411,10 @@ export default function FacturasRegistradasPage() {
       setLoadingAprobadas(true)
       setErrorAprobadas(null)
 
-      const response = await fetch('/api/facturas-aprobadas')
+      const response = await fetch('/api/facturas-aprobadas', {
+        credentials: 'include',
+        cache: 'no-store'
+      })
       const result = await response.json()
 
       if (result.success) {
