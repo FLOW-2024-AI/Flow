@@ -81,44 +81,30 @@ export async function GET(request: NextRequest) {
 
     const factura = facturaResult.rows[0]
 
-    // Obtener items desde la tabla detalles_facturas
-    const itemsQuery = `
-      SELECT
-        numero_item,
-        codigo as codigo_producto,
-        descripcion,
-        cantidad,
-        unidad_medida,
-        valor_unitario,
-        precio_unitario,
-        descuento,
-        valor_venta as subtotal,
-        igv,
-        total,
-        tipo_afectacion as tipo_afectacion_igv
-      FROM detalles_facturas
-      WHERE id = $1
-      ORDER BY numero_item
-    `
-
-    const itemsResult = await withTenantClient(tenantId, async (client) =>
-      client.query(itemsQuery, [factura.id])
-    )
-
-    const items = itemsResult.rows.map(item => ({
-      numero_item: item.numero_item,
-      codigo_producto: item.codigo_producto || '',
-      descripcion: item.descripcion || '',
-      cantidad: parseFloat(item.cantidad || 0),
-      unidad_medida: item.unidad_medida || 'UND',
-      precio_unitario: parseFloat(item.precio_unitario || 0),
-      valor_unitario: parseFloat(item.valor_unitario || 0),
-      descuento: parseFloat(item.descuento || 0),
-      subtotal: parseFloat(item.subtotal || 0),
-      igv: parseFloat(item.igv || 0),
-      total: parseFloat(item.total || 0),
-      tipo_afectacion_igv: item.tipo_afectacion_igv || ''
-    }))
+    // Extraer items desde data_completa (JSONB)
+    let items = []
+    try {
+      const dataCompleta = factura.data_completa
+      if (dataCompleta && dataCompleta.items && Array.isArray(dataCompleta.items)) {
+        items = dataCompleta.items.map((item: any, index: number) => ({
+          numero_item: item.numero_item || item.numeroItem || index + 1,
+          codigo_producto: item.codigo_producto || item.codigoProducto || item.codigo || '',
+          descripcion: item.descripcion || '',
+          cantidad: parseFloat(item.cantidad || 0),
+          unidad_medida: item.unidad_medida || item.unidadMedida || 'UND',
+          precio_unitario: parseFloat(item.precio_unitario || item.precioUnitario || 0),
+          valor_unitario: parseFloat(item.valor_unitario || item.valorUnitario || item.precio_unitario || item.precioUnitario || 0),
+          descuento: parseFloat(item.descuento || 0),
+          subtotal: parseFloat(item.subtotal || item.valor_venta || item.valorVenta || 0),
+          igv: parseFloat(item.igv || 0),
+          total: parseFloat(item.total || 0),
+          tipo_afectacion_igv: item.tipo_afectacion_igv || item.tipoAfectacionIgv || item.tipo_afectacion || item.tipoAfectacion || ''
+        }))
+      }
+    } catch (error) {
+      console.error('Error parsing items from data_completa:', error)
+      items = []
+    }
 
     // Helper para formatear fechas
     const formatFecha = (fecha: any) => {
