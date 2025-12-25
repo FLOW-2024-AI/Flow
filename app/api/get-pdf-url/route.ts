@@ -3,6 +3,8 @@ import { S3Client, GetObjectCommand } from '@aws-sdk/client-s3'
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
 import { AuthError, requireTenantContext } from '@/lib/auth'
 
+export const dynamic = 'force-dynamic'
+
 // Configurar el cliente S3
 // Si no hay credenciales en las variables de entorno, usará las credenciales por defecto del sistema
 const s3ClientConfig: any = {

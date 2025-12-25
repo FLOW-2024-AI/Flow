@@ -6,6 +6,8 @@ import { RunnableSequence } from '@langchain/core/runnables'
 import { AuthError, requireTenantContext } from '@/lib/auth'
 import { withTenantClient } from '@/lib/db'
 
+export const dynamic = 'force-dynamic'
+
 // Configurar Bedrock con LangChain
 const bedrockConfig: any = {
   region: process.env.AWS_REGION || 'us-east-1',

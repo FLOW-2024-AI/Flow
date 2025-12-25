@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { AuthError, requireTenantContext } from '@/lib/auth'
 import { withTenantClient } from '@/lib/db'
 
+export const dynamic = 'force-dynamic'
+
 export async function GET(request: NextRequest) {
   try {
     console.log('[API-STATS] Fetching stats...')
