@@ -3,14 +3,14 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import ThemeToggle from '@/components/ThemeToggle'
-import { 
-  LayoutDashboard, 
-  BarChart3, 
-  FileText, 
-  CreditCard, 
-  Receipt, 
-  Wallet, 
-  TrendingUp, 
+import {
+  LayoutDashboard,
+  BarChart3,
+  FileText,
+  CreditCard,
+  Receipt,
+  Wallet,
+  TrendingUp,
   Scale,
   Calendar,
   FileBarChart,
@@ -21,8 +21,7 @@ import {
   LineChart,
   AlertTriangle,
   Building2,
-  Landmark,
-  Database
+  Landmark
 } from 'lucide-react'
 
 interface App {
@@ -84,22 +83,13 @@ const apps: App[] = [
     gradient: 'from-orange-600 to-orange-700',
     category: 'Operaciones'
   },
-  { 
-    name: 'Facturas Registradas', 
+  {
+    name: 'Facturas Registradas',
     description: 'Historial de facturas',
-    icon: FileBarChart, 
-    href: '/apps/facturas-registradas', 
+    icon: FileBarChart,
+    href: '/apps/facturas-registradas',
     color: 'bg-indigo-600',
     gradient: 'from-indigo-600 to-indigo-700',
-    category: 'Operaciones'
-  },
-  { 
-    name: 'Visor Dynamo', 
-    description: 'Monitor en tiempo real (DynamoDB)',
-    icon: Database, 
-    href: '/apps/visor-dynamo', 
-    color: 'bg-slate-600',
-    gradient: 'from-slate-600 to-slate-700',
     category: 'Operaciones'
   },
   

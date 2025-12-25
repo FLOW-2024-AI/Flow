@@ -1,16 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { AuthError, requireTenantContext } from '@/lib/auth'
 import { withTenantClient } from '@/lib/db'
-import {
-  fetchDynamoInvoices,
-  mapDynamoPendientes,
-  shouldUseDynamoFallback
-} from '@/lib/dynamo-facturas'
 
 export async function GET(request: NextRequest) {
-  let tenantId = ''
   try {
-    tenantId = (await requireTenantContext(request)).tenantId
+    const { tenantId } = await requireTenantContext(request)
+
+    console.log('[API] Fetching facturas pendientes for tenant:', tenantId)
+
     // Query para obtener facturas pendientes de aprobación del cliente
     const query = `
       SELECT
@@ -36,6 +33,8 @@ export async function GET(request: NextRequest) {
     `
 
     const result = await withTenantClient(tenantId, async (client) => client.query(query))
+
+    console.log('[API] Found', result.rows.length, 'facturas pendientes')
 
     // Transformar los datos al formato que espera el frontend
     const facturas = result.rows.map(row => ({
@@ -67,27 +66,13 @@ export async function GET(request: NextRequest) {
     })
 
   } catch (error) {
-    console.error('Error fetching facturas pendientes:', error)
+    console.error('[API] Error fetching facturas pendientes:', error)
+
     if (error instanceof AuthError) {
       return NextResponse.json({
         success: false,
         error: error.message
       }, { status: error.status })
-    }
-
-    if (shouldUseDynamoFallback() && tenantId) {
-      try {
-        const items = await fetchDynamoInvoices(tenantId)
-        const facturas = mapDynamoPendientes(items)
-        return NextResponse.json({
-          success: true,
-          data: facturas,
-          count: facturas.length,
-          fallback: 'dynamo'
-        })
-      } catch (dynamoError) {
-        console.error('Error fetching Dynamo pendientes:', dynamoError)
-      }
     }
 
     return NextResponse.json({
